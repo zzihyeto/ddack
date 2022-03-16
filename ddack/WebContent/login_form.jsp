@@ -25,14 +25,14 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <div class="card shadow-lg border-0 rounded-lg my-auto">
+                        <div class="card shadow-lg border-0 rounded-lg my-5">
                             <div class="card-header">
 	                            <h3 class="text-center font-weight-light my-4">
 	                            	Login
 	                            </h3>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="login.check" method="post">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="userID" type="text" placeholder="ID..." />
                                         <label for="userID">Id</label>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <a class="small" href="#">비밀번호 찾기</a>
-                                        <a class="btn btn-warning" href="log.check">Login</a>
+                                        <button type="submit" class="btn btn-warning">Login</button>
                                     </div>
                                 </form>
                             </div>
