@@ -8,7 +8,7 @@
              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                  <li class="nav-item"><a class="nav-link" href="index.jsp">DDACK</a></li>
                  <li class="nav-item"><a class="nav-link" href="about.jsp">About</a></li>
-                 <li class="nav-item"><a class="nav-link" href="join.jsp">Join</a></li>
+                 <li class="nav-item"><a class="nav-link" href="join_form.jsp">Join</a></li>
                  <li class="nav-item"><a class="nav-link" href="faq.jsp">FAQ</a></li>
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</a>

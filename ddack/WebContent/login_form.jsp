@@ -24,17 +24,21 @@
             
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-5">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                    <div class="col-lg-8">
+                        <div class="card shadow-lg border-0 rounded-lg my-auto">
+                            <div class="card-header">
+	                            <h3 class="text-center font-weight-light my-4">
+	                            	Login
+	                            </h3>
+                            </div>
                             <div class="card-body">
                                 <form>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userID" type="text" placeholder="ID를 입력하세요" />
-                                        <label for="inputEmail">Id</label>
+                                        <input class="form-control" id="userID" type="text" placeholder="ID..." />
+                                        <label for="userID">Id</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                        <input class="form-control" id="inputPassword" type="password" placeholder="PW..."/>
                                         <label for="inputPassword">Password</label>
                                     </div>
                                     <div class="form-check mb-3">
@@ -42,13 +46,13 @@
                                         <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="password.html">비밀번호 찾기</a>
-                                        <a class="btn btn-primary" href="index.html">Login</a>
+                                        <a class="small" href="#">비밀번호 찾기</a>
+                                        <a class="btn btn-warning" onclick="location.href='log.check'">Login</a>
                                     </div>
                                 </form>
                             </div>
                             <div class="card-footer text-center py-3">
-                                <div class="small"><a href="join.jsp">건강하기를 원합니까? DDACK에회원가입 ㄱㄱ </a></div>
+                                <div class="small"><a href="join_form.jsp">건강하기를 원합니까? DDACK에회원가입 ㄱㄱ </a></div>
                             </div>
                         </div>
                     </div>

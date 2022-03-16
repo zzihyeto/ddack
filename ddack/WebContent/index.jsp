@@ -30,8 +30,8 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2">DDACK</h1>
                                 <p class="lead fw-normal text-white-50 mb-4">뭔가 다른데? 맛있게 다르다!</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-success btn-lg px-4 me-sm-3" href="#">로그인</a>
-                                    <a class="btn btn-outline-light btn-lg px-4" href="#">회원가입</a>
+                                    <a class="btn btn-success btn-lg px-4 me-sm-3" href="login_form.jsp">로그인</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="join_form.jsp">회원가입</a>
                                 </div>
                             </div>
                         </div>
