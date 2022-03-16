@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <a class="small" href="#">비밀번호 찾기</a>
-                                        <a class="btn btn-warning" onclick="location.href='log.check'">Login</a>
+                                        <a class="btn btn-warning" href="log.check">Login</a>
                                     </div>
                                 </form>
                             </div>
