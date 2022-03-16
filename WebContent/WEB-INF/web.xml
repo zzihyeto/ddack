@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-<<<<<<< HEAD
-  <display-name>ddack_home</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-=======
-  <display-name>ddack1</display-name>
-  <welcome-file-list>
-    
-    <welcome-file>index.jsp</welcome-file>
-    
->>>>>>> e8422f24eeda06d7ae6339b028102d82a641b779
-  </welcome-file-list>
+
+<display-name>ddack_home</display-name>
+<welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+</welcome-file-list>
   
-  <resource-ref>
-  	<description></description>
-  	<res-ref-name></res-ref-name>
-  	<res-type></res-type>
-  	<res-auth></res-auth>
-  </resource-ref>
+
   
 </web-app>
