@@ -34,7 +34,7 @@
                                 <div class="card-body p-5">
                                     
                                     <div class="mb-3">
-                                        <span class="display-5 fw-bold">슬라이스</span>
+                                        <span class="display-6 fw-bold">슬라이스</span>
                                         <span class="text-muted">(플레인)</span>
                                     </div>
                                     <ul class="list-unstyled mb-4">
@@ -51,7 +51,7 @@
                                             제조일로부터 30일
                                         </li>
                                     </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-primary" href="#!">장바구니</a></div>
+                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <div class="card-body p-5">
                                     
                                     <div class="mb-3">
-                                        <span class="display-5 fw-bold">슬라이스</span>
+                                        <span class="display-6 fw-bold">슬라이스</span>
                                         <span class="text-muted">(플레인)</span>
                                     </div>
                                     <ul class="list-unstyled mb-4">
@@ -78,7 +78,7 @@
                                             제조일로부터 30일
                                         </li>
                                     </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-primary" href="#!">장바구니</a></div>
+                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                 <div class="card-body p-5">
                                    
                                     <div class="mb-3">
-                                        <span class="display-5 fw-bold">슬라이스</span>
+                                        <span class="display-6 fw-bold">슬라이스</span>
                                         <span class="text-muted">(플레인)</span>
                                     </div>
                                     <ul class="list-unstyled mb-4">
@@ -105,7 +105,7 @@
                                             제조일로부터 30일
                                         </li>
                                     </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-primary" href="#!">장바구니</a></div>
+                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
                                 </div>
                             </div>
                         </div>
