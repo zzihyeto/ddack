@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,15 @@ public class LogController extends HttpServlet{
 		String command = requestURI.substring(contextPath.length());
 		
 		System.out.println(requestURI+"\n"+"==="+contextPath+"\n"+"===>"+command);
+		
+		if(forward!=null) {
+			if(forward.isRedirect()) {
+				res.sendRedirect(forward.getPath()); 
+			}else {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+				dispatcher.forward(req, res);
+			}
+		}
 	}
 	
 }
