@@ -1,0 +1,75 @@
+PRODUCT												
+p_code	p_name	eq_code	p_kg	p_life						
+INSERT INTO PRODUCT (p_code, p_name, eq_code, p_kg, p_life) VALUES (301+i, 												
+										
+P_INFO														
+p_info_code p_code p_info_text p_pay re_code						
+INSERT INTO P_INFO(p_info_code, p_info_text, p_pay, re_code) VALUES (I ,'번 설명입니다', 													
+REVIEW											
+re_code	m_id p_code p_review
+INSERT INTO REVIEW(re_code, m_id, p_code, p_review) VALUES()	
+														
+ITEM_INVENT
+invent_code p_code invent_qty update store_code		
+INSERT IsNTO ITEM_INVENT(invent_code, p_code, invent_qty, update, store_code) values()
+														
+Storage
+store_code store_name store_loc								
+INSERT INTO Storage(store_code, store_name, store_loc) VALUES()		
+				
+ITEM_IO				
+io_cd io_time io_type store_code m_od_code							
+INSERT INTO ITEM_IO(io_cd, io_time, io_type, store_code, m_od_code) VALUES()													
+
+MEMORDER
+m_od_code m_code p_code	p_count	order_date dead_line due_date delay_date												
+INSERT INTO MEMORDER(m_od_code, m_code, p_code, p_count, order_date, dead_line, due_date ,delay_date) VALUES()	
+																									
+MEMBER
+m_code	m_type	m_id m_pw m_name m_jumin m_phone m_email post_code					
+INSERT INTO MEMBER(m_code, m_type, m_id, m_pw, m_name, m_jumin, m_phone, m_email, post_code) VALUES()																											
+POST														
+post_code post_num do ci gungu	dong be_addr
+INSERT INTO POST(post_code, post_num, do, ci, gungu, dong, be_addr) VALUES()												
+														
+STARTORDER														
+start_od_code start_date m_od_code total_date begin_date end_date						
+INSERT INTO STARTORDER(start_od_code, start_date, m_od_code, total_date, begin_date, end_date) VALUES()																										
+COOK														
+cook_code cook													
+INSERT INTO COOK(cook_code, cook) VALUES()														
+														
+LINECHECK														
+check_code line_code check_date	check_content
+INSERT INTO LINECHECK(check_code, line_code, check_date, check_content) VALUES(																											
+
+LINES														
+line_code line_name line_usable	line_q							
+INSERT INTO LINES(line_code, line_name, line_usable, line_q) VALUES()														
+														
+QUALITY														
+q_code ch_pro_code mat_code1 mat_code2 mat_code3 cook_code								
+INSERT INTO QUALITY(q_code, ch_pro_code, mat_code1, mat_code2, mat_code3, cook_code) VALUES()																									
+CH_PROCESS														
+ch_pro_code start_od_code p_code mat_code1 mat_code2 mat_code3 cook_code mk_time mk_ps_code line_code clean_code q_code
+INSERT INTO CH_PROCESS(ch_pro_code, start_od_code, p_code, mat_code1, mat_code2, mat_code3, cook_code, mk_time, mk_ps_code, line_code, clean_code, q_code) VALUES()					
+MKPERSON														
+mk_ps_code mk_person																			INSERT INTO MKPERSON(mk_ps_code, mk_person) VALUES()														
+														
+CLEAN														
+clean_code c_cycle_d c_check									
+INSERT INTO CLEAN(clean_code, c_cycle_d, c_check) VALUES()													
+														
+BOM														
+mat_code mat_name mat_type mat_unit mat_count mat_person mat_container_co mat_life_t clean_code	b_order_code						
+INSERT INTO BOM(mat_code, mat_name, mat_type, mat_unit, mat_count, mat_person, mat_container_co, mat_life_t, clean_code, b_order_code) VALUES()																										
+BUYCOMPANY														
+b_comp_code b_comp_name	b_comp_addr b_comp_tell	arrive_date													
+INSERT INTO BUYCOMPANY(b_comp_code, b_comp_name, b_comp_addr, b_comp_tell, arrive_date) VALUES()																								
+BUYCOMP_ODRDER														
+b_order_code b_comp_code mat_count exp_in_d tru_in_d quality		
+INSERT INTO BUYCOMP_ODRDER(b_order_code, b_comp_code, mat_count, exp_in_d, tru_in_d, quality) VALUES()			
+														
+MONTH_PAY														
+month_p_code	b_comp_code	month_pay	payment_d											
+INSERT INTO MONTH_PAY(month_p_code, b_comp_code, month_pay, payment_d) VALUES()												
