@@ -11,20 +11,21 @@ import javax.sql.DataSource;
 
 public class JDBCUtility {
 
-public static Connection getConnection(){
+	public static Connection getConnection(){
 		
 		Connection conn= null;
-		try {
-			Context initCtx = new InitialContext();
-			Context envCtx =(Context) initCtx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envCtx.lookup("jdbc/teeth");
-			conn= ds.getConnection();
-			conn.setAutoCommit(false);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return conn;
+			try {
+				Context initCtx = new InitialContext();
+				Context envCtx =(Context) initCtx.lookup("java:comp/env");
+				DataSource ds = (DataSource) envCtx.lookup("jdbc/ddack");
+				conn= ds.getConnection();
+				conn.setAutoCommit(false);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return conn;
 	}
+
 	public static void close(Connection conn,Statement stmt,ResultSet rs) {
 		try {
 			if(rs!=null) rs.close();
