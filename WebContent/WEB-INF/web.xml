@@ -17,4 +17,12 @@
     
 >>>>>>> e8422f24eeda06d7ae6339b028102d82a641b779
   </welcome-file-list>
+  
+  <resource-ref>
+  	<description></description>
+  	<res-ref-name></res-ref-name>
+  	<res-type></res-type>
+  	<res-auth></res-auth>
+  </resource-ref>
+  
 </web-app>

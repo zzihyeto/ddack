@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		name = "jdbc/teeth"
+		auth = "Container"
+		type = "javax.sql.DataSource"
+		username = "root"
+		password = "12345"
+		driverClassName = "oracle.jdbc.driver.OracleDriver"
+		factory = "org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		url = "jdbc:oracle:thin:@localhost:1521:xe"
+		maxActive = "50"
+		maxIdle ="10"
+		maxWait="-1"
+	/>
+</Context>
