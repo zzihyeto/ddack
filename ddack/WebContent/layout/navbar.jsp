@@ -13,7 +13,7 @@
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                         <li><a class="dropdown-item" href="product_show.jsp">Product</a></li>
+                         <li><a class="dropdown-item" href="product.show">Product</a></li>
                          <li><a class="dropdown-item" href="review.jsp">Review</a></li>
                      </ul>
                  </li>

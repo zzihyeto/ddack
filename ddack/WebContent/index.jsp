@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String loginmsg = (String) request.getAttribute("login_ing");
-	System.out.println("==loginmsg=>"+loginmsg);
+	//System.out.println("==loginmsg=>"+loginmsg);
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
 <!DOCTYPE html>
@@ -51,15 +51,16 @@
                 </div>
             </header>
              
-            <c:if test="${!empty loginmsg }">
-				<div class="alert alert-warning" role="alert">
-					${loginmsg}
-				</div>
-			</c:if>
+            
              
             <!-- 인기 완제품 3개만 나열 -->
             <section class="py-5">
                 <div class="container px-5 my-5">
+	                <c:if test="${!empty loginmsg }">
+						<div class="alert alert-warning" role="alert">
+							${loginmsg}
+						</div>
+					</c:if>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <div class="text-center">

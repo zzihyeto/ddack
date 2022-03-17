@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	request.setAttribute("re_list","");
+%>
+<c:set var="pro_list" value="${pro_list }"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,86 +33,40 @@
                     
                     <div class="row gx-5 justify-content-center mb-5">
                         <!-- Pricing card free-->
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="card mb-5 mb-xl-0">
-                                <div class="card-body p-5">
-                                    
-                                    <div class="mb-3">
-                                        <span class="display-6 fw-bold">슬라이스</span>
-                                        <span class="text-muted">(플레인)</span>
-                                    </div>
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            5000원
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            100g
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            제조일로부터 30일
-                                        </li>
-                                    </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="card mb-5 mb-xl-0">
-                                <div class="card-body p-5">
-                                    
-                                    <div class="mb-3">
-                                        <span class="display-6 fw-bold">슬라이스</span>
-                                        <span class="text-muted">(플레인)</span>
-                                    </div>
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            5000원
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            100g
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            제조일로부터 30일
-                                        </li>
-                                    </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                       <div class="col-lg-6 col-xl-4">
-                            <div class="card mb-5 mb-xl-0">
-                                <div class="card-body p-5">
-                                   
-                                    <div class="mb-3">
-                                        <span class="display-6 fw-bold">슬라이스</span>
-                                        <span class="text-muted">(플레인)</span>
-                                    </div>
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            5000원
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            100g
-                                        </li>
-                                        <li class="mb-2">
-                                            <i class="bi bi-check text-primary"></i>
-                                            제조일로부터 30일
-                                        </li>
-                                    </ul>
-                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        <c:if test="${ empty pro_list }">
+							<h5>
+								<p class="bg-danger text-white">등록된 게시물이 존재하지않습니다.</p>
+							</h5>
+						</c:if>	
+                        <c:foreach var="product" items="${pro_list }">
+                        	<div class="col-lg-6 col-xl-4">
+	                            <div class="card mb-5 mb-xl-0">
+	                                <div class="card-body p-5">
+	                                    
+	                                    <div class="mb-3">
+	                                        <span class="display-6 fw-bold">${prodcut.p_name }</span>
+	                                    </div>
+	                                    <ul class="list-unstyled mb-4">
+	                                        <li class="mb-2">
+	                                            <i class="bi bi-check text-primary"></i>
+	                                            ${product.p_pay }
+	                                        </li>
+	                                        <li class="mb-2">
+	                                            <i class="bi bi-check text-primary"></i>
+	                                            ${product.p_kg }
+	                                        </li>
+	                                        <li class="mb-2">
+	                                            <i class="bi bi-check text-primary"></i>
+	                                            ${product.p_life }
+	                                        </li>
+	                                    </ul>
+	                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </c:foreach>
+                       
+                  
                         
                     </div>
                     
