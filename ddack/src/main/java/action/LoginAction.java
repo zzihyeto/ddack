@@ -16,7 +16,7 @@ public class LoginAction implements Action {
 		
 		//입력한 값 파라미터 받아오고
 		String userID = req.getParameter("userID");
-		
+
 		String inputPassword = req.getParameter("inputPassword");
 		
 		boolean ok_id_pw = false;

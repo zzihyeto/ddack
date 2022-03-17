@@ -47,6 +47,8 @@ public class LogController extends HttpServlet{
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/logout.check")) {
+			
 		}
 		
 		
