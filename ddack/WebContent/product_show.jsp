@@ -5,8 +5,8 @@
 <%
     List<Product> pro_list = (List<Product>) request.getAttribute("pro_list");
 	request.setAttribute("pro_list", pro_list);
+	//System.out.println("======type==="+pro_list.getClass().getSimpleName());
 %>
-<c:set var="pro_list" value=" ${pro_list }"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,26 +43,27 @@
 							</h5>
 						</c:if>	
                         <c:forEach var="product" items="${pro_list }">
+                        	
                        		<div class="col-lg-6 col-xl-4 mb-5">
 	                            <div class="card mb-5 mb-xl-0">
 	                                <div class="card-body p-5">
 	                                    <div class="mb-3">
-	                                        <span class="display-6 fw-bold">${prodcut }</span>
+	                                        <span class="display-7 fw-bold">${product.p_name}</span>
 	                                    </div>
 	                                    <ul class="list-unstyled mb-4">
 	                                        <li class="mb-2">
 	                                            <i class="bi bi-check text-primary">
-	                                           <%--  ${product.getP_pay()} 원 --%>
+	                                          ${product.p_pay} 원
 	                                            </i>
 	                                        </li>
 	                                        <li class="mb-2">
 	                                            <i class="bi bi-check text-primary">
-	                                            <%-- ${product.getP_kg() } kg --%>
+	                                            ${product.p_kg } kg 
 	                                            </i>
 	                                        </li>
 	                                        <li class="mb-2">
 	                                            <i class="bi bi-check text-primary">
-	                                            <%-- ${product.getP_life() } --%>
+	                                            ${product.p_life }
 	                                            </i>
 	                                        </li>
 	                                    </ul>
