@@ -46,29 +46,39 @@
                         	
                        		<div class="col-lg-6 col-xl-4 mb-5">
 	                            <div class="card mb-5 mb-xl-0">
-	                                <div class="card-body p-5">
-	                                    <div class="mb-3">
-	                                        <span class="display-7 fw-bold">${product.p_name}</span>
-	                                    </div>
-	                                    <ul class="list-unstyled mb-4">
-	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary">
-	                                          ${product.p_pay} 원
-	                                            </i>
-	                                        </li>
-	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary">
-	                                            ${product.p_kg } kg 
-	                                            </i>
-	                                        </li>
-	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary">
-	                                            ${product.p_life }
-	                                            </i>
-	                                        </li>
-	                                    </ul>
-	                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
-	                                </div>
+	                                
+		                                <div class="card-body p-5">
+		                                    <div class="mb-3">
+		                                    	
+		                                        <span class="display-7 fw-bold">${product.p_name}</span>
+		                                    </div>
+		                                    <ul class="list-unstyled mb-4">
+		                                        <li class="mb-2">
+		                                            <i class="bi bi-check text-primary">
+		                                          ${product.p_pay} 원
+		                                            </i>
+		                                        </li>
+		                                        <li class="mb-2">
+		                                            <i class="bi bi-check text-primary">
+		                                            ${product.p_kg } kg 
+		                                            </i>
+		                                        </li>
+		                                        <li class="mb-2">
+		                                            <i class="bi bi-check text-primary">
+		                                            ${product.p_life }
+		                                            </i>
+		                                        </li>
+		                                    </ul>
+		                                    <form action="#" method="post" name ="addForm">
+			                                    <input type="hidden" name="p_code" value="${product.p_code }" />
+			                                    <div class="d-grid">
+			                                   		<a href="addcart.show?p_code=${product.p_code }" class="btn btn-success" onclick="addToCart()">
+														상품주문 &raquo;
+													</a>
+			                                    </div>
+		                                    </form>
+		                                </div>	                                
+	                                
 	                            </div>
 	                        </div>
                         </c:forEach>
@@ -78,5 +88,16 @@
         </main>
         <!-- layout폴더 > footer.jsp -->
        <jsp:include page="./layout/footer.jsp"/>
+       
+       <script type="text/javascript">
+			function addToCart(){
+				// 확인 true 취소 false
+				if(confirm("상품을 장바구니에 추가하시겠습니까?")){ // 확인
+					document.addForm.submit();
+				}else{ // 취소
+					document.addForm.reset();
+				}
+			}
+		</script>
     </body>
 </html>

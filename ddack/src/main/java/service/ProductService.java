@@ -19,4 +19,14 @@ public class ProductService {
 		return pro_list;
 	}
 
+	public List<Product> getCartProduct(String p_code) {
+		
+		List<Product> cart_list = null;
+		
+		ProductDAO productDAO = ProductDAO.getInstance();
+		cart_list = productDAO.getCartProduct(p_code);
+		
+		return cart_list;
+	}
+
 }
