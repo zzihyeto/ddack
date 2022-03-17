@@ -20,6 +20,7 @@ public class ProductDAO {
 	
 	private static Connection conn = null;
 	
+	//완제품 나열하려고 다 가져오
 	public List<Product> getProduct() {
 		conn = JDBCUtility.getConnection();
 		List<Product> pro_list = new ArrayList<>();
@@ -52,7 +53,8 @@ public class ProductDAO {
 		
 		return pro_list;
 	}
-
+	
+	//장바구니에 넣을 상품 골라서 저
 	public List<Product> getCartProduct(String p_code) {
 
 		conn = JDBCUtility.getConnection();
@@ -61,10 +63,11 @@ public class ProductDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		String sql = "select * from product";
-		
+		String sql = "select * from product where p_code= ?";
+		System.out.println("=====sql====="+sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

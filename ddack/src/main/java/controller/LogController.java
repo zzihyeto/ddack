@@ -38,7 +38,7 @@ public class LogController extends HttpServlet{
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println(command);
+		System.out.println("=====command====="+command);
 		
 		if(command.equals("/login.check")) {
 			action = new LoginAction();

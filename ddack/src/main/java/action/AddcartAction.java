@@ -15,7 +15,6 @@ public class AddcartAction implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		String p_code = req.getParameter("p_code");
-		//System.out.println("===p_code======"+p_code);
 		
 		ActionForward forward =null;
 		List<Product> cart_list = null;
