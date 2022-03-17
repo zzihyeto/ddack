@@ -1,8 +1,11 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entity.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	request.setAttribute("re_list","");
+ List<Product> pro_list = (List<Product>) request.getAttribute("pro_list");
+	//System.out.println("==pro_list==jsp==="+pro_list);
 %>
-<c:set var="pro_list" value="${pro_list }"/>
+<c:set var="pro_list" value=" ${pro_list }"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
