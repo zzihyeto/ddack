@@ -34,11 +34,11 @@
                             <div class="card-body">
                                 <form action="login.check" method="post">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userID" type="text" placeholder="ID..." />
+                                        <input name="userID" class="form-control" id="userID" type="text" placeholder="ID..." />
                                         <label for="userID">Id</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" placeholder="PW..."/>
+                                        <input name="inputPassword" class="form-control" id="inputPassword" type="password" placeholder="PW..."/>
                                         <label for="inputPassword">Password</label>
                                     </div>
                                     <div class="form-check mb-3">

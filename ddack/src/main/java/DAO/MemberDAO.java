@@ -35,6 +35,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				if(inputPassword.equals(rs.getString("m_pw"))) ok_id_pw = true;
 			}
+			
 		} catch (Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());
 			System.out.println("아이디가 일치 하지 않습니다.");
