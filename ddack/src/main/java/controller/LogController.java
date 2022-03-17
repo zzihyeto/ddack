@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import actionvo.Action;
+import action.Action;
+import action.LoginAction;
 import vo.ActionForward;
 
 @WebServlet("*.check")
@@ -37,13 +38,23 @@ public class LogController extends HttpServlet{
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println(requestURI+"\n"+"==="+contextPath+"\n"+"===>"+command);
+		System.out.println(command);
+		
+		if(command.equals("/login.check")) {
+			action = new LoginAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath()); 
 			}else {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(req, res);
 			}
 		}
