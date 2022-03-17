@@ -3,6 +3,7 @@
 <%
 	String loginmsg = (String) request.getAttribute("login_ing");
 	//System.out.println("==loginmsg=>"+loginmsg);
+	
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
 <!DOCTYPE html>

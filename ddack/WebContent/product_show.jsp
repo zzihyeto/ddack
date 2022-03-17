@@ -1,9 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
- List<Product> pro_list = (List<Product>) request.getAttribute("pro_list");
-	//System.out.println("==pro_list==jsp==="+pro_list);
+    List<Product> pro_list = (List<Product>) request.getAttribute("pro_list");
+	request.setAttribute("pro_list", pro_list);
 %>
 <c:set var="pro_list" value=" ${pro_list }"/>
 <!DOCTYPE html>
@@ -41,39 +42,36 @@
 								<p class="bg-danger text-white">등록된 게시물이 존재하지않습니다.</p>
 							</h5>
 						</c:if>	
-                        <c:foreach var="product" items="${pro_list }">
-                        	<div class="col-lg-6 col-xl-4">
+                        <c:forEach var="product" items="${pro_list }">
+                       		<div class="col-lg-6 col-xl-4 mb-5">
 	                            <div class="card mb-5 mb-xl-0">
 	                                <div class="card-body p-5">
-	                                    
 	                                    <div class="mb-3">
-	                                        <span class="display-6 fw-bold">${prodcut.p_name }</span>
+	                                        <span class="display-6 fw-bold">${prodcut }</span>
 	                                    </div>
 	                                    <ul class="list-unstyled mb-4">
 	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary"></i>
-	                                            ${product.p_pay }
+	                                            <i class="bi bi-check text-primary">
+	                                           <%--  ${product.getP_pay()} 원 --%>
+	                                            </i>
 	                                        </li>
 	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary"></i>
-	                                            ${product.p_kg }
+	                                            <i class="bi bi-check text-primary">
+	                                            <%-- ${product.getP_kg() } kg --%>
+	                                            </i>
 	                                        </li>
 	                                        <li class="mb-2">
-	                                            <i class="bi bi-check text-primary"></i>
-	                                            ${product.p_life }
+	                                            <i class="bi bi-check text-primary">
+	                                            <%-- ${product.getP_life() } --%>
+	                                            </i>
 	                                        </li>
 	                                    </ul>
 	                                    <div class="d-grid"><a class="btn btn-outline-success" href="#!">장바구니</a></div>
 	                                </div>
 	                            </div>
 	                        </div>
-                        </c:foreach>
-                       
-                  
-                        
+                        </c:forEach>
                     </div>
-                    
-
                 </div>
             </section>
         </main>
