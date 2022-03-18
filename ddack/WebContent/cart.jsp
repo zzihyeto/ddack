@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	List<Product> cart_list = (List<Product>) request.getAttribute("cart_list");
-	request.setAttribute("pro_list", cart_list);
+	request.setAttribute("cart_list", cart_list);
 	
 %>
 <!DOCTYPE html>
@@ -28,20 +28,30 @@
         <jsp:include page="./layout/navbar.jsp"/>
     
     	<div class="container">
-		<div class="row">
-			<table width="100%">
+			<div class="row">
+				<table width="100%">
+					<tr>
+						<td align="left">
+						<a href="deleteCart.jsp?cartId=${p_code }" class="btn btn-danger">
+						삭제하기
+						</a>
+						</td>
+						<td align="right">
+						<a href="shippingInfo.jsp?cartId=${p_code }" class="btn btn-success">주문하기</a>
+						</td>
+					</tr>
+				</table> 
+			</div>
+			<table class="table table-hover">
 				<tr>
-					<td align="left">
-					<a href="deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">
-					삭제하기
-					</a>
-					</td>
-					<td align="right">
-					<a href="shippingInfo.jsp?cartId=<%=cartId %>" class="btn btn-success">주문하기</a>
-					</td>
+					<th>상품</th>
+					<th>가격</th>
+					<th>수량</th>
+					<th>소계</th>
+					<th>비고</th>
 				</tr>
-			</table> 
-		</div>
+				
+			</table>
 		<div style="padding-top:50px;">
 			<table class="table table-hover">
 				<tr>
