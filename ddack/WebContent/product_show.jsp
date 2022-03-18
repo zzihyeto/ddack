@@ -53,6 +53,11 @@
 		                                        <span class="display-7 fw-bold">${product.p_name}</span>
 		                                    </div>
 		                                    <ul class="list-unstyled mb-4">
+		                                    	<li class="mb-2">
+		                                            <i class="bi bi-check text-primary">
+		                                          갯수 
+		                                            </i>
+		                                        </li>
 		                                        <li class="mb-2">
 		                                            <i class="bi bi-check text-primary">
 		                                          ${product.p_pay} 원

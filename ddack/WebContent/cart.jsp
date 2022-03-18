@@ -4,8 +4,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	List<Product> cart_list = (List<Product>) request.getAttribute("cart_list");
-	request.setAttribute("cart_list", cart_list);
+	//request.setAttribute("cart_list", cart_list);
+	int sum =0;
 	
+	for(int i=0; i<cart_list.size(); i++){
+		Product product = cartList.get(i);
+		// 소계 = 가격 * 수량
+		int total = Integer.parseInt(product.getP_pay())* product.getQuantity();
+		sum = sum + total;
 %>
 <!DOCTYPE html>
 <html>
@@ -61,19 +67,15 @@
 					<th>소계</th>
 					<th>비고</th>
 				</tr>
-	<%
-		ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
-		//out.print("cartList크기: "+ cartList.size());
-		if(cartList == null){
-			cartList = new ArrayList<Product>();
-		}
-		int sum = 0; 
-		for(int i=0; i<cartList.size(); i++){
-			Product product = cartList.get(i);
-			// 소계 = 가격 * 수량
-			int total = product.getUniPrice() * product.getQuantity();
-			sum = sum + total;
-	%>
+				<c:forEach>
+					<tr>
+						<th>상품</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>소계</th>
+						<th>삭제</th>					
+					</tr>
+				</c:forEach>
 				<tr>
 					<td><%=product.getProductId() %>-<%=product.getPname() %></td>
 					<td><%=product.getUniPrice() %></td>
@@ -81,9 +83,7 @@
 					<td><%=total%></td>
 					<td>삭제</td>
 				</tr>
-	<%
-		}
-	%>			<tr>
+				<tr>
 					<th></th>
 					<th></th>
 					<th>총액</th>
@@ -91,7 +91,7 @@
 					<th></th>
 				</tr>
 			</table>
-			<a href="products.jsp" class="btn btn-secondary">&raquo; 쇼핑 계속하기</a>
+			<a href="product_show.jsp" class="btn btn-success">&raquo; 쇼핑 계속하기</a>
 		</div>
 		
 	</div>
