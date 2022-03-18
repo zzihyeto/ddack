@@ -31,61 +31,57 @@
 							</div>
 							<h1 class="fw-bolder">회원가입</h1>
 							<p class="lead fw-normal text-muted mb-0">
-								당신의 건강한 삶을 위해<br> DDACK이 응원한다!!
+								당신의 건강한 삶을 위해<br> DDACK이 응원합니다!!
 							</p>
 						</div>
 
 						<div class="card-body">
 							<form>
 								<div class="form-floating mb-3">
-									<input class="form-control" id="id" type="text"
-										placeholder="user id....." /> <label for="id">id</label>
+									<input class="form-control" id="name" type="text" name="name"
+										placeholder="user id....." /><label for="id">이름</label>
+								</div>
+									
+									<div class="row mb-3">
+										<div class="form-floating mb-3">
+										
+											<input class="form-control" id="id" type="text" name="id"
+												placeholder="user id....." /><label for="id">아이디</label>
+													
+											<div class="d-grid">
+												<button class="btn btn-Secondary btn-py"	id="submitButton" type="submit"><a href="login.jsp">아이디 중복체크</a></button>
+											</div>
+										</div>
+									</div>
+								
+								<div class="row mb-3">
+										<div class="form-floating mb-3 mb-md-0">
+											<input class="form-control" id="Password" type="password" name="Password" placeholder="Create a password" /> 
+											<label for="inputPassword">비밀번호</label>
+										</div> 
+									
 								</div>
 								<div class="row mb-3">
-									<div class="col-md-6">
 										<div class="form-floating mb-3 mb-md-0">
-											<input class="form-control" id="inputFirstName" type="text"
-												placeholder="Enter your first name" /> <label
-												for="inputFirstName">이름</label>
+											<input class="form-control" id="jumin" type="text" placeholder="주민등록번호를 입력하세요." name="jumin" />
+												<label for="jumin">주민번호</label>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-floating">
-											<input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" /> 
-											<label for="inputLastName">성</label>
-										</div>
-									</div>
 								</div>
 								<div class="form-floating mb-3">
-									<input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" /> 
-									<label for="inputEmail">Email주소</label>
+									<input class="form-control" id="address" type="text" name="address" placeholder="주소를 입력하세요" />
+									<label for="address">주소</label>
 								</div>
 								<div class="row mb-3">
 									<div class="col-md-6">
 										<div class="form-floating mb-3 mb-md-0">
-											<input class="form-control" id="inputPassword" type="password" placeholder="Create a password" /> 
-											<label for="inputPassword">비밀번호</label>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-floating mb-3 mb-md-0">
-											<input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-											 <label for="inputPasswordConfirm">비밀번호확인</label>
-										</div>
-									</div>
-								</div>
-
-								<div class="row mb-3">
-									<div class="col-md-6">
-										<div class="form-floating mb-3 mb-md-0">
-											<input class="form-control" id="jumin" type="text" placeholder="주민번호를 입력하세요" />
-											 <label for="jumin">주민번호</label>
+									<input class="form-control" id="Email" type="email" name="Email" placeholder="name@example.com" /> 
+									<label for="inputEmail">Email</label>
 										</div>
 									</div>
 
 									<div class="col-md-6">
 										<div class="form-floating mb-3 mb-md-0">
-											<input class="form-control" id="phone" type="text" placeholder="연락처를 입력하세요" />
+											<input class="form-control" id="phone" type="text" name= "phone" placeholder="연락처를 입력하세요" />
 											 <label for="phone">연락처</label>
 										</div>
 									</div>
@@ -106,13 +102,13 @@
 								</div>
 								<!-- Submit Button-->
 								<div class="d-grid">
-									<button class="btn btn-warning btn-lg disabled"	id="submitButton" type="submit"><a href="login.jsp">회원가입</a></button>
+									<button class="btn btn-warning btn-lg"	id="submitButton" type="submit"><a href="login.jsp">회원가입</a></button>
 								</div>
 							</form>
 						</div>
 						<div class="card-footer text-center py-3">
 							<div class="small">
-								<a href="login.jsp">건강하고 싶나요? 로그인하십쇼.</a>
+								<a href="login.jsp">로그인하기</a>
 							</div>
 					
 					 </div>
