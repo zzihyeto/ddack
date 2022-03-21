@@ -46,24 +46,26 @@ public class AddAction implements Action {
 		 	cart_list.add(product);
 		 	
 	 	}else {
-	 		for (Product p :cart_list) {
-	 			if ((p.getP_code()).equals(p_code)) {
-	 				p.setP_count(p.getP_count()+p_count);
-	 				p.setP_count_pay(p.getP_count_pay()+(Integer.parseInt(p_pay) *p_count));
-	 				break;
+	 		for (int i=0; i< cart_list.size(); i++) {
+	 			if ((cart_list.get(i).getP_code()).equals(p_code)) {
+	 				cart_list.get(i).setP_count(cart_list.get(i).getP_count()+p_count);
+	 				cart_list.get(i).setP_count_pay(cart_list.get(i).getP_count_pay()+(Integer.parseInt(p_pay) *p_count));
+	 			}else {
+	 				
+	 				product =new Product();
+	 				product.setP_code(p_code);
+	 				product.setP_name(p_name);
+	 				product.setP_kg(p_kg);
+	 				product.setP_pay(p_pay);
+	 				product.setP_life(p_life);
+	 				product.setP_count_pay(Integer.parseInt(p_pay) *p_count);
+	 				product.setP_count(p_count);
+	 				
+	 				cart_list.add(product);
 	 			}
+	 			
 	 		}
 	 		
-	 		product =new Product();
-			product.setP_code(p_code);
-		 	product.setP_name(p_name);
-		 	product.setP_kg(p_kg);
-		 	product.setP_pay(p_pay);
-		 	product.setP_life(p_life);
-		 	product.setP_count_pay(Integer.parseInt(p_pay) *p_count);
-		 	product.setP_count(p_count);
-		 	
-		 	cart_list.add(product);
 			
 	 	}
 	 		
