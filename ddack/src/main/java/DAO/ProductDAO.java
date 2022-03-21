@@ -64,10 +64,11 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		String sql = "select * from product where p_code= ?";
-		System.out.println("=====sql====="+sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, p_code);
+			System.out.println("=====sql====="+sql);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

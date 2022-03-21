@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String loginmsg = (String) request.getAttribute("login_ing");
+	//System.out.println("==loginmsg=>"+loginmsg);
+%>
+<c:set var="loginmsg" value="<%= loginmsg %>"/>
 <!-- Navigation-->
  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
      <div class="container px-5">
@@ -18,17 +24,25 @@
                      </ul>
                  </li>
                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
-                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                         <li><a class="dropdown-item" href="portfolio-overview.html">Info</a></li>
-                         <li><a class="dropdown-item" href="portfolio-item.html">Order Info</a></li>
-                         <li><a class="dropdown-item" href="#">Member Out</a></li>
-                     </ul>
-                 </li>
-                 <!-- 만약에 어드민으로 로그인 했으면 조건걸때 사용하기 -> 누르면 Admin 페이지로 가도록 
-                  <li class="nav-item"><a class="nav-link" href="">Admin</a></li>
-                  -->
-             </ul>
+                       	<c:if test="${loginmsg eq 'member'}">
+                       		<a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#"
+                     			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
+                     		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+	                       		<li><a class="dropdown-item" href="portfolio-overview.html">Info</a></li>
+		                        <li><a class="dropdown-item" href="portfolio-item.html">Order Info</a></li>
+		                        <li><a class="dropdown-item" href="#">Member Out</a></li>
+	                        </ul>
+                       	</c:if>
+                       	<c:if test="${loginmsg eq 'admin' }">
+                       		<a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#"
+                     			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
+                     		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                       		<li ><a class="dropdown-item" href="./adminpage/index.jsp">Admin page</a></li>
+                       		</ul>
+                       	</c:if >
+                   </li> 
+               </ul>
+                 
          </div>
      </div>
  </nav>

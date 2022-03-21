@@ -45,6 +45,34 @@ public class MemberDAO {
 		
 		return ok_id_pw;
 	}
+
+	//회원중에 admin인가?
+	public static boolean isAdmin(String userID, String inputPassword) {
+		conn = JDBCUtility.getConnection();
+		boolean ok_admin = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="select m_id, m_pw from member where m_type = '관리자' ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();			
+			
+			if(rs.next()) {
+				if(userID.equals(rs.getString("m_id"))) {
+					if (inputPassword.equals(rs.getString("m_pw"))) ok_admin = true;
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		
+		return ok_admin;
+	}
 	
 	
 }

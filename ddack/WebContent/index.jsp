@@ -59,7 +59,7 @@
                 <div class="container px-5 my-5">
 	                <c:if test="${!empty loginmsg }">
 						<div class="alert alert-warning" role="alert">
-							${loginmsg}
+							${loginmsg} 로그인 되었습니다.
 						</div>
 					</c:if>
                     <div class="row gx-5 justify-content-center">
