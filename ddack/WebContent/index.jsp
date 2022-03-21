@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String loginmsg = (String) request.getAttribute("login_ing");
+	String loginmsg = (String) session.getAttribute("login_ing");
 	//System.out.println("==loginmsg=>"+loginmsg);
 	
 %>
@@ -36,7 +36,7 @@
                                 <p class="lead fw-normal text-white-50 mb-4">뭔가 다른데? 맛있게 다르다!</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                     <c:if test="${!empty loginmsg}">
-										<a class="btn btn-success btn-lg px-4 me-sm-3" href="login_form.jsp">로그아웃</a>				
+										<a class="btn btn-success btn-lg px-4 me-sm-3" href="logout.check">로그아웃</a>				
 									</c:if>
 									<c:if test="${empty loginmsg}">
                                     	<a class="btn btn-success btn-lg px-4 me-sm-3" href="login_form.jsp">로그인</a>

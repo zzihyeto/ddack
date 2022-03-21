@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String loginmsg = (String) request.getAttribute("login_ing");
+	String loginmsg = (String) session.getAttribute("login_ing");
 	//System.out.println("==loginmsg=>"+loginmsg);
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
@@ -40,7 +40,7 @@
                        		<li ><a class="dropdown-item" href="./adminpage/index.jsp">Admin page</a></li>
                        		</ul>
                        	</c:if >
-                   </li> 
+                 </li> 
                </ul>
                  
          </div>

@@ -24,15 +24,20 @@ public class LoginAction implements Action {
 		
 		LoginCheckService logincheckser = new LoginCheckService();
 		ok_admin = logincheckser.isAmdin(userID,inputPassword); //admin 체크
+		
 		ok_id_pw = logincheckser.isLogin(userID,inputPassword); //id와 pw 확인해서 참 거짓 리턴 
 		
-		if(ok_id_pw) {
-			req.setAttribute("login_ing", "admin");
+		HttpSession session = req.getSession();
+
+		if(ok_admin) {
+			session.setAttribute("login_ing", "admin");
+
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");	
 			
 		}else if(ok_id_pw){
-			req.setAttribute("login_ing", "member");
+			session.setAttribute("login_ing", "member");
+
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
 		}

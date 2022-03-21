@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.LogOutAction;
 import action.LoginAction;
 import vo.ActionForward;
 
@@ -48,7 +49,12 @@ public class LogController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if (command.equals("/logout.check")) {
-			
+			action = new LogOutAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
