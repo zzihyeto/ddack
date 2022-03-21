@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("utf-8");
 	List<Product> cart_list = (List<Product>) session.getAttribute("cart_list");
@@ -17,6 +18,9 @@
        <meta name="description" content="" />
        <meta name="author" content="" />
        <title>Cart.jsp</title>
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"> 
        <!-- Favicon-->
        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
        <!-- Bootstrap icons-->
@@ -40,7 +44,7 @@
 					</td>
 					<td>
 						<a href="#" class="btn btn-success">
-							주문하기
+							총 주문하기
 						</a>
 					</td>
 					<td>
@@ -66,7 +70,7 @@
 						<td>${cart.p_name }</td>
 						<td>${cart.p_pay }</td>
 						<td >${cart.p_count }</td>
-						<td>${cart.p_count_pay }</td>
+						<td><fmt:formatNumber value="${cart.p_count_pay }" /></td>
 						<td>
 							<a href="#" class="btn btn-danger">
 								<i class="fas fa-trash"></i>
