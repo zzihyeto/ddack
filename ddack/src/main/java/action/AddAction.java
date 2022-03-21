@@ -33,17 +33,27 @@ public class AddAction implements Action {
 	 	
 	 	if (cart_list == null ){
 	 		cart_list = new ArrayList<Product>();
-	 	}	
 	 		
- 		product.setP_code(p_code);
-	 	product.setP_name(p_name);
-	 	product.setP_kg(p_kg);
-	 	product.setP_pay(p_pay);
-	 	product.setP_life(p_life);
-	 	product.setP_count_pay(Integer.parseInt(p_pay) *p_count);
-	 	product.setP_count(p_count);
-	 	
-	 	cart_list.add(product);
+	 		product.setP_code(p_code);
+		 	product.setP_name(p_name);
+		 	product.setP_kg(p_kg);
+		 	product.setP_pay(p_pay);
+		 	product.setP_life(p_life);
+		 	product.setP_count_pay(Integer.parseInt(p_pay) *p_count);
+		 	product.setP_count(p_count);
+		 	
+		 	cart_list.add(product);
+		 	
+	 	}else {
+	 		for (Product p :cart_list) {
+	 			if (p.getP_code().equals(p_code)) {
+	 				p.setP_count(p.getP_count()+p_count);
+	 				p.setP_count_pay(p.getP_count_pay()+(Integer.parseInt(p_pay) *p_count));
+	 			}
+	 		}
+	 	}
+	 		
+ 		
 	 	
 	 	
 		session.setAttribute("cart_list", cart_list);

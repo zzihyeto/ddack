@@ -97,10 +97,8 @@
 		                                </div>
 	                                </form>
                                     <script type="text/javascript">
-                                    
-                                    	var p_name = document.getElementById('p_name').value;
 										function handleOnClick()  {
-									    	alert( p_name +" 가 추가 되었습니다.");
+									    	alert("추가 되었습니다.");
 										}        
 									 </script>
 	                            </div>
