@@ -3,11 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	List<Product> cart_list = (List<Product>) request.getAttribute("cart_list");
-	//request.setAttribute("cart_list", cart_list);
+	request.setCharacterEncoding("utf-8");
+	List<Product> cart_list = (List<Product>) session.getAttribute("cart_list");
+	
+	request.setAttribute("cart_list", cart_list);
 	
 %>
-<c:set var="car_list" value="cart_list"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,17 +33,17 @@
 			
 			<table width="100%" class="mt-5">
 				<tr>
-					<td align="left">
+					<td>
 						<a href="#" class="btn btn-danger">
 							삭제하기
 						</a>
 					</td>
-					<td align="right">
+					<td>
 						<a href="#" class="btn btn-success">
 							주문하기
 						</a>
 					</td>
-					<td align="right">
+					<td>
 						<a href="product.show" class="btn btn-success">
 							&raquo; 쇼핑 계속하기
 						</a>
@@ -59,58 +60,29 @@
 					<th>삭제</th>					
 				</tr>
 				
+				
 				<c:forEach var="cart" items="${cart_list }">
 					<tr>
-						<td>${cart.getP_name }</td>
-						<td>${cart.getP_pqy }</td>
+						<td>${cart.p_name }</td>
+						<td>${cart.p_pay }</td>
+						<td >${cart.p_count }</td>
+						<td>${cart.p_count_pay }</td>
 						<td>
-							<select name="count" id="count">
-								<option value="1" selected>10</option>
-								<option value="2">20</option>
-								<option value="3">30</option>
-								<option value="4">40</option>
-								<option value="5">50</option>
-							</select>
-						</td>
-						<td>${cart.getP_pay * count }</td>
-						<td>삭제</td>					
+							<a href="#" class="btn btn-danger">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>					
 					</tr>
 				</c:forEach>
 				
-			</table>
-			
-		<%-- 
-			<%
-			int sum =0;
-	
-			for(int i=0; i<cart_list.size(); i++){
-				Product product = cartList.get(i);
-				// 소계 = 가격 * 수량
-				int total = Integer.parseInt(product.getP_pay()) * product.getQuantity();
-				sum = sum + total;
-			%>
-		
-			<div style="padding-top:50px;">
-			<table class="table table-hover">
-				
-				
-					<td><%=product.getProductId() %>-<%=product.getPname() %></td>
-					<td><%=product.getUniPrice() %></td>
-					<td><%=product.getQuantity() %></td>
-					<td><%=total%></td>
-					<td>삭제</td>
-				</tr>
 				<tr>
+					<th>합계</th>
 					<th></th>
 					<th></th>
-					<th>총액</th>
-					<th><%=sum %></th>
 					<th></th>
+					<th></th>					
 				</tr>
 			</table>
-			
-		</div> --%>
-		
 	</div>
     
          

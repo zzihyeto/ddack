@@ -67,7 +67,7 @@ public class ProductDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, p_code);
-			System.out.println("=====sql====="+sql);
+			System.out.println("=====sql====="+pstmt);
 			
 			rs = pstmt.executeQuery();
 			

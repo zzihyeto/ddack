@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entity.Product;
 import service.ProductService;
@@ -22,7 +23,8 @@ public class ProductAction implements Action {
 		pro_list = productser.getProduct();
 		//System.out.println("==pro_list===action=="+pro_list);
 		
-		req.setAttribute("pro_list", pro_list);
+		HttpSession session = req.getSession();
+		session.setAttribute("pro_list", pro_list);
 		
 		forward = new ActionForward();
 		forward.setPath("/product_show.jsp");	

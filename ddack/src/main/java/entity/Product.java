@@ -8,7 +8,9 @@ public class Product {
 	String p_kg;
 	String p_life;
 	String p_pay;
-
+	int p_count_pay=0; 
+	int p_count =0;
+	
 	public Product() {}
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
@@ -19,6 +21,22 @@ public class Product {
 		this.p_kg = p_kg;
 		this.p_life = p_life;
 		this.p_pay = p_pay;
+	}
+
+	public int getP_count() {
+		return p_count;
+	}
+
+	public void setP_count(int p_count) {
+		this.p_count = p_count;
+	}
+
+	public int getP_count_pay() {
+		return p_count_pay;
+	}
+
+	public void setP_count_pay(int p_count_pay) {
+		this.p_count_pay = p_count_pay;
 	}
 
 	public String getP_code() {

@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    List<Product> pro_list = (List<Product>) request.getAttribute("pro_list");
+    List<Product> pro_list = (List<Product>) session.getAttribute("pro_list");
 	request.setAttribute("pro_list", pro_list);
 	//System.out.println("======type==="+pro_list.getClass().getSimpleName());
 %>
@@ -33,6 +33,7 @@
                     <div class="text-center mb-5">
                         <h1 class="fw-bolder">상품 나열</h1>
                         <p class="lead fw-normal text-muted mb-0">장바구니에 담으세요</p>
+                        <a href="./cart.jsp" class="btn btn-warning mt-3">장바구니</a>
                     </div>
                     
                     <div class="row gx-5 justify-content-center mb-5">
@@ -46,16 +47,22 @@
                         	
                        		<div class="col-lg-6 col-xl-4 mb-5">
 	                            <div class="card mb-5 mb-xl-0">
-	                                
-		                                <div class="card-body p-5">
+									<form action="#" method="post" name ="addForm">
+										<div class="card-body p-5">
 		                                    <div class="mb-3">
-		                                    	
-		                                        <span class="display-7 fw-bold">${product.p_name}</span>
+		                                    	<span class="display-7 fw-bold">${product.p_name}</span>
 		                                    </div>
 		                                    <ul class="list-unstyled mb-4">
 		                                    	<li class="mb-2">
 		                                            <i class="bi bi-check text-primary">
-		                                          갯수 
+				                                         <select name="count" id="count">
+															<option value="10" selected>10</option>
+															<option value="20">20</option>
+															<option value="30">30</option>
+															<option value="40">40</option>
+															<option value="50">50</option>
+														</select>
+														갯수
 		                                            </i>
 		                                        </li>
 		                                        <li class="mb-2">
@@ -74,18 +81,32 @@
 		                                            </i>
 		                                        </li>
 		                                    </ul>
-		                                    <form action="#" method="post" name ="addForm">
-			                                    <input type="hidden" name="p_code" value="${product.p_code }" />
-			                                    <div class="d-grid">
-			                                   		<a href="addcart.show?p_code=${product.p_code }" class="btn btn-success" onclick="addToCart()">
-														상품주문 &raquo;
-													</a>
-			                                    </div>
-		                                    </form>
-		                                </div>	                                
-	                                
+		                                    
+		                                    <input type="hidden" name="p_code" value="${product.p_code }" />
+		                                    <input type="hidden" id="p_name" name="p_name" value="${product.p_name }" />
+		                                    <input type="hidden" name="p_count" value="${count }" />
+		                                    <input type="hidden" name="p_pay" value="${product.p_pay }" />
+		                                    <input type="hidden" name="p_kg" value="${product.p_kg }" />
+		                                    <input type="hidden" name="p_life" value="${product.p_life }" />
+		                                    
+		                                    <div class="d-grid">
+		                                    	<input class="btn btn-success" type="submit" value="추가하기" formaction="add.show"
+		                                    	onclick="handleOnClick()" />
+		                                    	
+		                                    </div>
+		                                </div>
+	                                </form>
+                                    <script type="text/javascript">
+                                    
+                                    	var p_name = document.getElementById('p_name').value;
+										function handleOnClick()  {
+									    	alert( p_name +" 가 추가 되었습니다.");
+										}        
+									 </script>
 	                            </div>
 	                        </div>
+	                        
+	                        
                         </c:forEach>
                     </div>
                 </div>
@@ -94,15 +115,7 @@
         <!-- layout폴더 > footer.jsp -->
        <jsp:include page="./layout/footer.jsp"/>
        
-       <script type="text/javascript">
-			function addToCart(){
-				// 확인 true 취소 false
-				if(confirm("상품을 장바구니에 추가하시겠습니까?")){ // 확인
-					document.addForm.submit();
-				}else{ // 취소
-					document.addForm.reset();
-				}
-			}
-		</script>
     </body>
+    
+    
 </html>
