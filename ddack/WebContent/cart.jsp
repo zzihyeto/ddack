@@ -71,7 +71,8 @@
 						<td>${cart.p_name }</td>
 						<td>${cart.p_pay }</td>
 						<td >${cart.p_count }</td>
-						<td><fmt:formatNumber value="${cart.p_count_pay }" /></td>
+						<td class="col_value"><fmt:formatNumber value="${cart.p_count_pay }" /></td>
+						
 						<td>
 							<a href="del_cart.show?p_code=${cart.p_code }"  class="btn btn-danger">
 								<i class="fas fa-trash"></i>
@@ -85,7 +86,13 @@
 					<th>합계</th>
 					<th></th>
 					<th></th>
-					<th></th>
+					<%
+						int sum =0;
+						for(int i=0;i<cart_list.size();i++){
+							sum += cart_list.get(i).getP_count_pay();
+						}
+					%>
+					<th class="col_sum"><%=sum %></th>
 					<th></th>					
 				</tr>
 			</table>
@@ -96,7 +103,16 @@
     <!-- layout폴더 > footer.jsp -->
     <jsp:include page="./layout/footer.jsp"/>
 	
-	
+	<script>
+		window.onload = function(){
+			let sum = 0;
+			var i = '';
+			console.log(i);
+			
+			
+			
+		}
+	</script>
 	
 </body>
 </html>
