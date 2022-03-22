@@ -88,6 +88,14 @@ public class Product {
 	}
 
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		Product obj_p = (Product) obj;
+		if (this.p_code.equals(obj_p.p_code)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 }

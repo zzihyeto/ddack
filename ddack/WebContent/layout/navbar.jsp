@@ -29,7 +29,7 @@
                      			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
                      		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
 	                       		<li><a class="dropdown-item" href="portfolio-overview.html">Info</a></li>
-		                        <li><a class="dropdown-item" href="portfolio-item.html">Order Info</a></li>
+		                        <li><a class="dropdown-item" href="./cart.jsp">Order Info</a></li>
 		                        <li><a class="dropdown-item" href="#">Member Out</a></li>
 	                        </ul>
                        	</c:if>
