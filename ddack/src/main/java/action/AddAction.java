@@ -1,7 +1,8 @@
 package action;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,8 @@ public class AddAction implements Action {
 		req.setCharacterEncoding("utf-8");
 		
 		String p_code = req.getParameter("p_code");
+		System.out.println("====지금선택한 것 "+p_code);
+		
 	 	String p_name = req.getParameter("p_name");
 	 	String p_pay = req.getParameter("p_pay");
 	 	String p_kg = req.getParameter("p_kg");
@@ -28,7 +31,7 @@ public class AddAction implements Action {
 	 	
 	 	
 	 	HttpSession session = req.getSession();
-	 	List<Product> cart_list = (List<Product>) session.getAttribute("cart_list");
+	 	ArrayList<Product> cart_list = (ArrayList<Product>) session.getAttribute("cart_list");
 	 	Product product =null;
 	 	
 	 	if (cart_list == null ){
@@ -44,12 +47,21 @@ public class AddAction implements Action {
 		 	product.setP_count(p_count);
 		 	
 		 	cart_list.add(product);
-		 	
+		 	System.out.println("처음 만든 cart_list==>"+cart_list );
 	 	}else {
+	 		System.out.println("가져온 cart_list==>"+cart_list );
+	 		System.out.println("가져온 cart_list 사이즈 ==>"+cart_list.size() );
+	 		
+	 		boolean t_f_list[] = new boolean [cart_list.size()];
 	 		for (int i=0; i< cart_list.size(); i++) {
-	 			if ((cart_list.get(i).getP_code()).equals(p_code)) {
+	 			t_f_list[i]=((cart_list.get(i).getP_code()).equals(p_code));
+	 		}
+	 			
+	 			if (Arrays.asList(t_f_list).contains(true)) {
+	 				int i = t_f_list.findIndex(true);
 	 				cart_list.get(i).setP_count(cart_list.get(i).getP_count()+p_count);
 	 				cart_list.get(i).setP_count_pay(cart_list.get(i).getP_count_pay()+(Integer.parseInt(p_pay) *p_count));
+	 				break;
 	 			}else {
 	 				
 	 				product =new Product();
@@ -62,9 +74,11 @@ public class AddAction implements Action {
 	 				product.setP_count(p_count);
 	 				
 	 				cart_list.add(product);
+	 				System.out.println("else cart_list==>"+cart_list );
+	 				break;
 	 			}
 	 			
-	 		}
+	 		
 	 		
 			
 	 	}
