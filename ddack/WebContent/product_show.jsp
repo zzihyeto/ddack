@@ -99,7 +99,7 @@
 	                                </form>
                                     <script type="text/javascript">
 										function handleOnClick()  {
-									    	alert("추가 되었습니다.");
+									    	alert("장바구니에 추가 되었습니다.");
 										}        
 									 </script>
 	                            </div>

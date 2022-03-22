@@ -54,42 +54,7 @@ public class ProductDAO {
 		return pro_list;
 	}
 	
-	//장바구니에 넣을 상품 골라서 저
-	public List<Product> getCartProduct(String p_code) {
-
-		conn = JDBCUtility.getConnection();
-		List<Product> cart_list = new ArrayList<>();
-		Product product = null;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		String sql = "select * from product where p_code= ?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, p_code);
-			System.out.println("=====sql====="+pstmt);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				product = new Product();
-				product.setP_code(rs.getString("p_code"));
-				product.setP_name(rs.getString("p_name"));
-				product.setEq_code(rs.getString("eq_code"));
-				product.setP_kg(rs.getString("p_kg"));
-				product.setP_life(rs.getString("p_life"));
-				product.setP_pay(rs.getString("p_pay"));
-				cart_list.add(product);
-			}
-			
-		}catch (Exception e) {
-			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
-		}finally {
-			JDBCUtility.close(conn, pstmt, rs);
-		}
-		
-		return cart_list;
-	}
+	
 	
 	
 }

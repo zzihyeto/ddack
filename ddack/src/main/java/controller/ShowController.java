@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.AddAction;
-import action.AddcartAction;
+import action.Del_cart_Action;
 import action.ProductAction;
 import vo.ActionForward;
 
@@ -58,8 +58,8 @@ public class ShowController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/addcart.show")) {
-			action = new AddcartAction();
+		}else if(command.equals("/del_cart.show")) {
+			action = new Del_cart_Action();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

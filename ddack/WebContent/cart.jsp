@@ -55,7 +55,7 @@
 				</tr>
 			</table> 
 			
-			<table class="table table-hover mt-5">
+			<table class="table table-hover mt-5" id="cartTable">
 				<tr>
 					<th>상품</th>
 					<th>가격</th>
@@ -66,17 +66,19 @@
 				
 				
 				<c:forEach var="cart" items="${cart_list }">
+						
 					<tr>
 						<td>${cart.p_name }</td>
 						<td>${cart.p_pay }</td>
 						<td >${cart.p_count }</td>
 						<td><fmt:formatNumber value="${cart.p_count_pay }" /></td>
 						<td>
-							<a href="#" class="btn btn-danger">
+							<a href="del_cart.show?p_code=${cart.p_code }"  class="btn btn-danger">
 								<i class="fas fa-trash"></i>
 							</a>
 						</td>					
 					</tr>
+					
 				</c:forEach>
 				
 				<tr>
@@ -93,7 +95,8 @@
 	</main>
     <!-- layout폴더 > footer.jsp -->
     <jsp:include page="./layout/footer.jsp"/>
-
+	
+	
 	
 </body>
 </html>
