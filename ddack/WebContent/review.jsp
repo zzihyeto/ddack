@@ -1,4 +1,13 @@
+<%@ page import= "java.util.List" %>
+<%@ page import="entity.ReviewBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
+	request.setAttribute("review_list", review_list);
+	//System.out.println("====review_list=====>",review_list);
+%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>review.jsp</title>
+        <title>리뷰.jsp</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -14,24 +23,38 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./css1/styles.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column">
+	<body class="d-flex flex-column">
+
         <main class="flex-shrink-0">
-            <!-- layout폴더 > navbar.jsp -->
+            <!-- layout폴더 -> navbar.jsp -->
             <jsp:include page="./layout/navbar.jsp"/>
             
-            
-           	<div class="container px-5">
-	        	<!-- 검색창 -->
-				
-	        	
-				
-			
-				<br />
+        	<div class="container px-5">
+        	<!-- 검색창 : 이거 다시해야함-->
+			  <div class="float-right mt-3">
+			<nav class="nav justify-content-end">
+					  <div class="float-right mt-3">
+					  <!-- 검색분류선택하고 검색어로 검색 -->
+					    <form class="d-flex" action="<%=request.getContextPath()%>/msearch/m_search_list.jsp" method="post">
+					    <!--검색 분류선택 -->
+					      <select name="sk" class="me-2">
+					      	<option value="m_id">작성자ID</option>
+					      	<option value="p_code">상품코드</option>
+					      	<option value="review_date">작성일</option>
+					      </select>
+					      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					      <button class="btn btn-outline-success" type="submit">Search</button>
+					    </form>
+					  </div>
+					</nav> 
+					
+		        	<br />
+		        </div>
 				<!-- 전체보기 리스트 보기 실패-->
 				<div>
-					<c:if test="${ empty re_list }">
+					<c:if test="${ empty review_list }">
 						<h5>
-							<p class="bg-danger text-white">등록된 게시물이 존재하지않습니다.</p>
+							<p class="bg-danger text-white">등록된 게시물이 존재하지 않습니다.</p>
 						</h5>
 					</c:if>	
 				</div>
@@ -41,7 +64,7 @@
 					<table class="table table-hover table-secondary">
 						<thead>
 							<tr>
-								<th>글번호</th>
+								<th>글번호</th> 
 								<th>작성자</th>
 								<th>구매한 물품</th>
 								<th>후기</th>
@@ -49,13 +72,15 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="review" items="${ review_list }">
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>				
+								<td>${ review.re_code }</td>
+								<td>${ review.m_id }</td>
+								<td>${ review.p_code }</td>
+								<td>${ review.p_review }</td>
+								<td>${ review.review_date }</td>
+							</tr>	
+						</c:forEach>			
 						</tbody>
 					</table>
 					
@@ -82,14 +107,11 @@
 				</div>
 				-->
 	        </div>
-        
-        
-        
+     
         </main>
         
         <!-- layout폴더 > footer.jsp -->
         <jsp:include page="./layout/footer.jsp"/>
-        
-       
+            
     </body>
 </html>
