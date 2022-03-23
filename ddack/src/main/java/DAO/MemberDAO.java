@@ -23,7 +23,6 @@ public class MemberDAO {
 	
 	//회원 중에 아이디가 있나 ? 비번이 일치 하나 ?
 	public static boolean isLogin(String userID, String inputPassword) {
-
 		conn = JDBCUtility.getConnection();
 		
 		boolean ok_id_pw = false;
@@ -54,6 +53,7 @@ public class MemberDAO {
 
 	//회원중에 admin인가?
 	public static boolean isAdmin(String userID, String inputPassword) {
+		
 		conn = JDBCUtility.getConnection();
 		
 		boolean ok_admin = false;
@@ -73,7 +73,7 @@ public class MemberDAO {
 				}
 			}
 			
-		} catch (Exception e) {
+		}catch (Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());
 			
 		}finally {
@@ -159,6 +159,8 @@ public class MemberDAO {
 		
 		return post_info;
 	}
+
+	
 	
 	
 }

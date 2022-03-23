@@ -1,25 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>join.jsp</title>
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-		crossorigin="anonymous">
-	<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-	<!-- Bootstrap icons-->
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-		rel="stylesheet" />
-	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="./css1/styles.css" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>join.jsp</title>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="./css1/styles.css" rel="stylesheet" />
 </head>
 
 <body class="d-flex flex-column">
@@ -46,9 +47,10 @@
 							<div class="card-body">
 								<form action="#" method="post">
 									<div class="form-floating mb-3">
-										<input class="form-control" id="name" type="text" name="name"
-											placeholder="user name....." /> <label for="name"> <i
-											class="bi bi-emoji-smile"></i> 이름
+										<input class="form-control" id="name" type="text" name="name" placeholder="user name....." /> 
+										<label for="name"> 
+										<i class="bi bi-emoji-smile"></i> 
+										이름
 										</label>
 									</div>
 									<div class="form-floating mb-3">
@@ -76,7 +78,8 @@
 									<div class="form-floating mb-3">
 										<input class="form-control" id="jumin" type="text"
 											placeholder="주민등록번호를 입력하세요." name="jumin" /> <label
-											for="jumin"> <i class="bi bi-credit-card-2-front"></i> 주민번호
+											for="jumin"> <i class="bi bi-credit-card-2-front"></i>
+											주민번호
 										</label>
 									</div>
 									<div class="form-floating mb-3">

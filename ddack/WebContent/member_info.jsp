@@ -47,7 +47,7 @@
 						</div>
 						
 						<div class="card-body">
-							<form action="#" method="post">
+							<form action="update.member" method="post">
 								<div class="form-floating mb-3">
 									<input class="form-control" id="name" type="text" name="name" value="${member_info.m_name }"/>
 									<label for="name"> 
@@ -63,7 +63,7 @@
 									</div>
 								</div>
 								<div class="form-floating mb-3">
-									<input class="form-control" id="password" type="password" name="password" />
+									<input class="form-control" id="password" type="password" name="password"  value="${member_info.m_pw }"/>
 									<label for="password"> <i class="bi bi-key"></i> 비밀번호 입력해주세요</label>
 								</div>
 								<div class="form-floating mb-3">

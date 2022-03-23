@@ -23,7 +23,6 @@ public class LoginCheckService {
 		MemberDAO.getInstance();
 		
 		ok_admin = MemberDAO.isAdmin(userID, inputPassword);
-				
 		return ok_admin;
 	}
 
@@ -48,4 +47,6 @@ public class LoginCheckService {
 		
 		return post_info;
 	}
+
+
 }

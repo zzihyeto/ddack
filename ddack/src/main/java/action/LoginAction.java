@@ -14,11 +14,10 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		ActionForward forward =null;
+		ActionForward forward = null;
 		
 		//입력한 값 파라미터 받아오고
 		String userID = req.getParameter("userID");
-
 		String inputPassword = req.getParameter("inputPassword");
 		
 		boolean ok_id_pw = false;
@@ -26,7 +25,7 @@ public class LoginAction implements Action {
 		
 		LoginCheckService logincheckser = new LoginCheckService();
 		ok_admin = logincheckser.isAmdin(userID,inputPassword); //admin 체크
-		
+
 		ok_id_pw = logincheckser.isLogin(userID,inputPassword); //id와 pw 확인해서 참 거짓 리턴 
 		
 		Member member_info = null;
