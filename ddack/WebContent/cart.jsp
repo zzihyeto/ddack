@@ -103,7 +103,7 @@
     <!-- layout폴더 > footer.jsp -->
     <jsp:include page="./layout/footer.jsp"/>
 	
-	<script>
+	<!-- <script>
 		window.onload = function(){
 			let sum = 0;
 			var i = '';
@@ -112,7 +112,7 @@
 			
 			
 		}
-	</script>
+	</script> -->
 	
 </body>
 </html>
