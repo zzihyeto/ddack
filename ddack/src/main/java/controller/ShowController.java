@@ -13,6 +13,7 @@ import action.Action;
 import action.AddAction;
 import action.Del_cart_Action;
 import action.ProductAction;
+import action.ReviewAction;
 import vo.ActionForward;
 
 
@@ -60,6 +61,13 @@ public class ShowController extends HttpServlet {
 			}
 		}else if(command.equals("/del_cart.show")) {
 			action = new Del_cart_Action();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/review.show")){
+			action = new ReviewAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
