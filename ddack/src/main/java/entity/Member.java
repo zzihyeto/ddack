@@ -10,6 +10,7 @@ public class Member {
 	String m_jumin;
 	String m_phone;
 	String m_email;
+	String post_code;
 	
 	public Member() {}
 
@@ -21,6 +22,14 @@ public class Member {
 		this.m_jumin = m_jumin;
 		this.m_phone = m_phone;
 		this.m_email = m_email;
+	}
+
+	public String getPost_code() {
+		return post_code;
+	}
+
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
 	}
 
 	public String getM_code() {

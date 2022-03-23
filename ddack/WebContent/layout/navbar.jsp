@@ -28,10 +28,9 @@
                        		<a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#"
                      			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
                      		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-	                       		<li><a class="dropdown-item" href="portfolio-overview.html">Info</a></li>
+	                       		<li><a class="dropdown-item" href="./member_info.jsp">Info</a></li>
 		                        <li><a class="dropdown-item" href="./cart.jsp">Order Info</a></li>
 		                        <li><a class="dropdown-item" href="logout.check">Log Out</a></li>
-		                        <li><a class="dropdown-item" href="#">Member Out</a></li>
 	                        </ul>
                        	</c:if>
                        	<c:if test="${loginmsg eq 'admin' }">
