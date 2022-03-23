@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>리뷰.jsp</title>
+        <title>DDACK_리뷰페이지입니다</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -62,11 +62,11 @@
 				<!-- 전체보기 리스트-->
 				<div>
 					<table class="table table-hover table-secondary">
-						<thead>
+						<thead class="table-warning">
 							<tr>
 								<th>글번호</th> 
-								<th>작성자</th>
-								<th>구매한 물품</th>
+								<th>작성자ID</th>
+								<th>상품코드</th>
 								<th>후기</th>
 								<th>작성일</th>
 							</tr>
