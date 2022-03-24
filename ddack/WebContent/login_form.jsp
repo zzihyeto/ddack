@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String register_msg = (String) session.getAttribute("Register");
+%>
+<c:set var="register_msg" value="<%= register_msg %>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +33,11 @@
 	        <main>
 	         <!-- layout폴더 > navbar.jsp -->
 	   		<jsp:include page="./layout/navbar.jsp" />	
-            
+            <c:if test="${!empty register_msg}">
+            	<div class="alert alert-warning" role="alert">
+					${register_msg} 했습니다. 로그인해주세요.
+				</div>
+            </c:if>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">

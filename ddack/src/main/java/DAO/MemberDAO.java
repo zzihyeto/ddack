@@ -160,6 +160,89 @@ public class MemberDAO {
 		return post_info;
 	}
 
+	public static String[] getPost_num_code() {
+
+		conn = JDBCUtility.getConnection();
+		
+		String[] post = new String[2];
+	
+		String before_p_code = null ;
+		String before_p_num = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="SELECT post_code, post_num  FROM post ORDER BY length(post_code) desc, post_code desc";
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();			
+			
+			while(rs.next()) {
+				before_p_code = rs.getString("post_code");
+				before_p_num = rs.getString("post_num");
+				break;
+			}
+			
+			int code1 = Integer.parseInt(before_p_code.split("_")[1]) + 1;
+			String code2 = Integer.toString(code1);
+			
+			post[0] = before_p_code.split("_")[0]+"_"+code2 ; 
+			
+			int code3 = Integer.parseInt(before_p_num.split("_")[1]) + 1;
+			String code4 = Integer.toString(code3);
+			post[1] = before_p_num.split("_")[0]+ "_"+ code4;
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		
+		return post;
+	}
+
+	public static void setPost(Post p) {
+		
+		conn = JDBCUtility.getConnection();
+		
+		int succ_count=0;
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into post(post_code,post_num,`do`,ci,gungu,dong,be_addr) VALUES (?,?,?,?,?,?,?)";
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getPost_code());
+			pstmt.setString(2, p.getPost_num());
+			pstmt.setString(3, p.getDo_());
+			pstmt.setString(4, p.getCi());
+			pstmt.setString(5, p.getGungu());
+			pstmt.setString(6, p.getDong());
+			pstmt.setString(7, p.getBe_addr());
+			
+			succ_count = pstmt.executeUpdate();			
+			
+			if(succ_count>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+
 	
 	
 	
