@@ -12,10 +12,8 @@ public class Post {
 	
 	public Post() {}
 
-	public Post(String post_code, String post_num, String do_, String ci, String gungu, String dong, String be_addr) {
+	public Post( String do_, String ci, String gungu, String dong, String be_addr) {
 		super();
-		this.post_code = post_code;
-		this.post_num = post_num;
 		this.do_ = do_;
 		this.ci = ci;
 		this.gungu = gungu;

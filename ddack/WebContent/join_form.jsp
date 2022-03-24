@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String register_msg = (String) session.getAttribute("Register");
+%>
+<c:set var="register_msg" value="<%= register_msg %>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +31,11 @@
 	<main class="flex-shrink-0">
 		<!-- layout폴더 > navbar.jsp -->
 		<jsp:include page="./layout/navbar.jsp" />
-
+		<c:if test="${!empty register_msg}">
+          	<div class="alert alert-warning" role="alert">
+				${register_msg} 했습니다 다시해주세요.
+			</div>
+         </c:if>
 		<section class="py-5">
 			<div class="container px-5">
 				<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
@@ -45,7 +53,7 @@
 							</div>
 
 							<div class="card-body">
-								<form action="#" method="post">
+								<form action="join.member" method="post">
 									<div class="form-floating mb-3">
 										<input class="form-control" id="name" type="text" name="name" placeholder="user name....." /> 
 										<label for="name"> 
@@ -100,7 +108,7 @@
 										<div class="row">
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="do"
+													<input class="form-control" id="" type="text" name="do_"
 														placeholder="name@example.com" /> <label for="do">도</label>
 												</div>
 											</div>
@@ -112,7 +120,7 @@
 											</div>
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="gungu"
+													<input class="form-control" id="" type="text" name="gugun"
 														placeholder="name@example.com" /> <label for="gungu">구/군</label>
 												</div>
 											</div>
@@ -158,5 +166,9 @@
 
 	<!-- layout폴더 > footer.jsp -->
 	<jsp:include page="./layout/footer.jsp" />
+	
+	<script>
+
+	</script>
 </body>
 </html>
