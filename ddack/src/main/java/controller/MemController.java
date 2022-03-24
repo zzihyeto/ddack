@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.FinalbuyAction;
 import action.MUpdateAction;
 import vo.ActionForward;
 
@@ -42,6 +43,13 @@ public class MemController extends HttpServlet {
 		
 		if(command.equals("/update.member")) {
 			action = new MUpdateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/finalbuy.member")){
+			action = new FinalbuyAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
