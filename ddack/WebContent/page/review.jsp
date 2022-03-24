@@ -1,12 +1,23 @@
+<%@ page import="entity.PageInfo"%>
 <%@ page import= "java.util.List" %>
 <%@ page import="entity.ReviewBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c"    uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
 	request.setAttribute("review_list", review_list);
+	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
 	//System.out.println("====review_list=====>",review_list);
+	
+	request.setAttribute("review_list", (List<ReviewBean>) session.getAttribute("review_list")); 	
+	int curPage = pageinfo.getPage();
+	int totalPage = pageinfo.getTotalPage();
+	int startPage = pageinfo.getStartPage();
+	int endPage = pageinfo.getEndPage();
 %>
+<c:set var="curPage" value="<%=curPage %>"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +38,16 @@
 
         <main class="flex-shrink-0">
             <!-- layout폴더 -> navbar.jsp -->
-            <jsp:include page="./layout/navbar.jsp"/>
+            <jsp:include page="/layout/navbar.jsp"/>
             
         	<div class="container px-5">
+        	
         	<!-- 검색창 : 이거 다시해야함-->
 			  <div class="float-right mt-3">
 			<nav class="nav justify-content-end">
 					  <div class="float-right mt-3">
 					  <!-- 검색분류선택하고 검색어로 검색 -->
-					    <form class="d-flex" action="<%=request.getContextPath()%>/msearch/m_search_list.jsp" method="post">
+					    <form class="d-flex" action="search.re?page=${curPage }" method="post">
 					    <!--검색 분류선택 -->
 					      <select name="sk" class="me-2">
 					      	<option value="m_id">작성자ID</option>
@@ -50,6 +62,7 @@
 					
 		        	<br />
 		        </div>
+			
 				<!-- 전체보기 리스트 보기 실패-->
 				<div>
 					<c:if test="${ empty review_list }">
@@ -59,7 +72,7 @@
 					</c:if>	
 				</div>
 				
-				<!-- 전체보기 리스트-->
+				<!-- 전체보기 리스트 성공시-->
 				<div>
 					<table class="table table-hover table-secondary">
 						<thead class="table-warning">
@@ -72,6 +85,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						
 						<c:forEach var="review" items="${ review_list }">
 							<tr>
 								<td>${ review.re_code }</td>
@@ -82,11 +96,13 @@
 							</tr>	
 						</c:forEach>			
 						</tbody>
-					</table>
-					
+					</table>					
+				</div>
+				<div style="float: right;" class="mb-3">
+				<button type="button" class="btn btn-outline-success">Write</button>
 				</div>
 				
-				<!-- pagenation 
+		<!-- pagenation_맨밑에 깍두기  -->
 				<div class="container">
 					<ul class="pagination justify-content-center">
 						
@@ -105,13 +121,13 @@
 						</c:if>
 					</ul>
 				</div>
-				-->
+
 	        </div>
      
         </main>
         
         <!-- layout폴더 > footer.jsp -->
-        <jsp:include page="./layout/footer.jsp"/>
+        <jsp:include page="/layout/footer.jsp"/>
             
     </body>
 </html>
