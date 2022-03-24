@@ -1,24 +1,30 @@
-<%@ page import="entity.PageInfo"%>
-<%@ page import= "java.util.List" %>
-<%@ page import="entity.ReviewBean"%>
+<%@page import="entity.ReviewBean"%>
+<%@page import="entity.PageInfo"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"    uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
-	request.setAttribute("review_list", review_list);
+	String pw_no_error = (String) request.getAttribute("delete_msg");
 	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
-	//System.out.println("====review_list=====>",review_list);
 	
-	request.setAttribute("review_list", (List<ReviewBean>) session.getAttribute("review_list")); 	
+//List<ReviewBean> search_list = (List<ReviewBean>) request.getAttribute("searchlist");
+	
+	request.setAttribute("search_list", (List<ReviewBean>) request.getAttribute("searchlist"));
+	
 	int curPage = pageinfo.getPage();
 	int totalPage = pageinfo.getTotalPage();
 	int startPage = pageinfo.getStartPage();
-	int endPage = pageinfo.getEndPage();
+	int endPage = pageinfo.getEndPage(); 
+	out.println("====>curPage?"+curPage);
 %>
-<c:set var="curPage" value="<%=curPage %>"/>
-
+<c:set var="se_list" value="${search_list }"/>
+<c:set var="curPage" value="<%= curPage %>"/>
+<c:set var="totalPage" value="<%=totalPage %>"/>
+<c:set var="startPage" value="<%= startPage %>"/>
+<c:set var="endPage" value="<%=endPage %>"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,7 +44,7 @@
 
         <main class="flex-shrink-0">
             <!-- layout폴더 -> navbar.jsp -->
-            <jsp:include page="/layout/navbar.jsp"/>
+            <jsp:include page="./layout/navbar.jsp"/>
             
         	<div class="container px-5">
         	
@@ -47,7 +53,7 @@
 			<nav class="nav justify-content-end">
 					  <div class="float-right mt-3">
 					  <!-- 검색분류선택하고 검색어로 검색 -->
-					    <form class="d-flex" action="search.re?page=${curPage }" method="post">
+					    <form class="d-flex" action="search.re?page=${ curPage }" method="post">
 					    <!--검색 분류선택 -->
 					      <select name="sk" class="me-2">
 					      	<option value="m_id">작성자ID</option>
@@ -117,17 +123,17 @@
 						
 						<c:if test="${endPage < totalPage}">
 							<li class="page-item"><a href="list.re?page=${endPage+1}" class="page-link"><i class="fas fa-forward"></i></a></li>
-							<li class="page-item"><a href="list.re?page=${totalPage}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>
+							<li class="page-item"><a href="list.re?page=${totalPage}" class="page-link"><i class="fas   "></i></a></li>
 						</c:if>
 					</ul>
 				</div>
-
-	        </div>
      
+
+	        </div> 
         </main>
         
         <!-- layout폴더 > footer.jsp -->
-        <jsp:include page="/layout/footer.jsp"/>
+        <jsp:include page="./layout/footer.jsp"/>
             
     </body>
 </html>

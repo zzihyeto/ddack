@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.JDBCUtility;
-import entity.Product;
 import entity.ReviewBean;
 
 public class ReviewDAO {
@@ -24,7 +23,7 @@ public class ReviewDAO {
 
 	/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */	
 
-	// DB에서 review 내용 가져오기
+	// DB review리스트  가져오기
 	public List<ReviewBean> selectReview() {
 		
 		conn = JDBCUtility.getConnection();
@@ -68,6 +67,7 @@ public class ReviewDAO {
 	public int selectListCount() {
 		
 		conn = JDBCUtility.getConnection(); 
+		
 		int listCount = 0; // 리스트갯수의 변수 초기화
 		
 		PreparedStatement pstmt = null; //준비상태를 pstmt로 변수설정하고 준비만, 초기화는 아직 초기화는 try이후부터
@@ -79,8 +79,8 @@ public class ReviewDAO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()) {
-				listCount = rs.getInt(1);
+			if(rs.next()) { 
+				listCount = rs.getInt(1);  // 1행 :20건확인
 			}
 		} catch (Exception e) {
 			System.out.println("뭔가 잘못됨" + e.getMessage());
@@ -103,38 +103,93 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		
-	String sql = "select * from review";
+		String sql = "select * from review ;";
 	
-	int start = 1 + (page-1) * 10;
+		int start = 1 + (page-1) * 10;
+		
+		int end = limit + start;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				review = new ReviewBean();
+				review.setRe_code(rs.getString("re_code"));
+				review.setM_id(rs.getString("m_id"));
+				review.setP_code(rs.getString("p_code"));
+				review.setP_review(rs.getString("p_review"));
+				review.setReview_date(rs.getDate("review_date"));
+				list.add(review);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다" + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}	
+			return list;	
+	}
 	
-	int end = limit + start;
-	
-	try {
-		pstmt = conn.prepareStatement(sql);
+	//검색
+	//1.검색해서 총갯수
+	public int getSearchCount(String field, String query) {
 		
-		pstmt.setInt(1, start);
-		pstmt.setInt(2, end);
+		conn = JDBCUtility.getConnection();
+		int count = 0;
 		
-		
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()) {
-			review = new ReviewBean();
-			review.setRe_code(rs.getString("re_code"));
-			review.setM_id(rs.getString("m_id"));
-			review.setP_code(rs.getString("p_code"));
-			review.setP_review(rs.getString("p_review"));
-			review.setReview_date(rs.getDate("review_date"));
-			list.add(review);
+		if(field.equals("total")) {
+			field = "m_id";
 		}
 		
-	}catch (Exception e) {
-		System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
-	}finally {
-		JDBCUtility.close(conn, pstmt, rs);
-	}	
-		return list;	
+		String sql = "";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+ query +"%");
+		
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			count = rs.getInt("count");
+			
+		} catch (Exception e) {
+			System.out.println("뭔가 잘못됐습니다."+e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return count;
 	}
+
+	//2.검색해서 리스트 가져오기 
+	public List<ReviewBean> searchlist(String field, String query, int page) {
+	
+		conn = JDBCUtility.getConnection(); 
+		List<ReviewBean> review = new ArrayList<ReviewBean>();
+	 
+		if(field.equals("total")) { 
+			field = "m_id";
+			}
+	 
+		PreparedStatement pstmt = null; ResultSet rs = null;
+	 
+		String sql = "select * from " + " ("
+	  
+	  
+	  
+	 
+	  return null; }
+	
+	
+	
+	
 
 	// 글쓰기
 	public int insertReview(ReviewBean review) {
@@ -165,6 +220,8 @@ public class ReviewDAO {
 		}		
 		return insertCount;
 	}
+
+	
 	
 	
 
