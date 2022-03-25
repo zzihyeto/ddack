@@ -33,13 +33,10 @@ public class JoinAction implements Action {
 		
 		PostService post = new PostService();
 		Post p = post.makePost(do_ ,ci , gungu ,dong, be_addr);
-		System.out.println("===p주소===>"+p);
 		
 		String post_code = p.getPost_code();
-		System.out.println("===post_code===>"+post_code);
 		JoinService joins = new JoinService();
 		boolean regSuccess = joins.registerMember(id,pw,name,jumin,phone,email,do_,ci,gungu,dong,be_addr,post_code);
-		System.out.println("===regSuccess===>"+regSuccess);
 		
 		HttpSession session = req.getSession(); 
 		

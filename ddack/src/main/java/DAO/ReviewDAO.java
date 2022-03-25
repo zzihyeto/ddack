@@ -180,12 +180,13 @@ public class ReviewDAO {
 	 
 		PreparedStatement pstmt = null; ResultSet rs = null;
 	 
-		String sql = "select * from " + " ("
+		String sql = "select * from " ;
 	  
 	  
 	  
 	 
-	  return null; }
+		return null; 
+	  }
 	
 	
 	

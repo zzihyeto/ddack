@@ -37,14 +37,12 @@ public class JoinDAO {
 			
 			while(rs.next()) {
 				m_code = rs.getString("m_code");
-				System.out.println("=====m_code 전====>"+m_code);
 				break;
 			}
 			
 			int code1 =Integer.parseInt(m_code.split("_")[1]) + 1;
 			String code2 = Integer.toString(code1);
 			m_code = m_code.split("_")[0]+ "_"+ code2;
-			System.out.println("=====m_code가공후====>"+m_code);
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m_code);
@@ -56,7 +54,6 @@ public class JoinDAO {
 			pstmt.setString(7, phone);
 			pstmt.setString(8, email);
 			pstmt.setString(9, post_code);
-			System.out.println("=====pstmt====>"+pstmt);
 			regCount = pstmt.executeUpdate();
 			
 			if(regCount>0) {
@@ -65,7 +62,6 @@ public class JoinDAO {
 				JDBCUtility.rollback(conn);
 			}
 			
-			System.out.println("=====member 등록하려다가 성공하면 1 regCount====>"+regCount);
 		} catch(Exception e) {
 			System.out.println("등록되지 못했습니다." + e.getMessage());
 		}finally {

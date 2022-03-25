@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-<<<<<<< HEAD
 import action.FinalbuyAction;
-=======
 import action.JoinAction;
->>>>>>> branch 'master' of https://github.com/zzihyeto/ddack.git
 import action.MUpdateAction;
 import vo.ActionForward;
 
@@ -43,7 +40,6 @@ public class MemController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("=====command====="+command);
 		
 		if(command.equals("/update.member")) {
 			action = new MUpdateAction();
@@ -52,13 +48,15 @@ public class MemController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
 		}else if(command.equals("/finalbuy.member")){
 			action = new FinalbuyAction();
-=======
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/join.member")) {
 			action = new JoinAction();
->>>>>>> branch 'master' of https://github.com/zzihyeto/ddack.git
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
