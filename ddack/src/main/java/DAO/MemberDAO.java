@@ -10,6 +10,7 @@ import java.util.List;
 import db.JDBCUtility;
 import entity.Member;
 import entity.Post;
+import entity.Product;
 
 public class MemberDAO {
 	
@@ -288,7 +289,7 @@ public class MemberDAO {
 		
 	}
 
-	public static String getModcode() {
+	public static String makeModcode() {
 		conn = JDBCUtility.getConnection();
 
 		PreparedStatement pstmt = null;
@@ -309,6 +310,41 @@ public class MemberDAO {
 			JDBCUtility.close(conn, pstmt, rs);
 		}
 		return m_od_code;
+	}
+
+	public static List<Product> getMemOrder(String m_code) {
+
+		conn = JDBCUtility.getConnection();
+
+		List<Product> order_list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql ="select p.p_name, p.p_pay , mo.* from product p, memorder mo where p.p_code=mo.p_code and mo.m_code= ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_code);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+				Product product = new Product();
+				product.setP_name(rs.getString("p_name"));
+				product.setP_pay(rs.getString("p_pay"));
+				product.setP_code(rs.getString("p_code"));
+				product.setP_count(rs.getInt("p_count"));
+				product.setOrder_date(rs.getString("order_date"));
+				product.setDue_date(rs.getString("due_date"));
+				product.setP_count_pay(Integer.parseInt(product.getP_pay())*(product.getP_count()));
+				order_list.add(product);
+			}
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return order_list;
 	}
 
 	

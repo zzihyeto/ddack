@@ -36,7 +36,7 @@ public class FinalbuyAction implements Action {
 		String m_code = member.getM_code();
 		
 		MemberDAO.getInstance();
-		String m_od_code = MemberDAO.getModcode();
+		String m_od_code = MemberDAO.makeModcode();
 		
 		MemberDAO.setMemOrder(m_od_code,m_code,cart_map,order_date,due_date);
 		

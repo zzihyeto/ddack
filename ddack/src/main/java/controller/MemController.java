@@ -13,6 +13,7 @@ import action.Action;
 import action.FinalbuyAction;
 import action.JoinAction;
 import action.MUpdateAction;
+import action.MemOrderAction;
 import vo.ActionForward;
 
 @WebServlet("*.member")
@@ -58,6 +59,13 @@ public class MemController extends HttpServlet {
 			}
 		}else if(command.equals("/join.member")) {
 			action = new JoinAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/mem_orders.member")){
+			action = new MemOrderAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

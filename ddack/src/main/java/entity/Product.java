@@ -10,6 +10,8 @@ public class Product {
 	String p_pay;
 	int p_count_pay=0; 
 	int p_count =0;
+	String order_date;
+	String due_date;
 	
 	public Product() {}
 
@@ -23,6 +25,22 @@ public class Product {
 		this.p_pay = p_pay;
 	}
 	
+	public String getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
+	}
+
+	public String getDue_date() {
+		return due_date;
+	}
+
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
+	}
+
 	public int getP_count() {
 		return p_count;
 	}
