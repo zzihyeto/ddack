@@ -33,7 +33,7 @@
 		<jsp:include page="./layout/navbar.jsp" />
 		<c:if test="${!empty register_msg}">
           	<div class="alert alert-warning" role="alert">
-				${register_msg} 했습니다 다시해주세요.
+				${register_msg} 했습니다 다시 입력해주세요.
 			</div>
          </c:if>
 		<section class="py-5">
