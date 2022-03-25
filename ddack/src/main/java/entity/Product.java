@@ -22,7 +22,7 @@ public class Product {
 		this.p_life = p_life;
 		this.p_pay = p_pay;
 	}
-
+	
 	public int getP_count() {
 		return p_count;
 	}
