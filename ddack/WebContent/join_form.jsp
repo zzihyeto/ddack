@@ -33,7 +33,7 @@
 		<jsp:include page="./layout/navbar.jsp" />
 		<c:if test="${!empty register_msg}">
           	<div class="alert alert-warning" role="alert">
-				${register_msg} 했습니다 다시 입력해주세요.
+				${register_msg} 했습니다. 다시 입력해주세요.
 			</div>
          </c:if>
 		<section class="py-5">
@@ -72,8 +72,7 @@
 												</div>
 											</div>
 											<div class="col-md-4">
-												<a href="#" class="form-control btn btn-primary btn-lg">
-													ID 중복체크 </a>
+												<a href="#" class="form-control btn btn-primary btn-lg">ID 중복체크 </a>
 											</div>
 										</div>
 									</div>
