@@ -1,29 +1,27 @@
 package entity;
 
+
 import java.util.Date;
 
 public class ReviewBean {
 	
 	private String re_code;
+	private String p_name;
 	private String m_id;
-	private String p_code;
 	private String p_review;
 	private Date review_date;
 	
-
-	public ReviewBean() {	}
+	public ReviewBean() {}
 	
-	
-	public ReviewBean(String re_code, String m_id, String p_code, String p_review, Date review_date) {
+	public ReviewBean(String re_code, String p_name, String m_id, String p_review, Date review_date) {
 		super();
 		this.re_code = re_code;
+		this.p_name = p_name;
 		this.m_id = m_id;
-		this.p_code = p_code;
+		/* this.p_code = p_code; */
 		this.p_review = p_review;
 		this.review_date = review_date;
 	}
-
-
 
 	public String getRe_code() {
 		return re_code;
@@ -41,13 +39,12 @@ public class ReviewBean {
 		this.m_id = m_id;
 	}
 
-	public String getP_code() {
-		return p_code;
-	}
-
-	public void setP_code(String p_code) {
-		this.p_code = p_code;
-	}
+	/*
+	 * public String getP_code() { return p_code; }
+	 */
+	/*
+	 * public void setP_code(String p_code) { this.p_code = p_code; }
+	 */
 
 	public String getP_review() {
 		return p_review;
@@ -63,6 +60,15 @@ public class ReviewBean {
 
 	public void setReview_date(Date review_date) {
 		this.review_date = review_date;
+	}
+	
+	//추가한 p_name메소드_03.26_br
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+
+	public String getP_name() {
+		return p_name;
 	}
 	
 }
