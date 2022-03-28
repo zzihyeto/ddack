@@ -18,6 +18,8 @@ public class ReviewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+		req.setCharacterEncoding("utf-8");
+		
 		List<ReviewBean> list = new ArrayList<ReviewBean>();
 
 		// page

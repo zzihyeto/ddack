@@ -8,29 +8,24 @@ import entity.ReviewBean;
 public class SearchService {
 
 	public List<ReviewBean> getSearch() {
-		return getSearch("total","",1);
+		return getSearch("m_id","",1);
 	}
 	
 	public List<ReviewBean> getSearch(int page){
-		return getSearch("total","",page);
+		return getSearch("m_id","",page);
 	}
+	
+	
 	public List<ReviewBean> getSearch(String field, String query, int page) {
 
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		List<ReviewBean> review = reviewDAO.searchlist(field,query,page);
-		return review;
+		List<ReviewBean> search_list = reviewDAO.searchlist(field,query,page);
+		return search_list;
 	}
 
-	public int getSearchCount() {
-		return getSearchCount("total","");
-	}
-	public int getSearchCount(String field, String query) {
-		
-		ReviewDAO teethDAO = ReviewDAO.getInstance();
-		int count = teethDAO.getSearchCount(field,query);
-		
-		return count;
-	}
+	
+	
+	
 
 	
 }

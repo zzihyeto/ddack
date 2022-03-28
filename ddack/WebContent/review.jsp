@@ -9,19 +9,13 @@
 
 	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
 	request.setAttribute("review_list", review_list);
-	System.out.println("==review.jsp==review_list=====>" + review_list);
 	
 	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
-	System.out.println("====pageInfo=====>" + pageinfo);	
  	
  	int curPage = pageinfo.getPage();
- 	System.out.println("==review.jsp==curPage=====>" + curPage);
 	int totalPage = pageinfo.getTotalPage();
-	System.out.println("==review.jsp==totalPage=====>" + totalPage);
     int startPage = pageinfo.getStartPage();
-    System.out.println("==review.jsp==startPage=====>" + startPage);
 	int endPage = pageinfo.getEndPage();
-	System.out.println("==review.jsp==endPage=====>" + endPage);
  
  %>
 <c:set var="curPage" value="<%=curPage%>"/>
@@ -61,7 +55,7 @@
 							<!--검색 분류선택 -->
 							<select name="f" class="me-2">
 								<option value="m_id">작성자ID</option>
-								<option value="p_code">상품코드</option>
+								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
 							</select> 
 							<input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
