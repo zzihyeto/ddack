@@ -73,7 +73,7 @@ public class ShowController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.contentEquals("/search.show")) {
+		}else if (command.contentEquals("/search.show")) { //리뷰검색
 			action = new SearchListAction();
 			try {
 				forward = action.execute(req, res);

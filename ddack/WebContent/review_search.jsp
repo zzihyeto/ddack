@@ -54,7 +54,8 @@
 		<jsp:include page="./layout/navbar.jsp" />
 
 		<div class="container px-5">
-			<!-- 검색창 : 이거 다시해야함-->
+		
+			<!-- 검색창-->
 			<div class="float-right mt-3">
 				<nav class="nav justify-content-end">
 					<div class="float-right mt-3">
@@ -115,7 +116,7 @@
 				<button type="button" class="btn btn-outline-success">Write</button>
 			</div>
 
-			<!-- pagenation_맨밑에 깍두기  -->
+			<!-- pagenation -->
 			<div class="container">
 				<ul class="pagination justify-content-center">
 					

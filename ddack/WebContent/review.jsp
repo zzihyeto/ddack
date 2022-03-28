@@ -46,7 +46,7 @@
 		<jsp:include page="./layout/navbar.jsp" />
 
 		<div class="container px-5">
-			<!-- 검색창 : 이거 다시해야함-->
+			<!-- 검색창 -->
 			<div class="float-right mt-3">
 				<nav class="nav justify-content-end">
 					<div class="float-right mt-3">
@@ -63,8 +63,7 @@
 						</form>
 					</div>
 				</nav>
-
-				<br />
+			   <br />
 			</div>
 
 			<!-- 전체보기 리스트 보기 실패-->
@@ -86,7 +85,6 @@
 							<th>작성자ID</th>
 							<th>내용</th>
 							<th>작성일</th>
-							<!-- <th>삭제</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -103,11 +101,13 @@
 					</tbody>
 				</table>
 			</div>
+			
+			<!-- 리뷰 쓰기 모달 -->
 			<div style="float:right" class="mb-3">
-				<button type="button" class="btn btn-outline-success">Write</button>
+				<jsp:include page="/re_modal/write_form.jsp" />
 			</div>
 
-			<!-- pagenation_맨밑에 깍두기  -->
+			<!-- pagenation -->
 			<div class="container">
 				<ul class="pagination justify-content-center">
 
@@ -126,8 +126,7 @@
 					</c:if>
 				</ul>
 			</div>
-
-
+			
 		</div>
 	</main>
 
