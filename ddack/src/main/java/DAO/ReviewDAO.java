@@ -20,14 +20,10 @@ public class ReviewDAO {
 	}
 	
 	Connection conn = null;  
-	
-	public void setConnection(Connection conn) {
-		this.conn = conn;
-	}
 
 	/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */	
 
-	// DB review리스트 전체가져오기 = 상세리스트 가져오기
+	// DB review리스트 전체 가져오기 = 상세리스트 가져오기
 	public List<ReviewBean> selectReview() {
 		conn = JDBCUtility.getConnection();
 		List<ReviewBean> review_list = new ArrayList<>();
@@ -95,7 +91,7 @@ public class ReviewDAO {
 		return listCount;
 	}
 	
-	// 2. 전체리스트 가져오기 
+	// 2. 전체에서 구간으로 리스트 가져오기 
 	public List<ReviewBean> selectReviewList(int page, int limit) {
 		conn = JDBCUtility.getConnection();
 		List<ReviewBean> list = new ArrayList<ReviewBean>();
@@ -104,36 +100,22 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		/* String sql = "select * from review"; */
-		/*String sql ="select * from (select rownum() rn, t1.* "
-				    + "from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-				    + "from product p, review rv where p.p_code = rv.p_code"
-					+ "order by rv.review_date desc) t1 "
-					+ "where rn between ? and ? ";*/
-		
-		int start = 1 + (page-1) * 10; 
-		int end = limit + start;
-		
-		String sql =/* "select * from (select * from (select rownum() rn, t1.*"
-					+"from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date"
-					+"from product p, review rv where p.p_code = rv.p_code order by"
-					+"rv.review_date asc) t1) t1 order by rn desc) t2 where rn between" + start + "and"+ end;*/
+		String sql = "select * from (select rownum() rn, t1.* "
+				+ "				from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ "						from product p, review rv "
+				+ "						where p.p_code = rv.p_code "
+				+ "				order by rv.review_date DESC )t1 )t2 limit ? , "+ limit;
 				
-				"select * from (select rownum() rn, t1.* "
-				+ "	from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-				+ "	from product p, review rv"
-				+ "	where p.p_code = rv.p_code"
-				+ "	order by rv.review_date asc)t1 order by rn DESC) t2 where rn between" + start + "and" + end;
-				
-
+		int startRow = (page - 1) * limit;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			rs = pstmt.executeQuery();
+			pstmt.setInt(1, startRow);
 			
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				review = new ReviewBean();
+				review.setR_num(rs.getInt("rn"));
 				review.setRe_code(rs.getString("re_code")); //리뷰코드
 				review.setP_name(rs.getString("p_name")); //제품명
 				review.setM_id(rs.getString("m_id")); // 작성자
@@ -146,7 +128,8 @@ public class ReviewDAO {
 		} finally {
 			JDBCUtility.close(conn, pstmt, rs);
 		}	
-			return list;	
+		
+		return list;	
 	}
 	
 	//검색

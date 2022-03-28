@@ -1,5 +1,6 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,27 +18,31 @@ public class ReviewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		ActionForward forward =null;
-		
-		List<ReviewBean> review_list = null;
-		PageInfo pageinfo = null;
-		
+		List<ReviewBean> list = new ArrayList<ReviewBean>();
+
+		// page
+		int page = 1;
+		int limit = 10;
+
+		if (req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		
-		review_list = reviewDAO.selectReview();
+		// 구간으로 잘라서 리뷰 가져오기
+		list = reviewDAO.selectReviewList(page, limit);	
 		
-		PageService page = new PageService();
-		
-		pageinfo = page.getPageInfo(1);
-		
-		HttpSession session = req.getSession();
-		session.setAttribute("review_list", review_list);
-		session.setAttribute("pageInfo", pageinfo);
+		// pageInfo 만들기
+		PageService pageser = new PageService();
+		PageInfo pageInfo = pageser.getPageInfo(page);
 
-		
-		forward = new ActionForward();
+		HttpSession sess = req.getSession();
+		sess.setAttribute("review_list", list);
+		req.setAttribute("pageInfo", pageInfo);
+
+		ActionForward forward = new ActionForward();
 		forward.setPath("/review.jsp");
-		
+
 		return forward;
 	}
 

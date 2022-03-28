@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AddAction;
 import action.Del_cart_Action;
-import action.ListAction;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
@@ -74,14 +73,7 @@ public class ShowController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.contentEquals("/list.show")) {
-			action = new ListAction();
-			try {
-				forward = action.execute(req, res);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}  else if (command.contentEquals("/search.show")) {
+		}else if (command.contentEquals("/search.show")) {
 			action = new SearchListAction();
 			try {
 				forward = action.execute(req, res);
