@@ -11,14 +11,12 @@ import service.PageService;
 import service.SearchService;
 import vo.ActionForward;
 
-
-
 public class SearchListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
-		ActionForward forward =null;
+		ActionForward forward = null;
 		
 		String _field = req.getParameter("f");
 		String _query = req.getParameter("q");
@@ -29,12 +27,12 @@ public class SearchListAction implements Action{
 		int page = 1;
 		int limit = 10;
 		
-		if(_field !=null && !_field.equals("")) field = _field; //total, user_id , t_code 중에
+		if(_field !=null && !_field.equals("")) field = _field; //total, user_id , p_name 중에
 		if(_query !=null && !_query.equals("")) query = _query;
 		if(_page !=null && !_page.equals("")) page = Integer.parseInt(_page);
 		
 		SearchService searchser = new SearchService();
-		List<ReviewBean> list = searchser.getSearch(field,query,page);
+		List<ReviewBean> list = searchser.getSearch(field, query, page);
 		int Searchcount = searchser.getSearchCount(field,query);
 		
 		//총페이지수
@@ -54,7 +52,7 @@ public class SearchListAction implements Action{
 		req.setAttribute("count", Searchcount);
 
 		forward = new ActionForward();
-		forward.setPath("/reviews_search.jsp");
+		forward.setPath("/review_search.jsp");
 		return forward;
 	}
 }

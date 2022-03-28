@@ -18,13 +18,14 @@
 	int totalPage = pageinfo.getTotalPage();
 	int startPage = pageinfo.getStartPage();
 	int endPage = pageinfo.getEndPage(); 
-	out.println("====>curPage?"+curPage);
+	//out.println("====>curPage?"+curPage);
 %>
-<c:set var="se_list" value="${search_list }"/>
+<c:set var="re" value="${ review_list }"/>
 <c:set var="curPage" value="<%= curPage %>"/>
 <c:set var="totalPage" value="<%=totalPage %>"/>
 <c:set var="startPage" value="<%= startPage %>"/>
 <c:set var="endPage" value="<%=endPage %>"/>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,12 +35,13 @@
         <meta name="author" content="" />
         <title>DDACK_리뷰페이지입니다</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./css1/styles.css" rel="stylesheet" />
     </head>
+    
 	<body class="d-flex flex-column">
 
         <main class="flex-shrink-0">
@@ -53,11 +55,11 @@
 			<nav class="nav justify-content-end">
 					  <div class="float-right mt-3">
 					  <!-- 검색분류선택하고 검색어로 검색 -->
-					    <form class="d-flex" action="search.re?page=${ curPage }" method="post">
+					    <form class="d-flex" action="search.show?page=${curPage}" method="post">
 					    <!--검색 분류선택 -->
-					      <select name="sk" class="me-2">
+					      <select name="f" class="me-2">
 					      	<option value="m_id">작성자ID</option>
-					      	<option value="p_code">상품코드</option>
+					      	<option value="p_name">제품명</option>
 					      	<option value="review_date">작성일</option>
 					      </select>
 					      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -78,37 +80,38 @@
 					</c:if>	
 				</div>
 				
-				<!-- 전체보기 리스트 성공시-->
-				<div>
-					<table class="table table-hover table-secondary">
-						<thead class="table-warning">
+	<!-- 전체보기 리스트 성공시-->
+			<div>
+				<table class="table table-hover table-secondary">
+					<thead class="table-warning">
+						<tr>
+							<th>글번호</th>
+							<th>제품명</th>
+							<th>작성자ID</th>
+							<th>내용</th>
+							<th>작성일</th>
+							<!-- <th>삭제</th> -->
+						</tr>
+					</thead>
+					<tbody>
+
+						<c:forEach var="re" items="${ review_list }">
 							<tr>
-								<th>글번호</th> 
-								<th>작성자ID</th>
-								<th>상품코드</th>
-								<th>후기</th>
-								<th>작성일</th>
+								<td>${ re.re_code }</td>
+								<td>${ re.p_name }</td>
+								<td>${ re.m_id }</td>
+								<td>${ re.p_review }</td>
+								<td>${ re.review_date }</td>
 							</tr>
-						</thead>
-						<tbody>
-						
-						<c:forEach var="review" items="${ review_list }">
-							<tr>
-								<td>${ review.re_code }</td>
-								<td>${ review.m_id }</td>
-								<td>${ review.p_code }</td>
-								<td>${ review.p_review }</td>
-								<td>${ review.review_date }</td>
-							</tr>	
-						</c:forEach>			
-						</tbody>
-					</table>					
-				</div>
-				<div style="float: right;" class="mb-3">
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div style="float:right" class="mb-3">
 				<button type="button" class="btn btn-outline-success">Write</button>
-				</div>
-				
-		<!-- pagenation_맨밑에 깍두기  -->
+			</div>
+			
+				<!-- pagenation_맨밑에 깍두기  -->
 				<div class="container">
 					<ul class="pagination justify-content-center">
 						
@@ -123,7 +126,7 @@
 						
 						<c:if test="${endPage < totalPage}">
 							<li class="page-item"><a href="list.re?page=${endPage+1}" class="page-link"><i class="fas fa-forward"></i></a></li>
-							<li class="page-item"><a href="list.re?page=${totalPage}" class="page-link"><i class="fas   "></i></a></li>
+							<li class="page-item"><a href="list.re?page=${totalPage}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>
 						</c:if>
 					</ul>
 				</div>

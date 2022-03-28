@@ -8,12 +8,13 @@ public class PageService {
 	public PageInfo getPageInfo(String page) {
 
 		//page
-		int curPage = Integer.parseInt(page);
-		int limit = 10;
+		int curPage = Integer.parseInt(page); //page가 string이라서 integer.parseint로 형변환
+		int limit = 10; //한페이지에 출력한 행수
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		int listCount = reviewDAO.selectListCount();
 			
+		//paging	
 		//총페이지수
 		int totalPage = (int)(((double)listCount / limit + 0.95));
 		//현재 페이지의 시작페이지수 (1,11,21,...)
@@ -37,7 +38,7 @@ public class PageService {
 
 		//page
 		int curPage = page;
-		int limit = 10;
+		int limit = 10; //한페이지에 출력할 행수
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		int listCount = reviewDAO.selectListCount(); //리뷰가 총몇개냐 총갯수
@@ -56,7 +57,6 @@ public class PageService {
 		pageInfo.setPage(curPage);
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
-		
 		
 		return pageInfo;
 	}
