@@ -15,6 +15,7 @@ import action.Del_cart_Action;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
+import action.Write_Action;
 import vo.ActionForward;
 
 @WebServlet("*.show")
@@ -80,7 +81,17 @@ public class ShowController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if (command.contentEquals("/re_write.show")) { // 리뷰 쓰기
+			action = new Write_Action();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		
+		
 		
 		
 		
