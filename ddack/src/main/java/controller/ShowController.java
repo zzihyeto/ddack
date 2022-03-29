@@ -14,13 +14,13 @@ import action.AddAction;
 import action.Del_cart_Action;
 import action.ProductAction;
 import action.ReviewAction;
+import action.SearchListAction;
 import vo.ActionForward;
-
-
 
 @WebServlet("*.show")
 public class ShowController extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
 	ActionForward forward = null;
 	Action action = null;
 	
@@ -66,14 +66,30 @@ public class ShowController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/review.show")){
+		}else if(command.equals("/review.show")){ //리뷰
 			action = new ReviewAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.contentEquals("/list.show")) {
+			action = new ListAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (command.contentEquals("/search.show")) {
+			action = new SearchListAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 		
 		
 		if(forward!=null) {
@@ -87,3 +103,4 @@ public class ShowController extends HttpServlet {
 		
 	}
 }
+
