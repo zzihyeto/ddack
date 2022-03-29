@@ -9,8 +9,12 @@
 		driverClassName = "org.mariadb.jdbc.Driver"
 		factory = "org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		url = "jdbc:mariadb://15.165.177.249:3306/ddack"
-		maxActive = "50"
-		maxIdle ="10"
-		maxWait="-1"
+		maxActive = "100"
+		maxIdle ="30"
+		maxWait="15000"
+		removeAbandoned="true"
+		removeAbandonedTimeout="60"
+		
+		validationQuery="SELECT NOW()"
 	/>
 </Context>

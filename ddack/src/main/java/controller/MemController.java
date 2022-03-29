@@ -13,6 +13,7 @@ import action.Action;
 import action.FinalbuyAction;
 import action.JoinAction;
 import action.MUpdateAction;
+import action.MemOrderAction;
 import vo.ActionForward;
 
 @WebServlet("*.member")
@@ -40,6 +41,7 @@ public class MemController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
+		System.out.println("====command====>"+command);
 		
 		if(command.equals("/update.member")) {
 			action = new MUpdateAction();
@@ -57,6 +59,13 @@ public class MemController extends HttpServlet {
 			}
 		}else if(command.equals("/join.member")) {
 			action = new JoinAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/mem_orders.member")){
+			action = new MemOrderAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
