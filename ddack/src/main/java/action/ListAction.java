@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import DAO.ReviewDAO;
 import entity.PageInfo;
 import entity.ReviewBean;
-import service.ListService;
 import service.PageService;
 import vo.ActionForward;
 
@@ -30,8 +29,6 @@ public class ListAction implements Action {
 		}
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		
-		ListService listService = new ListService();
 		
 		// 전체 리뷰리스트 총 갯수
 		int listCount = reviewDAO.selectListCount();
