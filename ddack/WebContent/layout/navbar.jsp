@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="entity.Member" %>
 <%
 	String loginmsg = (String) session.getAttribute("login_ing");
 	//System.out.println("==loginmsg=>"+loginmsg);
+	Member member_info = (Member) session.getAttribute("member_info");
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
 <!-- Navigation-->
@@ -29,7 +31,7 @@
                      			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
                      		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
 	                       		<li><a class="dropdown-item" href="./member_info.jsp">Info</a></li>
-		                        <li><a class="dropdown-item" href="./cart.jsp">Order Info</a></li>
+		                        <li><a class="dropdown-item" href="mem_orders.member?m_code=${member_info.m_code }">Orders Info</a></li>
 		                        <li><a class="dropdown-item" href="logout.check">Log Out</a></li>
 	                        </ul>
                        	</c:if>

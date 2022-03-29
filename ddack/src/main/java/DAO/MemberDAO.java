@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import db.JDBCUtility;
 import entity.Member;
 import entity.Post;
+import entity.Product;
 
 public class MemberDAO {
 	
@@ -241,6 +243,108 @@ public class MemberDAO {
 			JDBCUtility.close(conn, pstmt, null);
 		}
 		
+	}
+
+	public static void setMemOrder(String m_od_code,String m_code, HashMap<String, Integer> cart_map, String order_date,
+			String due_date) {
+
+		conn = JDBCUtility.getConnection();
+
+		int succ_count=0;
+		PreparedStatement pstmt1 =null;
+		ResultSet rs = null;
+		
+		try {
+			String sql ="insert into memorder(m_od_code,m_code,p_code,p_count,order_date,due_date) VALUES (?,?,?,?,?,?)";
+			pstmt1 = conn.prepareStatement(sql);
+			
+			//카드에 담겨진걸 "p_code":p_count hashmap으로 담아와서 여기서풀어
+			for(String i : cart_map.keySet()) {
+				String p_code = i;
+				int p_count = cart_map.get(i);
+				
+				pstmt1.setString(1, m_od_code);
+				pstmt1.setString(2, m_code);
+				pstmt1.setString(3, p_code);
+				pstmt1.setInt(4, p_count);
+				pstmt1.setString(5, order_date);
+				pstmt1.setString(6, due_date);
+				
+				succ_count = pstmt1.executeUpdate();			
+
+				if(succ_count>0) {
+					JDBCUtility.commit(conn);
+				}else {			
+					JDBCUtility.rollback(conn);
+				}
+				pstmt1.clearParameters();
+			}
+			
+			
+		}catch (Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());		
+		}finally {
+			JDBCUtility.close(conn, pstmt1, rs);
+		}
+		
+	}
+
+	public static String makeModcode() {
+		conn = JDBCUtility.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String m_od_code =null;
+		
+		try {
+			pstmt = conn.prepareStatement("SELECT m_od_code  FROM memorder ORDER BY length(m_od_code) desc, m_od_code desc");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				m_od_code = rs.getString("m_od_code");
+				break;
+			}
+			m_od_code =(m_od_code.split("_")[0])+"_"+Integer.toString(Integer.parseInt(m_od_code.split("_")[1])+1); 
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return m_od_code;
+	}
+
+	public static List<Product> getMemOrder(String m_code) {
+
+		conn = JDBCUtility.getConnection();
+
+		List<Product> order_list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql ="select p.p_name, p.p_pay , mo.* from product p, memorder mo where p.p_code=mo.p_code and mo.m_code= ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_code);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+				Product product = new Product();
+				product.setP_name(rs.getString("p_name"));
+				product.setP_pay(rs.getString("p_pay"));
+				product.setP_code(rs.getString("p_code"));
+				product.setP_count(rs.getInt("p_count"));
+				product.setOrder_date(rs.getString("order_date"));
+				product.setDue_date(rs.getString("due_date"));
+				product.setP_count_pay(Integer.parseInt(product.getP_pay())*(product.getP_count()));
+				order_list.add(product);
+			}
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return order_list;
 	}
 
 	

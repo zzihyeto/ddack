@@ -33,6 +33,9 @@
                     <div class="text-center mb-5">
                         <h1 class="fw-bolder">상품 나열</h1>
                         <p class="lead fw-normal text-muted mb-0">장바구니에 담으세요</p>
+                        <br>
+                        <p class="lead fw-normal text-muted mb-0">기본이 100개 주문입니다.</p>
+                        <p class="lead fw-normal text-muted mb-0">더 구매하시려면 갯수를 넣어주세요.</p>
                         <a href="./cart.jsp" class="btn btn-warning mt-3">장바구니</a>
                     </div>
                     
@@ -55,7 +58,7 @@
 		                                    </div>
 		                                    <ul class="list-unstyled mb-4">
 		                                    	<li class="mb-2">
-		                                            <i class="bi bi-check text-primary">
+		                                            <!-- <i class="bi bi-check text-primary">
 				                                         <select name="count" id="count">
 															<option value="10" selected>10</option>
 															<option value="20">20</option>
@@ -63,8 +66,11 @@
 															<option value="40">40</option>
 															<option value="50">50</option>
 														</select>
-														갯수
-		                                            </i>
+		                                            </i> -->
+		                                            <i class="bi bi-check text-primary">
+													<input class="" type="text" name="count" 
+														 size="8" value="100"/> 개
+													</i>
 		                                        </li>
 		                                        <li class="mb-2">
 		                                            <i class="bi bi-check text-primary">
@@ -85,7 +91,6 @@
 		                                    
 		                                    <input type="hidden" name="p_code" value="${product.p_code }" />
 		                                    <input type="hidden" id="p_name" name="p_name" value="${product.p_name }" />
-		                                    <input type="hidden" name="p_count" value="${count }" />
 		                                    <input type="hidden" name="p_pay" value="${product.p_pay }" />
 		                                    <input type="hidden" name="p_kg" value="${product.p_kg }" />
 		                                    <input type="hidden" name="p_life" value="${product.p_life }" />

@@ -5,12 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<Product> cart_list = (List<Product>) session.getAttribute("cart_list");
-	request.setAttribute("cart_list", cart_list);
+	List<Product> order_list = (List<Product>) session.getAttribute("order_list");
 	
+	
+	request.setAttribute("order_list", order_list);
 %>
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Finalbuy.jsp</title>
+	<title>mem_orders.jsp</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous"> 
@@ -44,21 +43,7 @@
         <jsp:include page="./layout/navbar.jsp"/>
         
         <div class="container mb-5" >
-			
-			<table width="100%" class="mt-5">
-				<tr>
-					<td>
-						<a href="product.show" class="btn btn-success">
-							&raquo; 쇼핑 계속하기
-						</a>
-					</td>
-				</tr>
-			</table> 
-			<c:if test="${empty cart_list}">
-				<h5 class="mt-5 mb-5">
-					<p class="bg-danger text-white" style="text-align:center">장바구니를 담지 않으셨어요</p>					
-				</h5>
-			</c:if>
+			<h3 class="text-center font-weight-light my-4">Member Orders</h3>
 			
 			<table class="table table-hover mt-5" id="cartTable">
 				<tr>
@@ -66,22 +51,19 @@
 					<th>가격</th>
 					<th>수량</th>
 					<th>소계</th>
-					<th>삭제</th>					
+					<th>주문</th>
+					<th>희망납기</th>			
 				</tr>
 				
-				<c:if test="${!empty cart_list}">
-					<c:forEach var="cart" items="${cart_list }">
+				<c:if test="${!empty order_list}">
+					<c:forEach var="order" items="${order_list }">
 						<tr>
-							<td>${cart.p_name }</td>
-							<td>${cart.p_pay }</td>
-							<td >${cart.p_count }</td>
-							<td class="col_value"><fmt:formatNumber value="${cart.p_count_pay }" /></td>
-							
-							<td>
-								<a href="del_cart.show?p_code=${cart.p_code }"  class="btn btn-danger">
-									<i class="fas fa-trash"></i>
-								</a>
-							</td>					
+							<td>${order.p_name }</td>
+							<td>${order.p_pay }</td>
+							<td >${order.p_count }</td>
+							<td class="col_value"><fmt:formatNumber value="${order.p_count_pay }" /></td>
+							<td >${order.order_date }</td>					
+							<td >${order.due_date }</td>				
 						</tr>
 						
 					</c:forEach>
@@ -92,36 +74,17 @@
 						<th></th>
 						<%
 							int sum =0;
-							for(int i=0;i<cart_list.size();i++){
-								sum += cart_list.get(i).getP_count_pay();
+							for(int i=0;i<order_list.size();i++){
+								sum += order_list.get(i).getP_count_pay();
 							}
 						%>
 						<th class="col_sum"><%=sum %></th>
-						<th></th>					
+						<th></th>
+						<th></th>
 					</tr>
 				</c:if>
 			</table>
-			<form action="finalbuy.member?today=${today }" method="post">
-				<table  class="table mt-5" width="50%" height="100%">
-					<%-- <colgroup>
-						<col style="width:30%"/>
-					</colgroup> --%>
 				
-					<tr>
-						<th colspan="4">주문일</th>
-						<th colspan="4">희망 납기일</th>
-					</tr>
-					<tr>
-						<td colspan="4"><c:out value="${today}"/></td>					
-						<td colspan="4"><input type="text" name="due_date" class="form-control" placeholder="'0000-00-00' 로 적어주세요"/></td>
-					</tr>
-					<tr>
-						<td colspan="8">
-							<input type="submit" class="btn btn-warning" value="&raquo; 총 주문하기" />
-						</td>
-					</tr>
-				</table>		
-			</form>
 		</div>
         
         

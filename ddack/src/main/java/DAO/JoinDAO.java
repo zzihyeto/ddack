@@ -42,26 +42,26 @@ public class JoinDAO {
 			
 			int code1 =Integer.parseInt(m_code.split("_")[1]) + 1;
 			String code2 = Integer.toString(code1);
-			m_code = m_code.split("_")[0]+ "_"+ code2;
+			m_code = m_code.split("_")[0]+ "_"+ code2;			
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_code);
-			pstmt.setString(2, "회원");
-			pstmt.setString(3, id);			
-			pstmt.setString(4, password);
-			pstmt.setString(5, name);
-			pstmt.setString(6, jumin);
-			pstmt.setString(7, phone);
-			pstmt.setString(8, email);
-			pstmt.setString(9, post_code);
-			regCount = pstmt.executeUpdate();
+			PreparedStatement pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setString(1, m_code);
+			pstmt1.setString(2, "회원");
+			pstmt1.setString(3, id);			
+			pstmt1.setString(4, password);
+			pstmt1.setString(5, name);
+			pstmt1.setString(6, jumin);
+			pstmt1.setString(7, phone);
+			pstmt1.setString(8, email);
+			pstmt1.setString(9, post_code);
+			regCount = pstmt1.executeUpdate();
 			
 			if(regCount>0) {
 				JDBCUtility.commit(conn);
 			}else {			
 				JDBCUtility.rollback(conn);
 			}
-			
+			JDBCUtility.close(null, pstmt1, null);
 		} catch(Exception e) {
 			System.out.println("등록되지 못했습니다." + e.getMessage());
 		}finally {

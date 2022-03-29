@@ -18,15 +18,15 @@ public class AddAction implements Action {
 		ActionForward forward =null;
 		
 		req.setCharacterEncoding("utf-8");
-		
+
 		String p_code = req.getParameter("p_code");
 	 	String p_name = req.getParameter("p_name");
 	 	String p_pay = req.getParameter("p_pay");
 	 	String p_kg = req.getParameter("p_kg");
 	 	String p_life = req.getParameter("p_life");
-	 	int p_count =Integer.parseInt( req.getParameter("count"));
+	 	int p_count=Integer.parseInt( req.getParameter("count"));
 	 	
-
+	 			
 		HttpSession session = req.getSession();
 	 	ArrayList<Product> cart_list = (ArrayList<Product>) session.getAttribute("cart_list");
 	 	
