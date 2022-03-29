@@ -20,14 +20,10 @@ public class ReviewDAO {
 	}
 	
 	Connection conn = null;  
-	
-	public void setConnection(Connection conn) {
-		this.conn = conn;
-	}
 
 	/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */	
 
-	// DB review리스트 전체가져오기 = 상세리스트 가져오기
+	// DB review리스트 전체 가져오기 = 상세리스트 가져오기
 	public List<ReviewBean> selectReview() {
 		conn = JDBCUtility.getConnection();
 		List<ReviewBean> review_list = new ArrayList<>();
@@ -95,7 +91,7 @@ public class ReviewDAO {
 		return listCount;
 	}
 	
-	// 2. 전체리스트 가져오기 
+	// 2. 전체에서 구간으로 리스트 가져오기 
 	public List<ReviewBean> selectReviewList(int page, int limit) {
 		conn = JDBCUtility.getConnection();
 		List<ReviewBean> list = new ArrayList<ReviewBean>();
@@ -104,36 +100,22 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		/* String sql = "select * from review"; */
-		/*String sql ="select * from (select rownum() rn, t1.* "
-				    + "from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-				    + "from product p, review rv where p.p_code = rv.p_code"
-					+ "order by rv.review_date desc) t1 "
-					+ "where rn between ? and ? ";*/
-		
-		int start = 1 + (page-1) * 10; 
-		int end = limit + start;
-		
-		String sql =/* "select * from (select * from (select rownum() rn, t1.*"
-					+"from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date"
-					+"from product p, review rv where p.p_code = rv.p_code order by"
-					+"rv.review_date asc) t1) t1 order by rn desc) t2 where rn between" + start + "and"+ end;*/
+		String sql = "select * from (select rownum() rn, t1.* "
+				+ "				from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ "						from product p, review rv "
+				+ "						where p.p_code = rv.p_code "
+				+ "				order by rv.review_date DESC )t1 )t2 limit ? , "+ limit;
 				
-				"select * from (select rownum() rn, t1.* "
-				+ "	from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-				+ "	from product p, review rv"
-				+ "	where p.p_code = rv.p_code"
-				+ "	order by rv.review_date asc)t1 order by rn DESC) t2 where rn between" + start + "and" + end;
-				
-
+		int startRow = (page - 1) * limit;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			rs = pstmt.executeQuery();
+			pstmt.setInt(1, startRow);
 			
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				review = new ReviewBean();
+				review.setR_num(rs.getInt("rn"));
 				review.setRe_code(rs.getString("re_code")); //리뷰코드
 				review.setP_name(rs.getString("p_name")); //제품명
 				review.setM_id(rs.getString("m_id")); // 작성자
@@ -146,7 +128,8 @@ public class ReviewDAO {
 		} finally {
 			JDBCUtility.close(conn, pstmt, rs);
 		}	
-			return list;	
+		
+		return list;	
 	}
 	
 	//검색
@@ -154,16 +137,15 @@ public class ReviewDAO {
 	public int getSearchCount(String field, String query) {
 		
 		conn = JDBCUtility.getConnection();
+		
 		int count = 0;
 		
-		if(field.equals("total")) {
-			field = "m_id";
-		}
 		
-		String sql =  "select * from (select rownum() rn, t1.* "
-			    + "from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-			    + "from product p, review rv where p.p_code = rv.p_code) t1)"
-				+ "where" + field + "like ? order by rv.review_date desc) t2)";
+		String sql =  "select count(*) from (select rownum() rn, t1.* "
+				+ " from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ " from product p, review rv where p.p_code = rv.p_code and " + field+ " like ? "
+				+ " order by rv.review_date desc) t1 "
+				+ " ) t2 ";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -175,7 +157,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			
-			count = rs.getInt("count");
+			count = rs.getInt("count(*)");
 			
 		} catch (Exception e) {
 			System.out.println("뭔가 잘못됐습니다." + e.getMessage());
@@ -189,7 +171,7 @@ public class ReviewDAO {
 	public List<ReviewBean> searchlist(String field, String query, int page) {
 	
 		conn = JDBCUtility.getConnection(); 
-		List<ReviewBean> review = new ArrayList<ReviewBean>();
+		List<ReviewBean> search_list = new ArrayList<ReviewBean>();
 
 		if (field.equals("total")) {
 			field = "m_id";
@@ -198,18 +180,20 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from"
-				+ " (select rownum() rn, t1.* from"
-				+ " (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-			    + "from product p, review rv where p.p_code = rv.p_code) t1)"
-				+ "where" + field + "like ? order by rv.review_date desc) t2)"
-				+ "where rn between ? and ?";
+		String sql = "select * from (select rownum() rn, t1.* "
+				+ "	from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ "	from product p, review rv where p.p_code = rv.p_code and "+ field +" like ? "
+				+ "	order by rv.review_date DESC )t1 "
+				+ " )t2 limit ?,? ";
+		
+		int start = 1 + (page-1) * 10 ;
+		int end = 10+start;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + query + "%");
-			pstmt.setInt(2, 1 + (page-1) * 10);
-			pstmt.setInt(3, page * 10);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end );
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -218,8 +202,11 @@ public class ReviewDAO {
 				String m_id = rs.getString("m_id");//작성자
 				String p_review = rs.getNString("p_review");
 				Date review_date = rs.getDate("review_date");
-				ReviewBean re = new ReviewBean(re_code, p_name, m_id, p_review, review_date);
-				review.add(re);
+				
+				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date);
+				search_review.setR_num(rs.getInt("rn"));
+				
+				search_list.add(search_review);
 			}
 			
 		}catch (Exception e) {
@@ -227,7 +214,7 @@ public class ReviewDAO {
 		} finally {
 			JDBCUtility.close(conn, pstmt, rs);
 		}
-		return review;
+		return search_list;
 	}
 	
 	// 글쓰기

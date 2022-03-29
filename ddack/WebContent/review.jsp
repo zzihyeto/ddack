@@ -6,28 +6,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
+
 	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
- 	System.out.println("====review_list=====>" + review_list);
-	PageInfo pageinfo = (PageInfo) session.getAttribute("pageInfo");
-	System.out.println("====pageInfo=====>" + pageinfo);
+	request.setAttribute("review_list", review_list);
 	
-	//request.setAttribute("review_list", review_list);
-	//request.setAttribute("pageInfo", pageinfo);
-	//PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
-	
- 	//request.setAttribute("review_list", (List<ReviewBean>) session.getAttribute("review_list")); 	
+	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
  	
  	int curPage = pageinfo.getPage();
- 	System.out.println("====curPage=====>" + curPage);
 	int totalPage = pageinfo.getTotalPage();
-	System.out.println("====totalPage=====>" + totalPage);
     int startPage = pageinfo.getStartPage();
-    System.out.println("====startPage=====>" + startPage);
 	int endPage = pageinfo.getEndPage();
-	System.out.println("====endPage=====>" + endPage);
  
  %>
-<c:set var="re" value="${review_list}"/>
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
@@ -56,7 +46,7 @@
 		<jsp:include page="./layout/navbar.jsp" />
 
 		<div class="container px-5">
-			<!-- 검색창 : 이거 다시해야함-->
+			<!-- 검색창 -->
 			<div class="float-right mt-3">
 				<nav class="nav justify-content-end">
 					<div class="float-right mt-3">
@@ -65,7 +55,7 @@
 							<!--검색 분류선택 -->
 							<select name="f" class="me-2">
 								<option value="m_id">작성자ID</option>
-								<option value="p_code">상품코드</option>
+								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
 							</select> 
 							<input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -73,8 +63,7 @@
 						</form>
 					</div>
 				</nav>
-
-				<br />
+			   <br />
 			</div>
 
 			<!-- 전체보기 리스트 보기 실패-->
@@ -96,14 +85,13 @@
 							<th>작성자ID</th>
 							<th>내용</th>
 							<th>작성일</th>
-							<!-- <th>삭제</th> -->
 						</tr>
 					</thead>
 					<tbody>
 
 						<c:forEach var="re" items="${ review_list }">
 							<tr>
-								<td>${ re.re_code }</td>
+								<td>${ re.r_num }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
 								<td>${ re.p_review }</td>
@@ -113,31 +101,32 @@
 					</tbody>
 				</table>
 			</div>
+			
+			<!-- 리뷰 쓰기 모달 -->
 			<div style="float:right" class="mb-3">
-				<button type="button" class="btn btn-outline-success">Write</button>
+				<jsp:include page="/re_modal/write_form.jsp" />
 			</div>
 
-			<!-- pagenation_맨밑에 깍두기  -->
+			<!-- pagenation -->
 			<div class="container">
 				<ul class="pagination justify-content-center">
 
 					<c:if test="${startPage!=1}">
-						<li class="page-item"><a href="list.show?page=1" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-						<li class="page-item"><a href="list.show?page=${startPage-10}" class="page-link"><i class="fas fa-backward"></i>Prev</a></li>
+						<li class="page-item"><a href="review.show?page=1" class="page-link"><i class="bi bi-skip-backward"></i></a></li>
+						<li class="page-item"><a href="review.show?page=${startPage-10}" class="page-link"><i class="bi bi-skip-start"></i></a></li>
 					</c:if>
 
 					<c:forEach var="page_num" begin="${startPage}" end="${endPage}">
-						<li class="page-item"><a href="list.show?page=${page_num}" class="page-link">${page_num}</a></li>
+						<li class="page-item"><a href="review.show?page=${page_num}" class="page-link">${page_num}</a></li>
 					</c:forEach>
 
 					<c:if test="${endPage < totalPage}">
-						<li class="page-item"><a href="list.show?page=${endPage+1}" class="page-link"><i class="fas fa-forward"></i></a></li>
-						<li class="page-item"><a href="list.show?page=${totalPage}" class="page-link"><i class="fas fa-fast-forward"></i>Next</a></li>
+						<li class="page-item"><a href="review.show?page=${endPage+1}" class="page-link"><i class="bi bi-skip-end"></i></a></li>
+						<li class="page-item"><a href="review.show?page=${totalPage}" class="page-link"><i class="bi bi-skip-forward"></i></a></li>
 					</c:if>
 				</ul>
 			</div>
-
-
+			
 		</div>
 	</main>
 

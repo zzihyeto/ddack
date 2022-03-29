@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class ReviewBean {
 	
+	private int r_num;
 	private String re_code;
 	private String p_name;
 	private String m_id;
@@ -18,9 +19,18 @@ public class ReviewBean {
 		this.re_code = re_code;
 		this.p_name = p_name;
 		this.m_id = m_id;
-		/* this.p_code = p_code; */
+		
 		this.p_review = p_review;
 		this.review_date = review_date;
+	}
+
+	
+	public int getR_num() {
+		return r_num;
+	}
+
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
 	}
 
 	public String getRe_code() {
@@ -39,12 +49,7 @@ public class ReviewBean {
 		this.m_id = m_id;
 	}
 
-	/*
-	 * public String getP_code() { return p_code; }
-	 */
-	/*
-	 * public void setP_code(String p_code) { this.p_code = p_code; }
-	 */
+	
 
 	public String getP_review() {
 		return p_review;
