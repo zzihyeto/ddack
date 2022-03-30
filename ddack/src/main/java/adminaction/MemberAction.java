@@ -7,26 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.ReviewDAO;
+import DAO.MemberDAO;
 import action.Action;
-import entity.ReviewBean;
+import entity.Member;
 import vo.ActionForward;
 
-public class MemreivewAction implements Action {
+public class MemberAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		List<ReviewBean> review_list = new ArrayList<ReviewBean>();
-		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		review_list= reviewDAO.selectReview();
-		System.out.println("===review_list==="+review_list);
-		HttpSession sess = req.getSession();
-		sess.setAttribute("review_list", review_list);
-
-		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/memreivew_admin.jsp");
 		
+		List<Member> member_list = new ArrayList<>();
+		MemberDAO memberDAO  =MemberDAO.getInstance();
+		member_list = memberDAO.selectMemberList();
+		
+		HttpSession sess = req.getSession();
+		sess.setAttribute("member_list", member_list);
+ 		
+		ActionForward forward = new ActionForward();
+		forward.setPath("/adminpage/member_admin.jsp");
 		return forward;
 	}
 

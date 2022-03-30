@@ -348,6 +348,7 @@ public class MemberDAO {
 		return order_list;
 	}
 
+	//주문정보 다 가져오기
 	public List<MemOrder> selectOrder() {
 
 		conn = JDBCUtility.getConnection();
@@ -388,6 +389,40 @@ public class MemberDAO {
 		
 		return memorder_list;
 		
+	}
+
+	//회원 정보 다 가져오기
+	public List<Member> selectMemberList() {
+		conn = JDBCUtility.getConnection();
+		List<Member> member_list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="select * from member";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+				Member mem = new Member();
+				mem.setM_code(rs.getString("m_code"));
+				mem.setM_type(rs.getString("m_type"));
+				mem.setM_name(rs.getString("m_name"));
+				mem.setM_id(rs.getString("m_id"));
+				mem.setM_phone(rs.getString("m_phone"));
+				mem.setM_email(rs.getString("m_email"));
+				mem.setPost_code(rs.getString("post_code"));
+				member_list.add(mem);
+			}
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return member_list;
 	}
 
 	

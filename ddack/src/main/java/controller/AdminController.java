@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import vo.ActionForward;
@@ -49,6 +50,13 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/memreview.admin")) {
 			action = new MemreivewAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/member.admin")) {
+			action = new MemberAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

@@ -5,9 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
+	List<ReviewBean> member_list = (List<ReviewBean>) session.getAttribute("member_list");
 	
-	request.setAttribute("review_list", review_list);
+	request.setAttribute("member_list", member_list);
 	
 %>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>상품리뷰</title>
+        <title>회원정보_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -27,6 +27,7 @@
     <body class="sb-nav-fixed">
       <!-- 네비게이션바 -->
 	 <%@ include file ="main/include/layout/header.jsp"%>
+        
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -39,47 +40,53 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">상품리뷰 정보</h1>
+                        <h1 class="mt-4">회원 정보</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">상품리뷰 정보</li>
+                            <li class="breadcrumb-item active">회원 정보</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                상품리뷰 참고하세요.<br> DDACK의 노력은 계속되어야 한다.
+                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
+                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                                .
+                            </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>상품리뷰 테이블
+                                <i class="fas fa-table me-1"></i>회원정보 테이블
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>주문 번호</th>
-						         			<th>상품 이름</th>
-						         			<th>작성자</th>
-						         			<th>리뷰내용</th>
-						         			<th>리뷰날짜</th>
+                                            <th>회원코드</th>
+                                            <th>회원타입</th>
+                                            <th>ID</th>
+                                            <th>이름</th>
+                                            <th>전화번호</th>
+                                            <th>이메일</th>
+                                            <th>우편번호</th>
                                         </tr>
                                     </thead>
                                     
+                                
                                     <tbody>
-	                                    <c:if test="${!empty review_list}">
-							         		<c:forEach var="re" items="${review_list }">
+                                      	<c:if test="${!empty member_list}">
+							         		<c:forEach var="me" items="${member_list }">
 							         			<tr>
-							         				<td>${re.re_code}</td>
-							         				<td>${re.p_name}</td>
-							         				<td>${re.m_id}</td>
-							         				<!-- 글씨잘리게나오도록 함 -->
-							         				<td>${fn:substring(re.p_review,0,15)}</td>
-							         				<td>${re.review_date}</td>
+							         				<td>${me.m_code}</td>
+							         				<td>${me.m_type}</td>
+							         				<td>${me.m_id}</td>
+							         				<td>${me.m_name}</td>
+							         				<td>${me.m_phone}</td>
+							         				<td>${me.m_email}</td>
+							         				<td>${me.post_code}</td>
 							         			</tr>
 							         		</c:forEach>
-						         		</c:if>                                       
+						         		</c:if> 
                                     </tbody>
                                 </table>
-                                
                             </div>
                         </div>
                     </div>
