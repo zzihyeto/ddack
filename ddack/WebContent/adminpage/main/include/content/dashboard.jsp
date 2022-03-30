@@ -48,11 +48,11 @@
 	                     <div class="card-body">구매 관리</div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">구매 발주관리</a>
+	                         <a class="small text-white " href="buycompany_admin.jsp">구매 회사정보</a>
 	                     </div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">구매 발주내역</a>
+	                         <a class="small text-white " href="#">구매 발주관리</a>
 	                     </div>
 	                 </div>
 	             </div>
