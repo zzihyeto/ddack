@@ -23,8 +23,8 @@
 		
 		<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 			<nav class="sb-sidenav-menu-nested nav">
-				<a class="nav-link" href="#">고객리뷰</a>
-				<a class="nav-link" href="#">주문상세</a> 
+				<a class="nav-link" href="memreview.admin">고객리뷰</a>
+				<a class="nav-link" href="memorder.admin">주문상세</a> 
 				<!--사이드바밝게 <a class="nav-link" href="layout-sidenav-light.jsp"></a> -->
 				<a class="nav-link" href="member_tables.jsp">회원정보</a>
 			</nav>

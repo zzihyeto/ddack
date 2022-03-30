@@ -38,6 +38,7 @@ public class FinalbuyAction implements Action {
 		MemberDAO.getInstance();
 		String m_od_code = MemberDAO.makeModcode();
 		
+		//memorder 테이블에 저장하는 setMemOrder 메서드
 		MemberDAO.setMemOrder(m_od_code,m_code,cart_map,order_date,due_date);
 		
 		session.setAttribute("order_date", order_date);

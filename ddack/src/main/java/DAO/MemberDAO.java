@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import db.JDBCUtility;
+import entity.MemOrder;
 import entity.Member;
 import entity.Post;
 import entity.Product;
@@ -345,6 +346,48 @@ public class MemberDAO {
 		}
 		
 		return order_list;
+	}
+
+	public List<MemOrder> selectOrder() {
+
+		conn = JDBCUtility.getConnection();
+
+		List<MemOrder> memorder_list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql ="select mo.m_od_code, m.m_name, p.p_name, mo.p_count,mo.order_date,mo.dead_line,mo.due_date,mo.delay_date "
+				+ "	from member m , memorder mo , product p "
+				+ "	where m.m_code = mo.m_code and mo.p_code = p.p_code "
+				+ "	ORDER BY length(mo.m_od_code) desc, mo.m_od_code desc ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+				MemOrder memorder = new MemOrder();
+				memorder.setM_od_code(rs.getString("m_od_code"));
+				memorder.setM_name(rs.getString("m_name"));
+				memorder.setP_name(rs.getString("p_name"));
+				memorder.setP_count(rs.getInt("p_count"));
+				memorder.setOrder_date(rs.getDate("order_date"));
+				memorder.setDue_date(rs.getDate("due_date"));
+				if (rs.getDate("dead_line") != null) {
+					memorder.setDead_line(rs.getDate("dead_line"));				
+				}if (rs.getDate("delay_date") != null) {
+					memorder.setDelay_date(rs.getDate("delay_date"));					
+				}
+				memorder_list.add(memorder);
+			}
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return memorder_list;
+		
 	}
 
 	
