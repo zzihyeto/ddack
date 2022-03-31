@@ -52,10 +52,9 @@
 				
 				<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 					<nav class="sb-sidenav-menu-nested nav">
-						<a class="nav-link" href="#">BOM 관리</a> 
-						<a class="nav-link"	href="#">완제품 관리</a> 
-						<a class="nav-link" href="#">거래처 관리</a>
-						<a class="nav-link" href="#">라인 관리</a>
+						<a class="nav-link" href="bomtable.admin">BOM 관리</a> 
+						<a class="nav-link"	href="product_state.admin">완제품 관리</a> 
+						<a class="nav-link" href="line_state.admin">라인 관리</a>
 						<a class="nav-link" href="#">불량 관리</a>
 					</nav>
 				</div>

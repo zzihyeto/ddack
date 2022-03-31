@@ -20,7 +20,7 @@ public class MemreivewAction implements Action {
 		List<ReviewBean> review_list = new ArrayList<ReviewBean>();
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		review_list= reviewDAO.selectReview();
-		System.out.println("===review_list==="+review_list);
+
 		HttpSession sess = req.getSession();
 		sess.setAttribute("review_list", review_list);
 
