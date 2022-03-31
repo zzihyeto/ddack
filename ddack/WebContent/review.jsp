@@ -113,7 +113,11 @@
 			<!-- 리뷰 쓰기 모달 -->
 			<div style="float:right" class="mb-3">
 				<%-- <jsp:include page="/re_modal/write_form.jsp" /> --%>
+<<<<<<< HEAD
 				<a href="re_write_form.show" class="btn btn-outline-success">쓰기</a>
+=======
+				<a href="./re_modal/write_form.jsp" class="btn btn-outline-success">쓰기</a>
+>>>>>>> refs/remotes/origin/br
 			</div>
 
 			<!-- pagenation -->

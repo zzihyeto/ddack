@@ -23,7 +23,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-		<title>DDACK_구매후기 작성 페이지</title>
+		<title>DDACK_리뷰작성 페이지입니다</title>
 		<!-- Favicon-->
 		<link rel="icon" type="image/x-icon" href="../assets1/favicon.ico" />
 		<!-- Bootstrap icons-->
@@ -36,36 +36,24 @@
 	<main class="flex-shrink-10">
 		<!-- layout폴더 -> navbar.jsp -->
 		<jsp:include page="../layout/navbar.jsp" />
-		
-		
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="card shadow-lg border-0 rounded-lg my-5">
-                            <div class="card-header">
-							<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
-							</div>
-	                         <div class="card-body">
+
+		<section class="py-5">
+			<div class="container px-5" align="center">
+				<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5" border-radius="30px">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<h2 class="text-center">DDACK 구매후기 작성</h2>
+							
 							<form action="re_write.show" method="post">
 								<table class="table table-striped">
-
-								<!-- id칸에 id넣기 -->	
-									
 									<tr>
 										<td>회원ID</td>
-										<td><input type="text" class="form-control" name="m_id">${ buy_check }</td>
-									</tr> 
-									
+										<td><input type="text" class="form-control" name="m_id"></td>
+									</tr>
 									<tr>
 										<td>구매 상품</td>
-										<td>
-											<select class="form-control" name="p_name" id="">
-												<c:forEach var="re" items="${ name_list }">
-													<option class="form-control" value="${re}">${re}</option>
-												</c:forEach>
-											</select>
-										</td>
-										<!-- <td><input type="text" class="form-control" name="p_name" value=" "></td> -->
+										<td><input type="text" class="form-control" name="p_name"></td>
 									</tr>
 									<tr>
 										<td>리뷰</td>
@@ -83,23 +71,23 @@
 								</table>
 							</form>
 						</div>
-						
 					</div>
 				</div>
 			</div>
-		</div>
+
+		</section>
 	</main>
 
 	<!-- layout폴더 > footer.jsp -->
 	<jsp:include page="../layout/footer.jsp" />
 
-<script>
-CKEDITOR.replace('content', {
-		
-	width:'100%',
-	height:'350'	
-});
-</script>
+		<script>
+		CKEDITOR.replace('content', {
+				
+			width:'100%',
+			height:'350'	
+		});
+		</script>
 
 </body>
 </html>
