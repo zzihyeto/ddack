@@ -55,6 +55,39 @@ public class ProductDAO {
 	}
 	
 	
+	// 구매내역확인하기(리뷰작성 위해서는 구매내역이 있어야 작성이 가능함.)
+	// 구매내역이 있는가 없는가? ingm_id 있냐 없냐! 엠코드(꾸매이력확인)가 있다면 엠아이디가 나온다.
+	// m_id를 넣으면 buy_check의 불리언값이 나오겠죠?
+	public boolean buycheck(String ingm_code) {
+		
+		conn = JDBCUtility.getConnection();
+	
+		boolean buy_check = false; //구매이력 확인
+				
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from memorder where m_code =  '" + ingm_code+"'";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+					buy_check = true;
+			} 
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return buy_check;
+	}
+
+
 	
 	
 }

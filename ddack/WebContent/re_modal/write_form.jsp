@@ -1,4 +1,21 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+
+	ArrayList<Product> order_list = (ArrayList<Product>) session.getAttribute("order_list");
+
+	String[] name_list = new String[order_list.size()];
+	String p_name=null;
+	for (int i=0;i<order_list.size();i++){
+		p_name =order_list.get(i).getP_name();
+		name_list[i] = p_name;
+	}
+
+%>
+<c:set var="name_list" value="<%= name_list %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +23,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-		<title>DDACK_리뷰작성 페이지입니다</title>
+		<title>DDACK_구매후기 작성 페이지</title>
 		<!-- Favicon-->
 		<link rel="icon" type="image/x-icon" href="../assets1/favicon.ico" />
 		<!-- Bootstrap icons-->
@@ -19,7 +36,8 @@
 	<main class="flex-shrink-10">
 		<!-- layout폴더 -> navbar.jsp -->
 		<jsp:include page="../layout/navbar.jsp" />
-
+		
+		
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -30,13 +48,24 @@
 	                         <div class="card-body">
 							<form action="re_write.show" method="post">
 								<table class="table table-striped">
+
+								<!-- id칸에 id넣기 -->	
+									
 									<tr>
 										<td>회원ID</td>
-										<td><input type="text" class="form-control" name="m_id"></td>
-									</tr>
+										<td><input type="text" class="form-control" name="m_id">${ buy_check }</td>
+									</tr> 
+									
 									<tr>
 										<td>구매 상품</td>
-										<td><input type="text" class="form-control" name="p_name"></td>
+										<td>
+											<select class="form-control" name="p_name" id="">
+												<c:forEach var="re" items="${ name_list }">
+													<option class="form-control" value="${re}">${re}</option>
+												</c:forEach>
+											</select>
+										</td>
+										<!-- <td><input type="text" class="form-control" name="p_name" value=" "></td> -->
 									</tr>
 									<tr>
 										<td>리뷰</td>

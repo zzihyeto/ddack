@@ -15,6 +15,8 @@ import action.Del_cart_Action;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
+import action.WriteAction;
+import action.Write_Form_Action;
 import vo.ActionForward;
 
 @WebServlet("*.show")
@@ -43,7 +45,7 @@ public class ShowController extends HttpServlet {
 		String requestURI = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		//System.out.println("======command======"+command);
+		System.out.println("======command======"+command);
 		
 		if(command.equals("/product.show")) {
 			action = new ProductAction();
@@ -80,7 +82,24 @@ public class ShowController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if (command.contentEquals("/re_write_form.show")) { // 리뷰 쓰기폼에서 로그인확인.<아 구매내역도찾아야
+			action = new Write_Form_Action();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.contentEquals("/re_write.show")) { // 리뷰 쓰기
+			action = new WriteAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		
+		
 		
 		
 		

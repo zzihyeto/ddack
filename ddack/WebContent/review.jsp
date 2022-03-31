@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-
 	List<ReviewBean> review_list = (List<ReviewBean>) session.getAttribute("review_list");
 	request.setAttribute("review_list", review_list);
 	
@@ -16,13 +15,18 @@
 	int totalPage = pageinfo.getTotalPage();
     int startPage = pageinfo.getStartPage();
 	int endPage = pageinfo.getEndPage();
- 
+	
+	String buy_check = (String) session.getAttribute("buy_check");
+	
  %>
+ 
+ 
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
 <c:set var="endPage" value="<%=endPage%>"/>
 
+<c:set var ="buy_check" value="<%= buy_check  %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -44,6 +48,10 @@
 	<main class="flex-shrink-0">
 		<!-- layout폴더 -> navbar.jsp -->
 		<jsp:include page="./layout/navbar.jsp" />
+		
+		<div class="bg-danger text-white" >
+		${ buy_check }
+		</div>
 
 		<div class="container px-5">
 			<!-- 검색창 -->
@@ -105,7 +113,7 @@
 			<!-- 리뷰 쓰기 모달 -->
 			<div style="float:right" class="mb-3">
 				<%-- <jsp:include page="/re_modal/write_form.jsp" /> --%>
-				<a href="./re_modal/write_form.jsp" class="btn btn-outline-success">쓰기</a>
+				<a href="re_write_form.show" class="btn btn-outline-success">쓰기</a>
 			</div>
 
 			<!-- pagenation -->
