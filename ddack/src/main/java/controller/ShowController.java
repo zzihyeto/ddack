@@ -15,8 +15,6 @@ import action.Del_cart_Action;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
-import action.WriteAction;
-import action.Write_Form_Action;
 import vo.ActionForward;
 
 @WebServlet("*.show")
@@ -45,7 +43,7 @@ public class ShowController extends HttpServlet {
 		String requestURI = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		System.out.println("======command======"+command);
+		//System.out.println("======command======"+command);
 		
 		if(command.equals("/product.show")) {
 			action = new ProductAction();
