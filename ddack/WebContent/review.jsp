@@ -104,13 +104,13 @@
 			
 			<!-- 리뷰 쓰기 모달 -->
 			<div style="float:right" class="mb-3">
-				<jsp:include page="/re_modal/write_form.jsp" />
+				<%-- <jsp:include page="/re_modal/write_form.jsp" /> --%>
+				<a href="./re_modal/write_form.jsp" class="btn btn-outline-success">쓰기</a>
 			</div>
 
 			<!-- pagenation -->
 			<div class="container">
 				<ul class="pagination justify-content-center">
-
 					<c:if test="${startPage!=1}">
 						<li class="page-item"><a href="review.show?page=1" class="page-link"><i class="bi bi-skip-backward"></i></a></li>
 						<li class="page-item"><a href="review.show?page=${startPage-10}" class="page-link"><i class="bi bi-skip-start"></i></a></li>

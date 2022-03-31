@@ -1,61 +1,76 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!--리뷰 쓰기 모달 -->
-<!-- write 버튼  -->
-<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
-	data-bs-whatever="write">write</button>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>DDACK_리뷰작성 페이지입니다</title>
+		<!-- Favicon-->
+		<link rel="icon" type="image/x-icon" href="../assets1/favicon.ico" />
+		<!-- Bootstrap icons-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="../css1/styles.css" rel="stylesheet" />
+	</head>
 
-<div class="modal fade" id="exampleModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content container" align="left">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">DDACK 리뷰 쓰기</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
-			</div>
+<body class="d-flex flex-column">
+	<main class="flex-shrink-10">
+		<!-- layout폴더 -> navbar.jsp -->
+		<jsp:include page="../layout/navbar.jsp" />
 
-			<div class="modal-body">
-				<form>
-					<!-- 회원ID/ 비활성화 -->
-<!-- 					<div class="row mb-3">
-						<label for="m_id" class="col-sm-2 control-label">회원ID</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="m_id" readonly>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-lg border-0 rounded-lg my-5">
+                            <div class="card-header">
+							<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
+							</div>
+	                         <div class="card-body">
+							<form action="re_write.show" method="post">
+								<table class="table table-striped">
+									<tr>
+										<td>회원ID</td>
+										<td><input type="text" class="form-control" name="m_id"></td>
+									</tr>
+									<tr>
+										<td>구매 상품</td>
+										<td><input type="text" class="form-control" name="p_name"></td>
+									</tr>
+									<tr>
+										<td>리뷰</td>
+										<td><textarea rows="10" cols="50" name="p_review" class="form-control"></textarea></td>
+									</tr>
+									
+									<tr>
+										<td colspan="2" class="text-center">
+										<input type="submit" value="글쓰기" class="btn btn-success">
+										<input type="reset" value="다시작성" class="btn btn-warning">
+										<button type="button" class="btn btn-primary" onclick="location.href='../review.jsp'">전체 게시글보기</button>
+										</td>
+									</tr>
+
+								</table>
+							</form>
 						</div>
-					</div> -->
-	<div class="row justify-content-start">
-		<label for="m_id" class="col-3 control-label">id</label>
-<!-- 		<div class="col-2">One of two columns</div> -->
-		<div class="col-8">
-		 <input type="text" class="form-control" id="m_id" readonly/>
-		</div>
-	</div>
-
-
-
-
-					<!-- 구매제품명 -->
-					<div class="row mb-3">
-						<label for="p_name" class="col-sm-2 control-label">구매제품</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="p_name">
-						</div>
+						
 					</div>
-
-					<!-- 리뷰작성칸 -->
-					<div class="mb-3">
-						<label for="message-text" class="col-form-label">리뷰작성하기</label>
-						<textarea class="form-control" id="p_review"></textarea>
-					</div>
-				</form>
+				</div>
 			</div>
-
-			<div class="modal-footer">
-				<form action="re_write.show" method="post">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">닫기</button>
-					<input type="button" class="btn btn-primary" value="등록">
-				</form>
-			</div>
-
 		</div>
-	</div>
-</div>
+	</main>
+
+	<!-- layout폴더 > footer.jsp -->
+	<jsp:include page="../layout/footer.jsp" />
+
+<script>
+CKEDITOR.replace('content', {
+		
+	width:'100%',
+	height:'350'	
+});
+</script>
+
+</body>
+</html>
