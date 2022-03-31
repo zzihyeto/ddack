@@ -8,11 +8,17 @@ public class Product {
 	String p_kg;
 	String p_life;
 	String p_pay;
+	
 	int p_count_pay=0; 
 	int p_count =0;
-	String order_date;
-	String due_date;
 	
+	String order_date; //주문일
+	String due_date; //납기일(소비자가원하는 날짜)
+	
+	String invent_storname; //창고이름
+	int invent_qty; //창고에 저장된 갯수
+	int invent_total; // 창고에 최대 넣을 수 있는 공간
+
 	public Product() {}
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
@@ -25,6 +31,30 @@ public class Product {
 		this.p_pay = p_pay;
 	}
 	
+	public String getInvent_storname() {
+		return invent_storname;
+	}
+
+	public void setInvent_storname(String invent_storname) {
+		this.invent_storname = invent_storname;
+	}
+
+	public int getInvent_qty() {
+		return invent_qty;
+	}
+
+	public void setInvent_qty(int invent_qty) {
+		this.invent_qty = invent_qty;
+	}
+
+	public int getInvent_total() {
+		return invent_total;
+	}
+
+	public void setInvent_total(int invent_total) {
+		this.invent_total = invent_total;
+	}
+
 	public String getOrder_date() {
 		return order_date;
 	}

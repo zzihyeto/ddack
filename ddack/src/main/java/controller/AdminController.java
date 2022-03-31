@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import adminaction.BOMAction;
+import adminaction.Line_stateAction;
 import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
+import adminaction.Pro_stateAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -57,6 +60,27 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/member.admin")) {
 			action = new MemberAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/bomtable.admin")) {
+			action = new BOMAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/product_state.admin")) {
+			action = new Pro_stateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/line_state.admin")) {
+			action = new Line_stateAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
