@@ -165,6 +165,35 @@ public class ProductDAO {
 		return line_state_list;
 		
 	}
+
+	public boolean buycheck(String ingm_code) {
+		
+		conn = JDBCUtility.getConnection();
+	
+		boolean buy_check = false; //구매이력 확인
+				
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from memorder where m_code =  '" + ingm_code+"'";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+					buy_check = true;
+			} 
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return buy_check;
+	}
 	
 	
 	
