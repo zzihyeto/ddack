@@ -76,7 +76,7 @@ public class ProductDAO {
 			if (rs.next()) {
 					buy_check = true;
 			} 
-						
+			System.out.println("=buy_check===>"+buy_check);	
 		} catch (Exception e) {
 			System.out.println("문제가 발생했습니다." + e.getMessage());
 			
