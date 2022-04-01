@@ -21,7 +21,7 @@
         
        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         
-        <link href="../css2/styles.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
     </head>
@@ -56,7 +56,7 @@
                         </div>
                         <ul class="nav nav-tabs mb-4">
 						  <li class="nav-item">
-						    <a class="nav-link " href="quality_chpro.admin">공정</a>
+						    <a class="nav-link " href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item">
 						    <a class="nav-link" href="./line_q_admin.jsp">라인</a>
@@ -108,10 +108,10 @@
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js2/scripts.js"></script> 
+        <script src="./js2/scripts.js"></script> 
         
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../js2/datatables-simple-demo.js"></script>
+        <script src="./js2/datatables-simple-demo.js"></script>
         
     </body>
 </html>

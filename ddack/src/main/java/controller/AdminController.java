@@ -16,6 +16,8 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
+import adminaction.Q_chproAction;
+import adminaction.Q_chpro_StartAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -81,6 +83,20 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/line_state.admin")) {
 			action = new Line_stateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_chpro.admin")) {
+			action = new Q_chproAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_chpro_strt.admin")) {
+			action = new Q_chpro_StartAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

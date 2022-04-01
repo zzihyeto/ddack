@@ -55,7 +55,7 @@
 						<a class="nav-link" href="bomtable.admin">BOM 관리</a> 
 						<a class="nav-link"	href="product_state.admin">완제품 관리</a> 
 						<a class="nav-link" href="line_state.admin">라인 관리</a>
-						<a class="nav-link" href="#">불량 관리</a>
+						<a class="nav-link" href="q_chpro.admin">불량 관리</a>
 					</nav>
 				</div>
 				

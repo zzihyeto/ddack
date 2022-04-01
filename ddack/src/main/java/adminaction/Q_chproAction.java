@@ -17,10 +17,10 @@ public class Q_chproAction implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		ProductDAO productDAO = ProductDAO.getInstance();
-		//List<CHprocess> chpro_q_list = productDAO.selectChpro_Q();
+		List<CHprocess> chpro_q_list = productDAO.selectChpro_Q();
 		
 		HttpSession session = req.getSession();
-		//session.setAttribute("chpro_q_list", chpro_q_list);
+		session.setAttribute("chpro_q_list", chpro_q_list);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/adminpage/chpro_q_admin.jsp");

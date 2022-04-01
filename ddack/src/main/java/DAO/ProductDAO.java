@@ -1,8 +1,10 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -193,6 +195,64 @@ public class ProductDAO {
 		}
 		
 		return buy_check;
+	}
+
+	public List<CHprocess> selectChpro_Q() {
+
+		conn = JDBCUtility.getConnection();
+		List<CHprocess> chpro_q_list =new ArrayList<>();
+		CHprocess produc = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select qu.q_code , chp.ch_pro_code , qu.q_result "
+				+ "from quality qu, ch_process chp "
+				+ "where qu.ch_pro_code = chp.ch_pro_code ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				produc = new CHprocess();
+				produc.setQ_code(rs.getString("q_code"));
+				produc.setCh_pro_code(rs.getString("ch_pro_code"));
+				produc.setQ_result(rs.getString("q_result"));
+				
+				chpro_q_list.add(produc);
+			} 
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return chpro_q_list;
+	}
+
+	public void q_chpro_start(String q_code, String chpro_code) throws SQLException {
+
+		conn = JDBCUtility.getConnection();
+		CallableStatement cstmt = null;
+		try {
+			cstmt =conn.prepareCall("call q_chpro_check(?,?)");
+			cstmt.setString(1,q_code);
+			cstmt.setString(2,chpro_code);
+			cstmt.execute();
+			cstmt.close();
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, null, null);
+			cstmt.close();
+		}
+		
+		
+		
 	}
 	
 	
