@@ -18,6 +18,8 @@ import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
 import adminaction.Q_chproAction;
 import adminaction.Q_chpro_StartAction;
+import adminaction.Q_lineAction;
+import adminaction.Q_lineInsertAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -97,6 +99,20 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/q_chpro_strt.admin")) {
 			action = new Q_chpro_StartAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_line.admin")) {
+			action = new Q_lineAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_line_insert.admin")) {
+			action = new Q_lineInsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

@@ -59,7 +59,7 @@
 						    <a class="nav-link " href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./line_q_admin.jsp">라인</a>
+						    <a class="nav-link" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
 						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>

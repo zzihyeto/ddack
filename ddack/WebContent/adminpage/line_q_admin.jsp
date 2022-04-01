@@ -5,9 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<CHprocess> q_list = (List<CHprocess>) session.getAttribute("q_list");
-	
-	request.setAttribute("q_list", q_list);
+	List<CHprocess> line_state_list = (List<CHprocess>) session.getAttribute("line_state_list");
+	//line_state_list에 line_name.. line_usable..  ch_pro_code.. check_date.. check_content 담겨있음
+		
+	request.setAttribute("line_state_list", line_state_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@
 						    <a class="nav-link " href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item ">
-						    <a class="nav-link active" href="./line_q_admin.jsp">라인</a>
+						    <a class="nav-link active" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
 						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>
@@ -70,29 +71,32 @@
 						</ul> 
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>라인_테이블
+                                <i class="fas fa-table me-1"></i>라인_상태입력_테이블
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>불량 코드</th>
-                                            <th>공정 코드</th>
-                                            <th>체크 버튼</th>
-                                            <th>불량 결과</th>
+                                            <th>라인 이름</th>
+                                            <th>라인 체크내용</th>
+                                            <th>등록 버튼</th>
                                         </tr>
                                     </thead>
                                     
                                 
                                     <tbody>
-                                      	<c:if test="${!empty q_list}">
-							         		<c:forEach var="qu" items="${q_list }">
-							         			<tr>
-							         				<td>${qu.line_name}</td>
-							         											         											         				
-							         			</tr>
-							         		</c:forEach>
-						         		</c:if> 
+                                    	<td>
+                                    		<select name="line_name" id="" class="form-control">
+	                                    		<c:if test="${!empty line_state_list}">
+								         			<c:forEach var="li_state" items="${line_state_list }">
+			                                    			<option value="${li_state.line_name }">${li_state.line_name }</option>
+			                                    	</c:forEach>
+			                                    </c:if>
+		                                    </select>
+		                                </td>	
+                                    	<td><input type="text" name="check_content" class="form-control" placeholder="쓸수있다 vs 없다"/></td>
+                                    	<td><a href="q_line_insert.admin" class="btn btn-success">등록 버튼</a></td>
+                                      	 
                                     </tbody>
                                 </table>
                             </div>

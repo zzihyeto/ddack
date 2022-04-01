@@ -233,6 +233,8 @@ public class ProductDAO {
 		return chpro_q_list;
 	}
 
+	//chpro_q_admin.jsp에서 불량체크버튼 누르면
+	//mariadb에 있는 procedure을 실행 시킨다.(procedure 만들어진상태)
 	public void q_chpro_start(String q_code, String chpro_code) throws SQLException {
 
 		conn = JDBCUtility.getConnection();
@@ -250,8 +252,11 @@ public class ProductDAO {
 			JDBCUtility.close(conn, null, null);
 			cstmt.close();
 		}
-		
-		
+	}
+
+	//line_q_admin.jsp에서 등록버튼누르면 
+	//해당 라인이름 , 체크내용이 들어가게 하는 메서드
+	public void in_ch_content(String line_name, String check_content) {
 		
 	}
 	
