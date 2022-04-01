@@ -74,31 +74,32 @@
                                 <i class="fas fa-table me-1"></i>라인_상태입력_테이블
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>라인 이름</th>
-                                            <th>라인 체크내용</th>
-                                            <th>등록 버튼</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                
-                                    <tbody>
-                                    	<td>
-                                    		<select name="line_name" id="" class="form-control">
-	                                    		<c:if test="${!empty line_state_list}">
-								         			<c:forEach var="li_state" items="${line_state_list }">
-			                                    			<option value="${li_state.line_name }">${li_state.line_name }</option>
-			                                    	</c:forEach>
-			                                    </c:if>
-		                                    </select>
-		                                </td>	
-                                    	<td><input type="text" name="check_content" class="form-control" placeholder="쓸수있다 vs 없다"/></td>
-                                    	<td><a href="q_line_insert.admin" class="btn btn-success">등록 버튼</a></td>
-                                      	 
-                                    </tbody>
-                                </table>
+                                <form action="q_line_insert.admin" method="post">
+	                                <table id="datatablesSimple">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>라인 이름</th>
+	                                            <th>라인 체크내용</th>
+	                                            <th>등록 버튼</th>
+	                                        </tr>
+	                                    </thead>
+	                                    
+	                                
+	                                    <tbody>
+	                                    	<td>
+	                                    		<select name="line_name" id="" class="form-control">
+		                                    		<c:if test="${!empty line_state_list}">
+									         			<c:forEach var="li_state" items="${line_state_list }">
+				                                    			<option value="${li_state.line_name }">${li_state.line_name }</option>
+				                                    	</c:forEach>
+				                                    </c:if>
+			                                    </select>
+			                                </td>	
+	                                    	<td><input type="text" name="check_content" class="form-control" placeholder="사용할 수 없다 vs 사용할 수 있다"/></td>
+	                                    	<td><input type="submit" class="form-control btn btn-success" value="등록"/></td>
+	                                    </tbody>
+	                                </table>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -14,13 +14,15 @@ public class Q_lineInsertAction implements Action {
 
 		req.setCharacterEncoding("utf-8");
 		String line_name= req.getParameter("line_name");
+		System.out.println("==line_name==>"+line_name);
 		String check_content= req.getParameter("check_content");
-		
+		System.out.println("==check_content==>"+check_content);
 		ProductDAO productDAO = ProductDAO.getInstance();
-		productDAO.in_ch_content(line_name,check_content);
+		productDAO.in_ch_content(line_name,check_content); 
+		//내용 등록 하면서 line 테이블에 line_usable값 넣는 procedure 실행하는 메서드
 		
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
+		forward.setPath("/adminpage/line_state.admin");
 		
 		return forward;
 	}

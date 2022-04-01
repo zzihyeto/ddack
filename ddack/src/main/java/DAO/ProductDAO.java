@@ -249,15 +249,29 @@ public class ProductDAO {
 			System.out.println("문제가 발생했습니다." + e.getMessage());
 			
 		} finally {
-			JDBCUtility.close(conn, null, null);
 			cstmt.close();
+			JDBCUtility.close(conn, null, null);
 		}
 	}
 
 	//line_q_admin.jsp에서 등록버튼누르면 
 	//해당 라인이름 , 체크내용이 들어가게 하는 메서드
-	public void in_ch_content(String line_name, String check_content) {
-		
+	public void in_ch_content(String line_name, String check_content) throws SQLException {
+		conn = JDBCUtility.getConnection();
+		CallableStatement cstmt = null;
+		try {
+			cstmt =conn.prepareCall("call q_line_check(?,?)");
+			cstmt.setString(1,line_name);
+			cstmt.setString(2,check_content);
+			cstmt.execute();
+			cstmt.close();
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			cstmt.close();
+			JDBCUtility.close(conn, null, null);
+		}
 	}
 	
 	
