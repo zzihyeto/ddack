@@ -23,7 +23,7 @@ public class ReviewDAO {
 
 	/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */	
 
-	// DB review리스트 전체 가져오기 = 상세리스트 가져오기
+	// DB review리스트 전체 가져오기
 	public List<ReviewBean> selectReview() {
 		conn = JDBCUtility.getConnection();
 		List<ReviewBean> review_list = new ArrayList<>();
@@ -216,37 +216,122 @@ public class ReviewDAO {
 		}
 		return search_list;
 	}
+
+
+	// 리뷰글 등록 
+	public boolean writeReview(String m_id, String p_code, String p_review) {
+		conn = JDBCUtility.getConnection();
 	
-	// 글쓰기
-	public int insertReview(ReviewBean review) {
+		boolean writeRegist = false;
+		int regist = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql  = "insert into review "
+					+ " values(concat('리뷰_', nextval(review_re_code)), ?, ? , ?, sysdate())";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setString(2, p_code);
+			pstmt.setString(3, p_review);
+			
+			regist = pstmt.executeUpdate();
+			
+			System.out.println("==regist=>" + regist);
+
+			if(regist >0) {
+				JDBCUtility.commit(conn);
+				writeRegist = true;
+			} else {
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("리뷰글이 등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+		return writeRegist;
+	}
+	
+	//p_name 으로 p_code뽑아내도록
+	public String getp_name(String p_name) { //p_code통해서 p_name가져와야함.
+
+		conn = JDBCUtility.getConnection();
+		
+		String p_code = "";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String sql="select p_code from "
+				+ " (select a.p_name, b.* from product a, memorder b "
+				+ " where a.p_code = b.p_code order by order_date desc) t1 "
+				+ " where p_name = ? ";
+		
+		try {			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_name);
+			
+			rs = pstmt.executeQuery();
+			rs.next();
+			p_code = rs.getString("p_code");
+			
+			
+		} catch (Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return p_code;
+	}
+
+
+	// 리뷰 상세페이지에 들어갈 내용을 가져와야한다.
+	public ReviewBean getR_N(String p_code, String m_id) {
+	
+		conn = JDBCUtility.getConnection();
+		
+		ReviewBean review = new ReviewBean();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "insert into review (re_code, m_id, p_code, p_review, review_date)"     
-				   + "       values(?,?,?,?,?)";
-		int insertCount = 0;
-		int num = 0;
-		
-		try {
-			pstmt = conn.prepareStatement("select max(re_code) from review");
-			rs = pstmt.executeQuery();
-			if(rs.next()) num = rs.getInt(1) + 1; else num = 1;
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, review.getRe_code());
-			pstmt.setString(2, review.getM_id());
-			pstmt.setString(3, review.getP_name());
-			pstmt.setString(4, review.getP_review());
-			pstmt.setDate(5, (Date) review.getReview_date());
-			insertCount = pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("게시글등록실패!!!" + e.getMessage());
-		} finally {
-			JDBCUtility.close(null, pstmt, rs); // // JDBCUtility.close()
-		}		
-		return insertCount;
-	}
+		String sql = "select p.p_name, r.p_review "
+				+ " from review r, product p"
+				+ " where p.p_code=r.p_code "
+				+ " and r.m_id = ? and p.p_code= ? ";
 
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setString(2, p_code);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				review.setP_name(rs.getString("p_name"));
+				review.setP_review(rs.getString("p_review"));
+				
+			}
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return review;
+		
+	}
+	
+	
+	
+	
 	
 	
 	

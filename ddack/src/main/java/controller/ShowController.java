@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AddAction;
 import action.Del_cart_Action;
+import action.Detail_FormAction;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
@@ -46,7 +47,7 @@ public class ShowController extends HttpServlet {
 		String requestURI = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		//System.out.println("======command======"+command);
+		System.out.println("======command======"+command);
 		
 		if(command.equals("/product.show")) {
 			action = new ProductAction();
@@ -90,14 +91,21 @@ public class ShowController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.contentEquals("/re_write.show")) { // 리뷰 쓰기
+		} else if (command.contentEquals("/re_write.show")) { // 리뷰쓰고 등록하기
 			action = new WriteAction();
 			try {
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		} else if (command.contentEquals("/re_detail_form.show")) { //리뷰 상세 내용 보기
+			action = new Detail_FormAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

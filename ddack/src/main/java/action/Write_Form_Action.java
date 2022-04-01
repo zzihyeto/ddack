@@ -38,13 +38,16 @@ public class Write_Form_Action implements Action {
 		if(loging_check) {
 			
 			ProductDAO productDAO = ProductDAO.getInstance(); //변수에 객체를 담아와서 써본다 -> 메모리문제
-			//buy_check = productDAO.buycheck(ingm_code);
+			buy_check = productDAO.buycheck(ingm_code);
 			
 			if (buy_check) {
 				//로그인도햇고 사기도햇네요 쓸수있는 페이지로 갈게요
 				List<Product> order_list = MemberDAO.getMemOrder(ingm_code);
 				session.setAttribute("order_list", order_list);
-				forward.setPath("/re_modal/write_form.jsp");
+				forward.setPath("./re_modal/write_form.jsp");
+				
+				System.out.println("==order_list=>"+order_list);
+				
 			} else {
 				//리뷰나열된 페이지로 가서 산게 없네요 문자열 띄어도되고 
 				//사야지 쓸수있습니다.

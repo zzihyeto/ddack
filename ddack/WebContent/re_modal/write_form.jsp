@@ -1,3 +1,4 @@
+<%@page import="entity.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="entity.Product"%>
@@ -7,15 +8,20 @@
 
 	ArrayList<Product> order_list = (ArrayList<Product>) session.getAttribute("order_list");
 
+	Member member = (Member) session.getAttribute("member_info");
+	String m_id = member.getM_id();
+	
+	System.out.println("====m_id==>"+m_id);
+	
 	String[] name_list = new String[order_list.size()];
-	String p_name=null;
-	for (int i=0;i<order_list.size();i++){
+	String p_name = null;
+	for (int i=0; i<order_list.size(); i++){
 		p_name =order_list.get(i).getP_name();
 		name_list[i] = p_name;
 	}
-
 %>
 <c:set var="name_list" value="<%= name_list %>"/>
+<c:set var="m_id" value="<%= m_id %>"/> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -25,36 +31,47 @@
 		<meta name="author" content="" />
 		<title>DDACK_리뷰작성 페이지입니다</title>
 		<!-- Favicon-->
-		<link rel="icon" type="image/x-icon" href="../assets1/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 		<!-- Bootstrap icons-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 		<!-- Core theme CSS (includes Bootstrap)-->
-		<link href="../css1/styles.css" rel="stylesheet" />
+		<link href="./css1/styles.css" rel="stylesheet" />
 	</head>
 
 <body class="d-flex flex-column">
-	<main class="flex-shrink-10">
+	<div id="layoutAuthentication">
+		<div id="layoutAuthentication_content">
+		    <main>
 		<!-- layout폴더 -> navbar.jsp -->
-		<jsp:include page="../layout/navbar.jsp" />
+		<jsp:include page="/layout/navbar.jsp" />
 
-		<section class="py-5">
-			<div class="container px-5" align="center">
-				<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5" border-radius="30px">
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-md-8">
-							<h2 class="text-center">DDACK 구매후기 작성</h2>
+       <div class="container">	
+		    <div class="row justify-content-center">
+    				 <div class="col-lg-8">
+                          <div class="card shadow-lg border-0 rounded-lg my-5">
+                            <div class="card-header">
+								<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
+							</div>
 							
+                           <div class="card-body">
 							<form action="re_write.show" method="post">
 								<table class="table table-striped">
 									<tr>
 										<td>회원ID</td>
-										<td><input type="text" class="form-control" name="m_id"></td>
+										<td><input type="text" class="form-control" name="m_id" value="${ m_id }" ></td>
 									</tr>
+									
 									<tr>
 										<td>구매 상품</td>
-										<td><input type="text" class="form-control" name="p_name"></td>
+										<td>
+											<select class="form-control" name="p_name" id="">
+												<c:forEach var="re" items="${ name_list }">
+													<option class="form-control" value="${re}">${re}</option>
+												</c:forEach>
+											</select>
+										</td>
 									</tr>
+									
 									<tr>
 										<td>리뷰</td>
 										<td><textarea rows="10" cols="50" name="p_review" class="form-control"></textarea></td>
@@ -64,22 +81,23 @@
 										<td colspan="2" class="text-center">
 										<input type="submit" value="글쓰기" class="btn btn-success">
 										<input type="reset" value="다시작성" class="btn btn-warning">
-										<button type="button" class="btn btn-primary" onclick="location.href='../review.jsp'">전체 게시글보기</button>
+										<button type="button" class="btn btn-primary" onclick="location.href='review.show'">전체 게시글보기</button>
 										</td>
 									</tr>
 
 								</table>
 							</form>
 						</div>
-					</div>
+				   </div>
 				</div>
 			</div>
-
-		</section>
-	</main>
-
+		</div>
+</main>
+</div>
+</div>
+	
 	<!-- layout폴더 > footer.jsp -->
-	<jsp:include page="../layout/footer.jsp" />
+	<jsp:include page="/layout/footer.jsp" />
 
 		<script>
 		CKEDITOR.replace('content', {
