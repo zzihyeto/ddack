@@ -7,22 +7,20 @@ import DAO.ProductDAO;
 import action.Action;
 import vo.ActionForward;
 
-public class Q_lineInsertAction implements Action {
+public class Q_produInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		req.setCharacterEncoding("utf-8");
-		String line_name= req.getParameter("line_name");
-		String check_content= req.getParameter("check_content");
+		String p_name= req.getParameter("p_name");
+		int error_cnt= Integer.parseInt(req.getParameter("error_cnt"));
 		
 		ProductDAO productDAO = ProductDAO.getInstance();
-		productDAO.in_ch_content(line_name,check_content); 
-		//내용 등록 하면서 line 테이블에 line_usable값 넣는 procedure 실행하는 메서드
+		productDAO.in_pro_eqcheck(p_name,error_cnt);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/line_state.admin");
-		
+		forward.setPath("/adminpage/product_state.admin");
 		return forward;
 	}
 

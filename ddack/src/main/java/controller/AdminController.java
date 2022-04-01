@@ -20,6 +20,8 @@ import adminaction.Q_chproAction;
 import adminaction.Q_chpro_StartAction;
 import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
+import adminaction.Q_produInsertAction;
+import adminaction.Q_productAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -46,7 +48,7 @@ public class AdminController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("====command====>"+command);
+		//System.out.println("====command====>"+command);
 		
 		if(command.equals("/adminpage/memorder.admin")) {
 			action = new MemorderAction();
@@ -113,6 +115,20 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/q_line_insert.admin")) {
 			action = new Q_lineInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_product.admin")) {
+			action = new Q_productAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_product_insert.admin")) {
+			action = new Q_produInsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

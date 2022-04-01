@@ -36,7 +36,7 @@ public class JDBCUtility {
 		try {
 			if(rs!=null) rs.close();
 			if(stmt!=null) stmt.close();
-			if(conn!=null) rs.close();
+			if(conn!=null) conn.close();
 		}catch(Exception e) {
 			//dummy
 		}

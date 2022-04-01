@@ -99,6 +99,7 @@ public class ProductDAO {
 		return bom_list;
 	}
 
+	//pro_stateAction 에서 완제품골라 담은 것 
 	public List<Product> selectProducState() {
 		conn = JDBCUtility.getConnection();
 		List<Product> pro_state_list =new ArrayList<>();
@@ -263,6 +264,26 @@ public class ProductDAO {
 			cstmt =conn.prepareCall("call q_line_check(?,?)");
 			cstmt.setString(1,line_name);
 			cstmt.setString(2,check_content);
+			cstmt.execute();
+			cstmt.close();
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			cstmt.close();
+			JDBCUtility.close(conn, null, null);
+		}
+	}
+
+	//Q_produInsertAction에 사용됨
+	//해당되는 완제품에, eq_code string 들어가게 
+	public void in_pro_eqcheck(String p_name,int error_cnt) throws SQLException {
+		conn = JDBCUtility.getConnection();
+		CallableStatement cstmt = null;
+		try {
+			cstmt =conn.prepareCall("call q_product_check(?,?)");
+			cstmt.setString(1,p_name);
+			cstmt.setInt(2,error_cnt);
 			cstmt.execute();
 			cstmt.close();
 		} catch (Exception e) {

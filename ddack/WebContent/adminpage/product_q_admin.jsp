@@ -1,13 +1,14 @@
-<%@ page import="entity.CHprocess" %>
+<%@ page import="entity.Product" %>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<CHprocess> q_list = (List<CHprocess>) session.getAttribute("q_list");
+	List<Product> pro_state_list = (List<Product>) session.getAttribute("pro_state_list");
+	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음
 	
-	request.setAttribute("q_list", q_list);
+	request.setAttribute("pro_state_list", pro_state_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +43,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Quality_테이블</h1>
+                        <h1 class="mt-4">Q_product_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Quality_테이블</li>
+                            <li class="breadcrumb-item active">Q_product_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -72,33 +73,45 @@
                         
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>완제품_테이블
+                                <i class="fas fa-table me-1"></i>Q_product_테이블
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>불량 코드</th>
-                                            <th>공정 코드</th>
-                                            <th>체크 버튼</th>
-                                            <th>불량 결과</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                
-                                    <tbody>
-                                      	<c:if test="${!empty q_list}">
-							         		<c:forEach var="qu" items="${q_list }">
-							         			<tr>
-							         				<td>${qu.line_name}</td>
-							         											         											         				
-							         			</tr>
-							         		</c:forEach>
-						         		</c:if> 
-                                    </tbody>
-                                </table>
+                            	<form action="q_product_insert.admin" method="post">
+	                                <table id="datatablesSimple">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>완제품 이름</th>
+	                                            <th>불량품 갯수</th>
+	                                            <th>체크 버튼</th>
+	                                        </tr>
+	                                    </thead>
+	                                    
+	                                
+	                                    <tbody>
+	                                    	<td>
+	                                    		<select name="p_name" id="" class="form-control">
+		                                    		<c:if test="${!empty pro_state_list}">
+									         			<c:forEach var="pro_state" items="${pro_state_list }">
+				                                    			<option value="${pro_state.p_name }">${pro_state.p_name }</option>
+				                                    	</c:forEach>
+				                                    </c:if>
+			                                    </select>
+	                                    	</td>
+                                    		
+	                                    	<td><input type="text" name="error_cnt" class="form-control" placeholder="숫자만 입력하기"/></td>
+	                                    	<td><input type="submit" class="form-control btn btn-success" value="체크버튼"/></td>
+		                                    
+	                                    </tbody>
+	                                </table>
+                                </form>
                             </div>
                         </div>
+                        <div class="card mb-4">
+	                            <div class="card-body">
+	                               완제품 이름 , 불량품 갯수를 입력받고 상태를 입력받는다 <br />
+		                           저장소에서 완제품 갯수에서 불량품 갯수를 제거한다.
+	                            </div>
+	                        </div>
                     </div>
                 </main>
 	      

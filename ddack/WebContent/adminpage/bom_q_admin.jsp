@@ -42,10 +42,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Quality_테이블</h1>
+                        <h1 class="mt-4">Q_bom_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Quality_테이블</li>
+                            <li class="breadcrumb-item active">Q_bom_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -62,7 +62,7 @@
 						    <a class="nav-link" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>
+						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item ">
 						    <a class="nav-link active" href="./bom_q_admin.jsp">BOM</a>
@@ -72,7 +72,7 @@
                         
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>BOM_테이블
+                                <i class="fas fa-table me-1"></i>Q_bom_테이블
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">

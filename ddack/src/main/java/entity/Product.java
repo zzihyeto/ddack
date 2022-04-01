@@ -31,6 +31,7 @@ public class Product {
 		this.p_pay = p_pay;
 	}
 	
+
 	public String getInvent_storname() {
 		return invent_storname;
 	}
