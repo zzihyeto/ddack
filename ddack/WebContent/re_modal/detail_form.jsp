@@ -5,11 +5,14 @@
 
 	ReviewBean review = (ReviewBean) session.getAttribute("review");
 	String p_name =review.getP_name();
-	String p_reivew =  review.getP_review();
+	System.out.println("===p_name=" + p_name);
+	String p_review =  review.getP_review();
+	System.out.println("===p_reivew=" + p_review);
+
 %>
 
 <c:set var="p_name" value="<%= p_name %>"/>
-<%-- <c:set var="p_review" value="<%= p_review %>"/> --%>
+<c:set var="p_review" value="<%= p_review %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -29,57 +32,58 @@
 <body class="d-flex flex-column">
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
-		    <main>
-		<!-- layout폴더 -> navbar.jsp -->
-		<jsp:include page="/layout/navbar.jsp" />
+			<main>
+				<!-- layout폴더 -> navbar.jsp -->
+				<jsp:include page="/layout/navbar.jsp" />
 
-       <div class="container">	
-		    <div class="row justify-content-center">
-    				 <div class="col-lg-8">
-                          <div class="card shadow-lg border-0 rounded-lg my-5">
-                            <div class="card-header">
-								<h3 class="text-center font-weight-light my-4">DDACK 리뷰 상세보기</h3>
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-8">
+							<div class="card shadow-lg border-0 rounded-lg my-5">
+								<div class="card-header">
+									<h3 class="text-center font-weight-light my-4">DDACK 리뷰 상세보기</h3>
+								</div>
+
+								<div class="card-body">
+									<form action="re_write.show" method="post">
+										<table class="table table-striped">
+
+											<tr>
+												<td>구매 상품</td>
+												<td><input type="text" class="form-control" value="${ p_name }" readonly></td>
+											</tr>
+
+											<tr>
+												<td>리뷰</td>
+												<td>
+												<textarea name="p_review" class="form-control" readonly>${ p_review }</textarea>
+												<%-- <input type="text" name="p_review" class="form-control" value="${ p_review }" /> --%>
+												</td>
+											</tr>
+
+											<tr>
+												<td colspan="2" class="text-center">
+													<input type="submit" value="수정" class="btn btn-success"> <!-- //수정 -->
+													<a class="btn btn-warning" href="delete.show" role="button">삭제</a>
+													<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
+												</td>
+											</tr>
+
+										</table>
+									</form>
+								</div>
 							</div>
-							
-                           <div class="card-body">
-							<form action="re_write.show" method="post">
-								<table class="table table-striped">
-									
-									<tr>										
-										<td>구매 상품</td>
-										<td>
-											<input type="text" class="form-control" value="${ p_name }" >										
-										</td>
-									</tr>
-									
-									<tr>
-										<td>리뷰</td>
-										<td><input type="text" name="p_review" class="form-control" value="${ p_reivew }"/></td>
-									</tr>
-									
-									<tr>
-										<td colspan="2" class="text-center">										
-										<input type="submit" value="수정" class="btn btn-success"> <!-- //수정 -->
-										<a class="btn btn-warning" href="delete.show" role="button">삭제</a>
-										<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
-										</td>
-									</tr>
-
-								</table>
-							</form>
 						</div>
-				   </div>
+					</div>
 				</div>
-			</div>
+			</main>
 		</div>
-</main>
-</div>
-</div>
-	
+	</div>
+
 	<!-- layout폴더 > footer.jsp -->
 	<jsp:include page="/layout/footer.jsp" />
 
-		<script>
+	<script>
 		CKEDITOR.replace('content', {
 				
 			width:'100%',

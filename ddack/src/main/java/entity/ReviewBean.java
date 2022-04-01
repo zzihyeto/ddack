@@ -11,15 +11,16 @@ public class ReviewBean {
 	private String m_id;
 	private String p_review;
 	private Date review_date;
+	private String p_code;
 	
 	public ReviewBean() {}
 	
-	public ReviewBean(String re_code, String p_name, String m_id, String p_review, Date review_date) {
+	public ReviewBean(String re_code, String p_name, String m_id, String p_review, Date review_date, String p_code) {
 		super();
 		this.re_code = re_code;
 		this.p_name = p_name;
 		this.m_id = m_id;
-		
+		this.p_code = p_code;
 		this.p_review = p_review;
 		this.review_date = review_date;
 	}
@@ -75,6 +76,15 @@ public class ReviewBean {
 	public String getP_name() {
 		return p_name;
 	}
+
+	public String getP_code() {
+		return p_code;
+	}
+
+	public void setP_code(String p_code) {
+		this.p_code = p_code;
+	}
+	
 	
 }
 	

@@ -21,7 +21,6 @@ public class Detail_FormAction implements Action {
 		
 		String p_code = req.getParameter("p_code");
 		String m_id = req.getParameter("m_id");
-	
 				
 		//p_code와 m_id로 p_review와 p_name 가져오기
 		DetailService detail = new DetailService();
@@ -29,7 +28,8 @@ public class Detail_FormAction implements Action {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("review", review);
-		System.out.println("===review="+review);
+		System.out.println("===review=" + review);
+		
 		forward = new ActionForward();
 		forward.setPath("/re_modal/detail_form.jsp");
 		

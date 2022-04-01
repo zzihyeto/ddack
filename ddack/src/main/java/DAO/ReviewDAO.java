@@ -101,7 +101,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		
 		String sql = "select * from (select rownum() rn, t1.* "
-				+ "				from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ "				from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date, p.p_code"
 				+ "						from product p, review rv "
 				+ "						where p.p_code = rv.p_code "
 				+ "				order by rv.review_date DESC )t1 )t2 limit ? , "+ limit;
@@ -121,6 +121,7 @@ public class ReviewDAO {
 				review.setM_id(rs.getString("m_id")); // 작성자
 				review.setP_review(rs.getString("p_review")); // 리뷰글
 				review.setReview_date(rs.getDate("review_date")); //작성일
+				review.setP_code(rs.getString("p_code"));
 				list.add(review);
 			}
 		} catch (Exception e) {
@@ -202,8 +203,9 @@ public class ReviewDAO {
 				String m_id = rs.getString("m_id");//작성자
 				String p_review = rs.getNString("p_review");
 				Date review_date = rs.getDate("review_date");
+				String p_code = rs.getString("p_code");
 				
-				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date);
+				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date, p_code);
 				search_review.setR_num(rs.getInt("rn"));
 				
 				search_list.add(search_review);
@@ -317,7 +319,7 @@ public class ReviewDAO {
 				
 				review.setP_name(rs.getString("p_name"));
 				review.setP_review(rs.getString("p_review"));
-				
+				System.out.println("===review====" + review);
 			}
 		}catch (Exception e) {
 			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
@@ -328,10 +330,6 @@ public class ReviewDAO {
 		return review;
 		
 	}
-	
-	
-	
-	
 	
 	
 	

@@ -48,6 +48,7 @@
 		<!-- layout폴더 -> navbar.jsp -->
 		<jsp:include page="./layout/navbar.jsp" />
 		
+		<!-- 구매내역없으면 -->
 		<div class="bg-danger text-white">
 			${ buy_check }
 		</div>
@@ -103,7 +104,7 @@
 								<td>${ re.r_num }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
-								<td><a href="re_detail_form.show?p_name=${ re.p_name }&m_id=${re.m_id}">${ re.p_review }</a></td>
+								<td><a href="re_detail_form.show?p_name=${ re.p_name }&m_id=${re.m_id}&p_code=${re.p_code}">${ re.p_review }</a></td>
 								<td>${ re.review_date }</td>
 							</tr>
 						</c:forEach>
