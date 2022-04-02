@@ -16,6 +16,8 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
+import adminaction.Q_bomAction;
+import adminaction.Q_bomInsertAction;
 import adminaction.Q_chproAction;
 import adminaction.Q_chpro_StartAction;
 import adminaction.Q_lineAction;
@@ -129,6 +131,20 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/q_product_insert.admin")) {
 			action = new Q_produInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_bom.admin")) {
+			action = new Q_bomAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_bom_insert.admin")) {
+			action = new Q_bomInsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

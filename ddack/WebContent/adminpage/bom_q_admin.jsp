@@ -1,13 +1,13 @@
-<%@ page import="entity.CHprocess" %>
+<%@ page import="entity.BOM" %>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<CHprocess> q_list = (List<CHprocess>) session.getAttribute("q_list");
+	List<BOM> bom_list = (List<BOM>) session.getAttribute("bom_list");
 	
-	request.setAttribute("q_list", q_list);
+	request.setAttribute("bom_list", bom_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,7 @@
 						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item ">
-						    <a class="nav-link active" href="./bom_q_admin.jsp">BOM</a>
+						    <a class="nav-link active" href="q_bom.admin">BOM</a>
 						  </li>
 						</ul>   
                         
@@ -75,28 +75,42 @@
                                 <i class="fas fa-table me-1"></i>Q_bom_테이블
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>불량 코드</th>
-                                            <th>공정 코드</th>
-                                            <th>체크 버튼</th>
-                                            <th>불량 결과</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                
-                                    <tbody>
-                                      	<c:if test="${!empty q_list}">
-							         		<c:forEach var="qu" items="${q_list }">
-							         			<tr>
-							         				<td>${qu.line_name}</td>
-							         											         											         				
-							         			</tr>
-							         		</c:forEach>
-						         		</c:if> 
-                                    </tbody>
-                                </table>
+                            	<form action="q_bom_insert.admin" method="post">
+	                                <table id="datatablesSimple">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>원자재 이름</th>
+	                                            <th>체크 갯수</th>
+	                                            <th>체크 내용</th>
+	                                            <th>등록 버튼</th>
+	                                        </tr>
+	                                    </thead>
+	                                    
+	                                
+	                                    <tbody>
+							         		<td>
+	                                    		<select name="mat_name" id="" class="form-control">
+		                                    		<c:if test="${!empty bom_list}">
+									         			<c:forEach var="bom_qu" items="${bom_list }">
+				                                    			<option value="${bom_qu.mat_name }">${bom_qu.mat_name }</option>
+				                                    	</c:forEach>
+				                                    </c:if>
+			                                    </select>
+			                                </td>
+			                                <td><input type="text" name="mat_count_update" class="form-control" placeholder="체크한 갯수"/></td>
+	                                		<td><input type="text" name="c_check" class="form-control" placeholder="O or X 로 시작하기"/></td>
+	                                    	<td><input type="submit" class="form-control btn btn-success" value="등록"/></td>
+	                                    </tbody>
+	                                </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               원자제 이름을 고르고 체크한 갯수를 입력하고  <br />
+                               체크내용을 입력한다. <br />
+                               등록하게 되면 기록한 날짜가 수정되고 <br />
+                               체크내용에 따라 체크한 갯수가 더해지거나 감해진다.
                             </div>
                         </div>
                     </div>

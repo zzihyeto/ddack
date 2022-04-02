@@ -58,6 +58,8 @@ public class ProductDAO {
 		return pro_list;
 	}
 
+	//mat_code..mat_name..mat_type..mat_unit..mat_count..mat_person..mat_container_code..
+	//mat_life_t..c_check..clean_code
 	public List<BOM> selectBOM() {
 
 		List<BOM> bom_list = new ArrayList<>();
@@ -81,6 +83,7 @@ public class ProductDAO {
 				bom.setMat_count(rs.getInt("mat_count"));
 				bom.setMat_person(rs.getString("mat_person"));
 				bom.setMat_container_code(rs.getString("mat_container_code"));
+				bom.setClean_code(rs.getString("clean_code"));
 				if(rs.getString("mat_life_t")!=null) {
 					bom.setMat_life_t(rs.getString("mat_life_t"));					
 				}
@@ -294,6 +297,29 @@ public class ProductDAO {
 			JDBCUtility.close(conn, null, null);
 		}
 	}
+	//Q_produInsertAction
+	//해당되는 이름의
+	public void in_bom_eqcheck(String mat_name, int mat_count_update, String c_check) throws SQLException {
+		conn = JDBCUtility.getConnection();
+		CallableStatement cstmt = null;
+		try {
+			cstmt =conn.prepareCall("call q_bom_check(?,?,?)");
+			cstmt.setString(1,mat_name);
+			cstmt.setInt(2,mat_count_update);
+			cstmt.setString(3,c_check);
+			
+			cstmt.execute();
+			cstmt.close();
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			cstmt.close();
+			JDBCUtility.close(conn, null, null);
+		}
+	}
+
+	
 	
 	
 	

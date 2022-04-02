@@ -65,7 +65,7 @@
 						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./bom_q_admin.jsp">BOM</a>
+						    <a class="nav-link" href="q_bom.admin">BOM</a>
 						  </li>
 						</ul>   
                         

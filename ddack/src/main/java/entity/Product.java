@@ -18,7 +18,7 @@ public class Product {
 	String invent_storname; //창고이름
 	int invent_qty; //창고에 저장된 갯수
 	int invent_total; // 창고에 최대 넣을 수 있는 공간
-
+	
 	public Product() {}
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
@@ -30,7 +30,6 @@ public class Product {
 		this.p_life = p_life;
 		this.p_pay = p_pay;
 	}
-	
 
 	public String getInvent_storname() {
 		return invent_storname;
