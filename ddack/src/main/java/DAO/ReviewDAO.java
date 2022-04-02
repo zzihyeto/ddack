@@ -45,7 +45,7 @@ public class ReviewDAO {
 			
 			while(rs.next()) {
 				review = new ReviewBean();
-				review.setRe_code(rs.getString("re_code"));
+				review.setRe_code(rs.getInt("re_code"));
 				review.setP_name(rs.getString("p_name"));
 				review.setM_id(rs.getString("m_id"));
 				review.setP_review(rs.getString("p_review"));
@@ -100,11 +100,11 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from (select rownum() rn, t1.* "
-				+ "				from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date, p.p_code"
-				+ "						from product p, review rv "
-				+ "						where p.p_code = rv.p_code "
-				+ "				order by rv.review_date DESC )t1 )t2 limit ? , "+ limit;
+		String sql = "select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date, p.p_code "
+				+ " from product p, review rv "
+				+ " where p.p_code = rv.p_code "
+				+ " order by rv.re_code desc "
+				+ " limit ?, " + limit;
 				
 		int startRow = (page - 1) * limit;
 		
@@ -115,8 +115,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				review = new ReviewBean();
-				review.setR_num(rs.getInt("rn"));
-				review.setRe_code(rs.getString("re_code")); //리뷰코드
+				review.setRe_code(rs.getInt("re_code")); //리뷰코드
 				review.setP_name(rs.getString("p_name")); //제품명
 				review.setM_id(rs.getString("m_id")); // 작성자
 				review.setP_review(rs.getString("p_review")); // 리뷰글
@@ -198,7 +197,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String re_code = rs.getString("re_code");//제품코드
+				int re_code = rs.getInt("re_code");//제품코드
 				String p_name = rs.getString("p_name"); // 제품명
 				String m_id = rs.getString("m_id");//작성자
 				String p_review = rs.getNString("p_review");

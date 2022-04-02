@@ -62,7 +62,7 @@
 						<!-- 검색분류선택하고 검색어로 검색 -->
 						<form class="d-flex" action="search.show?page=${ curPage }" method="post">
 							<!--검색 분류선택 -->
-							<select name="f" class="me-2">
+							<select name="f" class="form-select me-2">
 								<option value="m_id">작성자ID</option>
 								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
