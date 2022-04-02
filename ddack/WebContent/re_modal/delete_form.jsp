@@ -20,7 +20,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-		<title>DDACK_리뷰 상세보기 페이지입니다</title>
+		<title>DDACK_리뷰 삭제 페이지입니다</title>
 		<!-- Favicon-->
 		<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 		<!-- Bootstrap icons-->
@@ -41,29 +41,30 @@
 						<div class="col-lg-8">
 							<div class="card shadow-lg border-0 rounded-lg my-5">
 								<div class="card-header">
-									<h3 class="text-center font-weight-light my-4">DDACK 리뷰 상세보기</h3>
+									<h3 class="text-center font-weight-light my-4">DDACK 리뷰 삭제하기</h3>
 								</div>
 
 								<div class="card-body">
-									<form action="re_write.show" method="post">
+									<form action="re_modify.show" method="post">
 										<table class="table table-striped">
 
 											<tr>
-												<td>구매상품</td>
+												<td>구매 상품</td>
 												<td><input type="text" class="form-control" value="${ p_name }" readonly></td>
 											</tr>
 
 											<tr>
 												<td>리뷰</td>
 												<td>
-												<textarea name="p_review" class="form-control" readonly>${ p_review }</textarea>
+												<textarea name="p_review" class="form-control">${ p_review }</textarea>
 												</td>
 											</tr>
 
 											<tr>
-											<td colspan="2" class="text-center">
-												<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
-											</td>
+												<td colspan="2" class="text-center">
+													<input type="submit" value="삭제" class="btn btn-warning"> <!-- //수정 -->
+													<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
+												</td>
 											</tr>
 
 										</table>

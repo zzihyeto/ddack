@@ -33,11 +33,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		
-		String sql = "select rownum() rn, t1.* "
-				+ "	from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date"
-				+ "	from product p, review rv"
-				+ "	where p.p_code = rv.p_code"
-				+ "	order by rv.review_date asc) t1 order by rn DESC";
+		String sql ="select * from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
+				+ " from product p, review rv "
+				+ " where p.p_code = rv.p_code "
+				+ " order by rv.review_date desc)t1 order by t1.re_code desc ";
 				
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -120,7 +119,7 @@ public class ReviewDAO {
 				review.setM_id(rs.getString("m_id")); // 작성자
 				review.setP_review(rs.getString("p_review")); // 리뷰글
 				review.setReview_date(rs.getDate("review_date")); //작성일
-				review.setP_code(rs.getString("p_code"));
+				review.setP_code(rs.getString("p_code")); //제품코드
 				list.add(review);
 			}
 		} catch (Exception e) {
@@ -140,12 +139,12 @@ public class ReviewDAO {
 		
 		int count = 0;
 		
-		
 		String sql =  "select count(*) from (select rownum() rn, t1.* "
 				+ " from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
 				+ " from product p, review rv where p.p_code = rv.p_code and " + field+ " like ? "
 				+ " order by rv.review_date desc) t1 "
 				+ " ) t2 ";
+		
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -205,8 +204,8 @@ public class ReviewDAO {
 				String p_code = rs.getString("p_code");
 				
 				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date, p_code);
-				search_review.setR_num(rs.getInt("rn"));
-				
+				search_review.setRe_code(rs.getInt("re_code"));
+				System.out.println("======= re_code"+ re_code);
 				search_list.add(search_review);
 			}
 			
@@ -217,6 +216,7 @@ public class ReviewDAO {
 		}
 		return search_list;
 	}
+	
 
 
 	// 리뷰글 등록 
@@ -229,7 +229,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		
 		String sql  = "insert into review "
-					+ " values(concat('리뷰_', nextval(review_re_code)), ?, ? , ?, sysdate())";
+					+ "values(nextval(review_re_code), ?, ? , ?, sysdate())";
 
 		try {
 			pstmt = conn.prepareStatement(sql);

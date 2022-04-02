@@ -46,18 +46,15 @@ public class Write_Form_Action implements Action {
 				session.setAttribute("order_list", order_list);
 				forward.setPath("./re_modal/write_form.jsp");
 				
-				System.out.println("==order_list=>"+order_list);
+				System.out.println("==order_list=>" + order_list);
 				
 			} else {
 				//리뷰나열된 페이지로 가서 산게 없네요 문자열 띄어도되고 
-				//사야지 쓸수있습니다.
-				
-				
+				//사야지 쓸수있습니다.	
 				session.setAttribute("buy_check", "구매내역없음 구매후 작성하셈");
 				forward.setPath("review.show");
 			}
 		} else {			
-			
 			forward.setPath("/login_form.jsp");
 		}
 	

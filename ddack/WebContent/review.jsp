@@ -101,7 +101,7 @@
 					<tbody>
 						<c:forEach var="re" items="${ review_list }">
 							<tr>
-								<td>${ re.r_num }</td>
+								<td>${ re.re_code }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
 								<td><a href="re_detail_form.show?p_name=${ re.p_name }&m_id=${re.m_id}&p_code=${re.p_code}">${ re.p_review }</a></td>
