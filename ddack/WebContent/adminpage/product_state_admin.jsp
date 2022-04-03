@@ -6,6 +6,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	List<Product> pro_state_list = (List<Product>) session.getAttribute("pro_state_list");
+	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음
 	
 	request.setAttribute("pro_state_list", pro_state_list);
 %>
@@ -17,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>BOM_테이블</title>
+        <title>Product_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -39,10 +40,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">BOM_테이블</h1>
+                        <h1 class="mt-4">Product_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">BOM_테이블</li>
+                            <li class="breadcrumb-item active">Product_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -53,7 +54,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>BOM_테이블
+                                <i class="fas fa-table me-1"></i>Product_테이블
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">

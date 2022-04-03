@@ -55,7 +55,7 @@
 						<a class="nav-link" href="bomtable.admin">BOM 관리</a> 
 						<a class="nav-link"	href="product_state.admin">완제품 관리</a> 
 						<a class="nav-link" href="line_state.admin">라인 관리</a>
-						<a class="nav-link" href="#">불량 관리</a>
+						<a class="nav-link" href="q_chpro.admin">불량 관리</a>
 					</nav>
 				</div>
 				
@@ -85,7 +85,7 @@
 				<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 					<nav class="sb-sidenav-menu-nested nav">
 						<a class="nav-link" href="#">자재입출고 현황</a> 
-						<a class="nav-link" href="#">자재 재고현황</a>
+						<a class="nav-link" href="#">창고 관리</a>
 					</nav>
 				</div>
 				

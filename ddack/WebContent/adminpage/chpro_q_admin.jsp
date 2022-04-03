@@ -21,7 +21,7 @@
         
        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         
-        <link href="../css2/styles.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
     </head>
@@ -42,10 +42,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Quality_테이블</h1>
+                        <h1 class="mt-4">Q_chpro_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Quality_테이블</li>
+                            <li class="breadcrumb-item active">Q_chpro_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,23 +56,23 @@
                         </div>
                         <ul class="nav nav-tabs mb-4">
 						  <li class="nav-item">
-						    <a class="nav-link active" href="quality_chpro.admin">공정</a>
+						    <a class="nav-link active" href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./line_q_admin.jsp">라인</a>
+						    <a class="nav-link" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>
+						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./bom_q_admin.jsp">BOM</a>
+						    <a class="nav-link" href="q_bom.admin">BOM</a>
 						  </li>
 						</ul>   
                         
                         
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>공정불량_테이블
+                                <i class="fas fa-table me-1"></i>Q_chpro_테이블
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -90,15 +90,29 @@
                                       	<c:if test="${!empty chpro_q_list}">
 							         		<c:forEach var="chpro_qu" items="${chpro_q_list }">
 							         			<tr>
-							         				<td>${chpro_qu.line_name}</td>
-							         											         											         				
+							         				<td>${chpro_qu.q_code}</td>
+							         				<td>${chpro_qu.ch_pro_code}</td>
+							         				<td>
+							         					<a href="q_chpro_strt.admin?q_code=${chpro_qu.q_code}&chpro_code=${chpro_qu.ch_pro_code}" 
+							         					id="makestart" class="btn btn-warning" onclick="">
+															불량체크 버튼
+														</a>
+							         				</td>
+							         				<td>${chpro_qu.q_result}</td>							         											         				
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 
                                     </tbody>
                                 </table>
                             </div>
+                            
                         </div>
+                        <div class="card mb-4">
+	                            <div class="card-body">
+	                               체크버튼 누르면 공정 과정마다 쓴 재료 상태 확인하고<br />
+		                           재료상태에 따 결과값을 나타낸다. 하나라도 상태가 안좋으면 결과값 X
+	                            </div>
+	                        </div>
                     </div>
                 </main>
 	      
@@ -108,10 +122,10 @@
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js2/scripts.js"></script> 
+        <script src="./js2/scripts.js"></script> 
         
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../js2/datatables-simple-demo.js"></script>
+        <script src="./js2/datatables-simple-demo.js"></script>
         
     </body>
 </html>

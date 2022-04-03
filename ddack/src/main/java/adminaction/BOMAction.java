@@ -18,6 +18,8 @@ public class BOMAction implements Action {
 
 		ProductDAO productDAO = ProductDAO.getInstance();
 		List<BOM> bom_list = productDAO.selectBOM();
+		//mat_code..mat_name..mat_type..mat_unit..mat_count..mat_person..
+		//mat_container_code..mat_life_t..c_check..clean_code
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("bom_list", bom_list);

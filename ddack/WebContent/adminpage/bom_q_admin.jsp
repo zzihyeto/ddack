@@ -1,13 +1,13 @@
-<%@ page import="entity.CHprocess" %>
+<%@ page import="entity.BOM" %>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<CHprocess> q_list = (List<CHprocess>) session.getAttribute("q_list");
+	List<BOM> bom_list = (List<BOM>) session.getAttribute("bom_list");
 	
-	request.setAttribute("q_list", q_list);
+	request.setAttribute("bom_list", bom_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
         
        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         
-        <link href="../css2/styles.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
     </head>
@@ -42,10 +42,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Quality_테이블</h1>
+                        <h1 class="mt-4">Q_bom_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Quality_테이블</li>
+                            <li class="breadcrumb-item active">Q_bom_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,47 +56,61 @@
                         </div>
                         <ul class="nav nav-tabs mb-4">
 						  <li class="nav-item">
-						    <a class="nav-link " href="quality_chpro.admin">공정</a>
+						    <a class="nav-link " href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./line_q_admin.jsp">라인</a>
+						    <a class="nav-link" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>
+						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item ">
-						    <a class="nav-link active" href="./bom_q_admin.jsp">BOM</a>
+						    <a class="nav-link active" href="q_bom.admin">BOM</a>
 						  </li>
 						</ul>   
                         
                         
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>BOM_테이블
+                                <i class="fas fa-table me-1"></i>Q_bom_테이블
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>불량 코드</th>
-                                            <th>공정 코드</th>
-                                            <th>체크 버튼</th>
-                                            <th>불량 결과</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                
-                                    <tbody>
-                                      	<c:if test="${!empty q_list}">
-							         		<c:forEach var="qu" items="${q_list }">
-							         			<tr>
-							         				<td>${qu.line_name}</td>
-							         											         											         				
-							         			</tr>
-							         		</c:forEach>
-						         		</c:if> 
-                                    </tbody>
-                                </table>
+                            	<form action="q_bom_insert.admin" method="post">
+	                                <table id="datatablesSimple">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>원자재 이름</th>
+	                                            <th>체크 갯수</th>
+	                                            <th>체크 내용</th>
+	                                            <th>등록 버튼</th>
+	                                        </tr>
+	                                    </thead>
+	                                    
+	                                
+	                                    <tbody>
+							         		<td>
+	                                    		<select name="mat_name" id="" class="form-control">
+		                                    		<c:if test="${!empty bom_list}">
+									         			<c:forEach var="bom_qu" items="${bom_list }">
+				                                    			<option value="${bom_qu.mat_name }">${bom_qu.mat_name }</option>
+				                                    	</c:forEach>
+				                                    </c:if>
+			                                    </select>
+			                                </td>
+			                                <td><input type="text" name="mat_count_update" class="form-control" placeholder="체크한 갯수"/></td>
+	                                		<td><input type="text" name="c_check" class="form-control" placeholder="O or X 로 시작하기"/></td>
+	                                    	<td><input type="submit" class="form-control btn btn-success" value="등록"/></td>
+	                                    </tbody>
+	                                </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               원자제 이름을 고르고 체크한 갯수를 입력하고  <br />
+                               체크내용을 입력한다. <br />
+                               등록하게 되면 기록한 날짜가 수정되고 <br />
+                               체크내용에 따라 체크한 갯수가 더해지거나 감해진다.
                             </div>
                         </div>
                     </div>
@@ -108,10 +122,10 @@
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js2/scripts.js"></script> 
+        <script src="./js2/scripts.js"></script> 
         
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../js2/datatables-simple-demo.js"></script>
+        <script src="./js2/datatables-simple-demo.js"></script>
         
     </body>
 </html>

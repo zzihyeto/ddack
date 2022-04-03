@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Date;
+
 public class BOM {
 
 	String mat_code;
@@ -7,10 +9,14 @@ public class BOM {
 	String mat_type;
 	String mat_unit;
 	int mat_count=0;
+	int mat_count_update=0;
 	String mat_person;
 	String mat_container_code;
 	String mat_life_t;
+	
 	String clean_code;
+	Date c_cycle_d;
+	String c_check;
 	
 	public BOM() {};
 
@@ -21,6 +27,31 @@ public class BOM {
 		this.mat_type = mat_type;
 		this.mat_unit = mat_unit;
 		this.mat_count = mat_count;
+	}
+
+	
+	public int getMat_count_error() {
+		return mat_count_update;
+	}
+
+	public void setMat_count_error(int mat_count_update) {
+		this.mat_count_update = mat_count_update;
+	}
+
+	public Date getC_cycle_d() {
+		return c_cycle_d;
+	}
+
+	public void setC_cycle_d(Date c_cycle_d) {
+		this.c_cycle_d = c_cycle_d;
+	}
+
+	public String getC_check() {
+		return c_check;
+	}
+
+	public void setC_check(String c_check) {
+		this.c_check = c_check;
 	}
 
 	public String getMat_code() {
