@@ -85,7 +85,7 @@
 				<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 					<nav class="sb-sidenav-menu-nested nav">
 						<a class="nav-link" href="#">자재입출고 현황</a> 
-						<a class="nav-link" href="#">자재 재고현황</a>
+						<a class="nav-link" href="#">창고 관리</a>
 					</nav>
 				</div>
 				
