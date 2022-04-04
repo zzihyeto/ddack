@@ -39,9 +39,6 @@ public class MUpdateAction implements Action {
 		if(updateSucc) {
 			//비번이 일치하니 내용값을 수정할수있어서 update하자
 			
-			//post 내용 넣기 
-			//해당되는 아이디로 post_code찾아서 49번줄에 사용하게 하기 	
-			
 			String post_code = dao.getPost_code(id);
 			//post_code기준으로 내용값 수정하는 메서드
 			dao.update_post(post_code,do_ ,ci , gungu ,dong, be_addr);
