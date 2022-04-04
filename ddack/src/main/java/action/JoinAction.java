@@ -45,7 +45,7 @@ public class JoinAction implements Action {
 			forward = new ActionForward();
 			forward.setPath("/login_form.jsp");
 		}else {
-			session.setAttribute("Register", "회원가입실패");
+			req.setAttribute("Register", "회원가입실패");
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
 		}

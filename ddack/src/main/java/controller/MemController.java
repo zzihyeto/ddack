@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.FinalbuyAction;
+import action.IdDup_CheckAction;
 import action.JoinAction;
 import action.MUpdateAction;
 import action.MemOrderAction;
@@ -66,6 +67,13 @@ public class MemController extends HttpServlet {
 			}
 		}else if(command.equals("/mem_orders.member")){
 			action = new MemOrderAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/IdDuplicateCheck.member")){
+			action = new IdDup_CheckAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
