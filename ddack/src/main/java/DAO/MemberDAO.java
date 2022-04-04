@@ -425,6 +425,87 @@ public class MemberDAO {
 		return member_list;
 	}
 
+	public boolean duplicateIdCheck(String id) {
+
+		conn = JDBCUtility.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean result = false;
+		String sql="select m_id from member where m_id =?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+				result=true;
+			}
+		}catch(Exception e) {
+			System.out.println("문제가 발생했습니다."+e.getMessage());	
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+
+	public void updateMember(String id, String name, String jumin, String phone, String email) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="update member set m_name = ? ,m_jumin=?, m_phone=?, m_email=? where m_id = ?";
+		
+		try {
+			conn = db.JDBCUtility.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, jumin);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, email);
+			pstmt.setString(5, id);
+			pstmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+		
+	}
+
+	public boolean update_pwcheck(String id,String pw) {
+		boolean updateSucc =false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = db.JDBCUtility.getConnection();
+			pstmt = conn.prepareStatement("select m_pw from member where m_id =?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String m_pw = rs.getString("m_pw");
+				if(pw.equals(m_pw)) {
+					updateSucc=true;
+				}
+			}
+			
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		
+		return updateSucc;
+	
+	}
+
 	
 	
 	

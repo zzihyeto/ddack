@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String register_msg = (String) session.getAttribute("Register");
+	//회원가입 실패&성공 후 메세지
+	String Regis_msg = (String)request.getAttribute("Register");
 %>
-<c:set var="register_msg" value="<%= register_msg %>"/>
+<c:set var="register_msg" value="<%= Regis_msg %>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,14 +66,17 @@
 										<div class="row">
 											<div class="col-md-8">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="id" type="text" name="id"
-														placeholder="user id....." /> <label for="id"> <i
-														class="bi bi-person"></i> 아이디
-													</label>
+													<input class="form-control" id="userId" type="text" name="id"
+														placeholder="user id....." onkeydown="inputIdChk()" /> 
+														<label for="id"> <i class="bi bi-person"></i> 아이디</label>
+													<input type="hidden" name="idDuplication" value="idUncheck"/>
 												</div>
 											</div>
 											<div class="col-md-4">
-												<a href="#" class="form-control btn btn-primary btn-lg">ID 중복체크 </a>
+												<div class="form-floating mb-3">
+												<input type="button" class="form-control btn btn-primary" value="중복확인" onclick="openIdChk()" />
+												<!--  <a href="duplicate.member" class="form-control btn btn-primary">ID중복체크 </a>-->
+												</div>
 											</div>
 										</div>
 									</div>
@@ -167,7 +171,39 @@
 	<jsp:include page="./layout/footer.jsp" />
 	
 	<script>
-
+		function checkValue(){
+			var form = document.userInfo;
+			if(!form.id.value){
+				alert("아이디를 입력하세요!");
+				return false;
+			}
+			if(form.idDuplication.value != "idCheck"){
+				alert("아이디 중복체크를 해주세요.");
+			}
+			if(!form.password.value){
+				alert("비밀번호를 입력하세요");
+				return false;
+			}
+			//비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+			if(form.password.value != form.passwordcheck.value){
+				alert("비밀번호를 동일하게 입력하세요.");
+				return false;
+			}
+			if(!form.name.value){
+				alert("이름을 입력하세요.");
+				return false;
+			}
+		}
+		function openIdChk(){
+			window.name="parentForm";
+			window.open("./IdCheckForm.jsp",
+					"chkForm","width=500,height=300,resizable=no,scrollbars=no");
+		}
+		//아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
+		//이렇게 하는 이유는 중복체크 후 다이 아이디 창이 새로운 아이디를 입력했을 때 다시중복체크를 하도록 한다.
+		function inputIdChk(){
+			document.userInfo.idDuplication.vale="idUncheck";
+		}
 	</script>
 </body>
 </html>

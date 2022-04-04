@@ -2,9 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String loginmsg = (String) session.getAttribute("login_ing");
+	
 	//System.out.println("==loginmsg=>"+loginmsg);
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -102,7 +104,7 @@
                         </div>
                     </div>
                    <!-- 검색창 -->
-		           <aside class="bg-success bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+		           <!-- <aside class="bg-success bg-gradient rounded-3 p-4 p-sm-5 mt-5">
 		               <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
 		                   <div class="mb-4 mb-xl-0">
 		                       <div class="fs-3 fw-bold text-white">빠르게 제품 검색하기</div>
@@ -114,7 +116,7 @@
 		                       </div>
 		                   </div>
 		               </div>
-		           </aside>
+		           </aside>-->
                 </div>
             </section>
             <!-- Testimonial section-->

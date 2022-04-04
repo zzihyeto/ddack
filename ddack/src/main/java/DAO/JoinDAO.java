@@ -20,7 +20,7 @@ public class JoinDAO {
 	// 회원등록하기
 	public static int registerMember(String id, String password, String name, String jumin, String phone, String email,
 			String do_, String ci, String gungu, String dong, String be_addr, String post_code) {
-		conn = db.JDBCUtility.getConnection();
+		
 		
 		int regCount = 0;
 		
@@ -32,6 +32,7 @@ public class JoinDAO {
 				+ " VALUES (?,?,?,?,?,?,?,?,?)";
 		
 		try {
+			conn = db.JDBCUtility.getConnection();
 			pstmt = conn.prepareStatement("SELECT m_code FROM member ORDER BY length(m_code) desc, m_code desc");
 			rs = pstmt.executeQuery();
 			
@@ -39,11 +40,14 @@ public class JoinDAO {
 				m_code = rs.getString("m_code");
 				break;
 			}
+
+			conn.close();
 			
 			int code1 =Integer.parseInt(m_code.split("_")[1]) + 1;
 			String code2 = Integer.toString(code1);
-			m_code = m_code.split("_")[0]+ "_"+ code2;			
+			m_code = m_code.split("_")[0]+ "_"+ code2;		
 			
+			conn = db.JDBCUtility.getConnection();
 			PreparedStatement pstmt1 = conn.prepareStatement(sql);
 			pstmt1.setString(1, m_code);
 			pstmt1.setString(2, "회원");

@@ -56,14 +56,14 @@
 								</div>
 								<div class="form-floating mb-3">
 									<div class="form-floating mb-3">
-										<input class="form-control" id="id" type="text" name="id" value="${member_info.m_id }" />
+										<input class="form-control" id="id" type="text" name="id" value="${member_info.m_id }" readonly="readonly" />
 										<label for="name"> 
 											<i class="bi bi-person"></i> 아이디
 										</label>
 									</div>
 								</div>
 								<div class="form-floating mb-3">
-									<input class="form-control" id="password" type="password" name="password"  value="${member_info.m_pw }"/>
+									<input class="form-control" id="password" type="text" name="password"  />
 									<label for="password"> <i class="bi bi-key"></i> 비밀번호 입력해주세요</label>
 								</div>
 								<div class="form-floating mb-3">
