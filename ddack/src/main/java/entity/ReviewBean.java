@@ -18,14 +18,14 @@ public class ReviewBean {
 	
 
 
-	public ReviewBean(int re_code, String p_name, String m_id, String p_review, Date review_date, String p_code) {
+	public ReviewBean(int re_code, String p_name, String m_id, String p_review, Date review_date) {
 		super();
 		this.re_code = re_code;
 		this.p_name = p_name;
 		this.m_id = m_id;
 		this.p_review = p_review;
 		this.review_date = review_date;
-		this.p_code = p_code;
+		
 	}
 
 	public int getRe_code() {

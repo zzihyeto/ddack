@@ -22,7 +22,7 @@ public class SearchListAction implements Action{
 		String _field = req.getParameter("f");
 		String _query = req.getParameter("q");
 		String _page = req.getParameter("page");
-		String field = "m_id";
+		String field = "re_code";
 		String query = "";
 		
 		int page = 1;

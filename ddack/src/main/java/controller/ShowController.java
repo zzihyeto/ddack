@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AddAction;
 import action.Del_cart_Action;
+import action.Delete_Action;
 import action.Detail_FormAction;
+import action.Modi_FormAction;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
@@ -84,7 +86,7 @@ public class ShowController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.contentEquals("/re_write_form.show")) { // 리뷰 쓰기폼에서 로그인확인.<아 구매내역도찾아야
+		} else if (command.contentEquals("/re_write_form.show")) { // 리뷰 쓰기폼에서 로그인확인
 			action = new Write_Form_Action();
 			try {
 				forward = action.execute(req, res);
@@ -100,6 +102,20 @@ public class ShowController extends HttpServlet {
 			}
 		} else if (command.contentEquals("/re_detail_form.show")) { //리뷰 상세 내용 보기
 			action = new Detail_FormAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.contentEquals("/re_modify.show")) { //리뷰 내용 수정
+			action = new Modi_FormAction();
+			try {
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.contentEquals("/delete.show")) { //리뷰 내용 삭제
+			action = new Delete_Action();
 			try {
 				forward = action.execute(req, res);
 			} catch(Exception e) {

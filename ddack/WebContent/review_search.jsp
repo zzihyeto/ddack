@@ -24,8 +24,8 @@
 	System.out.println("==search.jsp==q===>"+q);
  
  %>
- <c:set var="f" value="<%=f %>"/>
- <c:set var="q" value="<%=q %>"/>
+<c:set var="f" value="<%=f %>"/>
+<c:set var="q" value="<%=q %>"/>
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
@@ -101,7 +101,7 @@
 
 						<c:forEach var="re" items="${ search_list }">
 							<tr>
-								<td>${ re.r_num }</td>
+								<td>${ re.re_code }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
 								<td>${ re.p_review }</td>

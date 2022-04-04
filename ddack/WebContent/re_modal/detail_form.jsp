@@ -5,14 +5,16 @@
 
 	ReviewBean review = (ReviewBean) session.getAttribute("review");
 	String p_name =review.getP_name();
-	System.out.println("===p_name=" + p_name);
+	System.out.println("==jsp===p_name=" + p_name);
 	String p_review =  review.getP_review();
-	System.out.println("===p_reivew=" + p_review);
-
+	System.out.println("==jsp=p_reivew=" + p_review);
+	String m_id =review.getM_id();
+    System.out.println("==jsp=m_id=" + m_id);
 %>
 
 <c:set var="p_name" value="<%= p_name %>"/>
 <c:set var="p_review" value="<%= p_review %>"/>
+<c:set var="m_id" value="<%= m_id %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -45,23 +47,25 @@
 								</div>
 
 								<div class="card-body">
-									<form action="re_write.show" method="post">
+									<form action="re_modify.show" method="post">
 										<table class="table table-striped">
 
 											<tr>
 												<td>구매상품</td>
-												<td><input type="text" class="form-control" value="${ p_name }" readonly></td>
+												<td><input type="text" name="p_name" class="form-control" value="${ p_name }" readonly></td>
 											</tr>
 
 											<tr>
 												<td>리뷰</td>
 												<td>
-												<textarea name="p_review" class="form-control" readonly>${ p_review }</textarea>
+												<textarea name="p_review" class="form-control">${ p_review }</textarea>
 												</td>
 											</tr>
-
+												<input type="hidden" name="m_id" value="${m_id }" />
 											<tr>
-											<td colspan="2" class="text-center">
+											<td colspan="2" class="text-center">	
+												<input type="submit" value="수정" class="btn btn-success">
+												<a class="btn btn-warning" href="delete.show?m_id=${ m_id }&p_name=${p_name}" role="button">삭제</a> 
 												<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
 											</td>
 											</tr>

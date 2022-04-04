@@ -196,21 +196,20 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int re_code = rs.getInt("re_code");//제품코드
-				String p_name = rs.getString("p_name"); // 제품명
-				String m_id = rs.getString("m_id");//작성자
-				String p_review = rs.getNString("p_review");
-				Date review_date = rs.getDate("review_date");
-				String p_code = rs.getString("p_code");
 				
-				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date, p_code);
-				search_review.setRe_code(rs.getInt("re_code"));
-				System.out.println("======= re_code"+ re_code);
+				int re_code = rs.getInt("re_code");//리뷰코드
+				String p_name = rs.getString("p_name"); // 제품명
+				String m_id = rs.getString("m_id");//작성자 
+				String p_review = rs.getNString("p_review");//리뷰내용
+				Date review_date = rs.getDate("review_date");//등록일자
+				
+				ReviewBean search_review = new ReviewBean(re_code, p_name, m_id, p_review, review_date);
+				
 				search_list.add(search_review);
 			}
 			
 		}catch (Exception e) {
-			System.out.println("뭔가 잘못됐습니다."+e.getMessage());
+			System.out.println("뭔가 잘못됐습니다." + e.getMessage());
 		} finally {
 			JDBCUtility.close(conn, pstmt, rs);
 		}
@@ -282,7 +281,7 @@ public class ReviewDAO {
 			
 			
 		} catch (Exception e) {
-			System.out.println("등록되지 못했습니다." + e.getMessage());
+			System.out.println("p_code 등록되지 못했습니다." + e.getMessage());
 		} finally {
 			JDBCUtility.close(conn, pstmt, rs);
 		}
@@ -304,10 +303,9 @@ public class ReviewDAO {
 		String sql = "select p.p_name, r.p_review "
 				+ " from review r, product p"
 				+ " where p.p_code=r.p_code "
-				+ " and r.m_id = ? and p.p_code= ? ";
+				+ " and r.m_id = ? and p.p_code= ? "; //이거 진짜 맞음
 
 		try {
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			pstmt.setString(2, p_code);
@@ -318,7 +316,8 @@ public class ReviewDAO {
 				
 				review.setP_name(rs.getString("p_name"));
 				review.setP_review(rs.getString("p_review"));
-				System.out.println("===review====" + review);
+				review.setM_id(m_id);
+				System.out.println("==DAO=review====" + review);
 			}
 		}catch (Exception e) {
 			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
@@ -327,6 +326,41 @@ public class ReviewDAO {
 		}
 		
 		return review;
+		
+	}
+
+	//리뷰수정하기 위해서 수정하기
+	public void re_update(String p_review, String m_id, String p_name) {
+		
+		conn = JDBCUtility.getConnection();
+
+		int re_mo = 0;	
+		
+		ReviewBean review = new ReviewBean();
+
+		PreparedStatement pstmt = null;
+		
+		String sql = "update review rv inner join product p on rv.p_code = p.p_code "
+				+ "set rv.p_review = ? where rv.m_id= ? and p.p_name= ?" ;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_review);
+			pstmt.setString(2, m_id);
+			pstmt.setString(3, p_name);
+		
+			re_mo = pstmt.executeUpdate();
+			
+			if(re_mo > 0) {
+				JDBCUtility.commit(conn);
+			} else {
+				JDBCUtility.rollback(conn);
+			}
+		} catch (Exception e) {
+			System.out.println("수정리뷰_ 연결해서 뭔가 잘못된거같다" + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
 		
 	}
 	
