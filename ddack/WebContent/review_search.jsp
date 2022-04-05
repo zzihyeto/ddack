@@ -7,9 +7,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	request.setCharacterEncoding("utf-8");
+	
 	List<ReviewBean> search_list = (List<ReviewBean>) session.getAttribute("search_list");
 	request.setAttribute("search_list", search_list);
 	System.out.println("=search.jsp==search_list===>"+search_list);
+
 	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
  	
  	int curPage = pageinfo.getPage();

@@ -14,7 +14,7 @@ import action.AddAction;
 import action.Del_cart_Action;
 import action.Delete_Action;
 import action.Detail_FormAction;
-import action.Modi_FormAction;
+import action.Modify_Action;
 import action.ProductAction;
 import action.ReviewAction;
 import action.SearchListAction;
@@ -108,7 +108,7 @@ public class ShowController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.contentEquals("/re_modify.show")) { //리뷰 내용 수정
-			action = new Modi_FormAction();
+			action = new Modify_Action();
 			try {
 				forward = action.execute(req, res);
 			} catch(Exception e) {

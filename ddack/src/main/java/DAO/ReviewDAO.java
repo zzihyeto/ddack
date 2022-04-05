@@ -300,7 +300,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select p.p_name, r.p_review "
+		String sql = "select p.p_code, p.p_name, r.p_review "
 				+ " from review r, product p"
 				+ " where p.p_code=r.p_code "
 				+ " and r.m_id = ? and p.p_code= ? "; //이거 진짜 맞음
@@ -313,11 +313,10 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				
+				review.setP_code(rs.getString("p_code"));
 				review.setP_name(rs.getString("p_name"));
 				review.setP_review(rs.getString("p_review"));
 				review.setM_id(m_id);
-				System.out.println("==DAO=review====" + review);
 			}
 		}catch (Exception e) {
 			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
@@ -363,6 +362,42 @@ public class ReviewDAO {
 		}
 		
 	}
+
+	//리뷰 삭제하기
+	public void delete_review(String m_id, String p_code) {
+		
+		conn = JDBCUtility.getConnection();
+
+		int del_rev = 0;
+		
+		ReviewBean review = new ReviewBean();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from review where m_id = ? and p_code= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setString(2, p_code);
+			
+			del_rev = pstmt.executeUpdate();
+			
+			if(del_rev > 0) {
+				JDBCUtility.commit(conn);
+			} else {
+				JDBCUtility.rollback(conn);
+			}
+		} catch (Exception e) {
+			System.out.println("리뷰삭제_연결해서 뭔가 잘못된거같다" + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+		
+		
+		
 	
 	
 	

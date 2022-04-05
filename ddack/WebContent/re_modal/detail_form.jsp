@@ -4,17 +4,26 @@
 <%
 
 	ReviewBean review = (ReviewBean) session.getAttribute("review");
+	String p_code = review.getP_code();
+	System.out.println("==jsp===p_code=" + p_code);
 	String p_name =review.getP_name();
 	System.out.println("==jsp===p_name=" + p_name);
 	String p_review =  review.getP_review();
 	System.out.println("==jsp=p_reivew=" + p_review);
 	String m_id =review.getM_id();
     System.out.println("==jsp=m_id=" + m_id);
+   
+    String no_delete = (String) request.getAttribute("no_delete");
+    
 %>
 
 <c:set var="p_name" value="<%= p_name %>"/>
 <c:set var="p_review" value="<%= p_review %>"/>
 <c:set var="m_id" value="<%= m_id %>"/>
+<c:set var="p_code" value="<%= p_code %>"/>
+
+<c:set var="no_delete" value="<%= no_delete %>"/>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -38,6 +47,11 @@
 				<!-- layout폴더 -> navbar.jsp -->
 				<jsp:include page="/layout/navbar.jsp" />
 
+				<!-- 리뷰삭제 권한없음 -->
+				<div class="bg-danger text-white">
+					${ no_delete }
+				</div>
+				
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-lg-8">
@@ -65,7 +79,7 @@
 											<tr>
 											<td colspan="2" class="text-center">	
 												<input type="submit" value="수정" class="btn btn-success">
-												<a class="btn btn-warning" href="delete.show?m_id=${ m_id }&p_name=${p_name}" role="button">삭제</a> 
+												<a class="btn btn-warning" href="delete.show?m_id=${ m_id }&p_code=${ p_code }" role="button">삭제</a> 
 												<input type="button" class="btn btn-primary" onclick="location.href='review.show'" value="전체 게시글보기">
 											</td>
 											</tr>

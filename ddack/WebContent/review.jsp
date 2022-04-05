@@ -53,6 +53,7 @@
 			${ buy_check }
 		</div>
 
+
 		<div class="container px-5">
 			<!-- 검색창 -->
 			<div class="float-right mt-3">
