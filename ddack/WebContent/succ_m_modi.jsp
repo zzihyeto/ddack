@@ -40,16 +40,13 @@
 				<div class="col-lg-8">
 					<div class="card shadow-lg border-0 rounded-lg my-5">
 						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">MY Page</h3>
-							<c:if test="${ empty member_info }">
-								<p class="bg-danger text-white">로그인하셔야 정보를 볼수 있습니다.</p>
-							</c:if>	
+							<h3 class="text-center font-weight-light my-4">성공적으로 수정되었습니다.</h3>
+							
 						</div>
 						
 						<div class="card-body">
-							<form action="update.member" method="post">
 								<div class="form-floating mb-3">
-									<input class="form-control" id="name" type="text" name="name" value="${member_info.m_name }"/>
+									<input class="form-control" id="name" type="text" name="name" value="${member_info.m_name }"readonly="readonly"/>
 									<label for="name"> 
 										<i class="bi bi-emoji-smile"></i> 이름
 									</label>
@@ -62,25 +59,22 @@
 										</label>
 									</div>
 								</div>
+								
 								<div class="form-floating mb-3">
-									<input class="form-control" id="password" type="text" name="password"  />
-									<label for="password"> <i class="bi bi-key"></i> 비밀번호 입력해주세요</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input class="form-control" id="jumin" type="text" name="jumin" value="${member_info.m_jumin }"/>
+									<input class="form-control" id="jumin" type="text" name="jumin" value="${member_info.m_jumin }" readonly="readonly"/>
 									<label for="jumin"> 
 										<i class="bi bi-credit-card-2-front"></i> 주민번호
 									</label>
 								</div>
 								<div class="form-floating mb-3">
-									<input class="form-control" id="email" type="text" name="email" value="${member_info.m_email }"/>
+									<input class="form-control" id="email" type="text" name="email" value="${member_info.m_email }" readonly="readonly"/>
 									<label for="email"> 
 										<i class="bi bi-envelope"></i> Email
 									</label>
 								</div>
 								<div class="form-floating mb-3">
 									<div class="form-floating mb-3 mb-md-0">
-										<input class="form-control" id="phone" type="text" name="phone" value="${member_info.m_phone }"/>
+										<input class="form-control" id="phone" type="text" name="phone" value="${member_info.m_phone }" readonly="readonly"/>
 										<label for="phone">
 											<i class="bi bi-telephone"></i> 연락처
 										</label>
@@ -90,19 +84,19 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-floating mb-3">
-												<input class="form-control" id="" type="text" name="do_" value="${post_info.do_}" /> 
+												<input class="form-control" id="" type="text" name="do_" value="${post_info.do_}" readonly="readonly"/> 
 												<label for="do">도</label>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-floating mb-3">
-												<input class="form-control" id="" type="text" name="ci" value="${post_info.ci}"/>
+												<input class="form-control" id="" type="text" name="ci" value="${post_info.ci}"readonly="readonly"/>
 												<label for="ci">시</label>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-floating mb-3">
-												<input class="form-control" id="" type="text" name="gungu" value="${post_info.gungu}" />
+												<input class="form-control" id="" type="text" name="gungu" value="${post_info.gungu}" readonly="readonly"/>
 												<label for="gungu">구/군</label>
 											</div>
 										</div>
@@ -110,13 +104,13 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-floating mb-3">
-												<input class="form-control" id="" type="text" name="dong" value="${post_info.dong}"/>
+												<input class="form-control" id="" type="text" name="dong" value="${post_info.dong}"readonly="readonly"/>
 												<label for="dong">동/읍</label>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-floating mb-3">
-												<input class="form-control" id="" type="text" name="be_addr" value="${post_info.be_addr}"/>
+												<input class="form-control" id="" type="text" name="be_addr" value="${post_info.be_addr}"readonly="readonly"/>
 												<label for="be_addr"> 
 													<i class="bi bi-house-heart"></i>
 													상세주소
@@ -125,11 +119,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="d-grid">
-									<input type="submit" class="btn btn-warning btn-lg mb-3" value="회원수정" /> 
-									<input type="submit" class="btn btn-danger btn-lg" value="회원탈퇴" />
-								</div>
-							</form>
+							
 						</div>
 
 						

@@ -24,11 +24,6 @@ public class PostService {
 		return p;
 	}
 
-	public Post update_post(String do_, String ci, String gungu, String dong, String be_addr) {
 
-		Post p = new Post(do_ , ci, gungu, dong,be_addr);
-		
-		return p;
-	}
 
 }

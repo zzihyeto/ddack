@@ -86,6 +86,7 @@ public class MemberDAO {
 	}
 
 	//아이디에 해당하는 회원정보 담기
+	//
 	public static Member getMember_info(String userID) {
 		
 		conn = JDBCUtility.getConnection();
@@ -454,7 +455,7 @@ public class MemberDAO {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		int regCount =0;
 		String sql ="update member set m_name = ? ,m_jumin=?, m_phone=?, m_email=? where m_id = ?";
 		
 		try {
@@ -465,9 +466,14 @@ public class MemberDAO {
 			pstmt.setString(3, phone);
 			pstmt.setString(4, email);
 			pstmt.setString(5, id);
-			pstmt.executeUpdate();
 			
+			regCount= pstmt.executeUpdate();
 			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
 		} catch(Exception e) {
 			System.out.println("등록되지 못했습니다." + e.getMessage());
 		}finally {
@@ -479,6 +485,7 @@ public class MemberDAO {
 
 	public boolean update_pwcheck(String id,String pw) {
 		boolean updateSucc =false;
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -504,6 +511,73 @@ public class MemberDAO {
 		
 		return updateSucc;
 	
+	}
+
+	
+	//id값으로 postcode get 가져오기
+	public String getPost_code(String id) {
+		
+		conn = db.JDBCUtility.getConnection();
+		
+		String  post_code ="";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select post_code from member where m_id =?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				post_code = rs.getString("post_code");
+			}
+			
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		
+		return post_code;
+	}
+
+	//post_code기준으로 post 테이블에서 내용값 수정하는 메서드
+	public void update_post(String post_code, String do_, String ci, String gungu, String dong, String be_addr) {
+
+		conn = db.JDBCUtility.getConnection();
+		int regCount =0;
+		PreparedStatement pstmt = null;
+		String sql ="update post set `do`=?, ci=?, gungu=? , dong=? ,be_addr=? where post_code =?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, do_);
+			pstmt.setString(2, ci);
+			pstmt.setString(3, gungu);
+			pstmt.setString(4, dong);
+			pstmt.setString(5, be_addr);
+			pstmt.setString(6, post_code);
+			
+			
+			regCount = pstmt.executeUpdate();
+			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
 	}
 
 	
