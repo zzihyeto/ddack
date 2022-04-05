@@ -12,6 +12,7 @@ public class BOM {
 	int mat_count_update=0;
 	String mat_person;
 	String mat_container_code;
+	String mat_con_out; //출고하게 되면 출고용용 창고 이름 D로 지정해서 띄울꺼임
 	String mat_life_t;
 	
 	String clean_code;
@@ -30,6 +31,22 @@ public class BOM {
 	}
 
 	
+	public int getMat_count_update() {
+		return mat_count_update;
+	}
+
+	public void setMat_count_update(int mat_count_update) {
+		this.mat_count_update = mat_count_update;
+	}
+
+	public String getMat_con_out() {
+		return mat_con_out;
+	}
+
+	public void setMat_con_out(String mat_con_out) {
+		this.mat_con_out = mat_con_out;
+	}
+
 	public int getMat_count_error() {
 		return mat_count_update;
 	}

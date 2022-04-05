@@ -1,0 +1,31 @@
+package adminaction;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import DAO.ProductDAO;
+import action.Action;
+import entity.Product;
+import vo.ActionForward;
+
+public class storagAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		ProductDAO productDAO = ProductDAO.getInstance();
+		List<Product> storage_list = productDAO.getStorageInfo();
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("storage_list", storage_list);
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("/adminpage/storage_admin.jsp");
+		
+		return forward;
+	}
+
+}

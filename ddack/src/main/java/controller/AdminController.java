@@ -24,6 +24,8 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.bomconAction;
+import adminaction.storagAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -145,6 +147,20 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/q_bom_insert.admin")) {
 			action = new Q_bomInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/bom_com.admin")) {
+			action = new bomconAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/storage.admin")) {
+			action = new storagAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
