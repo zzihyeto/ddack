@@ -5,13 +5,9 @@
 
 	ReviewBean review = (ReviewBean) session.getAttribute("review");
 	String p_code = review.getP_code();
-	System.out.println("==jsp===p_code=" + p_code);
 	String p_name =review.getP_name();
-	System.out.println("==jsp===p_name=" + p_name);
 	String p_review =  review.getP_review();
-	System.out.println("==jsp=p_reivew=" + p_review);
 	String m_id =review.getM_id();
-    System.out.println("==jsp=m_id=" + m_id);
    
     String no_delete = (String) request.getAttribute("no_delete");
     

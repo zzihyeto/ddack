@@ -238,7 +238,6 @@ public class ReviewDAO {
 			
 			regist = pstmt.executeUpdate();
 			
-			System.out.println("==regist=>" + regist);
 
 			if(regist >0) {
 				JDBCUtility.commit(conn);
@@ -388,6 +387,7 @@ public class ReviewDAO {
 			} else {
 				JDBCUtility.rollback(conn);
 			}
+			
 		} catch (Exception e) {
 			System.out.println("리뷰삭제_연결해서 뭔가 잘못된거같다" + e.getMessage());
 		} finally {

@@ -43,7 +43,7 @@ public class MemController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("====command====>"+command);
+		//System.out.println("====command====>"+command);
 		
 		if(command.equals("/update.member")) {
 			action = new MUpdateAction();
@@ -52,7 +52,7 @@ public class MemController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/update.member")){
+		}else if(command.equals("/")){
 				action = new Del_MemberAction();
 				try	{
 					forward = action.execute(req, res);

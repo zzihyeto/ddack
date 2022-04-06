@@ -41,6 +41,7 @@ public class Modify_Action implements Action {
 				//DB 접근 해서 업데이트 하기 (수정하기)
 				ReviewDAO reviewDAO = ReviewDAO.getInstance();
 				reviewDAO.re_update(p_review, m_id, p_name); 
+				forward.setPath("review.show");	
 			} else {
 				//로그인은 맞지만 너가 쓴 글이 아니야(없어)@@=>수정권한이 없습니다.
 				//메세지를 띄울지? 어디로 보낼지 ? 

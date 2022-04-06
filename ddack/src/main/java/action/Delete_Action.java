@@ -45,6 +45,7 @@ public class Delete_Action implements Action {
 				//삭제가능하니 삭제하자!
 				ReviewDAO reviewDAO = ReviewDAO.getInstance();
 				reviewDAO.delete_review(m_id, p_code); //delete ~ from ~ where ~?;
+				forward.setPath("/review.show");
 			} else {
 				//로그인도 했고 로그인중 아이디랑 리뷰세뷰 id랑 다르넹
 				//삭제권한없음 알림@@

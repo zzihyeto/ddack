@@ -29,7 +29,6 @@ public class Detail_FormAction implements Action {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("review", review);
-		System.out.println("===review=" + review);
 		
 		forward = new ActionForward();
 		forward.setPath("/re_modal/detail_form.jsp");

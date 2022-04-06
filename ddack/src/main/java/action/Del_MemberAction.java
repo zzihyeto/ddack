@@ -23,7 +23,6 @@ public class Del_MemberAction implements Action {
 	 	
 		forward = new ActionForward();
 		forward.setPath("./member_info.jsp");
-		forward.setRedirect(true);
 		
 		return forward;
 	}

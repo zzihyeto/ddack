@@ -127,7 +127,7 @@
 								</div>
 								<div class="d-grid">
 									<input type="submit" class="btn btn-warning btn-lg mb-3" value="회원수정" /> 
-									<input type="submit" class="btn btn-danger btn-lg" value="회원탈퇴" />
+									<input type="" class="btn btn-danger btn-lg" value="회원탈퇴" />
 								</div>
 							</form>
 						</div>
