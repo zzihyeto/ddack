@@ -7,9 +7,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	request.setCharacterEncoding("utf-8");
+	
 	List<ReviewBean> search_list = (List<ReviewBean>) session.getAttribute("search_list");
 	request.setAttribute("search_list", search_list);
 	System.out.println("=search.jsp==search_list===>"+search_list);
+
 	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
  	
  	int curPage = pageinfo.getPage();
@@ -24,8 +26,8 @@
 	System.out.println("==search.jsp==q===>"+q);
  
  %>
- <c:set var="f" value="<%=f %>"/>
- <c:set var="q" value="<%=q %>"/>
+<c:set var="f" value="<%=f %>"/>
+<c:set var="q" value="<%=q %>"/>
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
@@ -62,7 +64,7 @@
 						<!-- 검색분류선택하고 검색어로 검색 -->
 						<form class="d-flex" action="search.show?page=${ curPage }" method="post">
 							<!--검색 분류선택 -->
-							<select name="f" class="me-2">
+							<select name="f" class="form-select me-2">
 								<option value="m_id">작성자ID</option>
 								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
@@ -95,14 +97,13 @@
 							<th>작성자ID</th>
 							<th>내용</th>
 							<th>작성일</th>
-							<!-- <th>삭제</th> -->
 						</tr>
 					</thead>
 					<tbody>
 
 						<c:forEach var="re" items="${ search_list }">
 							<tr>
-								<td>${ re.r_num }</td>
+								<td>${ re.re_code }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
 								<td>${ re.p_review }</td>

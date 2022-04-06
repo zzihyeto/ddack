@@ -181,7 +181,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from memorder where m_code =  '" + ingm_code+"'";
+		String sql = "select * from memorder where m_code =  '" + ingm_code + "'";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

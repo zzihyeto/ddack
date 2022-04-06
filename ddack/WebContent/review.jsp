@@ -19,14 +19,13 @@
 	String buy_check = (String) session.getAttribute("buy_check");
 	
  %>
- 
- 
+
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
 <c:set var="endPage" value="<%=endPage%>"/>
 
-<c:set var ="buy_check" value="<%= buy_check  %>"/>
+<c:set var ="buy_check" value="<%= buy_check %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -49,19 +48,22 @@
 		<!-- layout폴더 -> navbar.jsp -->
 		<jsp:include page="./layout/navbar.jsp" />
 		
-		<div class="bg-danger text-white" >
-		${ buy_check }
+		<!-- 구매내역없으면 -->
+		<div class="bg-danger text-white">
+			${ buy_check }
 		</div>
+
 
 		<div class="container px-5">
 			<!-- 검색창 -->
 			<div class="float-right mt-3">
 				<nav class="nav justify-content-end">
 					<div class="float-right mt-3">
+					
 						<!-- 검색분류선택하고 검색어로 검색 -->
 						<form class="d-flex" action="search.show?page=${ curPage }" method="post">
 							<!--검색 분류선택 -->
-							<select name="f" class="me-2">
+							<select name="f" class="form-select me-2">
 								<option value="m_id">작성자ID</option>
 								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
@@ -69,6 +71,7 @@
 							<input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>
+						
 					</div>
 				</nav>
 			   <br />
@@ -95,14 +98,14 @@
 							<th>작성일</th>
 						</tr>
 					</thead>
+					
 					<tbody>
-
 						<c:forEach var="re" items="${ review_list }">
 							<tr>
-								<td>${ re.r_num }</td>
+								<td>${ re.re_code }</td>
 								<td>${ re.p_name }</td>
 								<td>${ re.m_id }</td>
-								<td>${ re.p_review }</td>
+								<td><a href="re_detail_form.show?p_name=${ re.p_name }&m_id=${re.m_id}&p_code=${re.p_code}">${ re.p_review }</a></td>
 								<td>${ re.review_date }</td>
 							</tr>
 						</c:forEach>
@@ -110,9 +113,8 @@
 				</table>
 			</div>
 			
-			<!-- 리뷰 쓰기 모달 -->
+			<!-- 리뷰 쓰기 폼으로 넘어가기-->
 			<div style="float:right" class="mb-3">
-				<%-- <jsp:include page="/re_modal/write_form.jsp" /> --%>
 				<a href="re_write_form.show" class="btn btn-outline-success">쓰기</a>
 
 			</div>

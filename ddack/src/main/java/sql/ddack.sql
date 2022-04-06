@@ -1,3 +1,12 @@
+create sequence review_re_code
+start with 111
+INCREMENT by 1
+maxvalue 99999
+cycle;
+
+select * from user_sequence
+
+
 CREATE TABLE `BOM`  (
   `mat_code` varchar(255) NOT NULL COMMENT '원자재코드',
   `mat_name` varchar(255) NOT NULL COMMENT '원자재이름',
