@@ -5,9 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<CHprocess> q_list = (List<CHprocess>) session.getAttribute("q_list");
-	
-	request.setAttribute("q_list", q_list);
+	List<CHprocess> line_state_list = (List<CHprocess>) session.getAttribute("line_state_list");
+	//line_state_list에 line_name.. line_usable..  ch_pro_code.. check_date.. check_content 담겨있음
+		
+	request.setAttribute("line_state_list", line_state_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@
         
        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         
-        <link href="../css2/styles.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
     </head>
@@ -42,10 +43,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Quality_테이블</h1>
+                        <h1 class="mt-4">Q_line_테이블</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Quality_테이블</li>
+                            <li class="breadcrumb-item active">Q_line_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,45 +57,56 @@
                         </div>
                         <ul class="nav nav-tabs mb-4">
 						  <li class="nav-item">
-						    <a class="nav-link " href="quality_chpro.admin">공정</a>
+						    <a class="nav-link " href="q_chpro.admin">공정</a>
 						  </li>
 						  <li class="nav-item ">
-						    <a class="nav-link active" href="./line_q_admin.jsp">라인</a>
+						    <a class="nav-link active" href="q_line.admin">라인</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./product_q_admin.jsp">완제품</a>
+						    <a class="nav-link" href="q_product.admin">완제품</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="./bom_q_admin.jsp">BOM</a>
+						    <a class="nav-link" href="q_bom.admin">BOM</a>
 						  </li>
 						</ul> 
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>라인_테이블
+                                <i class="fas fa-table me-1"></i>Q_line__테이블
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>불량 코드</th>
-                                            <th>공정 코드</th>
-                                            <th>체크 버튼</th>
-                                            <th>불량 결과</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                
-                                    <tbody>
-                                      	<c:if test="${!empty q_list}">
-							         		<c:forEach var="qu" items="${q_list }">
-							         			<tr>
-							         				<td>${qu.line_name}</td>
-							         											         											         				
-							         			</tr>
-							         		</c:forEach>
-						         		</c:if> 
-                                    </tbody>
-                                </table>
+                                <form action="q_line_insert.admin" method="post">
+	                                <table id="datatablesSimple">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>라인 이름</th>
+	                                            <th>라인 체크내용</th>
+	                                            <th>등록 버튼</th>
+	                                        </tr>
+	                                    </thead>
+	                                    
+	                                
+	                                    <tbody>
+	                                    	<td>
+	                                    		<select name="line_name" id="" class="form-control">
+		                                    		<c:if test="${!empty line_state_list}">
+									         			<c:forEach var="li_state" items="${line_state_list }">
+				                                    			<option value="${li_state.line_name }">${li_state.line_name }</option>
+				                                    	</c:forEach>
+				                                    </c:if>
+			                                    </select>
+			                                </td>	
+	                                    	<td><input type="text" name="check_content" class="form-control" placeholder="사용할 수 없다 vs 사용할 수 있다"/></td>
+	                                    	<td><input type="submit" class="form-control btn btn-success" value="등록"/></td>
+	                                    </tbody>
+	                                </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               라인이름을 클릭해서 해당되는 이름의 라인에 <br />
+                               라인 체크한 내용을 입력해서 기록한다. <br />
+                               기록하게 되면 기록한 날짜가 수정된다.
                             </div>
                         </div>
                     </div>
@@ -106,10 +118,10 @@
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js2/scripts.js"></script> 
+        <script src="./js2/scripts.js"></script> 
         
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../js2/datatables-simple-demo.js"></script>
+        <script src="./js2/datatables-simple-demo.js"></script>
         
     </body>
 </html>

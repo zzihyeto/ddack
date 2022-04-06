@@ -116,6 +116,7 @@
 			<!-- 리뷰 쓰기 폼으로 넘어가기-->
 			<div style="float:right" class="mb-3">
 				<a href="re_write_form.show" class="btn btn-outline-success">쓰기</a>
+
 			</div>
 
 			<!-- pagenation -->

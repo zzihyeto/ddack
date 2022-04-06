@@ -15,10 +15,14 @@ public class Product {
 	String order_date; //주문일
 	String due_date; //납기일(소비자가원하는 날짜)
 	
+	String invent_code; //창고 코드
 	String invent_storname; //창고이름
 	int invent_qty; //창고에 저장된 갯수
 	int invent_total; // 창고에 최대 넣을 수 있는 공간
-
+	
+	String store_name; //저장소 이름
+	String store_loc; //저장소 위치
+	
 	public Product() {}
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
@@ -30,7 +34,32 @@ public class Product {
 		this.p_life = p_life;
 		this.p_pay = p_pay;
 	}
+
 	
+	public String getInvent_code() {
+		return invent_code;
+	}
+
+	public void setInvent_code(String invent_code) {
+		this.invent_code = invent_code;
+	}
+
+	public String getStore_name() {
+		return store_name;
+	}
+
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
+
+	public String getStore_loc() {
+		return store_loc;
+	}
+
+	public void setStore_loc(String store_loc) {
+		this.store_loc = store_loc;
+	}
+
 	public String getInvent_storname() {
 		return invent_storname;
 	}

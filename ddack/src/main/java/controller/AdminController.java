@@ -16,6 +16,16 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
+import adminaction.Q_bomAction;
+import adminaction.Q_bomInsertAction;
+import adminaction.Q_chproAction;
+import adminaction.Q_chpro_StartAction;
+import adminaction.Q_lineAction;
+import adminaction.Q_lineInsertAction;
+import adminaction.Q_produInsertAction;
+import adminaction.Q_productAction;
+import adminaction.bomconAction;
+import adminaction.storagAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -42,7 +52,7 @@ public class AdminController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("====command====>"+command);
+		//System.out.println("====command====>"+command);
 		
 		if(command.equals("/adminpage/memorder.admin")) {
 			action = new MemorderAction();
@@ -81,6 +91,76 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/line_state.admin")) {
 			action = new Line_stateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_chpro.admin")) {
+			action = new Q_chproAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_chpro_strt.admin")) {
+			action = new Q_chpro_StartAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_line.admin")) {
+			action = new Q_lineAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_line_insert.admin")) {
+			action = new Q_lineInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_product.admin")) {
+			action = new Q_productAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_product_insert.admin")) {
+			action = new Q_produInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_bom.admin")) {
+			action = new Q_bomAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/q_bom_insert.admin")) {
+			action = new Q_bomInsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/bom_com.admin")) {
+			action = new bomconAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/storage.admin")) {
+			action = new storagAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

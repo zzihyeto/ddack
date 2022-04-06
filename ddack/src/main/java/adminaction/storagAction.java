@@ -11,20 +11,20 @@ import action.Action;
 import entity.Product;
 import vo.ActionForward;
 
-public class Pro_stateAction implements Action {
+public class storagAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+		
 		ProductDAO productDAO = ProductDAO.getInstance();
-		List<Product> pro_state_list = productDAO.selectProducState();
-		//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음 
+		List<Product> storage_list = productDAO.getStorageInfo();
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("pro_state_list", pro_state_list);
+		session.setAttribute("storage_list", storage_list);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/product_state_admin.jsp");
+		forward.setPath("/adminpage/storage_admin.jsp");
+		
 		return forward;
 	}
 

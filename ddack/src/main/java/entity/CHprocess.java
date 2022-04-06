@@ -10,7 +10,30 @@ public class CHprocess {
 	Date check_date;
 	String check_content;
 	
+	String q_code;
+	String q_result;
+	
 	public CHprocess() {}
+
+	public String getQ_code() {
+		return q_code;
+	}
+
+
+	public void setQ_code(String q_code) {
+		this.q_code = q_code;
+	}
+
+
+	public String getQ_result() {
+		return q_result;
+	}
+
+
+	public void setQ_result(String q_result) {
+		this.q_result = q_result;
+	}
+
 
 	public String getLine_name() {
 		return line_name;

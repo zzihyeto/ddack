@@ -47,13 +47,12 @@
 
        <div class="container">	
 		    <div class="row justify-content-center">
-    				 <div class="col-lg-8">
-                          <div class="card shadow-lg border-0 rounded-lg my-5">
-                            <div class="card-header">
+    		  <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-lg my-5">
+              <div class="card-header">
 								<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
 							</div>
-							
-                           <div class="card-body">
+            <div class="card-body">
 							<form action="re_write.show" method="post">
 								<table class="table table-striped">
 									<tr>
@@ -71,7 +70,6 @@
 											</select>
 										</td>
 									</tr>
-									
 									<tr>
 										<td>리뷰</td>
 										<td><textarea rows="10" cols="50" name="p_review" class="form-control"></textarea></td>
@@ -81,6 +79,7 @@
 										<td colspan="2" class="text-center">
 										<input type="submit" value="글쓰기" class="btn btn-success">
 										<input type="reset" value="다시작성" class="btn btn-warning">
+
 										<button type="button" class="btn btn-primary" onclick="location.href='review.show'">전체 게시글보기</button>
 										</td>
 									</tr>
