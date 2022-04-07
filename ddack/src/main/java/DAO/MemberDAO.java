@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import db.JDBCUtility;
 import entity.MemOrder;
@@ -579,8 +580,144 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	// 회원탈퇴
+	public boolean deleteMember(String id, String pw) {
+	// ↑ boolean타입으로(return값이 true or false)의 deleteMember() 메서드생성
+		boolean result = false;
+		
+		conn = db.JDBCUtility.getConnection();
+		Connection conn1 = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		String dbpw="";
+		// ↑ DB에서 읽어 올 password를 저장할 변수를 선어하고 초기ㄹ호
+		
+		try {
+			String sql="select m_pw from member where m_id=?";
+			// ↑ where 조건문 id에 pstmt.setString(1, id)로 매개변수로 넘겨받은 id를 위치홀더에 넣었기 때문에,
+			// member 테이블의 매개변수로 받은 id를 가진 데이터의 password 칼럼을 검색
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			// ↑ 쿼리를 DB에 질의하고 받아온 결과를 rs에 저장
+			if(rs.next()) {
+				dbpw = rs.getString("m_pw");
+				// ↑ DB의 쿼리문의 결과값으로 가져온 rs에서 password칼럼에 있는 값을 getString을 통해 가져와 dbpw에 저장.
+				if(dbpw.equals(pw)) {
+					String delsql = "delete from member where m_id=?";
+					pstmt1 = conn1.prepareStatement(delsql);
+					pstmt1.setString(1, id);
+					int succcnt = pstmt1.executeUpdate();
+					
+					if(succcnt>0) {
+						result = true;
+						JDBCUtility.commit(conn);
+					}else {			
+						JDBCUtility.rollback(conn);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("삭제되지 못함");
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+			JDBCUtility.close(conn1, pstmt1, null);			
+		}
+		return result;
+	}
+	
+	// 비밀번호 찾기
+	public String findpw(String id, String name, String jumin) {
+		
+		conn = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String pw = null;	
+		String sql ="select m_pw from member where m_id=? and  m_name=? and m_jumin=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, jumin);
+			rs = pstmt.executeQuery();			
+			
+			if(rs.next()) {
+				pw=rs.getString("member.m_pw");
+			}
+			
+		}catch (Exception e) {
+			System.out.println("실패."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return pw;
+	}
+	
+	// 비밀번호찾을 때 아이디맞는지에 대한 메서드
 
-	
-	
+	public boolean Idcheck(String id) {
+		
+		boolean being_id = false;
+		conn = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select * from member where m_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String m_id = rs.getString("m_id");
+				if(id.equals(m_id)) {
+					being_id=true;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("실패"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt,rs);
+		}
+		return being_id;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
