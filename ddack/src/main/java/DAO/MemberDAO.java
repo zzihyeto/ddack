@@ -426,21 +426,22 @@ public class MemberDAO {
 		return member_list;
 	}
 
-	public boolean duplicateIdCheck(String id) {
+	//아이디 있으면 결과는 false 배출하도록 
+	public boolean duplicateIdCheck(String inputid) {
 
 		conn = JDBCUtility.getConnection();
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		boolean result = false;
+		boolean result = true;
 		String sql="select m_id from member where m_id =?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, inputid);
 			rs = pstmt.executeQuery();
 		
 			while(rs.next()) {
-				result=true;
+				result=false;
 			}
 		}catch(Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());	
