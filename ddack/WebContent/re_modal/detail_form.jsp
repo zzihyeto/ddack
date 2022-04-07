@@ -72,6 +72,7 @@
 												</td>
 											</tr>
 												<input type="hidden" name="m_id" value="${m_id }" />
+												<input type="hidden" name="p_code" value="${p_code }" />
 											<tr>
 											<td colspan="2" class="text-center">	
 												<input type="submit" value="수정" class="btn btn-success">
