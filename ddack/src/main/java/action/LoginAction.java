@@ -14,7 +14,7 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		ActionForward forward = null;
+		ActionForward forward = new ActionForward();;
 		
 		//입력한 값 파라미터 받아오고
 		String userID = req.getParameter("userID");
@@ -35,11 +35,14 @@ public class LoginAction implements Action {
 
 		if(ok_admin) {
 			session.setAttribute("login_ing", "admin");
-
-			forward = new ActionForward();
 			forward.setPath("/index.jsp");	
 			
-		}else if(ok_id_pw){
+		}else {
+			req.setAttribute("pw_error", "비번이 일치하지 않습니다");
+			forward.setPath("/login_form.jsp");
+		}
+		
+		if(ok_id_pw) {
 			//회원이라면 
 			//회원 정보 가져오고
 			member_info =logincheckser.getMember_info(userID);
@@ -57,11 +60,13 @@ public class LoginAction implements Action {
 			
 			//"member"문자열을  "login_ing"이름으로 세션 속성에 저장
 			session.setAttribute("login_ing", "member");
-
-			forward = new ActionForward();
 			forward.setPath("/index.jsp");
+		}else {
+			
+			req.setAttribute("pw_error", "비번이 일치하지 않습니다");
+			forward.setPath("/login_form.jsp");
 		}
-		
+	
 		
 		return forward;
 	}
