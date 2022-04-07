@@ -9,7 +9,6 @@ public class LoginCheckService {
 	public boolean isLogin(String userID ,String inputPassword) {
 		boolean ok_id_pw = false;
 		
-		MemberDAO.getInstance();
 		
 		ok_id_pw = MemberDAO.isLogin(userID,inputPassword);
 		
@@ -20,7 +19,6 @@ public class LoginCheckService {
 
 		boolean ok_admin = false;
 		
-		MemberDAO.getInstance();
 		
 		ok_admin = MemberDAO.isAdmin(userID, inputPassword);
 		return ok_admin;
@@ -30,7 +28,6 @@ public class LoginCheckService {
 
 		Member member_info = null;
 		
-		MemberDAO.getInstance();
 		
 		member_info = MemberDAO.getMember_info(userID);
 		
@@ -41,7 +38,6 @@ public class LoginCheckService {
 		
 		Post post_info = null;
 		
-		MemberDAO.getInstance();
 		
 		post_info = MemberDAO.getPost_info(post_code);
 		

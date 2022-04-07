@@ -23,50 +23,49 @@ public class LoginAction implements Action {
 		boolean ok_id_pw = false;
 		boolean ok_admin = false;
 		
-		LoginCheckService logincheckser = new LoginCheckService();
-		ok_admin = logincheckser.isAmdin(userID,inputPassword); //admin 체크
-
-		ok_id_pw = logincheckser.isLogin(userID,inputPassword); //id와 pw 확인해서 참 거짓 리턴 
-		
 		Member member_info = null;
 		Post post_info = null;
 		
 		HttpSession session = req.getSession();
 
+		LoginCheckService logincheckser = new LoginCheckService();
+		ok_admin = logincheckser.isAmdin(userID,inputPassword); //admin 체크
+		
 		if(ok_admin) {
 			session.setAttribute("login_ing", "admin");
 			forward.setPath("/index.jsp");	
 			
 		}else {
-			req.setAttribute("pw_error", "비번이 일치하지 않습니다");
-			forward.setPath("/login_form.jsp");
+			
+			ok_id_pw = logincheckser.isLogin(userID,inputPassword); //id와 pw 확인해서 참 거짓 리턴 
+			
+			if(ok_id_pw) {
+				//회원이라면 
+				//회원 정보 가져오고
+				member_info =logincheckser.getMember_info(userID);
+				
+				String post_code = member_info.getPost_code();
+				//회원 우편 가져오고
+				post_info = logincheckser.getPost_info(post_code);
+				
+				
+				//회원정보 담긴 알찬 Member 를 세션 속성에 저장
+				session.setAttribute("member_info", member_info);
+				
+				//회원우편 정보 담긴 Post를 세션 속성에 저장
+				session.setAttribute("post_info", post_info);
+				
+				//"member"문자열을  "login_ing"이름으로 세션 속성에 저장
+				session.setAttribute("login_ing", "member");
+				forward.setPath("/index.jsp");
+			}else {
+				req.setAttribute("pw_error", "비번이 일치하지 않습니다");
+				forward.setPath("/login_form.jsp");
+			}
+			
+		
 		}
 		
-		if(ok_id_pw) {
-			//회원이라면 
-			//회원 정보 가져오고
-			member_info =logincheckser.getMember_info(userID);
-			
-			String post_code = member_info.getPost_code();
-			//회원 우편 가져오고
-			post_info = logincheckser.getPost_info(post_code);
-			
-			
-			//회원정보 담긴 알찬 Member 를 세션 속성에 저장
-			session.setAttribute("member_info", member_info);
-			
-			//회원우편 정보 담긴 Post를 세션 속성에 저장
-			session.setAttribute("post_info", post_info);
-			
-			//"member"문자열을  "login_ing"이름으로 세션 속성에 저장
-			session.setAttribute("login_ing", "member");
-			forward.setPath("/index.jsp");
-		}else {
-			
-			req.setAttribute("pw_error", "비번이 일치하지 않습니다");
-			forward.setPath("/login_form.jsp");
-		}
-	
 		
 		return forward;
 	}

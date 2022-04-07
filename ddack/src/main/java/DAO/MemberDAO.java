@@ -3,7 +3,11 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -247,46 +251,57 @@ public class MemberDAO {
 		
 	}
 
-	public static void setMemOrder(String m_od_code,String m_code, HashMap<String, Integer> cart_map, String order_date,
-			String due_date) {
+	public static void setMemOrder(String m_code, HashMap<String, Integer> cart_map, String order_date,
+			String due_date) throws ParseException {
 
+		//-----dead_line 날짜 계산 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date order_date_f = formatter.parse(due_date);//원하는 주문날짜 기입한걸 date형식으로 바꾸고 
+		Calendar cal = Calendar.getInstance();//계산할수 있게 불러서
+		cal.setTime(order_date_f);//셋팅해주고 //date계산하기 
+		cal.add(Calendar.DATE, -5);//dead_line 우리가 정한 기한일 만들려고 -5일 정도 넉넉하게 잡고 생산시작하는걸로 
+		String dead_line = formatter.format(cal.getTime());//다시 포켓팅해서 스트링으로 뱉기
+		
+		String m_od_code=null;
+		int succ_count = 0;
+
+		m_od_code = MemberDAO.makeModcode();
 		conn = JDBCUtility.getConnection();
-
-		int succ_count=0;
 		PreparedStatement pstmt1 =null;
-		ResultSet rs = null;
 		
 		try {
-			String sql ="insert into memorder(m_od_code,m_code,p_code,p_count,order_date,due_date) VALUES (?,?,?,?,?,?)";
+			String sql ="insert into memorder(m_od_code,m_code,p_code,p_count,order_date,dead_line,due_date) VALUES (?,?,?,?,?,?,?)";
 			pstmt1 = conn.prepareStatement(sql);
 			
 			//카드에 담겨진걸 "p_code":p_count hashmap으로 담아와서 여기서풀어
 			for(String i : cart_map.keySet()) {
 				String p_code = i;
 				int p_count = cart_map.get(i);
-				
-				pstmt1.setString(1, m_od_code);
+				pstmt1.setString(1, m_od_code);//변동사항 pk 라 변경되서 넣어져야함
 				pstmt1.setString(2, m_code);
-				pstmt1.setString(3, p_code);
-				pstmt1.setInt(4, p_count);
+				pstmt1.setString(3, p_code);//변동사항
+				pstmt1.setInt(4, p_count);//변동사항
 				pstmt1.setString(5, order_date);
-				pstmt1.setString(6, due_date);
+				pstmt1.setString(6, dead_line);
+				pstmt1.setString(7, due_date);
 				
-				succ_count = pstmt1.executeUpdate();			
-
+				succ_count =pstmt1.executeUpdate();
+				
 				if(succ_count>0) {
 					JDBCUtility.commit(conn);
 				}else {			
 					JDBCUtility.rollback(conn);
 				}
 				pstmt1.clearParameters();
+				m_od_code = m_od_code =m_od_code.substring(0,m_od_code.indexOf("_"))+"_"+Integer.toString(Integer.parseInt(m_od_code.substring(m_od_code.indexOf("_")+1)) +1);
 			}
+		
 			
 			
 		}catch (Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());		
 		}finally {
-			JDBCUtility.close(conn, pstmt1, rs);
+			JDBCUtility.close(conn, pstmt1, null);
 		}
 		
 	}
