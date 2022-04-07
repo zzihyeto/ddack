@@ -43,7 +43,7 @@
 				<!-- layout폴더 -> navbar.jsp -->
 				<jsp:include page="/layout/navbar.jsp" />
 
-				<!-- 리뷰삭제 권한없음 -->
+				<!-- 리뷰삭제 권한없음 or 수정권한없음(수정실패하면여기로옴) -->
 				<div class="bg-danger text-white">
 					${ no_delete }
 				</div>
@@ -72,6 +72,7 @@
 												</td>
 											</tr>
 												<input type="hidden" name="m_id" value="${m_id }" />
+												<input type="hidden" name="p_code" value="${p_code }" />
 											<tr>
 											<td colspan="2" class="text-center">	
 												<input type="submit" value="수정" class="btn btn-success">

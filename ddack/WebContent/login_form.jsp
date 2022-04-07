@@ -3,11 +3,12 @@
 <%
 	String register_msg = (String) session.getAttribute("Register");
 	String no_login = (String) session.getAttribute("no_login");
+	String pw_error = (String) request.getAttribute("pw_error");
 
 %>
 <c:set var="register_msg" value="<%= register_msg %>"/>
 <c:set var="no_login" value="<%= no_login %>"/>
-
+<c:set var="pw_error" value="<%= pw_error %>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +45,17 @@
             </c:if>
             
            <!-- 로긴안해서 삭제 권한없음 -->
-			<div class="bg-danger text-white">
+           	<c:if test="${!empty no_login}">
+            	<div class="bg-danger text-white">
 					${ no_login }
-			</div> 
+				</div>
+            </c:if>
+			
+			<c:if test="${!empty pw_error}">
+            	<div class="bg-danger text-white">
+					${ pw_error }
+				</div>
+            </c:if> 
 			
             <div class="container">
                 <div class="row justify-content-center">
