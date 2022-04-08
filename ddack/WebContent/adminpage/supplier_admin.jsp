@@ -84,7 +84,7 @@
          					 <th>발주코드</th>         			
          					 <th>주소</th>
          					 <th>연락처</th>
-         					 <th>발주서지시</th>
+         					 <th>발주지시서</th>
                          </tr>
                      </thead>
                      
@@ -97,8 +97,9 @@
 					  				<td>${ supplier.mat_code }</td>
 					  				<td>${ supplier.b_order_code }</td> 					  				
 					  				<td>${ supplier.b_comp_addr }</td>
-					  				<td>${ supplier.b_comp_tell }</td>
+					  				<td>${ supplier.b_comp_tel }</td>
 					  				<td>
+					  				<!-- purchase_check.admin으로 이동하게''' -->
 					  				<a href="purchase_order.admin" id="makestart" class="btn btn-warning" 
 					  					 onclick="changebutton(); return false;">
 												발주지시</a>

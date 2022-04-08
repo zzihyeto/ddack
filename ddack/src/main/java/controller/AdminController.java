@@ -175,7 +175,7 @@ public class AdminController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처:재료구매위한 발주서작성
+		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처: 원재료만 체크
 			action = new PurOrderAction();
 			try	{
 				forward = action.execute(req, res);

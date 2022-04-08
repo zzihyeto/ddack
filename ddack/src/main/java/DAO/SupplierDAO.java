@@ -1,8 +1,10 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class SupplierDAO {
 		ResultSet rs =null;
 		
 		
-		String sql = "select bc.b_comp_code, bc.b_comp_name, t1.b_order_code, t1.mat_code, bc.b_comp_addr, bc.b_comp_tell "
+		String sql = "select bc.b_comp_code, bc.b_comp_name, t1.b_order_code, t1.mat_code, bc.b_comp_addr, bc.b_comp_tel "
 					+ " from buycompany bc, (select b.mat_code, bco.b_order_code , bco.b_comp_code from buycomp_order bco, bom b "
 					+ " where bco.b_order_code = b.b_order_code) t1 where t1.b_comp_code = bc.b_comp_code ";
 		
@@ -53,7 +55,7 @@ public class SupplierDAO {
 				supplier.setB_order_code(rs.getString("b_order_code"));
 				supplier.setMat_code(rs.getString("mat_code"));
 				supplier.setB_comp_addr(rs.getString("b_comp_addr"));
-				supplier.setB_comp_tell(rs.getString("b_comp_tell"));
+				supplier.setB_comp_tel(rs.getString("b_comp_tel"));
 				
 				supplier_list.add(supplier);
 				
@@ -67,6 +69,34 @@ public class SupplierDAO {
 		
 		return supplier_list;
 	}
+
+	// BOM에서 원재료 재고체크하기
+	// supplier_admin.jsp에서 발주지시 누름
+	// mariadb에 있는 프로시저 발동됨.
+	public void CheckStock(String mat_code, int mat_count) throws SQLException {
+		
+		conn = JDBCUtility.getConnection();
+		
+		CallableStatement cstmt = null;
+		
+		try {
+			cstmt = conn.prepareCall("call material_check(?, ?)");
+			cstmt.setString(1, mat_code);
+			cstmt.setInt(2, mat_count);
+			cstmt.execute();
+			cstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			cstmt.close();
+			JDBCUtility.close(conn, null, null);
+		}
+	}
+		
+		
+	
 	
 	
 	

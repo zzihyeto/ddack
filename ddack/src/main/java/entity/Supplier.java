@@ -7,7 +7,7 @@ public class Supplier { //(외부) 거래처관련
 	String b_order_code; //(외부)거래처주문코드
 	String b_comp_code; //거래처 코드
 	Date mat_order_d; //주문일자
-	String mat_count; //주문 수량
+	int mat_count = 0; //주문 수량
 	String exp_in_d; //예상입고일
 	String tru_in_d; //실제입고일
 	String quality; // 재료의 품질검사 O, X로 확인
@@ -18,7 +18,7 @@ public class Supplier { //(외부) 거래처관련
 
 	String b_comp_name; //거래처명
 	String b_comp_addr; //거래처주소
-	String b_comp_tell; // 거래처 연락처( tell을 tel로 바꾸기)
+	String b_comp_tel; // 거래처 연락처
 	Date arrive_date; // 도착일자? 
 	String mat_code;
 	
@@ -26,9 +26,9 @@ public class Supplier { //(외부) 거래처관련
 	
 	
 
-	public Supplier(String b_order_code, String b_comp_code, Date mat_order_d, String mat_count, String exp_in_d,
+	public Supplier(String b_order_code, String b_comp_code, Date mat_order_d, int mat_count, String exp_in_d,
 			String tru_in_d, String quality, String month_p_code, String month_pay, Date payment_d, String b_comp_name,
-			String b_comp_addr, String b_comp_tell, Date arrive_date, String mat_code) {
+			String b_comp_addr, String b_comp_tel, Date arrive_date, String mat_code) {
 		super();
 		this.b_order_code = b_order_code;
 		this.b_comp_code = b_comp_code;
@@ -42,7 +42,7 @@ public class Supplier { //(외부) 거래처관련
 		this.payment_d = payment_d;
 		this.b_comp_name = b_comp_name;
 		this.b_comp_addr = b_comp_addr;
-		this.b_comp_tell = b_comp_tell;
+		this.b_comp_tel = b_comp_tel;
 		this.arrive_date = arrive_date;
 		this.mat_code = mat_code;
 	}
@@ -78,15 +78,19 @@ public class Supplier { //(외부) 거래처관련
 		this.mat_order_d = mat_order_d;
 	}
 
-
-	public String getMat_count() {
+	
+	
+	
+	public int getMat_count() {
 		return mat_count;
 	}
 
 
-	public void setMat_count(String mat_count) {
+
+	public void setMat_count(int mat_count) {
 		this.mat_count = mat_count;
 	}
+
 
 
 	public String getExp_in_d() {
@@ -169,13 +173,13 @@ public class Supplier { //(외부) 거래처관련
 	}
 
 
-	public String getB_comp_tell() {
-		return b_comp_tell;
+	public String getB_comp_tel() {
+		return b_comp_tel;
 	}
 
 
-	public void setB_comp_tell(String b_comp_tell) {
-		this.b_comp_tell = b_comp_tell;
+	public void setB_comp_tel(String b_comp_tel) {
+		this.b_comp_tel = b_comp_tel;
 	}
 
 
