@@ -596,7 +596,45 @@ public class MemberDAO {
 		
 	}
 
+	// 날짜별. 제품별, 주문갯수 가져오기
+	public List<MemOrder> getcount() {
+		
+		conn = JDBCUtility.getConnection();
+
+		List<MemOrder> need_list = new ArrayList<MemOrder>();
+		
+		MemOrder need = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select p.p_name, mo.p_count, mo.order_date from memorder mo, product p order by order_date desc";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				need = new MemOrder();
+				need.setP_name(rs.getString("p_name"));
+				need.setP_count(rs.getInt("p_count"));
+				need.setOrder_date(rs.getDate("order_date"));
+				
+				need_list.add(need);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다: 거래처정보" + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return need_list;
+	}
 	
+
 	
 	
 }
