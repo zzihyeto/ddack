@@ -31,10 +31,10 @@
 		<!-- layout폴더 > navbar.jsp -->
 		<jsp:include page="./layout/navbar.jsp" />
 		<c:if test="${!empty register_msg}">
-        <div class="alert alert-warning" role="alert">
-          ${register_msg} 했습니다. 다시 입력해주세요.
-        </div>
-    </c:if>
+	        <div class="alert alert-warning" role="alert">
+	          ${register_msg} 했습니다. 다시 입력해주세요.
+	        </div>
+	    </c:if>
 		<section class="py-5">
 			<div class="container px-5">
 				<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">

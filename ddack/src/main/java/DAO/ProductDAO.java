@@ -88,7 +88,7 @@ public class ProductDAO {
 					bom.setMat_life_t(rs.getString("mat_life_t"));					
 				}
 				if(rs.getString("c_check")!=null) {
-					bom.setClean_code(rs.getString("c_check"));					
+					bom.setC_check(rs.getString("c_check"));					
 				}
 				
 				bom_list.add(bom);
@@ -394,7 +394,225 @@ public class ProductDAO {
 		return storage_list;
 	}
 
-	
+	//마지막 mat_code() 번호 가져와서 자르고 +1 새로 추가해서 생성하기
+	public String getnewmat_code() {
+		conn = JDBCUtility.getConnection();
+		String mat_code ="";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT mat_code FROM bom ORDER BY length(mat_code) desc, mat_code desc";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mat_code =rs.getString("mat_code");
+				break;
+			}
+			
+			mat_code= mat_code.split("-")[0].substring(0,1)+ Integer.toString(Integer.parseInt(mat_code.split("-")[0].substring(1))+1)+"-1";
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return mat_code;
+	}
+
+	//마지막 clean_code()번호 가져와서 자르고 +1 새로 추가해서 pk값 내보내기 
+	public String getclean_code() {
+		conn = JDBCUtility.getConnection();
+		String clean_code = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT clean_code FROM clean ORDER BY length(clean_code) desc, clean_code desc";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				clean_code =rs.getString("clean_code");
+				break;
+			}
+			clean_code= clean_code.split("_")[0]+"_"+ Integer.toString(Integer.parseInt(clean_code.split("_")[1])+1);
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return clean_code;
+	}
+
+	public void insertBOM(String mat_code, String mat_name, String mat_type, String mat_unit, int mat_count,
+			String mat_person, String mat_container_code, String mat_life_t, String clean_code) {
+
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into bom(mat_code,mat_name,mat_type,mat_unit,mat_count,mat_person, "
+				+ " mat_container_code,mat_life_t,clean_code) VALUES(?,?,?,?,?,?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_code);
+			pstmt.setString(2, mat_name);
+			pstmt.setString(3, mat_type);
+			pstmt.setString(4, mat_unit);
+			pstmt.setInt(5, mat_count);
+			pstmt.setString(6, mat_person);
+			pstmt.setString(7, mat_container_code);
+			pstmt.setString(8, mat_life_t);
+			pstmt.setString(9, clean_code);
+			
+						
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
+	public void insertClean(String clean_code, String c_check) {
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into clean(clean_code,c_cycle_d,c_check) VALUES(?,sysdate(),?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, clean_code);
+			pstmt.setString(2, c_check);
+			
+						
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
+	public BOM getbomrow(String mat_code) {
+
+		conn = JDBCUtility.getConnection();
+		BOM bom = new BOM();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="select b.*, c.* "
+				+ "from bom b , clean c "
+				+ "where b.clean_code = c.clean_code and b.mat_code = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bom.setMat_code(rs.getString("mat_code"));
+				bom.setMat_name(rs.getString("mat_name"));
+				bom.setMat_type(rs.getString("mat_type"));
+				bom.setMat_unit(rs.getString("mat_unit"));
+				bom.setMat_count(rs.getInt("mat_count"));
+				bom.setMat_person(rs.getString("mat_person"));
+				bom.setMat_container_code(rs.getString("mat_container_code"));
+				bom.setMat_life_t(rs.getString("mat_life_t"));
+				bom.setClean_code(rs.getString("clean_code"));
+				bom.setC_check(rs.getString("c_check"));
+				
+			}
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return bom;
+	}
+
+	public void updateBOM( String mat_code,String mat_name, String mat_type, String mat_unit, int mat_count, 
+			String mat_person, String mat_life_t) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		String sql="update bom set mat_name=? ,mat_type=?, mat_unit=?,mat_count=?, mat_person=?, "
+				+ " mat_life_t=? where mat_code=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_name);
+			pstmt.setString(2, mat_type);
+			pstmt.setString(3, mat_unit);
+			pstmt.setInt(4, mat_count);
+			pstmt.setString(5, mat_person);
+			pstmt.setString(6, mat_life_t);
+			pstmt.setString(7, mat_code);
+			
+			int regCount= pstmt.executeUpdate();
+			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
+	public void updateClean(String clean_code, String c_check) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		String sql="update clean set c_check=?  where mat_code=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c_check);
+			pstmt.setString(2, clean_code);
+			
+			int regCount= pstmt.executeUpdate();
+			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
 	
 	
 	

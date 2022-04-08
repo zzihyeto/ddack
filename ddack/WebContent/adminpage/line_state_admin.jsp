@@ -54,6 +54,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>Line_테이블
+                                <a href="#" class="btn btn-warning">추가하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">

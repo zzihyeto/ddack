@@ -9,7 +9,10 @@
 	
 	request.setAttribute("bom_list", bom_list);
 	
+	String succ_update = (String)request.getAttribute("succ_update");
 %>
+
+<c:set var="succ_update" value="<%= succ_update %>"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,10 +44,16 @@
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
                         <h1 class="mt-4">BOM_테이블</h1>
+                       	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
                             <li class="breadcrumb-item active">BOM_테이블</li>
                         </ol>
+                        <c:if test="${!empty succ_update}">
+					        <div class="alert alert-warning" role="alert">
+					          ${succ_updat}
+					        </div>
+					    </c:if>
                         <div class="card mb-4">
                             <div class="card-body">
                                 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
@@ -55,6 +64,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>BOM_테이블
+                                <a href="./bom_add.jsp" class="btn btn-success">추가하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -77,7 +87,7 @@
                                       	<c:if test="${!empty bom_list}">
 							         		<c:forEach var="bom" items="${bom_list }">
 							         			<tr>
-							         				<td>${bom.mat_code}</td>
+							         				<td><a href="bomdetail.add?mat_code=${bom.mat_code }">${bom.mat_code}</a></td>
 							         				<td>${bom.mat_name}</td>
 							         				<td>${bom.mat_type}</td>
 							         				<td>${bom.mat_unit}</td>
@@ -85,7 +95,7 @@
 							         				<td>${bom.mat_person}</td>
 							         				<td>${bom.mat_container_code}</td>
 							         				<td>${bom.mat_life_t}</td>
-							         				<td>${bom.clean_code}</td>
+							         				<td>${bom.c_check}</td>
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 
