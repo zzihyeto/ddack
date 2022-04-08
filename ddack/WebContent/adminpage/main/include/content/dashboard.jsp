@@ -25,11 +25,11 @@
 	                     <div class="card-body">물류 관리</div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <i class="fas fa-angle-right"></i>
-	                         <a class="small text-white " href="#">출고 지시</a>
+	                         <a class="small text-white" href="#">출고 지시</a>
 	                     </div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">출고 내역</a>
+	                         <a class="small text-white" href="#">출고 내역</a>
 	                     </div>
 	                 </div>
 	             </div>
@@ -38,7 +38,7 @@
 	                     <div class="card-body">품질 관리</div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">제품 품질 현황</a>
+	                         <a class="small text-white" href="#">제품 품질 현황</a>
 	                     </div>
 	                 </div>
 	             </div>
@@ -48,11 +48,11 @@
 	                     <div class="card-body">구매 관리</div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">구매 회사정보</a>
+	                         <a class="small text-white" href="supplier_info.admin">구매회사정보</a>
 	                     </div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white " href="#">구매 발주관리</a>
+	                         <a class="small text-white" href="#">구매 발주관리</a>
 	                     </div>
 	                 </div>
 	             </div>
