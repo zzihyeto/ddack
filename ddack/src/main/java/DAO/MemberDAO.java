@@ -3,9 +3,14 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import db.JDBCUtility;
 import entity.MemOrder;
@@ -247,46 +252,57 @@ public class MemberDAO {
 		
 	}
 
-	public static void setMemOrder(String m_od_code,String m_code, HashMap<String, Integer> cart_map, String order_date,
-			String due_date) {
+	public static void setMemOrder(String m_code, HashMap<String, Integer> cart_map, String order_date,
+			String due_date) throws ParseException {
 
+		//-----dead_line 날짜 계산 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date order_date_f = formatter.parse(due_date);//원하는 주문날짜 기입한걸 date형식으로 바꾸고 
+		Calendar cal = Calendar.getInstance();//계산할수 있게 불러서
+		cal.setTime(order_date_f);//셋팅해주고 //date계산하기 
+		cal.add(Calendar.DATE, -5);//dead_line 우리가 정한 기한일 만들려고 -5일 정도 넉넉하게 잡고 생산시작하는걸로 
+		String dead_line = formatter.format(cal.getTime());//다시 포켓팅해서 스트링으로 뱉기
+		
+		String m_od_code=null;
+		int succ_count = 0;
+
+		m_od_code = MemberDAO.makeModcode();
 		conn = JDBCUtility.getConnection();
-
-		int succ_count=0;
 		PreparedStatement pstmt1 =null;
-		ResultSet rs = null;
 		
 		try {
-			String sql ="insert into memorder(m_od_code,m_code,p_code,p_count,order_date,due_date) VALUES (?,?,?,?,?,?)";
+			String sql ="insert into memorder(m_od_code,m_code,p_code,p_count,order_date,dead_line,due_date) VALUES (?,?,?,?,?,?,?)";
 			pstmt1 = conn.prepareStatement(sql);
 			
 			//카드에 담겨진걸 "p_code":p_count hashmap으로 담아와서 여기서풀어
 			for(String i : cart_map.keySet()) {
 				String p_code = i;
 				int p_count = cart_map.get(i);
-				
-				pstmt1.setString(1, m_od_code);
+				pstmt1.setString(1, m_od_code);//변동사항 pk 라 변경되서 넣어져야함
 				pstmt1.setString(2, m_code);
-				pstmt1.setString(3, p_code);
-				pstmt1.setInt(4, p_count);
+				pstmt1.setString(3, p_code);//변동사항
+				pstmt1.setInt(4, p_count);//변동사항
 				pstmt1.setString(5, order_date);
-				pstmt1.setString(6, due_date);
+				pstmt1.setString(6, dead_line);
+				pstmt1.setString(7, due_date);
 				
-				succ_count = pstmt1.executeUpdate();			
-
+				succ_count =pstmt1.executeUpdate();
+				
 				if(succ_count>0) {
 					JDBCUtility.commit(conn);
 				}else {			
 					JDBCUtility.rollback(conn);
 				}
 				pstmt1.clearParameters();
+				m_od_code = m_od_code =m_od_code.substring(0,m_od_code.indexOf("_"))+"_"+Integer.toString(Integer.parseInt(m_od_code.substring(m_od_code.indexOf("_")+1)) +1);
 			}
+		
 			
 			
 		}catch (Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());		
 		}finally {
-			JDBCUtility.close(conn, pstmt1, rs);
+			JDBCUtility.close(conn, pstmt1, null);
 		}
 		
 	}
@@ -426,21 +442,22 @@ public class MemberDAO {
 		return member_list;
 	}
 
-	public boolean duplicateIdCheck(String id) {
+	//아이디 있으면 결과는 false 배출하도록 
+	public boolean duplicateIdCheck(String inputid) {
 
 		conn = JDBCUtility.getConnection();
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		boolean result = false;
+		boolean result = true;
 		String sql="select m_id from member where m_id =?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, inputid);
 			rs = pstmt.executeQuery();
 		
 			while(rs.next()) {
-				result=true;
+				result=false;
 			}
 		}catch(Exception e) {
 			System.out.println("문제가 발생했습니다."+e.getMessage());	
@@ -579,8 +596,182 @@ public class MemberDAO {
 		}
 		
 	}
+	// 회원탈퇴
+	public boolean deleteMember(String id, String pw) {
+	// ↑ boolean타입으로(return값이 true or false)의 deleteMember() 메서드생성
+		boolean result = false;
+		
+		conn = db.JDBCUtility.getConnection();
+		Connection conn1 = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		String dbpw="";
+		// ↑ DB에서 읽어 올 password를 저장할 변수를 선어하고 초기ㄹ호
+		
+		try {
+			String sql="select m_pw from member where m_id=?";
+			// ↑ where 조건문 id에 pstmt.setString(1, id)로 매개변수로 넘겨받은 id를 위치홀더에 넣었기 때문에,
+			// member 테이블의 매개변수로 받은 id를 가진 데이터의 password 칼럼을 검색
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			// ↑ 쿼리를 DB에 질의하고 받아온 결과를 rs에 저장
+			if(rs.next()) {
+				dbpw = rs.getString("m_pw");
+				// ↑ DB의 쿼리문의 결과값으로 가져온 rs에서 password칼럼에 있는 값을 getString을 통해 가져와 dbpw에 저장.
+				if(dbpw.equals(pw)) {
+					String delsql = "delete from member where m_id=?";
+					pstmt1 = conn1.prepareStatement(delsql);
+					pstmt1.setString(1, id);
+					int succcnt = pstmt1.executeUpdate();
+					
+					if(succcnt>0) {
+						result = true;
+						JDBCUtility.commit(conn);
+					}else {			
+						JDBCUtility.rollback(conn);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("삭제되지 못함");
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+			JDBCUtility.close(conn1, pstmt1, null);			
+		}
+		return result;
+	}
 
+	// 날짜별. 제품별, 주문갯수 가져오기
+	public List<MemOrder> getcount() {
+		
+		conn = JDBCUtility.getConnection();
+
+		List<MemOrder> need_list = new ArrayList<MemOrder>();
+		
+		MemOrder need = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select p.p_name, mo.p_count, mo.order_date from memorder mo, product p order by order_date desc";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				need = new MemOrder();
+				need.setP_name(rs.getString("p_name"));
+				need.setP_count(rs.getInt("p_count"));
+				need.setOrder_date(rs.getDate("order_date"));
+				
+				need_list.add(need);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다: 거래처정보" + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return need_list;
+	}
 	
 	
+	// 비밀번호 찾기
+	public String findpw(String id, String name, String jumin) {
+		
+		conn = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String pw = null;	
+		String sql ="select m_pw from member where m_id=? and  m_name=? and m_jumin=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, jumin);
+			rs = pstmt.executeQuery();			
+			
+			if(rs.next()) {
+				pw=rs.getString("member.m_pw");
+			}
+			
+		}catch (Exception e) {
+			System.out.println("실패."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return pw;
+	}
+	
+	// 비밀번호찾을 때 아이디맞는지에 대한 메서드
+
+	public boolean Idcheck(String id) {
+		
+		boolean being_id = false;
+		conn = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select * from member where m_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String m_id = rs.getString("m_id");
+				if(id.equals(m_id)) {
+					being_id=true;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("실패"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt,rs);
+		}
+		return being_id;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

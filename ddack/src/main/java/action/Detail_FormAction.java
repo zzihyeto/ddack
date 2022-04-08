@@ -20,7 +20,7 @@ public class Detail_FormAction implements Action {
 		ReviewBean review = new ReviewBean();
 		
 		String p_code = req.getParameter("p_code");
-		String m_id = req.getParameter("m_id");
+		String m_id = req.getParameter("m_id");//글쓴 아이디
 		
 				
 		//p_code와 m_id로 p_review와 p_name 가져오기

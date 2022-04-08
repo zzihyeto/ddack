@@ -33,7 +33,7 @@
                 	<!-- 사이드바 -->
                     <%@ include file ="main/include/layout/sidebar.jsp"%>    
                 </nav>
-        </div>
+        	</div>
             
             <div id="layoutSidenav_content">
                 <main>
