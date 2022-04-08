@@ -2,29 +2,31 @@ package adminaction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import DAO.ProductDAO;
 import action.Action;
-import entity.BOM;
 import vo.ActionForward;
 
-public class BomdetailAction implements Action {
+public class ProducinsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+		
 		req.setCharacterEncoding("utf-8");
-		String mat_code = req.getParameter("mat_code");
+		String p_name = req.getParameter("p_name");
+		String invent_code = req.getParameter("invent_code");
+		int invent_total = Integer.parseInt(req.getParameter("invent_total"));
+		int invent_qty = Integer.parseInt(req.getParameter("invent_qty"));
+		String eq_code = req.getParameter("eq_code");
 		
 		ProductDAO productDAO = ProductDAO.getInstance();
-		BOM bom = productDAO.getbomrow(mat_code);
+		productDAO.
 		
-		HttpSession session = req.getSession();
-		session.setAttribute("bom", bom);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/bom_detail.jsp");
+		forward.setPath("/adminpage/product_state.admin");
+		
 		return forward;
 	}
 

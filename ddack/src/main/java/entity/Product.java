@@ -22,7 +22,6 @@ public class Product {
 	
 	String store_name; //저장소 이름
 	String store_loc; //저장소 위치
-	
 	public Product() {}
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {

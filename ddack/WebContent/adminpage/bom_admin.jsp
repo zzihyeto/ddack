@@ -51,7 +51,7 @@
                         </ol>
                         <c:if test="${!empty succ_update}">
 					        <div class="alert alert-warning" role="alert">
-					          ${succ_updat}
+					          ${succ_update}
 					        </div>
 					    </c:if>
                         <div class="card mb-4">

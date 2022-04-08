@@ -15,6 +15,7 @@ import adminaction.BomdupdateAction;
 import adminaction.BominsertAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
+import adminaction.ProducinsertAction;
 import vo.ActionForward;
 
 @WebServlet("*.add")
@@ -59,6 +60,13 @@ public class AddController extends HttpServlet{
 			}
 		}else if(command.equals("/adminpage/bomupdate.add")) {
 			action = new BomdupdateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/productinsert.add")) {
+			action = new ProducinsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
