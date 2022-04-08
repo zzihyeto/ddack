@@ -54,7 +54,7 @@ public class AdminController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		//System.out.println("====command====>"+command);
+		System.out.println("====command====>"+command);
 		
 		if(command.equals("/adminpage/memorder.admin")) {
 			action = new MemorderAction();
