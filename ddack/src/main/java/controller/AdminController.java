@@ -16,6 +16,7 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
+import adminaction.PurOrderAction;
 import adminaction.Q_bomAction;
 import adminaction.Q_bomInsertAction;
 import adminaction.Q_chproAction;
@@ -24,6 +25,9 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.SupplierAction;
+import adminaction.bomconAction;
+import adminaction.storagAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
@@ -150,6 +154,34 @@ public class AdminController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/adminpage/bom_com.admin")) {
+			action = new bomconAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/storage.admin")) {
+			action = new storagAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/supplier_info.admin")) { //외부거래처 정보 나타내기
+			action = new SupplierAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처:재료구매위한 발주서작성
+			action = new PurOrderAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			} 
 		}
 		
 		

@@ -65,7 +65,9 @@ public class JoinDAO {
 			}else {			
 				JDBCUtility.rollback(conn);
 			}
+			
 			JDBCUtility.close(null, pstmt1, null);
+			
 		} catch(Exception e) {
 			System.out.println("등록되지 못했습니다." + e.getMessage());
 		}finally {

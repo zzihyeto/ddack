@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.ReviewDAO;
 import entity.PageInfo;
 import entity.ReviewBean;
 import service.PageService;
@@ -23,7 +22,7 @@ public class SearchListAction implements Action{
 		String _field = req.getParameter("f");
 		String _query = req.getParameter("q");
 		String _page = req.getParameter("page");
-		String field = "m_id";
+		String field = "re_code";
 		String query = "";
 		
 		int page = 1;

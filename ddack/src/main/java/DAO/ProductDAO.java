@@ -181,7 +181,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from memorder where m_code =  '" + ingm_code+"'";
+		String sql = "select * from memorder where m_code =  '" + ingm_code + "'";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -318,6 +318,83 @@ public class ProductDAO {
 			JDBCUtility.close(conn, null, null);
 		}
 	}
+
+	//mat_name , mat_container_code , mat_count ,  (D , mat_con_out)
+	//생산지시 내리면 mat_con_out="D" 랑 mat_con_out 지정해야곘다; 
+	public List<BOM> getbomcontainer(String mat_con_out, int mat_count_update) {
+		conn = JDBCUtility.getConnection();
+		List<BOM> bomcon_list = new ArrayList<>();
+		BOM bom = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select mat_code, mat_name, mat_container_code, mat_count from bom ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bom = new BOM();
+				bom.setMat_code(rs.getString("mat_code"));
+				bom.setMat_name(rs.getString("mat_name"));
+				bom.setMat_container_code(rs.getString("mat_container_code"));
+				bom.setMat_count(rs.getInt("mat_count"));
+				bom.setMat_con_out(mat_con_out);
+				bom.setMat_count_update(mat_count_update);
+				bomcon_list.add(bom);
+			} 
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return bomcon_list;
+	}
+
+	public List<Product> getStorageInfo() {
+		
+		conn = JDBCUtility.getConnection();
+		List<Product> storage_list = new ArrayList<>();
+		Product bom = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select  it.invent_code , st.store_name , pr.p_name , it.invent_qty, it.invent_total, st.store_loc "
+				+ " from `storage` st , item_invent it , product pr "
+				+ " where st.store_code=it.store_code and pr.p_code = it.p_code ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bom = new Product();
+				bom.setInvent_code(rs.getString("invent_code"));
+				bom.setStore_name(rs.getString("store_name"));
+				bom.setP_name(rs.getString("p_name"));
+				bom.setInvent_qty(rs.getInt("invent_qty"));
+				bom.setInvent_total(rs.getInt("invent_total"));
+				bom.setStore_loc(rs.getString("store_loc"));
+				storage_list.add(bom);
+			} 
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return storage_list;
+	}
+
+
 
 	
 	

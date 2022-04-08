@@ -1,3 +1,12 @@
+create sequence review_re_code
+start with 111
+INCREMENT by 1
+maxvalue 99999
+cycle;
+
+select * from user_sequence
+
+
 CREATE TABLE `BOM`  (
   `mat_code` varchar(255) NOT NULL COMMENT '원자재코드',
   `mat_name` varchar(255) NOT NULL COMMENT '원자재이름',
@@ -235,3 +244,39 @@ ALTER TABLE `REVIEW` ADD FOREIGN KEY (`m_id`) REFERENCES `MEMBER` (`m_id`);
 ALTER TABLE CH_PROCESS MODIFY mk_ps_code int;*/
 
 ALTER TABLE `CH_PROCESS` ADD FOREIGN KEY (`mk_ps_code`) REFERENCES `MKPERSON` (`mk_ps_code`);
+
+
+create table standard(
+	st_code varchar(255) not null <!-- // pk 표준공정코드 -->
+	,p_code  varchar(255) NOT NULL /*제품코드*/
+	,source  int  /*소스양*/
+	,wrapping INT /* 포장비닐 갯수*/
+	,skewer INT /* 핫바용꼬치 */
+ 	,cook_code varchar(255) NOT NULL /*쿡코드*/
+	,leadtime int not null /*소요시간/분 */
+	,output int /* 생산량/1일 */
+	,primary key(st_code)
+);
+
+
+insert into standard VALUES("표준공정_1","3015",0,1,0,"cook_1",10,500);
+insert into standard VALUES("표준공정_2","3016",10,1,0,"cook_1",10,500);
+insert into standard VALUES("표준공정_3","3017",10,1,0,"cook_1",10,500);
+insert into standard VALUES("표준공정_4","3019",10,1,0,"cook_1",10,500);
+insert into standard VALUES("표준공정_5","3018",10,1,0,"cook_1",10,500);
+insert into standard VALUES("표준공정_6","30114",0,1,0,"cook_3",10,500);
+insert into standard VALUES("표준공정_7","30115",10,1,0,"cook_3",10,500);
+insert into standard VALUES("표준공정_8","30116",10,1,0,"cook_3",10,500);
+insert into standard VALUES("표준공정_9","30118",10,1,0,"cook_3",10,500);
+insert into standard VALUES("표준공정_10","30117",10,1,0,"cook_3",10,500);
+insert into standard VALUES("표준공정_11","3011",0,1,0,"cook_2",10,500);
+insert into standard VALUES("표준공정_12","30110",10,1,0,"cook_2",10,500);
+insert into standard VALUES("표준공정_13","30111",10,1,0,"cook_2",10,500);
+insert into standard VALUES("표준공정_14","30113",10,1,0,"cook_2",10,500);
+insert into standard VALUES("표준공정_15","30112",10,1,0,"cook_2",10,500);
+insert into standard VALUES("표준공정_16","30119",0,1,1,"cook_4",20,250);
+insert into standard VALUES("표준공정_17","3012",10,1,1,"cook_4",20,250);
+insert into standard VALUES("표준공정_18","30120",10,1,1,"cook_4",20,250);
+insert into standard VALUES("표준공정_19","3014",10,1,1,"cook_4",20,250);
+insert into standard VALUES("표준공정_20","3013",10,1,1,"cook_4",20,250);
+

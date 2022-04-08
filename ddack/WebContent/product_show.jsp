@@ -1,3 +1,4 @@
+<%@page import="entity.Member"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entity.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -6,6 +7,7 @@
 	ArrayList<Product> pro_list = (ArrayList<Product>) session.getAttribute("pro_list");
 	request.setAttribute("pro_list", pro_list);
 	//System.out.println("======type==="+pro_list.getClass().getSimpleName());
+	Member member_info =(Member) session.getAttribute("member_info");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,11 +104,22 @@
 		                                    </div>
 		                                </div>
 	                                </form>
-                                    <script type="text/javascript">
+	                                <c:if test="${empty member_info}">
+						            	<script type="text/javascript">
+										function handleOnClick()  {
+									    	alert("로그인 후 구매 가능합니다");
+										}        
+									 </script>
+						            </c:if>
+						            
+						            <c:if test="${!empty member_info}">
+						            	<script type="text/javascript">
 										function handleOnClick()  {
 									    	alert("장바구니에 추가 되었습니다.");
 										}        
 									 </script>
+						            </c:if>
+                          
 	                            </div>
 	                        </div>
                         </c:forEach>
