@@ -993,6 +993,13 @@ public class ProductDAO {
 		return store_code;
 	}
 
+	public void lineupdate(String line_code, String line_name, String line_usable, String check_date,
+			String check_content) {
+
+		
+		
+	}
+
 	
 	
 	

@@ -53,7 +53,7 @@
 	                            <i class="fas fa-table me-1"></i>Product_테이블
 	                        </div>
 	                        <div class="card-body">
-                                <form action="productupdate.add" method="post">
+                                <form action="lineupdate.add" method="post">
                                     <div class="form-floating mb-3">
                                         <input name="line_name" class="form-control"  type="text" value="${chpro.line_name }" />
                                         <label for="line_name">라인 이름</label>
