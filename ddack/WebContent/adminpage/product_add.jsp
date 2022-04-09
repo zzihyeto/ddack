@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String invent_qty_warn = (String) request.getAttribute("invent_qty_warn");
+%>
+<c:set var="invent_qty_warn" value="<%=invent_qty_warn %>"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,51 +51,42 @@
 	                        <div class="card-header">
 	                            <i class="fas fa-table me-1"></i>Product_테이블
 	                        </div>
+	                        <c:if test="${!empty invent_qty_warn}">
+						        <div class="alert alert-warning" role="alert">
+						          ${invent_qty_warn} 
+						        </div>
+					    	</c:if>
 	                        <div class="card-body">
                                 <form action="productinsert.add" method="post">
+                      		      	<div class="form-floating mb-3">
+                                    	<input name="store_name" class="form-control"  type="text" placeholder="완제품 이름"/>
+                                        <label for="store_name">저장소이름</label>
+                                    </div>
                                     <div class="form-floating mb-3">
-                                        <input name="p_name" class="form-control"  type="text" placeholder="원자재 이름" />
+                                    	<input name="p_name" class="form-control"  type="text" placeholder="완제품 이름"/>
                                         <label for="p_name">완제품이름</label>
                                     </div>
+                                    
                                     <div class="form-floating mb-3">
-                                    	<select name="invent_code" id="" class="form-control">
-                                    		<option value="창고코드_1">저장소이름_1</option>
-                                    		<option value="창고코드_2">저장소이름_2</option>
-                                    		<option value="창고코드_3">저장소이름_3</option>
-                                    		<option value="창고코드_4">저장소이름_4</option>
-                                    		<option value="창고코드_5">저장소이름_5</option>
-                                    		<option value="창고코드_6">저장소이름_6</option>
-                                    		<option value="창고코드_7">저장소이름_7</option>
-                                    		<option value="창고코드_8">저장소이름_8</option>
-                                    		<option value="창고코드_9">저장소이름_9</option>
-                                    		<option value="창고코드_10">저장소이름_10</option>
-                                    		<option value="창고코드_11">저장소이름_11</option>
-                                    		<option value="창고코드_12">저장소이름_12</option>
-                                    		<option value="창고코드_13">저장소이름_13</option>
-                                    		<option value="창고코드_14">저장소이름_14</option>
-                                    		<option value="창고코드_15">저장소이름_15</option>
-                                    		<option value="창고코드_16">저장소이름_16</option>
-                                    		<option value="창고코드_17">저장소이름_17</option>
-                                    		<option value="창고코드_18">저장소이름_18</option>
-                                    		<option value="창고코드_19">저장소이름_19</option>
-                                    		<option value="창고코드_20">저장소이름_20</option>
-                                    	</select>
-                                        <input name="invent_storname" class="form-control"  type="text" placeholder="원자재 종류"/>
-                                        <label for="invent_storname">창고 코드</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="invent_total" class="form-control"  type="text" placeholder="원자재 단위" />
-                                        <label for="invent_total">창고최대 갯수</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="invent_qty" class="form-control"  type="text" placeholder="원자재 갯수"/>
+                                        <input name="invent_qty" class="form-control"  type="text" placeholder="완제품 갯수"/>
                                         <label for="invent_qty">완제품 갯수</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="eq_code" class="form-control"  type="text" placeholder="원자재 관리자" />
-                                        <label for="eq_code">완제품 상태</label>
+                                        <input name="eq_code" class="form-control"  type="text" placeholder="완제품 상태" />
+                                        <label for="eq_code">O or X</label>
                                     </div>
-                                    
+                                    <div class="form-floating mb-3">
+                                        <input name="p_kg" class="form-control"  type="text" placeholder="완제품무게" />
+                                        <label for="p_kg">완제품무게</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input name="p_life" class="form-control"  type="text" placeholder="완제품유통기한" />
+                                        <label for="p_life">완제품유통기한</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input name="p_pay" class="form-control"  type="text" placeholder="완제품가격" />
+                                        <label for="p_pay">완제품가격</label>
+                                    </div>
                                     <div class="form-floating mb-3">
                                         <input class="btn btn-success"  type="submit" value="등록하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">

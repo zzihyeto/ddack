@@ -1,9 +1,9 @@
-<%@page import="entity.BOM"%>
+<%@page import="entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
- 	BOM bom =(BOM) request.getAttribute("bom");
-	request.setAttribute("bom", bom);
+	Product product =(Product) request.getAttribute("product");
+	request.setAttribute("product", product);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +35,11 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">BOM_테이블</h1>
+                        <h1 class="mt-4">Product_테이블</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">BOM_테이블</li>
+                            <li class="breadcrumb-item active">Product_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -50,47 +50,35 @@
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>BOM_테이블
+	                            <i class="fas fa-table me-1"></i>Product_테이블
 	                        </div>
 	                        <div class="card-body">
-                                <form action="bomupdate.add" method="post">
+                                <form action="productupdate.add" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="mat_name" class="form-control"  type="text" value="${bom.mat_name }" />
-                                        <label for="mat_name">원자재 이름</label>
+                                        <input name="p_name" class="form-control"  type="text" value="${product.p_name }" />
+                                        <label for="p_name">완제품 이름</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_type" class="form-control"  type="text" value="${bom.mat_type }" />
-                                        <label for="mat_type">원자재 종류</label>
+                                        <input name="eq_code" class="form-control"  type="text" value="${product.eq_code }" />
+                                        <label for="eq_code">완제품 상태</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_unit" class="form-control"  type="text" value="${bom.mat_unit }" />
-                                        <label for="mat_unit">원자재 단위</label>
+                                        <input name="p_kg" class="form-control"  type="text" value="${product.p_kg_int }" />
+                                        <label for="p_kg">완제품 단위</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_count" class="form-control"  type="text" value="${bom.mat_count }" />
-                                        <label for="mat_count">원자재 갯수</label>
+                                        <input name="p_life" class="form-control"  type="text" value="${product.p_life }" />
+                                        <label for="p_life">완제품 유통기한</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_person" class="form-control"  type="text" value="${bom.mat_person }"  />
-                                        <label for="mat_person">원자재 관리자</label>
+                                        <input name="p_pay" class="form-control"  type="text" value="${product.p_pay }"  />
+                                        <label for="p_pay">완제품 가격</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="mat_container_code" class="form-control"  type="text" value="${bom.mat_container_code }"  readonly/>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="mat_life_t" class="form-control"  type="text" value="${bom.mat_life_t }"  />
-                                        <label for="mat_container_code">원자재 창고</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="c_check" class="form-control"  type="text" value="${bom.c_check }"  />
-                                        <label for="mat_life_t">원자재 유통기한</label>
-                                    </div>
-                                    <input type="hidden" name="mat_code" value="${bom.mat_code }" />
-                                    <input type="hidden" name="clean_code" value="${bom.clean_code }" />
+                                    <input type="hidden" name="p_code" value="${product.p_code }" />
                                     <div class="form-floating mb-3">
                                         <input class="btn btn-success"  type="submit" value="수정하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
-                                        <a href="bomdelete.add?mat_code=${bom.mat_code }&clean_code=${bom.clean_code}" class="btn btn-danger">삭제하기</a>
+                                        <a href="productdelete.add?p_code=${product.p_code }" class="btn btn-danger">삭제하기</a>
                                     </div>
                                 </form>
                             </div>

@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import adminaction.BomdeleteAction;
 import adminaction.BomdetailAction;
 import adminaction.BomdupdateAction;
 import adminaction.BominsertAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
+import adminaction.ProducdeleteAction;
+import adminaction.ProducdetailAction;
 import adminaction.ProducinsertAction;
+import adminaction.ProducupdateAction;
 import vo.ActionForward;
 
 @WebServlet("*.add")
@@ -65,8 +69,36 @@ public class AddController extends HttpServlet{
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/adminpage/bomdelete.add")) {
+			action = new BomdeleteAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/adminpage/productinsert.add")) {
 			action = new ProducinsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/productdetail.add")) {
+			action = new ProducdetailAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/productupdate.add")) {
+			action = new ProducupdateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/productdelete.add")) {
+			action = new ProducdeleteAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

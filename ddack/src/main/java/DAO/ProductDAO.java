@@ -110,7 +110,7 @@ public class ProductDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		String sql = "select p.p_name , st.store_name ,inv.invent_total ,inv.invent_qty ,p.eq_code "
+		String sql = "select p.p_code ,p.p_name , st.store_name ,inv.invent_total ,inv.invent_qty ,p.eq_code "
 				+ "from product p , item_invent inv , `storage` st "
 				+ "where p.p_code = inv.p_code and st.store_code=inv.store_code ";
 		
@@ -120,6 +120,7 @@ public class ProductDAO {
 			
 			while(rs.next()) {
 				produc = new Product();
+				produc.setP_code(rs.getString("p_code"));
 				produc.setP_name(rs.getString("p_name"));
 				produc.setInvent_storname(rs.getString("store_name"));
 				produc.setInvent_total(rs.getInt("invent_total"));
@@ -612,6 +613,379 @@ public class ProductDAO {
 		}finally {
 			JDBCUtility.close(conn, pstmt, null);
 		}
+	}
+
+	public void bomdelete(String mat_code,String clean_code) throws SQLException {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		String sql="delete from bom where mat_code=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_code);
+			
+			int regCount= pstmt.executeUpdate();
+			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			sql= "delete from clean where clean_code=?";
+
+			pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setString(1, clean_code);
+			
+			regCount=0;
+			regCount= pstmt1.executeUpdate();
+			
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+			pstmt1.close();
+		}
+	}
+
+	public String getNewp_code() {
+
+		conn = JDBCUtility.getConnection();
+		String p_code ="";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT p_code FROM product ORDER BY length(p_code) desc, p_code desc";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				p_code =rs.getString("p_code");
+				break;
+			}
+			
+			p_code= Integer.toString(Integer.parseInt(p_code)+1);
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return p_code;
+	}
+
+	public String getNewinvent_code() {
+
+
+		conn = JDBCUtility.getConnection();
+		String invent_code ="";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT invent_code FROM item_invent ORDER BY length(invent_code) desc, invent_code desc";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				invent_code =rs.getString("invent_code");
+				break;
+			}
+			invent_code= invent_code.split("_")[0]+"_"
+						+Integer.toString(Integer.parseInt(invent_code.split("_")[1])+1);
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return invent_code;
+	}
+
+	public void producinsert(String p_code, String p_name, String eq_code, int p_kg,String p_life, int p_pay) {
+
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into product(p_code,p_name,eq_code,p_kg,p_life,p_pay) "
+				+ " VALUES(?,?,?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			pstmt.setString(2, p_name);
+			pstmt.setString(3, eq_code);
+			pstmt.setInt(4, p_kg);
+			pstmt.setString(5, p_life);
+			pstmt.setInt(6, p_pay);
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+
+	public void inventinsert(String invent_code, String p_code, int invent_qty,String store_code) {
+
+		
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into item_invent(invent_code,p_code,invent_qty,invent_total,`update`,store_code) "
+				+ " VALUES(?,?,?,1000,sysdate(),?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, invent_code);
+			pstmt.setString(2, p_code);
+			pstmt.setInt(3, invent_qty);
+			pstmt.setString(4, store_code);
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
+	public String getNewstore_code() {
+		conn = JDBCUtility.getConnection();
+		String store_code ="";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT store_code FROM `storage` ORDER BY length(store_code) desc, store_code desc";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				store_code =rs.getString("store_code");
+				break;
+			}
+			store_code= store_code.split("_")[0]+"_"
+						+Integer.toString(Integer.parseInt(store_code.split("_")[1])+1);
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return store_code;
+	}
+
+	public void insertstorage(String store_code, String store_name) {
+
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into `storage`(store_code,store_name) "
+				+ " VALUES(?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, store_code);
+			pstmt.setString(2, store_name);
+			
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+
+	public Product getproductrow(String p_code) {
+
+		conn = JDBCUtility.getConnection();
+		Product product = new Product();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="select * from product where p_code =?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				product.setP_code(rs.getString("p_code"));
+				product.setP_name(rs.getString("p_name"));
+				product.setEq_code(rs.getString("eq_code"));
+				product.setP_kg_int(rs.getInt("p_kg"));	
+				product.setP_life(rs.getString("p_life"));
+				product.setP_pay(rs.getString("p_pay"));
+			
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return product;
+	}
+
+	public void productupdate(String p_code, String p_name, String eq_code, int p_kg, String p_life,
+			String p_pay) {
+
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql ="update product set p_name=?,eq_code=?,p_kg=?,p_life=?,p_pay=? "
+				+ " where p_code=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_name);
+			pstmt.setString(2, eq_code);
+			pstmt.setInt(3, p_kg);
+			pstmt.setString(4, p_life);
+			pstmt.setString(5, p_pay);
+			pstmt.setString(6, p_code);
+			
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+
+	public void producdelete(String store_code ,String p_code) throws SQLException {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
+		
+		String sql= "delete from item_invent where p_code=?";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			
+			int regCount= pstmt.executeUpdate();
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			regCount=0;
+			
+			sql="delete from product where p_code=?"; 
+			pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setString(1, p_code);
+			
+			regCount= pstmt1.executeUpdate();
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			regCount=0;
+			
+			sql ="delete from `storage` where store_code=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setString(1, store_code);
+			
+			regCount= pstmt2.executeUpdate();
+			if(regCount>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		}finally {
+			pstmt2.close();
+			pstmt1.close();
+			JDBCUtility.close(conn, pstmt, null);
+			
+		}
+		
+	}
+
+	public String getstor_code(String p_code) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String store_code = "";
+		
+		String sql ="select store_code from `item_invent` where p_code =?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				store_code = rs.getString("store_code");
+			
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return store_code;
 	}
 
 	

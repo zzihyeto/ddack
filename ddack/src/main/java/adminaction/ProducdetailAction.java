@@ -1,7 +1,5 @@
 package adminaction;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,20 +9,22 @@ import action.Action;
 import entity.Product;
 import vo.ActionForward;
 
-public class Pro_stateAction implements Action {
+public class ProducdetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		ProductDAO productDAO = ProductDAO.getInstance();
-		List<Product> pro_state_list = productDAO.selectProducState();
-		//p_name..store_name..invent_total..invent_qty..eq_code...p_code 담겨있음 
+		req.setCharacterEncoding("utf-8");
+		String p_code = req.getParameter("p_code");
 		
+		ProductDAO productDAO = ProductDAO.getInstance();
+		Product product = productDAO.getproductrow(p_code);
+
 		HttpSession session = req.getSession();
-		session.setAttribute("pro_state_list", pro_state_list);
+		session.setAttribute("product", product);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/product_state_admin.jsp");
+		forward.setPath("/adminpage/product_detail.jsp");
 		return forward;
 	}
 
