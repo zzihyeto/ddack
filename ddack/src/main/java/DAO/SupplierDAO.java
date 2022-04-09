@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,7 +81,7 @@ public class SupplierDAO {
 		CallableStatement cstmt = null;
 		
 		try {
-			cstmt = conn.prepareCall("call material_check(?, ?)");
+			cstmt = conn.prepareCall("call CheckStock(?, ?)");
 			cstmt.setString(1, mat_code);
 			cstmt.setInt(2, mat_count);
 			cstmt.execute();
@@ -94,16 +95,43 @@ public class SupplierDAO {
 			JDBCUtility.close(conn, null, null);
 		}
 	}
+
+	// 신규거래처등록
+	public int supRegist(String b_comp_code, String b_comp_name, 
+			String b_comp_addr, String b_comp_tel, String mat_code) {
 		
+		conn = JDBCUtility.getConnection();
+
+		int supRegist = 0;
+		int supregCount = 0;
 		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "INSERT INTO buycompany(b_comp_code, b_comp_name, b_comp_addr, b_comp_tel, mat_code) "
+					+ "values(concat('발주회사코드_', nextval(sq_b_comp_code)), ?, ?, ?, ?)";
 	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_comp_name);
+			pstmt.setString(2, b_comp_addr);
+			pstmt.setString(3, b_comp_tel);
+			pstmt.setString(4, mat_code);
+			supregCount = pstmt.executeUpdate();
+			
+			if(supregCount >0) {
+				JDBCUtility.commit(conn);
+			} else {
+				JDBCUtility.rollback(conn);
+			}
 	
-	
-	
-	
-	
-	
-	
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		return supRegist;
+	}	
 	
 	
 }

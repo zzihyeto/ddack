@@ -1,14 +1,14 @@
-<%@ page import="entity.Supplier" %>
+<%@ page import="entity.MemOrder" %>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<Supplier> supplier_list = (List<Supplier>) session.getAttribute("supplier_list");
-	
-	request.setAttribute("supplier_list", supplier_list );
-	System.out.println("===supplier_list======"+supplier_list);
+	List<MemOrder> need_list = (List<MemOrder>) session.getAttribute("need_list");
+
+	request.setAttribute("need_list", need_list);
+	System.out.println("=====need_list======"+ need_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,27 +26,28 @@
     
     <body class="sb-nav-fixed">
      <!-- 네비게이션바 -->
-	 <jsp:include page="main/include/layout/header.jsp"/>
+	 <jsp:include page="/adminpage/main/include/layout/header.jsp"/>
+	
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
           	<!-- 사이드바 -->
-            <jsp:include page="main/include/layout/sidebar.jsp"/>    
+             <jsp:include page="/adminpage/main/include/layout/sidebar.jsp"/>    
          </nav>
       </div>
     <div id="layoutSidenav_content">
        <main>
   		  <div class="container-fluid px-4">
            <!-- table 내용 -->
-        	 <h1 class="mt-4">외부거래처 정보</h1>
+        	 <h1 class="mt-4">발주정보</h1>
              <ol class="breadcrumb mb-4">
              	  <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                  <li class="breadcrumb-item active">외부거래처 정보</li>
+                  <li class="breadcrumb-item active">발주관리 정보</li>
              </ol>
              
          <div class="card mb-4">
              <div class="card-body">
-				외부거래처 정보
+				구매발주관리
 				<br> DDACK의 노력은 계속되어야 한다.
 			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
                 .
@@ -63,50 +64,48 @@
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="purchase_order.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="#">발주목록</a></li>
+					<li><a class="dropdown-item" href="purchase_detail.admin">발주내역</a></li>
 				</ul>
-			 </li>
+			</li>
 		   </ul>   
                                            
            <div class="card mb-4">
               <div class="card-header">
-                  <i class="fas fa-table me-1"></i>거래처정보
+                  <i class="fas fa-table me-1"></i>발주관리
               </div>
                       
-             <div class="card-body">
-             <form action="supp_regist_form.jsp"  method="post">
-                 <table id="datatablesSimple" class="text-center">
-                    <thead align="center">
+             <div class="card-body ">
+                 <table id="datatablesSimple">
+                    <thead>
                          <tr>
-                             <th>거래처코드</th>
-         					 <th>거래처명</th>
-         					 <th>거래처 유형</th>
-<!--          					 <th>발주코드</th>         --> 			
-         					 <th>주소</th>
-         					 <th>연락처</th>
+                         	 <th>발주코드</th>
+                             <th>원재료코드</th>
+         					 <th>필요수량</th>		
+         					 <th>주문일자</th>
                          </tr>
                      </thead>
                      
 				      <tbody>
-					     <c:if test="${ !empty supplier_list }">
-					  		<c:forEach var="supplier" items="${ supplier_list }">
+					      <c:if test="${! empty need_list }">
+					  		<c:forEach var="need" items="${ need_list }">
 					  			<tr>
-					  				<td>${ supplier.b_comp_code }</td>
-					  				<td>${ supplier.b_comp_name }</td>
-					  				<td>${ supplier.mat_code }</td>
-					  				<%-- <td>${ supplier.b_order_code }</td> --%> 					  				
-					  				<td>${ supplier.b_comp_addr }</td>
-					  				<td>${ supplier.b_comp_tel }</td>
-					  			</tr>
+					  				<td>${need_list.b_order_code }</td>
+					  				<td>${ need_list.p_name }</td>
+					  				<td>${ need_list.p_count }</td>
+					  				<td>${ need_list.order_date }</td>
+<%-- 					  				<td>
+					  				<a href="#" id="makestart" class="btn btn-warning" 
+					  					 onclick="changebutton(); return false;">
+												생산 지시
+									</a>
+					  				</td>
+					  				<td>${order.delay_date}</td>
+					  				<td></td>
+ --%>					  		</tr>
 					  		</c:forEach>
 						</c:if>                                       
 				      </tbody>
          		  </table>
-				<!--신규거래처등록 supplier_form.jsp으로 이동하게 -->
-         	<div style="float:right" class="mb-3">
-				<input type="submit" class="btn btn-primary btn-block" value="신규거래처등록">
-			</div>
-</form>
   				 </div>
               </div>
         	</div>
@@ -114,9 +113,10 @@
 	   
 	      
    <!-- footer -->   
- 	<jsp:include page="main/include/layout/footer.jsp"/>
+  <jsp:include page="/adminpage/main/include//layout/footer.jsp"/>
+   
       </div>
- </div>
+    </div>
     	
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js2/scripts.js"></script>

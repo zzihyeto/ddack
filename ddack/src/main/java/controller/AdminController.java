@@ -25,6 +25,7 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
 import adminaction.storagAction;
@@ -172,18 +173,24 @@ public class AdminController extends HttpServlet {
 			action = new SupplierAction();
 			try	{
 				forward = action.execute(req, res);
-			}catch(Exception e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처: 원재료만 체크
+		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처: 원재료만 체크 ,supp_reg_form.admin
 			action = new PurOrderAction();
 			try	{
 				forward = action.execute(req, res);
-			}catch(Exception e) {
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/sup_reg_form.admin")) { //신규거래처 등록
+			action = new Sup_reg_formAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
 				e.printStackTrace();
 			} 
 		}
-		
 		
 		
 		

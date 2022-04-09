@@ -15,7 +15,7 @@ public class PurOrderAction implements Action {
 	
 		req.setCharacterEncoding("utf-8");
 		String mat_code = req.getParameter("mat_code");
-		int mat_count = req.getInt("mat_count");
+		int mat_count = 0;
 		
 		// BOM의 재고확인
 		// 모든재료가 1000개, 꼬치250개 이하이면알림.
@@ -23,7 +23,7 @@ public class PurOrderAction implements Action {
 		supplierDAO.CheckStock(mat_code, mat_count);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/order_manage/putchase_check.jsp");
+		forward.setPath("../order_manage/purchase_check.jsp");
 		
 		return forward;
 	}
