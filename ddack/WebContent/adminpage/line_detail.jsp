@@ -1,9 +1,9 @@
-<%@page import="entity.Product"%>
+<%@page import="entity.CHprocess"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	Product product =(Product) session.getAttribute("product");
-	request.setAttribute("product", product);
+	CHprocess chpro =(CHprocess) session.getAttribute("chpro");
+	request.setAttribute("chpro", chpro);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,26 +55,23 @@
 	                        <div class="card-body">
                                 <form action="productupdate.add" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="p_name" class="form-control"  type="text" value="${product.p_name }" />
-                                        <label for="p_name">완제품 이름</label>
+                                        <input name="line_name" class="form-control"  type="text" value="${chpro.line_name }" />
+                                        <label for="line_name">라인 이름</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="eq_code" class="form-control"  type="text" value="${product.eq_code }" />
-                                        <label for="eq_code">완제품 상태</label>
+                                        <input name="line_usable" class="form-control"  type="text" value="${chpro.line_usable }" />
+                                        <label for="line_usable">라인 사용가능</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="p_kg" class="form-control"  type="text" value="${product.p_kg_int }" />
-                                        <label for="p_kg">완제품 단위</label>
+                                        <input name="check_date" class="form-control"  type="text" value="${chpro.check_date }" />
+                                        <label for="check_date">라인체크날짜</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="p_life" class="form-control"  type="text" value="${product.p_life }" />
-                                        <label for="p_life">완제품 유통기한</label>
+                                        <input name="check_content" class="form-control"  type="text" value="${chpro.check_content }" readonly="readonly" />
+                                        <label for="check_content">라인체크내용</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="p_pay" class="form-control"  type="text" value="${product.p_pay }"  />
-                                        <label for="p_pay">완제품 가격</label>
-                                    </div>
-                                    <input type="hidden" name="p_code" value="${product.p_code }" />
+                                    
+                                    <input type="hidden" name="line_code" value="${chpro.line_code }" />
                                     <div class="form-floating mb-3">
                                         <input class="btn btn-success"  type="submit" value="수정하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">

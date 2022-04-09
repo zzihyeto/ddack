@@ -54,14 +54,14 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>Line_테이블
-                                <a href="#" class="btn btn-warning">추가하러 가기</a>
+                                <a href="line_add.jsp" class="btn btn-success">추가하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>라인 이름</th>
-                                            <th>라인 사용 유무</th>
+                                            <th>라인 사용가능 유무</th>
                                             <th>공정 코드</th>
                                             <th>라인체크 날짜</th>
                                             <th>라인체크 내용</th>
@@ -73,9 +73,12 @@
                                       	<c:if test="${!empty line_state_list}">
 							         		<c:forEach var="li_state" items="${line_state_list }">
 							         			<tr>
-							         				<td>${li_state.line_name}</td>
+							         				<td><a href="linedetail.add?line_code=${li_state.line_code }">${li_state.line_name}</a></td>
 							         				<td>${li_state.line_usable}</td>
-							         				<td>${li_state.ch_pro_code}</td>
+							         				<c:if test="${!empty li_state.ch_pro_code}">
+							         					<td>${li_state.ch_pro_code}</td>
+							         				</c:if>
+							         				
 							         				<td>${li_state.check_date}</td>
 							         				<td>${li_state.check_content}</td>							         											         				
 							         			</tr>

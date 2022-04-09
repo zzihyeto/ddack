@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
- 	BOM bom =(BOM) request.getAttribute("bom");
+ 	BOM bom =(BOM) session.getAttribute("bom");
 	request.setAttribute("bom", bom);
 %>
 <!DOCTYPE html>

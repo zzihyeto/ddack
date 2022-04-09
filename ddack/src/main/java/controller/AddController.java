@@ -14,6 +14,8 @@ import adminaction.BomdeleteAction;
 import adminaction.BomdetailAction;
 import adminaction.BomdupdateAction;
 import adminaction.BominsertAction;
+import adminaction.LinedetailAction;
+import adminaction.LineinsertAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.ProducdeleteAction;
@@ -99,6 +101,20 @@ public class AddController extends HttpServlet{
 			}
 		}else if(command.equals("/adminpage/productdelete.add")) {
 			action = new ProducdeleteAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/lineinsert.add")) {
+			action = new LineinsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/linedetail.add")) {
+			action = new LinedetailAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

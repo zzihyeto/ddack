@@ -24,7 +24,7 @@ public class ProductDAO {
 	
 	private static Connection conn = null;
 	
-	//완제품 나열하려고 다 가져오
+	//완제품 나열하려고 다 가져오기
 	public List<Product> getProduct() {
 		conn = JDBCUtility.getConnection();
 		List<Product> pro_list = new ArrayList<>();
@@ -146,9 +146,9 @@ public class ProductDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		String sql = "select li.line_name , li.line_usable , chp.ch_pro_code , lich.check_date, lich.check_content "
-				+ "from `lines` li , ch_process chp , linecheck lich "
-				+ "where li.line_code = chp.line_code and lich.line_code = li.line_code ";
+		String sql = "select li.* , lich.* ,chp.* "
+				+ " from `lines` li left join linecheck lich on  li.line_code = lich.line_code "
+				+ " left join ch_process chp  on lich.line_code = chp.line_code ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -156,9 +156,14 @@ public class ProductDAO {
 			
 			while(rs.next()) {
 				produc = new CHprocess();
+				produc.setLine_code(rs.getString("line_code"));
 				produc.setLine_name(rs.getString("line_name"));
 				produc.setLine_usable(rs.getString("line_usable"));
-				produc.setCh_pro_code(rs.getString("ch_pro_code"));
+				if(rs.getString("ch_pro_code") !=null) {
+					produc.setCh_pro_code(rs.getString("ch_pro_code"));
+				}else {
+					produc.setCh_pro_code("아직 미정");
+				}
 				produc.setCheck_date(rs.getDate("check_date"));
 				produc.setCheck_content(rs.getString("check_content"));
 				line_state_list.add(produc);
