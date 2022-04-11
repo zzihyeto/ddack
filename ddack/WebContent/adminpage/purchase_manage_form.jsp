@@ -5,15 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>발주서 작성</title>
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="css2/styles.css" rel="stylesheet"/>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>발주서 작성</title>
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+	<link href="css2/styles.css" rel="stylesheet"/>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -40,34 +40,49 @@
 						  <input type="text" class="form-control" name="b_order_code" aria-describedby="basic-addon3" placeholder="자동생성됨" readonly/>
 						</div><!--시퀀스로 자동입력되게  -->
 						
-						<div class="row mb-3">
-							<div class="col-md-6">
-								<div class="form-floating">
-									<input class="form-control" name="b_comp_code" type="text" placeholder="발주회사코드" /> 
-									<label for="b_comp_code">발주회사코드</label>
-								</div> <!--셀렉트옵션으로 불러와야함  -->
-							</div>
-							
-							<div class="col-md-6">
-								<div class="form-floating">
-									<input class="form-control" name="mat_code" type="text" placeholder="재료코드" /> 
-									<label for="mat_code">재료코드</label>
-								</div>
-							</div>
+				<div class="row mb-3">
+					<div class="col-md-6">								
+						<div class="input-group mb-3">
+						  <label class="input-group-text" for="inputGroupSelect">재료코드</label>
+						  <select class="form-select" name="mat_code">
+						    <option selected>재료코드</option>
+						    <option value="m1-1">m1-1</option>
+						    <option value="m2-1">m2-1</option>
+					    	<option value="m2-2">m2-2</option>
+					   		<option value="m2-3">m2-3</option>
+					    	<option value="m2-4">m2-4</option>
+					    	<option value="m3-1">m3-1</option>
+ 					    	<option value="m4-1">m4-1</option>
+  					   		<option value="m5-1">m5-1</option>
+					  	 </select>
+						</div>	
+					</div>
+												
+					<div class="col-md-6">
+						<div class="input-group mb-3">		<!-- 재료코드에 따른 발주회사코드 option으로 선택할수 있도록  -->
+						 <label class="input-group-text" for="inputGroupSelect">발주회사코드</label>
+						  <select class="form-select" name="b_comp_code">
+						    <option selected>발주회사코드</option>
+						    <option value="m1-1">m1-1</option>
+						    <option value="m2-1">m2-1</option>
+					    	<option value="m2-2">m2-2</option>
+					  	 </select>
+						</div>
+						</div>
 						</div>
 						
 						<div class="row mb-3">
 							<div class="col-md-6">
 								<div class="form-floating">
 									<input class="form-control" name="mat_order_d" type="text" placeholder="주문일자" /> 
-									<label for=""mat_order_d">주문일자</label>
+									<label for="mat_order_d">주문일자</label>
 								</div> <!-- 직접입력 -->
 							</div>
 							
 							<div class="col-md-6">
 								<div class="form-floating">
 									<input class="form-control" name="mat_count" type="text" placeholder="주문수량" /> 
-									<label for="mat_count">주문수량</label>
+									<label for="mat_count">주문수량</label><!-- 직접입력 -->
 								</div>
 							</div>
 						</div>
@@ -76,14 +91,14 @@
 						<div class="row mb-3">
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input class="form-control" name="exp_in_d" type="text" placeholder="주문일자" /> 
+									<input class="form-control" name="exp_in_d" type="text" placeholder="예상입고일" /> 
 									<label for="exp_in_d">예상입고일</label>
 								</div> <!-- 직접입력 -->
 							</div>
 							
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input class="form-control" name="tru_in_d" type="text" placeholder="주문수량" /> 
+									<input class="form-control" name="tru_in_d" type="text" placeholder="주문실제입고일수량" /> 
 									<label for="tru_in_d">실제입고일</label>
 								</div>
 							</div>
@@ -91,7 +106,7 @@
 					
 						<div class="input-group mb-3">
 						  <span class="input-group-text" name="quality">품질</span>
-						  <input type="text" class="form-control" name="quality" aria-describedby="basic-addon3" placeholder="자동생성됨" readonly/>
+						  <input type="text" class="form-control" name="quality" aria-describedby="basic-addon3" placeholder="자동생성됨"/>
 						</div><!--시퀀스로 자동입력되게  -->
 
 						<div class="mt-4 mb-0">

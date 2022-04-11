@@ -25,13 +25,13 @@
     </head>
     
     <body class="sb-nav-fixed">
-     <!-- 네비게이션바 -->
-	 <jsp:include page="main/include/layout/header.jsp"/>
-    <div id="layoutSidenav">
+ <!-- 네비게이션바 -->
+	 <%@ include file ="main/include/layout/header.jsp"%>
+  <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-          	<!-- 사이드바 -->
-            <jsp:include page="main/include/layout/sidebar.jsp"/>    
+          	  <!-- sidebar.jsp -->
+               <%@ include file ="main/include/layout/sidebar.jsp"%>        
          </nav>
       </div>
     <div id="layoutSidenav_content">
@@ -63,7 +63,7 @@
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="purchase_order.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="#">발주목록</a></li>
+					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
 				</ul>
 			 </li>
 		   </ul>   
@@ -115,8 +115,8 @@
          </main>
 	   
 	      
-   <!-- footer -->   
- 	<jsp:include page="main/include/layout/footer.jsp"/>
+	<!-- footer -->   
+    <%@ include file ="main/include/layout/footer.jsp"%> 	
       </div>
  </div>
     	

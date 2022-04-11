@@ -24,18 +24,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     
-    <body class="sb-nav-fixed">
-     <!-- 네비게이션바 -->
-	 <jsp:include page="/adminpage/main/include/layout/header.jsp"/>
+<body class="sb-nav-fixed">
+	 <!-- 네비게이션바 -->
+	 <%@ include file ="main/include/layout/header.jsp"%>
 	
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-          	<!-- 사이드바 -->
-             <jsp:include page="/adminpage/main/include/layout/sidebar.jsp"/>    
+      	   <!-- sidebar.jsp -->
+           <%@ include file ="main/include/layout/sidebar.jsp"%>    
          </nav>
       </div>
-    <div id="layoutSidenav_content">
+      
+ <div id="layoutSidenav_content">
        <main>
   		  <div class="container-fluid px-4">
            <!-- table 내용 -->
@@ -46,8 +47,7 @@
              </ol>
              
          <div class="card mb-4">
-             <div class="card-body">
-				구매발주관리
+             <div class="card-body">구매발주관리
 				<br> DDACK의 노력은 계속되어야 한다.
 			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
                 .
@@ -63,8 +63,8 @@
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="purchase_order.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="purchase_detail.admin">발주내역</a></li>
+					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
 				</ul>
 			</li>
 		   </ul>   
@@ -74,7 +74,7 @@
                   <i class="fas fa-table me-1"></i>발주관리
               </div>
                       
-             <div class="card-body ">
+             <div class="card-body">
                  <table id="datatablesSimple">
                     <thead>
                          <tr>
@@ -110,11 +110,10 @@
               </div>
         	</div>
          </main>
-	   
 	      
-   <!-- footer -->   
-  <jsp:include page="/adminpage/main/include//layout/footer.jsp"/>
-   
+ 	<!-- footer -->   
+    <%@ include file ="main/include/layout/footer.jsp"%> 	
+  
       </div>
     </div>
     	

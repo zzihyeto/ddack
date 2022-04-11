@@ -131,6 +131,45 @@ public class SupplierDAO {
 			JDBCUtility.close(conn, pstmt, null);
 		}
 		return supRegist;
+	}
+
+	//발주서 등록하기
+	public int checkm(String b_order_code, String b_comp_code, String mat_order_d,
+			 int mat_count, String exp_in_d, String tru_in_d, String quality) {
+		
+		conn = JDBCUtility.getConnection();
+
+		int checkm = 0;
+		int mat_c = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "insert into buycomp_order(b_order_code, b_comp_code,mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
+					+ " values(concat('발주코드_',nextval(sq_b_order_code)), ?, ?, ?, ?, ?, ?) ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_comp_code);
+			pstmt.setString(2, mat_order_d);
+			pstmt.setInt(3, mat_count);
+			pstmt.setString(4, exp_in_d);
+			pstmt.setString(5, tru_in_d);
+			pstmt.setString(6, quality);
+			mat_c = pstmt.executeUpdate();
+			
+			if (mat_c >0)	{
+				JDBCUtility.commit(conn);
+			} else {
+				JDBCUtility.rollback(conn);
+			}
+		}  catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+		return checkm;
 	}	
 	
 	

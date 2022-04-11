@@ -28,6 +28,8 @@ import adminaction.Q_productAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.pur_detailAction;
+import adminaction.pur_formAction;
 import adminaction.storagAction;
 import vo.ActionForward;
 
@@ -185,6 +187,20 @@ public class AdminController extends HttpServlet {
 			} 
 		} else if(command.equals("/adminpage/sup_reg_form.admin")) { //신규거래처 등록
 			action = new Sup_reg_formAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성
+			action = new pur_formAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_detail.admin")) { // 발주내역 보기
+			action = new pur_detailAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {

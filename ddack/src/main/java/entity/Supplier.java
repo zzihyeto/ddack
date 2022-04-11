@@ -7,7 +7,7 @@ public class Supplier { //(외부) 거래처관련
 	String b_order_code; //(외부)거래처주문코드
 	String b_comp_code; //거래처 코드
 	Date mat_order_d; //주문일자
-	int mat_count; //주문 수량
+	int mat_count = 0;//주문 수량
 	String exp_in_d; //예상입고일
 	String tru_in_d; //실제입고일
 	String quality; // 재료의 품질검사 O, X로 확인
