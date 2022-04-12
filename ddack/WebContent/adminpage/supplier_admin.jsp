@@ -62,8 +62,10 @@
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
 					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="#">발주목록</a></li>
+					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
+				
 				</ul>
 			 </li>
 		   </ul>   

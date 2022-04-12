@@ -146,7 +146,7 @@ public class SupplierDAO {
 		ResultSet rs = null;
 		
 		String sql = "insert into buycomp_order(b_order_code, b_comp_code,mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
-					+ " values(concat('발주코드_',nextval(sq_b_order_code)), ?, ?, ?, ?, ?, ?) ";
+					+ " values(concat('발주코드_', nextval(sq_b_order_code)), ?, ?, ?, ?, ?, ?) ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

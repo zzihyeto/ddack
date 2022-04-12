@@ -192,6 +192,13 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/adminpage/pur_check.admin")) { // 발주체크: 발주해야하는 수량품목체크
+			action = new PurOrderAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
 		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성
 			action = new pur_formAction();
 			try	{

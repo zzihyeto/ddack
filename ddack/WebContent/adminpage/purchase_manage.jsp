@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>구매발주관리</title>
+        <title>발주관리_확인</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -62,7 +62,8 @@
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="purchase_order.admin">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
+					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
 					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
 				</ul>
 			 </li>

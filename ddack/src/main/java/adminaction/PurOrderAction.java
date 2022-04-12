@@ -23,7 +23,7 @@ public class PurOrderAction implements Action {
 		supplierDAO.CheckStock(mat_code, mat_count);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("../order_manage/purchase_check.jsp");
+		forward.setPath("/adminpage/purchase_check.jsp");
 		
 		return forward;
 	}

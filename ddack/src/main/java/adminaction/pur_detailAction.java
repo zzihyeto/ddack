@@ -11,7 +11,7 @@ public class pur_detailAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		ActionForward actionforward = new ActionForward();
+		ActionForward forward = new ActionForward();
 		
 		
 		
