@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>발주관리</title>
+        <title>외부거래처정보</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -63,8 +63,8 @@
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
+					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_manage.admin">발주목록</a></li>
 				
 				</ul>
 			 </li>
@@ -76,16 +76,15 @@
               </div>
                       
              <div class="card-body">
-             <form action="supp_regist_form.jsp"  method="post">
                  <table id="datatablesSimple" class="text-center">
                     <thead align="center">
                          <tr>
                              <th>거래처코드</th>
          					 <th>거래처명</th>
          					 <th>거래처 유형</th>
-<!--          					 <th>발주코드</th>         --> 			
          					 <th>주소</th>
          					 <th>연락처</th>
+         					 <th>이메일주소</th>
                          </tr>
                      </thead>
                      
@@ -95,21 +94,21 @@
 					  			<tr>
 					  				<td>${ supplier.b_comp_code }</td>
 					  				<td>${ supplier.b_comp_name }</td>
-					  				<td>${ supplier.mat_code }</td>
-					  				<%-- <td>${ supplier.b_order_code }</td> --%> 					  				
+					  				<td>${ supplier.mat_code }</td>	
 					  				<td>${ supplier.b_comp_addr }</td>
 					  				<td>${ supplier.b_comp_tel }</td>
+					  				<td>${ supplier.b_email }</td>
 					  			</tr>
 					  		</c:forEach>
 						</c:if>                                       
 				      </tbody>
          		  </table>
 				<!--신규거래처등록 supplier_form.jsp으로 이동하게 -->
+				<br>
          	<div style="float:right" class="mb-3">
-				<input type="submit" class="btn btn-primary btn-block" value="신규거래처등록">
+				<a href="supp_regist_form.jsp" type="button" class="btn btn-primary btn-block">신규거래처등록</a>
 			</div>
-</form>
-  				 </div>
+  			 </div>
               </div>
         	</div>
          </main>

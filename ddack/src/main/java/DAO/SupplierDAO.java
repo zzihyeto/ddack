@@ -40,9 +40,7 @@ public class SupplierDAO {
 		ResultSet rs =null;
 		
 		
-		String sql = "select bc.b_comp_code, bc.b_comp_name, t1.b_order_code, t1.mat_code, bc.b_comp_addr, bc.b_comp_tel "
-					+ " from buycompany bc, (select b.mat_code, bco.b_order_code , bco.b_comp_code from buycomp_order bco, bom b "
-					+ " where bco.b_order_code = b.b_order_code) t1 where t1.b_comp_code = bc.b_comp_code ";
+		String sql = "select * from buycompany";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -53,10 +51,10 @@ public class SupplierDAO {
 				supplier = new Supplier();
 				supplier.setB_comp_code(rs.getString("b_comp_code"));
 				supplier.setB_comp_name(rs.getString("b_comp_name"));
-				supplier.setB_order_code(rs.getString("b_order_code"));
 				supplier.setMat_code(rs.getString("mat_code"));
 				supplier.setB_comp_addr(rs.getString("b_comp_addr"));
 				supplier.setB_comp_tel(rs.getString("b_comp_tel"));
+				supplier.setB_email(rs.getString("b_email"));
 				
 				supplier_list.add(supplier);
 				
@@ -145,7 +143,7 @@ public class SupplierDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "insert into buycomp_order(b_order_code, b_comp_code,mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
+		String sql = "insert into buycomp_order(b_order_code, b_comp_code, mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
 					+ " values(concat('발주코드_', nextval(sq_b_order_code)), ?, ?, ?, ?, ?, ?) ";
 		
 		try {
@@ -158,7 +156,7 @@ public class SupplierDAO {
 			pstmt.setString(6, quality);
 			mat_c = pstmt.executeUpdate();
 			
-			if (mat_c >0)	{
+			if (mat_c > 0)	{
 				JDBCUtility.commit(conn);
 			} else {
 				JDBCUtility.rollback(conn);
@@ -170,6 +168,46 @@ public class SupplierDAO {
 		}
 		
 		return checkm;
+	}
+
+	//발주된 정보 가져오기
+	public List<Supplier> supplierdetail() {
+		
+		conn = JDBCUtility.getConnection();
+		
+		List<Supplier> supdetail_list = new ArrayList<Supplier>();		
+		
+		Supplier supplier = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from buycomp_order";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				supplier = new Supplier();
+				supplier.setB_order_code(rs.getString("b_order_code"));
+				supplier.setB_comp_code(rs.getString("b_comp_code"));
+				supplier.setMat_order_d(rs.getDate("mat_order_d"));
+				supplier.setMat_count(rs.getInt("mat_count"));
+				supplier.setExp_in_d(rs.getString("exp_in_d"));
+				supplier.setTru_in_d(rs.getString("tru_in_d"));
+				supplier.setQuality(rs.getString("quality"));
+				
+				supdetail_list.add(supplier);	
+			}
+		} catch (Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+		return supdetail_list ;
 	}	
 	
 	

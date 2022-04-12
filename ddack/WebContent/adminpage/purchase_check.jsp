@@ -47,15 +47,15 @@
              </ol>
              
          <div class="card mb-4">
-             <div class="card-body">구매발주관리
-				<br> DDACK의 노력은 계속되어야 한다.
+             <div class="card-body">발주체크
+				<br> 꼬치수량250개미만, 나머지 재료 1000개 미만일 경우 발주해야하는 목록이 나타납니다.
 			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
                 .
              </div>
           </div>
                        
   		   <!-- 네비탭바 -->
-          <ul class="nav nav-tabs mb-4">
+           <ul class="nav nav-tabs mb-4">
 			 <li class="nav-item">
 		    	<a class="nav-link active" href="supplier_info.admin">거래처정보</a>
 			 </li>
@@ -64,15 +64,16 @@
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
+					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_manage.admin">발주목록</a></li>
 				</ul>
 			</li>
-		   </ul>   
-                                           
+		   </ul> 
+		   
+                       
            <div class="card mb-4">
               <div class="card-header">
-                  <i class="fas fa-table me-1"></i>발주관리
+                   <i class="fas fa-table me-1"></i>발주체크
               </div>
                       
              <div class="card-body">
@@ -90,17 +91,17 @@
 					      <c:if test="${! empty need_list }">
 					  		<c:forEach var="need" items="${ need_list }">
 					  			<tr>
-					  				<td>${need_list.b_order_code }</td>
-					  				<td>${ need_list.p_name }</td>
-					  				<td>${ need_list.p_count }</td>
-					  				<td>${ need_list.order_date }</td>
-<%-- 					  				<td>
-					  				<a href="#" id="makestart" class="btn btn-warning" 
+					  				<td>${ need_list.b_order_code }</td>
+					  				<td>${ need_list.mat_code }</td>
+					  				<td>${ need_list.mat_count }</td>
+					  				<td>${ need_list.mat_order_date }</td>
+					  				<td>
+					  				<a href="purchase_manage_form.jsp" id="makestart" class="btn btn-warning" 
 					  					 onclick="changebutton(); return false;">
-												생산 지시
+												주문서 작성
 									</a>
 					  				</td>
-					  				<td>${order.delay_date}</td>
+<%-- 					  				<td>${order.delay_date}</td>
 					  				<td></td>
  --%>					  		</tr>
 					  		</c:forEach>

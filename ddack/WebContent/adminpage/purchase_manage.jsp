@@ -5,10 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<Supplier> supplier_list = (List<Supplier>) session.getAttribute("supplier_list");
+	List<Supplier> supdetail_list = (List<Supplier>) session.getAttribute("supdetail_list");
 	
-	request.setAttribute("supplier_list", supplier_list );
-	System.out.println("===supplier_list======"+supplier_list);
+	request.setAttribute("supdetail_list", supdetail_list);
+	System.out.println("===supdetail_list======"+supdetail_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>발주관리_확인</title>
+        <title>발주관리_확인리스트</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -38,10 +38,10 @@
        <main>
   		  <div class="container-fluid px-4">
            <!-- table 내용 -->
-        	 <h1 class="mt-4">외부거래처 정보</h1>
+        	 <h1 class="mt-4">발주관리 </h1>
              <ol class="breadcrumb mb-4">
              	  <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                  <li class="breadcrumb-item active">외부거래처 정보</li>
+                  <li class="breadcrumb-item active">발주관리</li>
              </ol>
              
          <div class="card mb-4">
@@ -63,19 +63,19 @@
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="pur_form.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_detail.admin">발주목록</a></li>
+					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_manage.admin">발주관리</a></li>
 				</ul>
 			 </li>
 		   </ul>   
                                            
            <div class="card mb-4">
               <div class="card-header">
-                  <i class="fas fa-table me-1"></i>발주서
+                  <i class="fas fa-table me-1"></i>발주관리내역
               </div>
                       
              <div class="card-body">
-             <form action="supp_regist_form.jsp"  method="post">
+          <!--    <form action="supp_regist_form.jsp" method="post"> -->
                  <table id="datatablesSimple" class="text-center">
                     <thead align="center">
                          <tr>
@@ -90,15 +90,16 @@
                      </thead>
                      
 				      <tbody>
-					     <c:if test="${ !empty supplier_list }">
-					  		<c:forEach var="supplier" items="${ supplier_list }">
+					     <c:if test="${ !empty supdetail_list }">
+					  		<c:forEach var="supplier" items="${ supdetail_list }">
 					  			<tr>
+					  				<td><a href="#">${ supplier.b_order_code }</a></td>
 					  				<td>${ supplier.b_comp_code }</td>
-					  				<td>${ supplier.b_comp_name }</td>
-					  				<td>${ supplier.mat_code }</td>
-					  				<td>${ supplier.b_order_code }</td>  					  				
-					  				<td>${ supplier.b_comp_addr }</td>
-					  				<td>${ supplier.b_comp_tel }</td>
+					  				<td>${ supplier.mat_order_d }</td>
+					  				<td>${ supplier.mat_count }</td>  					  				
+					  				<td>${ supplier.exp_in_d }</td>
+					  				<td>${ supplier.tru_in_d }</td>
+					  				<td>${ supplier.quality }</td>
 					  				<td></td>
 					  			</tr>
 					  		</c:forEach>
@@ -109,7 +110,7 @@
 <!--          	<div style="float:right" class="mb-3">
 				<input type="submit" class="btn btn-primary btn-block" value="발주서 작성">
 			</div> -->
-</form>
+<!-- </form> -->
   				 </div>
               </div>
         	</div>

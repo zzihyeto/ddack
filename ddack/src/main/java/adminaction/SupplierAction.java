@@ -23,8 +23,6 @@ public class SupplierAction implements Action {
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
 		supplier_list = supplierDAO.SupplierInfo();
 
-		System.out.println("===supplier_list= action.java====="+supplier_list);
-		
 		HttpSession sess = req.getSession();
 		sess.setAttribute("supplier_list", supplier_list);
 

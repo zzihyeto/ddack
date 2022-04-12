@@ -21,6 +21,7 @@ public class Supplier { //(외부) 거래처관련
 	String b_comp_tel; // 거래처 연락처
 	Date arrive_date; //
 	String mat_code;
+	String b_email; //거래처연락처
 	
 	public Supplier() {}
 	
@@ -28,7 +29,7 @@ public class Supplier { //(외부) 거래처관련
 
 	public Supplier(String b_order_code, String b_comp_code, Date mat_order_d, int mat_count, String exp_in_d,
 			String tru_in_d, String quality, String month_p_code, int month_pay, Date payment_d, String b_comp_name,
-			String b_comp_addr, String b_comp_tel, Date arrive_date, String mat_code) {
+			String b_comp_addr, String b_comp_tel, Date arrive_date, String mat_code, String b_email) {
 		super();
 		this.b_order_code = b_order_code;
 		this.b_comp_code = b_comp_code;
@@ -45,6 +46,7 @@ public class Supplier { //(외부) 거래처관련
 		this.b_comp_tel = b_comp_tel;
 		this.arrive_date = arrive_date;
 		this.mat_code = mat_code;
+		this.b_email = b_email;
 	}
 
 
@@ -193,10 +195,18 @@ public class Supplier { //(외부) 거래처관련
 		return mat_code;
 	}
 
-
 	public void setMat_code(String mat_code) {
 		this.mat_code = mat_code;
 	}
+
+	public String getB_email() {
+		return b_email;
+	}
+
+	public void setB_email(String b_email) {
+		this.b_email = b_email;
+	}
+	
 	
 	
 }

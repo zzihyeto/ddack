@@ -16,7 +16,7 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
-import adminaction.PurOrderAction;
+import adminaction.PurCheckAction;
 import adminaction.Q_bomAction;
 import adminaction.Q_bomInsertAction;
 import adminaction.Q_chproAction;
@@ -178,13 +178,6 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처: 원재료만 체크 ,supp_reg_form.admin
-			action = new PurOrderAction();
-			try	{
-				forward = action.execute(req, res);
-			} catch(Exception e) {
-				e.printStackTrace();
-			} 
 		} else if(command.equals("/adminpage/sup_reg_form.admin")) { //신규거래처 등록
 			action = new Sup_reg_formAction();
 			try	{
@@ -193,7 +186,7 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			} 
 		} else if(command.equals("/adminpage/pur_check.admin")) { // 발주체크: 발주해야하는 수량품목체크
-			action = new PurOrderAction();
+			action = new PurCheckAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
@@ -206,7 +199,7 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_detail.admin")) { // 발주내역 보기
+		} else if(command.equals("/adminpage/pur_manage.admin")) { // 발주내역 보기
 			action = new pur_detailAction();
 			try	{
 				forward = action.execute(req, res);

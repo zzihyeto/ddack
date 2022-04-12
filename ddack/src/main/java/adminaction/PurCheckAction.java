@@ -8,7 +8,7 @@ import DAO.SupplierDAO;
 import action.Action;
 import vo.ActionForward;
 
-public class PurOrderAction implements Action {
+public class PurCheckAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
