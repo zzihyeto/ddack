@@ -326,8 +326,7 @@ public class ProductDAO {
 	}
 
 	//mat_name , mat_container_code , mat_count ,  (D , mat_con_out)
-	//생산지시 내리면 mat_con_out="D" 랑 mat_con_out 지정해야곘다; 
-	public List<BOM> getbomcontainer(String mat_con_out, int mat_count_update) {
+	public List<BOM> getbomcontainer(String mat_con_out) {
 		conn = JDBCUtility.getConnection();
 		List<BOM> bomcon_list = new ArrayList<>();
 		BOM bom = null;
@@ -335,7 +334,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select mat_code, mat_name, mat_container_code, mat_count from bom ";
+		String sql = "select * from bom ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -348,7 +347,7 @@ public class ProductDAO {
 				bom.setMat_container_code(rs.getString("mat_container_code"));
 				bom.setMat_count(rs.getInt("mat_count"));
 				bom.setMat_con_out(mat_con_out);
-				bom.setMat_count_update(mat_count_update);
+				bom.setMat_person(rs.getString("mat_person"));
 				bomcon_list.add(bom);
 			} 
 						
@@ -1042,7 +1041,7 @@ public class ProductDAO {
 		if(mat_type.equals("_in")) {			
 			result = mat_count+updatecnt;
 		}else {
-			result=mat_count-updatecnt;
+			result = mat_count-updatecnt;
 		}
 		
 		
@@ -1053,7 +1052,6 @@ public class ProductDAO {
 			pstmt.setString(3, mat_name);
 			
 			int cnt = pstmt.executeUpdate();
-			
 			if(cnt>0) {
 				JDBCUtility.commit(conn);
 			}else {			
@@ -1079,11 +1077,11 @@ public class ProductDAO {
 		String sql ="select mat_count from bom where mat_name=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mat_count);
+			pstmt.setString(1, mat_name);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				mat_count = rs.getInt(mat_count);
+				mat_count = rs.getInt("mat_count");
 			
 			}
 			

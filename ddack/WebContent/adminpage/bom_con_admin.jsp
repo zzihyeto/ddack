@@ -64,7 +64,7 @@
                                             <th>입고 창고</th>
                                             <th>갯수</th>
                                             <th>출고 창고</th>
-                                            <th>움직인 갯수</th>
+                                            <th>관리자</th>
                                         </tr>
                                     </thead>
                                     
@@ -77,7 +77,7 @@
 							         				<td>${bomcon.mat_container_code }</td>
 							         				<td>${bomcon.mat_count }</td>
 							         				<td>${bomcon.mat_con_out}</td>
-							         				<td>${bomcon.mat_count_update}</td>							         											         				
+							         				<td>${bomcon.mat_person}</td>
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 

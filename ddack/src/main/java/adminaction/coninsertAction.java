@@ -17,7 +17,7 @@ public class coninsertAction implements Action {
 
 		req.setCharacterEncoding("utf-8");
 		String mat_name = req.getParameter("mat_name");
-		String mat_type = req.getParameter("mat_type");//입고,출고때 쓴
+		String mat_type = req.getParameter("mat_type");//입고,출고때 쓴 글자로 쓸예정 진짜디비꺼랑 다
 		int updatecnt = Integer.parseInt(req.getParameter("updatecnt"));
 		String mat_person = req.getParameter("mat_person");
 

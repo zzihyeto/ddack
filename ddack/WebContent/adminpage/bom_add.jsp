@@ -70,7 +70,7 @@
                                         <label for="mat_person">원자재 관리자</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_container_code" class="form-control"  type="text" placeholder="원자재 창고코드" readonly/>
+                                        <input name="mat_container_code" class="form-control"  type="text" placeholder="원자재 창고코드" readonly value="D" />
                                         <label for="mat_container_code">D</label>
                                     </div>
                                     <div class="form-floating mb-3">
