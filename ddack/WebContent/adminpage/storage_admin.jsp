@@ -42,7 +42,7 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Store_테이블</h1>
+                        <h1 class="mt-4">완제품 창고 관리</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
                             <li class="breadcrumb-item active">Store_테이블</li>

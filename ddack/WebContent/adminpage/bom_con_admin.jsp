@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>BOM_테이블</title>
+        <title>Container_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -54,6 +54,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>Container_테이블
+                                <a href="con_ad_go.add" class="btn btn-success">추가하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -61,9 +62,9 @@
                                         <tr>
                                             <th>원자재 이름</th>
                                             <th>입고 창고</th>
-                                            <th>입고 창고 갯수</th>
+                                            <th>갯수</th>
                                             <th>출고 창고</th>
-                                            <th>움직인 갯수</th>
+                                            <th>관리자</th>
                                         </tr>
                                     </thead>
                                     
@@ -76,7 +77,7 @@
 							         				<td>${bomcon.mat_container_code }</td>
 							         				<td>${bomcon.mat_count }</td>
 							         				<td>${bomcon.mat_con_out}</td>
-							         				<td>${bomcon.mat_count_update}</td>							         											         				
+							         				<td>${bomcon.mat_person}</td>
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 

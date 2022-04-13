@@ -16,15 +16,11 @@ public class bomconAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		//나중에 생산지시내리면 영향받도록 해야지
-		int mat_count_update =0;
-		String mat_con_out = "";
-		if(mat_count_update>0) {
-			mat_con_out ="D";
-		}
 		
+		String mat_con_out = "F";
+				
 		ProductDAO productDAO = ProductDAO.getInstance();
-		List<BOM> bomcon_list = productDAO.getbomcontainer(mat_con_out,mat_count_update);
+		List<BOM> bomcon_list = productDAO.getbomcontainer(mat_con_out);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("bomcon_list", bomcon_list);

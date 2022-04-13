@@ -8,23 +8,21 @@ import javax.servlet.http.HttpSession;
 
 import DAO.ProductDAO;
 import action.Action;
-import entity.Product;
 import vo.ActionForward;
 
-public class Pro_stateAction implements Action {
+public class gocon_addjspAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		ProductDAO productDAO = ProductDAO.getInstance();
-		List<Product> pro_state_list = productDAO.selectProducState();
-		//p_name..store_name..invent_total..invent_qty..eq_code...p_code 담겨있음 
+		List<String> mat_list = productDAO.getMat_list();
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("pro_state_list", pro_state_list);
+		session.setAttribute("mat_list", mat_list);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/product_state_admin.jsp");
+		ActionForward forward =new ActionForward();
+		forward.setPath("/adminpage/con_add.jsp");
 		return forward;
 	}
 

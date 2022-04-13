@@ -597,14 +597,12 @@ public class MemberDAO {
 		
 	}
 	// 회원탈퇴
-	public boolean deleteMember(String id, String pw) {
+	public boolean dbpwcompare(String id, String pw) {
 	// ↑ boolean타입으로(return값이 true or false)의 deleteMember() 메서드생성
 		boolean result = false;
 		
 		conn = db.JDBCUtility.getConnection();
-		Connection conn1 = db.JDBCUtility.getConnection();
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
 		String dbpw="";
 		// ↑ DB에서 읽어 올 password를 저장할 변수를 선어하고 초기ㄹ호
@@ -619,27 +617,15 @@ public class MemberDAO {
 			// ↑ 쿼리를 DB에 질의하고 받아온 결과를 rs에 저장
 			if(rs.next()) {
 				dbpw = rs.getString("m_pw");
-				// ↑ DB의 쿼리문의 결과값으로 가져온 rs에서 password칼럼에 있는 값을 getString을 통해 가져와 dbpw에 저장.
-				if(dbpw.equals(pw)) {
-					String delsql = "delete from member where m_id=?";
-					pstmt1 = conn1.prepareStatement(delsql);
-					pstmt1.setString(1, id);
-					int succcnt = pstmt1.executeUpdate();
-					
-					if(succcnt>0) {
-						result = true;
-						JDBCUtility.commit(conn);
-					}else {			
-						JDBCUtility.rollback(conn);
-					}
-				}
+			}
+			if(dbpw.equals(pw)) {
+				result=true;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("삭제되지 못함");
 		}finally {
 			JDBCUtility.close(conn, pstmt, rs);
-			JDBCUtility.close(conn1, pstmt1, null);			
 		}
 		return result;
 	}
@@ -740,6 +726,30 @@ public class MemberDAO {
 		return being_id;
 	}
 	
+	public void deletemember(String m_id) {
+		
+		conn = db.JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		String sql="delete from member where m_id=?";
+		int succ_num = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			succ_num= pstmt.executeUpdate();
+			
+			if(succ_num>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+		}catch(Exception e) {
+			System.out.println("실패"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt,null);
+		}
+		
+	}
 }
 
 

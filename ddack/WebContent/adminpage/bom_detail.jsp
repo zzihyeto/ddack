@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
- 	BOM bom =(BOM) request.getAttribute("bom");
+ 	BOM bom =(BOM) session.getAttribute("bom");
 	request.setAttribute("bom", bom);
 %>
 <!DOCTYPE html>
@@ -90,6 +90,7 @@
                                     <div class="form-floating mb-3">
                                         <input class="btn btn-success"  type="submit" value="수정하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
+                                        <a href="bomdelete.add?mat_code=${bom.mat_code }&clean_code=${bom.clean_code}" class="btn btn-danger">삭제하기</a>
                                     </div>
                                 </form>
                             </div>

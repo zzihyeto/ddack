@@ -9,7 +9,7 @@
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>deletePro.jsp</title>
+	<title>회원탈퇴_처리중</title>
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
@@ -33,7 +33,7 @@
 				<div class="col-lg-8">
 					<div class="card shadow-lg border-0 rounded-lg my-5">
 						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">Secession Page</h3>
+							<h3 class="text-center font-weight-light my-4">회원탈퇴 페이지</h3>
 						</div>
 						<div class="card-body">
 								<%
@@ -43,10 +43,12 @@
 									String pw = request.getParameter("pw");
 									
 									MemberDAO dao = MemberDAO.getInstance();
-									boolean result = dao.deleteMember(m_id, pw);
-									
+									boolean result = dao.dbpwcompare(m_id, pw);
+
 									if(result){
 										session.invalidate();
+										dao.deletemember(m_id);
+										
 									%>
 									<center>
 									<br /><br /><br />
@@ -54,7 +56,7 @@
 									<br />	
 									</center>
 									<div class="d-grid">
-										 <input type="button" class="btn btn-warning  mb-3" value="Main Home" onclick="location.href='./index.jsp'"/>		
+										 <input type="button" class="btn btn-success mb-3" value="Main Home" onclick="location.href='./index.jsp'"/>		
 										 <!-- <input type="button" class="btn btn-danger mb-3" value="Go Back" onclick="location.href='./m_deleteFrom.jsp'"/>-->
 									</div>
 									<% } else { %>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CHprocess {
 
+	String line_code;
 	String line_name;
 	String line_usable;
 	String ch_pro_code;
@@ -19,6 +20,14 @@ public class CHprocess {
 		return q_code;
 	}
 
+
+	public String getLine_code() {
+		return line_code;
+	}
+
+	public void setLine_code(String line_code) {
+		this.line_code = line_code;
+	}
 
 	public void setQ_code(String q_code) {
 		this.q_code = q_code;

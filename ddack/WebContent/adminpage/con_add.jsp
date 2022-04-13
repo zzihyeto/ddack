@@ -1,5 +1,12 @@
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+request.setCharacterEncoding("utf-8");
+List<String> mat_list = (List<String>) session.getAttribute("mat_list");
 
+request.setAttribute("mat_list", mat_list);
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>BOM_테이블</title>
+        <title>Container_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -30,11 +37,11 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">BOM_테이블</h1>
+                        <h1 class="mt-4">Container_테이블</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">BOM_테이블</li>
+                            <li class="breadcrumb-item active">Container_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -45,44 +52,37 @@
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>BOM_테이블
+	                            <i class="fas fa-table me-1"></i>Container_테이블
 	                        </div>
 	                        <div class="card-body">
-                                <form action="bominsert.add" method="post">
-                                    <div class="form-floating mb-3">
-                                        <input name="mat_name" class="form-control"  type="text" placeholder="원자재 이름" />
-                                        <label for="mat_name">원자재 이름</label>
+                                <form action="con_insert.add" method="post">
+                               		<div class="form-floating mb-3">
+	                                    <select name="mat_name" id="" class="form-control">
+	                                   		<c:if test="${!empty mat_list}">
+							         			<c:forEach var="m" items="${mat_list }">
+		                                    			<option value="${m }">${m }</option>
+		                                    	</c:forEach>
+		                                    </c:if>
+	                                    </select>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_type" class="form-control"  type="text" placeholder="원자재 종류"/>
-                                        <label for="mat_type">원자재 종류</label>
+                                        <select name="mat_type" id="" class="form-control">
+                                        	<option value="_in">입고</option>
+                                        	<option value="_out">출고</option>
+                                        </select>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_unit" class="form-control"  type="text" placeholder="원자재 단위" />
-                                        <label for="mat_unit">원자재 단위</label>
+                                        <input name="updatecnt" class="form-control"  type="text" placeholder="원자재 단위" />
+                                        <label for="updatecnt">갯수</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="mat_count" class="form-control"  type="text" placeholder="원자재 갯수"/>
-                                        <label for="mat_count">원자재 갯수</label>
-                                    </div>
+                                    
                                     <div class="form-floating mb-3">
                                         <input name="mat_person" class="form-control"  type="text" placeholder="원자재 관리자" />
                                         <label for="mat_person">원자재 관리자</label>
                                     </div>
+                                    
                                     <div class="form-floating mb-3">
-                                        <input name="mat_container_code" class="form-control"  type="text" placeholder="원자재 창고코드" readonly value="D" />
-                                        <label for="mat_container_code">D</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="mat_life_t" class="form-control"  type="text" placeholder="원자재 유통기한" />
-                                        <label for="mat_life_t">원자재 유통기한</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="c_check" class="form-control"  type="text" placeholder="O or X" />
-                                        <label for="c_check">원자재 위생상태 O or X</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="btn btn-success"  type="submit" value="등록하기"/>
+                                        <input class="btn btn-success"  type="submit" value="입력하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
                                     </div>
                                 </form>

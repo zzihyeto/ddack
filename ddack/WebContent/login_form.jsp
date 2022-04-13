@@ -77,8 +77,6 @@
                                         <label for="inputPassword">Password</label>
                                     </div>
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                        <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <a class="small" href="#" >비밀번호 찾기</a>

@@ -55,8 +55,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>Product_테이블
-                                <a href="#" class="btn btn-warning">추가하러 가기</a>
-                                <a href="./bom_add.jsp" class="btn btn-success">추가하러 가기</a>
+                                <a href="./product_add.jsp" class="btn btn-success">추가하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -66,7 +65,7 @@
                                             <th>해당창고 이름</th>
                                             <th>창고최대 갯수</th>
                                             <th>완제품 갯수</th>
-                                            <th>현재 남은 공간</th>
+                                            <th>해당 창고 남은 공간</th>
                                             <th>완제품 상태</th>
                                         </tr>
                                     </thead>
@@ -76,7 +75,7 @@
                                       	<c:if test="${!empty pro_state_list}">
 							         		<c:forEach var="pro_state" items="${pro_state_list }">
 							         			<tr>
-							         				<td>${pro_state.p_name}</td>
+							         				<td><a href="productdetail.add?p_code=${pro_state.p_code }">${pro_state.p_name}</a></td>
 							         				<td>${pro_state.invent_storname}</td>
 							         				<td>${pro_state.invent_total}</td>
 							         				<td>${pro_state.invent_qty}</td>

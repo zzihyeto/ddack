@@ -8,6 +8,7 @@ public class Product {
 	String p_kg;
 	String p_life;
 	String p_pay;
+	int p_kg_int;//처음에 string 타입으로 p_kg만들었는데 혹시 디비에 Int로 되어있어서 int용도 만듦
 	
 	int p_count_pay=0; 
 	int p_count =0;
@@ -35,6 +36,14 @@ public class Product {
 	}
 
 	
+	public int getP_kg_int() {
+		return p_kg_int;
+	}
+
+	public void setP_kg_int(int p_kg_int) {
+		this.p_kg_int = p_kg_int;
+	}
+
 	public String getInvent_code() {
 		return invent_code;
 	}
