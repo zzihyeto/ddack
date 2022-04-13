@@ -1000,6 +1000,106 @@ public class ProductDAO {
 		
 	}
 
+	public List<String> getMat_list() {
+
+		conn = JDBCUtility.getConnection();
+
+		List<String> mat_list =new ArrayList<String>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="select mat_name from bom";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mat_list.add(rs.getString("mat_name"));
+			
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return mat_list;
+		
+	}
+
+	public void coninsert(String mat_name, String mat_type, 
+			int mat_count,int updatecnt, String mat_person) {
+		
+		
+		conn = JDBCUtility.getConnection();
+		
+		PreparedStatement pstmt = null;
+		String sql="update bom set mat_count= ?, mat_person=? where mat_name =?";
+		int result=0;
+		
+		if(mat_type.equals("_in")) {			
+			result = mat_count+updatecnt;
+		}else {
+			result=mat_count-updatecnt;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, result);
+			pstmt.setString(2, mat_person);
+			pstmt.setString(3, mat_name);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
+	public int getMat_count(String mat_name) {
+
+		conn = JDBCUtility.getConnection();
+
+		int mat_count = 0; //해당되는 갯수 넣을 곳 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="select mat_count from bom where mat_name=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mat_count);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mat_count = rs.getInt(mat_count);
+			
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return mat_count;
+	}
+
+	
+
 	
 	
 	

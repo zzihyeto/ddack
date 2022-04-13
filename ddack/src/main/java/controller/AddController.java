@@ -23,6 +23,8 @@ import adminaction.ProducdeleteAction;
 import adminaction.ProducdetailAction;
 import adminaction.ProducinsertAction;
 import adminaction.ProducupdateAction;
+import adminaction.coninsertAction;
+import adminaction.gocon_addjspAction;
 import vo.ActionForward;
 
 @WebServlet("*.add")
@@ -123,6 +125,20 @@ public class AddController extends HttpServlet{
 			}
 		}else if(command.equals("/adminpage/lineupdate.add")) {
 			action = new LineupdateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/con_ad_go.add")) {
+			action = new gocon_addjspAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/con_insert.add")) {
+			action = new coninsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
