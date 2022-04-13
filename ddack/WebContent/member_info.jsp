@@ -127,7 +127,7 @@
 								</div>
 								<div class="d-grid">
 									<input type="submit" class="btn btn-warning btn-lg mb-3" value="회원수정" /> 
-									<input type="" class="btn btn-danger btn-lg" value="회원탈퇴" />
+									<a href="./m_deleteFrom.jsp" class="btn btn-danger">회원탈퇴하러가기</a>
 								</div>
 							</form>
 						</div>

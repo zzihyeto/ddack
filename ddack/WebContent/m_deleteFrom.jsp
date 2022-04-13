@@ -41,17 +41,17 @@
 				<div class="col-lg-8">
 					<div class="card shadow-lg border-0 rounded-lg my-5">
 						<div class="card-header">
-							<h3 class="text-center font-weight-light my-4">Secession Page</h3>
+							<h3 class="text-center font-weight-light my-4">회원탈퇴 페이지</h3>
 						</div>
 						<div class="card-body">
-						<form name="delform" action="deletePro.jsp" method="post" onsubmit="return check()">
+						<form name="delform" action="./deletePro.jsp" method="post" onsubmit="return check()">
 								<div class="form-floating mb-3">
 									<input class="form-control" id="password" type="text" name="pw"/>
 									<label for="password"> <i class="bi bi-key"></i> 비밀번호를 입력해주세요.</label>
 								</div>
 								<div class="d-grid">
-									<input type="submit" class="btn btn-warning btn-lg mb-3" value="secession"/>
-									<input type="button" class="btn btn-danger btn-lg mb-3" value="Go To Main" onclick="location.href='./index.jsp'"/>
+									<input type="submit" class="btn btn-warning btn-lg mb-3" value="탈퇴하기"/>
+									<input type="button" class="btn btn-success btn-lg mb-3" value="메인화면으로" onclick="location.href='./index.jsp'"/>
 								</div>
 							</div>	
 						</form>
