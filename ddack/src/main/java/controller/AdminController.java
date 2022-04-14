@@ -28,6 +28,7 @@ import adminaction.Q_productAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.pur_choiceAction;
 import adminaction.pur_detailAction;
 import adminaction.pur_formAction;
 import adminaction.storagAction;
@@ -206,7 +207,17 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+			action = new pur_choiceAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
 		}
+		
+		
+		
 		
 		
 		

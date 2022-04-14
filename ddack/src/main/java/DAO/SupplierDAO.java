@@ -208,7 +208,58 @@ public class SupplierDAO {
 		}
 		
 		return supdetail_list ;
+	}
+
+	
+	//발주서에서 재료코드별로 수량체크 하는것
+	public int choiceMC(String mat_code) {
+		
+		conn = JDBCUtility.getConnection();
+		
+		int choiceMC = 0;
+		int mat_count = 0;
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//bom에서 각 재료코드를 넣으면 부족 수량을 체크해준다.
+		// m3-1은 250 미만, 나머지는 1000개
+		String sql = "select mat_count from bom where mat_code = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_code);
+	
+			if (!mat_code.equals("m3-1")) {
+				if (mat_count <1000) {
+					result = 1000 - mat_count;
+				} else {
+					System.out.println("주문 안해도 됨 이미 저장소에 재료는 충분하다.");
+				}
+								
+			} else {
+				if (mat_count < 250) {
+					result = 250 - mat_count;
+				} else {
+					System.out.println("주문할 필요가 없어요. 저장소 재료는 충분해요.");
+				}			
+			}
+			
+		}  catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+				
+		return choiceMC;
 	}	
+	
+	
+	
+	
+	
+	
 	
 	
 }
