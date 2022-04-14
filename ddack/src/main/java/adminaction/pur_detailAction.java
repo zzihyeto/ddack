@@ -12,24 +12,26 @@ import action.Action;
 import entity.Supplier;
 import vo.ActionForward;
 
-public class SupplierAction implements Action {
+public class pur_detailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-	
+		
 		req.setCharacterEncoding("utf-8");
 		
-		List<Supplier> supplier_list = new ArrayList<Supplier>();
+		List<Supplier> supdetail_list = new ArrayList<Supplier>();
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
-		supplier_list = supplierDAO.SupplierInfo();
+		supdetail_list = supplierDAO.supplierdetail();
+		
+		System.out.println("===supdetail_list= pur_detailAction.java====="+supdetail_list);
 
 		HttpSession sess = req.getSession();
-		sess.setAttribute("supplier_list", supplier_list);
-
-		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/supplier_admin.jsp");
+		sess.setAttribute("supdetail_list", supdetail_list);
 		
-		return forward;
+		ActionForward forward = new ActionForward();
+		forward.setPath("/adminpage/purchase_manage.jsp");
+		
+		return forward ;
 	}
 
 }

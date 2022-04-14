@@ -3,13 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
+<%-- <%
 	request.setCharacterEncoding("utf-8");
 	List<MemOrder>  = (List<MemOrder>) session.getAttribute("");
 	
 	request.setAttribute("", );
 	
-%>
+%> --%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -88,8 +88,8 @@
                      </thead>
                      
 				      <tbody>
-					      <c:if test="${! empty }">
-					  		<c:forEach var="order" items="${ }">
+		<%-- 			      <c:if test="${! empty }">
+					  		<c:forEach var="order" items="${ }"> --%>
 					  			<tr>
 					  				<td>${order.b_comp_code}</td>
 					  				<td>${order.b_comp_name}</td>
@@ -106,8 +106,8 @@
 					  				<td>${order.delay_date}</td>
 					  				<td></td>
  --%>					  		</tr>
-					  		</c:forEach>
-							</c:if>                                       
+<%-- 					  		</c:forEach>
+							</c:if>         --%>                               
 				      </tbody>
          		  </table>
   				 </div>

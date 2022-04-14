@@ -1,35 +1,35 @@
 package adminaction;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import DAO.SupplierDAO;
 import action.Action;
-import entity.Supplier;
 import vo.ActionForward;
 
-public class SupplierAction implements Action {
+public class PurCheckAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
 		req.setCharacterEncoding("utf-8");
+		String mat_code = req.getParameter("mat_code");
+		int mat_count = 0;
 		
-		List<Supplier> supplier_list = new ArrayList<Supplier>();
+		// BOM의 재고확인
+		// 모든재료가 1000개, 꼬치250개 이하이면알림.
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
-		supplier_list = supplierDAO.SupplierInfo();
-
-		HttpSession sess = req.getSession();
-		sess.setAttribute("supplier_list", supplier_list);
-
+		supplierDAO.CheckStock(mat_code, mat_count);
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/supplier_admin.jsp");
+		forward.setPath("/adminpage/purchase_check.jsp");
 		
 		return forward;
 	}
+
+	
+	
+
 
 }

@@ -16,7 +16,7 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
-import adminaction.PurOrderAction;
+import adminaction.PurCheckAction;
 import adminaction.Q_bomAction;
 import adminaction.Q_bomInsertAction;
 import adminaction.Q_chproAction;
@@ -25,8 +25,12 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.pur_choiceAction;
+import adminaction.pur_detailAction;
+import adminaction.pur_formAction;
 import adminaction.storagAction;
 import vo.ActionForward;
 
@@ -172,17 +176,47 @@ public class AdminController extends HttpServlet {
 			action = new SupplierAction();
 			try	{
 				forward = action.execute(req, res);
-			}catch(Exception e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/purchase_order.admin")) { //외부거래처:재료구매위한 발주서작성
-			action = new PurOrderAction();
+		} else if(command.equals("/adminpage/sup_reg_form.admin")) { //신규거래처 등록
+			action = new Sup_reg_formAction();
 			try	{
 				forward = action.execute(req, res);
-			}catch(Exception e) {
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_check.admin")) { // 발주체크: 발주해야하는 수량품목체크
+			action = new PurCheckAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성
+			action = new pur_formAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_manage.admin")) { // 발주내역 보기
+			action = new pur_detailAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+			action = new pur_choiceAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
 				e.printStackTrace();
 			} 
 		}
+		
+		
 		
 		
 		

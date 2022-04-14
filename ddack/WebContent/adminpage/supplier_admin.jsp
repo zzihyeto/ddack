@@ -9,7 +9,6 @@
 	
 	request.setAttribute("supplier_list", supplier_list );
 	System.out.println("===supplier_list======"+supplier_list);
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>발주관리</title>
+        <title>외부거래처정보</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -27,12 +26,12 @@
     
     <body class="sb-nav-fixed">
      <!-- 네비게이션바 -->
-	 <%@ include file ="./main/include/layout/header.jsp"%>
+	 <jsp:include page="main/include/layout/header.jsp"/>
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
           	<!-- 사이드바 -->
-            <%@ include file ="./main/include/layout/sidebar.jsp"%>    
+            <jsp:include page="main/include/layout/sidebar.jsp"/>    
          </nav>
       </div>
     <div id="layoutSidenav_content">
@@ -47,7 +46,7 @@
              
          <div class="card mb-4">
              <div class="card-body">
-				외부거래처
+				외부거래처 정보
 				<br> DDACK의 노력은 계속되어야 한다.
 			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
                 .
@@ -63,8 +62,10 @@
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 						role="button" aria-expanded="false">발주관리</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="purchase_order.admin">발주서</a></li>
-					<li><a class="dropdown-item" href="#">발주목록</a></li>
+					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
+					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
+					<li><a class="dropdown-item" href="pur_manage.admin">발주목록</a></li>
+				
 				</ul>
 			 </li>
 		   </ul>   
@@ -81,10 +82,9 @@
                              <th>거래처코드</th>
          					 <th>거래처명</th>
          					 <th>거래처 유형</th>
-         					 <th>발주코드</th>         			
          					 <th>주소</th>
          					 <th>연락처</th>
-         					 <th>발주서지시</th>
+         					 <th>이메일주소</th>
                          </tr>
                      </thead>
                      
@@ -94,31 +94,30 @@
 					  			<tr>
 					  				<td>${ supplier.b_comp_code }</td>
 					  				<td>${ supplier.b_comp_name }</td>
-					  				<td>${ supplier.mat_code }</td>
-					  				<td>${ supplier.b_order_code }</td> 					  				
+					  				<td>${ supplier.mat_code }</td>	
 					  				<td>${ supplier.b_comp_addr }</td>
-					  				<td>${ supplier.b_comp_tell }</td>
-					  				<td>
-					  				<a href="purchase_order.admin" id="makestart" class="btn btn-warning" 
-					  					 onclick="changebutton(); return false;">
-												발주지시</a>
-					  				</td>
-				  		</tr>
+					  				<td>${ supplier.b_comp_tel }</td>
+					  				<td>${ supplier.b_email }</td>
+					  			</tr>
 					  		</c:forEach>
 						</c:if>                                       
 				      </tbody>
          		  </table>
-  				 </div>
+				<!--신규거래처등록 supplier_form.jsp으로 이동하게 -->
+				<br>
+         	<div style="float:right" class="mb-3">
+				<a href="supp_regist_form.jsp" type="button" class="btn btn-primary btn-block">신규거래처등록</a>
+			</div>
+  			 </div>
               </div>
         	</div>
          </main>
 	   
 	      
    <!-- footer -->   
-   <%@ include file ="./main/include/layout/footer.jsp"%>
-   
+ 	<jsp:include page="main/include/layout/footer.jsp"/>
       </div>
-    </div>
+ </div>
     	
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js2/scripts.js"></script>
