@@ -38,25 +38,7 @@
 	        <main>
 	         <!-- layout폴더 > navbar.jsp -->
 	   		<jsp:include page="./layout/navbar.jsp" />	
-            <c:if test="${!empty register_msg}">
-            	<div class="alert alert-warning" role="alert">
-					${register_msg} 했습니다. 로그인해주세요.
-				</div>
-            </c:if>
             
-           <!-- 로긴안해서 삭제 권한없음 -->
-           	<c:if test="${!empty no_login}">
-            	<div class="bg-danger text-white">
-					${ no_login }
-				</div>
-            </c:if>
-			
-			<c:if test="${!empty pw_error}">
-            	<div class="bg-danger text-white">
-					${ pw_error }
-				</div>
-            </c:if> 
-			
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -65,6 +47,23 @@
 	                            <h3 class="text-center font-weight-light my-4">
 	                            	Login
 	                            </h3>
+	                            <!-- 로긴안해서 삭제 권한없음 -->
+	                            <c:if test="${!empty no_login}">
+            						<div class="bg-danger text-white">
+										${ no_login }
+									</div>
+					            </c:if>
+								
+								<c:if test="${!empty pw_error}">
+					            	<div class="bg-danger text-white">
+										${ pw_error }
+									</div>
+					            </c:if> 
+					            <c:if test="${!empty register_msg}">
+					            	<div class="alert alert-warning" role="alert">
+										${register_msg} 했습니다. 로그인해주세요.
+									</div>
+					            </c:if>
                             </div>
                             <div class="card-body">
                                 <form action="login.check" method="post">
