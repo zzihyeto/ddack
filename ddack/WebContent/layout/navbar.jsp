@@ -37,7 +37,7 @@
                        	</c:if>
                        	<c:if test="${loginmsg eq 'admin' }">
                        		<a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#"
-                     			role="button" data-bs-toggle="dropdown" aria-expanded="false">Member</a>
+                     			role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
                      		<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                        			<li ><a class="dropdown-item" href="./adminpage/index.jsp">Admin page</a></li>
                        			<li><a class="dropdown-item" href="logout.check">Log Out</a></li>

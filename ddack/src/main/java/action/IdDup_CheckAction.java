@@ -15,21 +15,20 @@ public class IdDup_CheckAction implements Action {
 
 		
 		req.setCharacterEncoding("utf-8");
-		String id = req.getParameter("id");
+		String inputid = req.getParameter("inputid");
+		
 		MemberDAO dao = MemberDAO.getInstance();
-		boolean result = dao.duplicateIdCheck(id);
+		boolean result = dao.duplicateIdCheck(inputid);
+		ActionForward forward = new ActionForward();
 		
-		res.setContentType("text/html;charset=utf-8");
-		PrintWriter out = res.getWriter();
-		
-		if(result) out.println("0");
-		else out.println("1");
-		
-		out.close();
-		
-		
-		ActionForward forward = null;
-		
+		if(result) {
+			req.setAttribute("inputid_result", "아아디 사용하셔도 됩니다." );	
+			req.setAttribute("inputid", inputid);	
+			forward.setPath("/join_form2.jsp");
+		}else {
+			req.setAttribute("inputid_result", "같은아이디가 있습니다. 다시 입력해주세요");			
+			forward.setPath("/join_form.jsp");
+		}
 		
 		return forward;
 	}

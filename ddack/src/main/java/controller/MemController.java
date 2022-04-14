@@ -80,7 +80,7 @@ public class MemController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/IdDuplicateCheck.member")){
+		}else if(command.equals("/duplicate.member")){
 			action = new IdDup_CheckAction();
 			try	{
 				forward = action.execute(req, res);

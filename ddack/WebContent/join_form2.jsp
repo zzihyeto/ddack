@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	//회원가입 실패&성공 후 메세지
-	String Regis_msg = (String)request.getAttribute("Register");
-	String inputid_result =(String ) request.getAttribute("inputid_result");
+	String inputid_result = (String)request.getAttribute("inputid_result");
+	String inputid = (String)request.getAttribute("inputid");
 %>
-<c:set var="register_msg" value="<%= Regis_msg %>"/>
 <c:set var="inputid_result" value="<%= inputid_result %>"/>
+<c:set var="inputid" value="<%= inputid %>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -33,11 +32,6 @@
 			<!-- layout폴더 > navbar.jsp -->
 			<jsp:include page="./layout/navbar.jsp" />
 			
-			<c:if test="${!empty register_msg}">
-		        <div class="alert alert-warning" role="alert">
-		          ${register_msg} 했습니다. 다시 입력해주세요.
-		        </div>
-	    	</c:if>
 			<section class="py-5">
 				<div class="container px-5">
 					<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
@@ -59,14 +53,13 @@
 								</div>
 							</div>
 							<div class="card-body">
-								<form action="duplicate.member" method="post">
+								<form action="join.member" method="post">
 									<div class="form-floating mb-3">
 										<div class="row">
 											<div class="col-md-8">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="inputid" type="text" name="inputid"
-														placeholder="user id....."  /> 
-														<label for="id"> <i class="bi bi-person"></i> 아이디</label>
+													<input class="form-control" id="id" type="text" name="id" value="${inputid}" readonly/> 
+													<label for="id"> <i class="bi bi-person"></i> </label>
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -76,8 +69,6 @@
 											</div>
 										</div>
 									</div>
-								</form>
-								
 									<div class="form-floating mb-3">
 										<input class="form-control" id="name" type="text" name="name" placeholder="user name....." /> 
 											<label for="name"><i class="bi bi-emoji-smile"></i> 이름
@@ -139,13 +130,14 @@
 											</div>
 										</div>
 									</div>
-
+	
 
 									<!-- Submit Button-->
 									<div class="d-grid">
 										<input type="submit" class="btn btn-warning btn-lg" value="회원가입" />
 									</div>
-								</div>
+								</form>
+							</div>
 							<div class="card-footer text-center py-3">
 								<div class="small">
 									<a href="./login_form.jsp" class="btn btn-success btn-lg">로그인하기</a>
@@ -158,8 +150,8 @@
 		</main>
 
 
-	<!-- layout폴더 > footer.jsp -->
-	<jsp:include page="./layout/footer.jsp" />
+		<!-- layout폴더 > footer.jsp -->
+		<jsp:include page="./layout/footer.jsp" />
 	
 	</div>
 </div>
