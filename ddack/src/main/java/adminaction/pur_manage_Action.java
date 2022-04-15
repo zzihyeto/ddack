@@ -1,8 +1,5 @@
 package adminaction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,22 +9,23 @@ import action.Action;
 import entity.Supplier;
 import vo.ActionForward;
 
-public class SupplierAction implements Action {
+public class pur_manage_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-	
 
-		List<Supplier> supplier_list = new ArrayList<Supplier>();
+		req.setCharacterEncoding("utf-8");
+		String b_order_code = req.getParameter("b_order_code");
 		
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
-		supplier_list = supplierDAO.SupplierInfo();
-
-		HttpSession sess = req.getSession();
-		sess.setAttribute("supplier_list", supplier_list);
-
+		Supplier supplier = supplierDAO.getorderCode(b_order_code);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("supplier", supplier);
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/supplier_admin.jsp");
+		forward.setPath("/adminpage/pur_modi_.jsp");
+
 		
 		return forward;
 	}

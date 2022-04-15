@@ -8,7 +8,6 @@
 	List<Supplier> supplier_list = (List<Supplier>) session.getAttribute("supplier_list");
 	
 	request.setAttribute("supplier_list", supplier_list );
-	System.out.println("===supplier_list======"+supplier_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +26,7 @@
     <body class="sb-nav-fixed">
      <!-- 네비게이션바 -->
 	 <jsp:include page="main/include/layout/header.jsp"/>
+    
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -34,6 +34,7 @@
             <jsp:include page="main/include/layout/sidebar.jsp"/>    
          </nav>
       </div>
+      
     <div id="layoutSidenav_content">
        <main>
   		  <div class="container-fluid px-4">
@@ -52,29 +53,13 @@
                 .
              </div>
           </div>
-                       
-  		   <!-- 네비탭바 -->
-          <ul class="nav nav-tabs mb-4">
-			 <li class="nav-item">
-		    	<a class="nav-link active" href="supplier_info.admin">거래처정보</a>
-			 </li>
-		     <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-						role="button" aria-expanded="false">발주관리</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_manage.admin">발주목록</a></li>
-				
-				</ul>
-			 </li>
-		   </ul>   
                                            
            <div class="card mb-4">
               <div class="card-header">
                   <i class="fas fa-table me-1"></i>거래처정보
+                  <a href="./supp_regist_form.jsp" class="btn btn-primary">추가하러 가기</a>
               </div>
-                      
+                    
              <div class="card-body">
                  <table id="datatablesSimple" class="text-center">
                     <thead align="center">
@@ -103,21 +88,16 @@
 						</c:if>                                       
 				      </tbody>
          		  </table>
-				<!--신규거래처등록 supplier_form.jsp으로 이동하게 -->
-				<br>
-         	<div style="float:right" class="mb-3">
-				<a href="supp_regist_form.jsp" type="button" class="btn btn-primary btn-block">신규거래처등록</a>
-			</div>
-  			 </div>
+	  			 </div>
               </div>
         	</div>
          </main>
-	   
 	      
    <!-- footer -->   
  	<jsp:include page="main/include/layout/footer.jsp"/>
+    
       </div>
- </div>
+  </div>
     	
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js2/scripts.js"></script>

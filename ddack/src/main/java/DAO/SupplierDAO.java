@@ -211,7 +211,7 @@ public class SupplierDAO {
 	}
 
 	
-	//발주서에서 재료코드별로 수량체크 하는것
+	//발주서-> 재료코드별로 수량체크 하는것
 	public int choiceMC(String mat_code) {
 		
 		conn = JDBCUtility.getConnection();
@@ -253,6 +253,81 @@ public class SupplierDAO {
 		}
 				
 		return choiceMC;
+	}
+	
+	//원재료 주문 코드에 따라 정보가져오기
+	public Supplier getorderCode(String b_order_code) {
+	
+		conn = JDBCUtility.getConnection();
+
+		Supplier supplier = new Supplier();
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from buycomp_order where b_order_code = ?";
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_order_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				supplier.setB_order_code(rs.getString("b_order_code"));
+				supplier.setB_comp_code(rs.getString("b_comp_code"));
+				supplier.setMat_order_d(rs.getDate("mat_order_d"));
+				supplier.setMat_count(rs.getInt("mat_count"));
+				supplier.setExp_in_d(rs.getString("exp_in_d"));
+				supplier.setTru_in_d(rs.getString("tru_in_d"));
+				supplier.setQuality(rs.getString("quality"));	
+			}
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return supplier;
+	}
+
+	// 발주관리에 예상일자, 실제일자, 퀄리티 업데이트 하기	
+	public void updatePurs(String b_order_code, String b_comp_code, Date mat_order_d,
+			int mat_count, String exp_in_d, String tru_in_d, String quality) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "update buycomp_order set b_order_code=?, b_comp_code=?, mat_order_d=? "
+				+ "exp_in_d =?, tru_in_d=?, quality=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_order_code);
+			pstmt.setString(2, b_comp_code);
+			pstmt.setDate(3, mat_order_d);
+			pstmt.setInt(4, mat_count);
+			pstmt.setString(5, b_order_code);
+			pstmt.setString(6, exp_in_d);
+			pstmt.setString(7, tru_in_d);
+			pstmt.setString(8, quality);
+			
+			int pur = pstmt.executeUpdate();
+			
+			if(pur>0) {
+				JDBCUtility.commit(conn);
+			} else {			
+				JDBCUtility.rollback(conn);
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
 	}	
 	
 	

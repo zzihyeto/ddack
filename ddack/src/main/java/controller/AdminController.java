@@ -31,6 +31,8 @@ import adminaction.bomconAction;
 import adminaction.pur_choiceAction;
 import adminaction.pur_detailAction;
 import adminaction.pur_formAction;
+import adminaction.pur_insert_Action;
+import adminaction.pur_manage_Action;
 import adminaction.storagAction;
 import vo.ActionForward;
 
@@ -207,14 +209,29 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서-> 재료코드에 해당하는 발주필요수량 체크하기
 			action = new pur_choiceAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		}
+		} else if(command.equals("/adminpage/pur_modi.admin")) { // 발주관리_수정하기 위해 폼에 불러온다.
+			action = new pur_manage_Action();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_insert.admin")) { // 발주관리_수정폼불러오기
+			action = new pur_insert_Action();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} 
+		
 		
 		
 		

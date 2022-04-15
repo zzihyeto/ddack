@@ -53,19 +53,16 @@
              </div>
           </div>
                        
-  		   <!-- 네비탭바 -->
+  		 <!-- 네비탭바 -->
           <ul class="nav nav-tabs mb-4">
 			 <li class="nav-item">
-		    	<a class="nav-link active" href="supplier_info.admin">거래처정보</a>
+		    	<a class="nav-link" href="pur_check.admin">발주체크</a>
 			 </li>
-		     <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-						role="button" aria-expanded="false">발주관리</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_manage.admin">발주관리</a></li>
-				</ul>
+			 <li class="nav-item">
+		    	<a class="nav-link" href="pur_choice_form.jsp">발주서 작성하기</a>
+			 </li>
+			 <li class="nav-item">
+		    	<a class="nav-link active" href="pur_manage.admin">발주관리</a>
 			 </li>
 		   </ul>   
                                            
@@ -93,7 +90,7 @@
 					     <c:if test="${ !empty supdetail_list }">
 					  		<c:forEach var="supplier" items="${ supdetail_list }">
 					  			<tr>
-					  				<td><a href="#">${ supplier.b_order_code }</a></td>
+					  				<td><a href="pur_modi.admin?b_order_code=${ supplier.b_order_code }">${ supplier.b_order_code }</a></td>
 					  				<td>${ supplier.b_comp_code }</td>
 					  				<td>${ supplier.mat_order_d }</td>
 					  				<td>${ supplier.mat_count }</td>  					  				

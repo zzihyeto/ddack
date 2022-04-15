@@ -20,7 +20,7 @@
         <meta name="author" content="" />
         <title>발주체크</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css2/styles.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     
@@ -52,23 +52,20 @@
 			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
                 .
              </div>
-          </div>
+         </div>
                        
-  		   <!-- 네비탭바 -->
-           <ul class="nav nav-tabs mb-4">
+		<!-- 네비탭바 -->
+          <ul class="nav nav-tabs mb-4">
 			 <li class="nav-item">
-		    	<a class="nav-link active" href="supplier_info.admin">거래처정보</a>
+		    	<a class="nav-link active" href="pur_check.admin">발주체크</a>
 			 </li>
-		     <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-						role="button" aria-expanded="false">발주관리</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="pur_check.admin">발주체크</a></li>
-					<li><a class="dropdown-item" href="purchase_manage_form.jsp">발주서</a></li>
-					<li><a class="dropdown-item" href="pur_manage.admin">발주목록</a></li>
-				</ul>
-			</li>
-		   </ul> 
+			 <li class="nav-item">
+		    	<a class="nav-link" href="pur_choice_form.jsp">발주서 작성하기</a>
+			 </li>
+			 <li class="nav-item">
+		    	<a class="nav-link" href="pur_manage.admin">발주관리</a>
+			 </li>
+		  </ul>   
 		   
                        
            <div class="card mb-4">
@@ -96,9 +93,8 @@
 					  				<td>${ need_list.mat_count }</td>
 					  				<td>${ need_list.mat_order_date }</td>
 					  				<td>
-					  				<a href="purchase_manage_form.jsp" id="makestart" class="btn btn-warning" 
-					  					 onclick="changebutton(); return false;">
-												주문서 작성
+					  				<a href="purchase_manage_form.jsp" id="makestart" class="btn btn-warning" onclick="changebutton(); return false;">
+					  				주문서 작성
 									</a>
 					  				</td>
 <%-- 					  				<td>${order.delay_date}</td>
@@ -114,14 +110,14 @@
          </main>
 	      
  	<!-- footer -->   
-    <%@ include file ="main/include/layout/footer.jsp"%> 	
+    <%@ include file ="./main/include/layout/footer.jsp"%> 	
   
       </div>
     </div>
     	
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js2/scripts.js"></script>
+        <script src="./js2/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js2/datatables-simple-demo.js"></script>
+        <script src="./js2/datatables-simple-demo.js"></script>
     </body>
 </html>

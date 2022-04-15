@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>발주수량체크</title>
+	<title>발주수량체크 삭제해야함</title>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 	<link href="css2/styles.css" rel="stylesheet"/>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -54,7 +54,8 @@
 													</div>
 
 													<div class="col-md-6">
-														<button type="button" class="btn btn-primary">확인</button>
+														 <input type="submit" class="btn btn-primary" value="Submit"/><!-- 
+														<button type="button" class="btn btn-primary">확인</button> -->
 													</div>
 												</div>
 											</form>

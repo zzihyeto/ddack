@@ -52,7 +52,7 @@
 	                     </div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white" href="#">구매 발주관리</a>
+	                         <a class="small text-white" href="../adminpage/purchase_check.jsp">구매 발주관리</a>
 	                     </div>
 	                 </div>
 	             </div>
