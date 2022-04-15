@@ -25,6 +25,7 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.Quality_ManagementAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
@@ -214,15 +215,14 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
+		}else if(command.equals("/adminpage/Quality_Management.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+			action = new Quality_ManagementAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		if(forward!=null) {
 			if(forward.isRedirect()) {
