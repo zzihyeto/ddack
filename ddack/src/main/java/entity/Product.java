@@ -21,6 +21,7 @@ public class Product {
 	int invent_qty; //창고에 저장된 갯수
 	int invent_total; // 창고에 최대 넣을 수 있는 공간
 	
+	String store_code;
 	String store_name; //저장소 이름
 	String store_loc; //저장소 위치
 	public Product() {}
@@ -36,6 +37,14 @@ public class Product {
 	}
 
 	
+	public String getStore_code() {
+		return store_code;
+	}
+
+	public void setStore_code(String store_code) {
+		this.store_code = store_code;
+	}
+
 	public int getP_kg_int() {
 		return p_kg_int;
 	}

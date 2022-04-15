@@ -51,6 +51,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>주문상세 테이블
+                                <a href="process_controll.add" class="btn btn-success">생산 지시 하러 가기</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -63,7 +64,6 @@
 						         			<th>주문 날짜</th>
 						         			<th>주문마감일</th>
 						         			<th>주문납기일</th>
-						         			<th>생산 지시</th>
 						         			<th>주문지연일</th>
 						         			<th>출고 완료</th>
                                         </tr>
@@ -80,12 +80,6 @@
 							         				<td>${order.order_date}</td>
 							         				<td>${order.dead_line}</td>
 							         				<td>${order.due_date}</td>
-							         				<td>
-							         					<a href="#" id="makestart" class="btn btn-warning" 
-							         					 onclick="changebutton(); return false;">
-															생산 지시
-														</a>
-							         				</td>
 							         				<td>${order.delay_date}</td>
 							         				<!-- 출고완료가되면 초록색으로 출고완료 되게하기 버튼누르면 출고관련페이지로 -->
 							         				<td></td>
@@ -103,21 +97,7 @@
             	<%@ include file ="main/include/layout/footer.jsp"%>
             </div>
         </div>
-        <!-- 버튼부분고쳐야함 -->
-    	<script>
-	    	function changebutton() {
-	    		const classLi = document.getElementById('makestart').classList;
-	    		if (classLi.contains('btn-warning')){
-	    			classLi.replace('btn-warning','btn-primary');
-	    			$('#makestart').text("생산 시작")
-	    		}else{
-	    			classLi.replace('btn-primary','btn-warning');
-	    			$('#makestart').text("생산 지시")
-	    		}
-
-			}
-    		
-    	</script>
+       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js2/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>

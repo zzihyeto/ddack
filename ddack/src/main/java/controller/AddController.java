@@ -17,14 +17,15 @@ import adminaction.BominsertAction;
 import adminaction.LinedetailAction;
 import adminaction.LineinsertAction;
 import adminaction.LineupdateAction;
-import adminaction.MemorderAction;
-import adminaction.MemreivewAction;
+import adminaction.Pro_cntlAction;
 import adminaction.ProducdeleteAction;
 import adminaction.ProducdetailAction;
 import adminaction.ProducinsertAction;
 import adminaction.ProducupdateAction;
 import adminaction.coninsertAction;
 import adminaction.gocon_addjspAction;
+import adminaction.stroedetailAction;
+import adminaction.stroeupdateAction;
 import vo.ActionForward;
 
 @WebServlet("*.add")
@@ -139,6 +140,27 @@ public class AddController extends HttpServlet{
 			}
 		}else if(command.equals("/adminpage/con_insert.add")) {
 			action = new coninsertAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/storedetail.add")) {
+			action = new stroedetailAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/storeupdate.add")) {
+			action = new stroeupdateAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/process_controll.add")) {
+			action = new Pro_cntlAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
