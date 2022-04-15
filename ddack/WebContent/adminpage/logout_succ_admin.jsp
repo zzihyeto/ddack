@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Admin_login</title>
+        <title>Sucess_logout</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
                 <main>
                     <div class="container-fluid px-4">
                     	<!-- table 내용 -->
-                        <h1 class="mt-4">Admin_login</h1>
+                        <h1 class="mt-4">Sucess_logout</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Admin_login</li>
+                            <li class="breadcrumb-item active">Sucess_logout</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -45,27 +45,26 @@
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>Admin_login
+	                            <i class="fas fa-table me-1"></i>Sucess_logout
 	                        </div>
 	                        
-                            <div class="card-body">
-                                <form action="login.check" method="post">
-                                    <div class="form-floating mb-3">
-                                        <input name="userID" class="form-control" id="userID" type="text" placeholder="ID..." />
-                                        <label for="userID">Id</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input name="inputPassword" class="form-control" id="inputPassword" type="password" placeholder="PW..."/>
-                                        <label for="inputPassword">Password</label>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        
-                                        <button type="submit" class="btn btn-warning">Login</button>
-                                    </div>
-                                </form>
-                            </div>
+                            <div class="container">
+			                <div class="row justify-content-center">
+			                    <div class="col-lg-8">
+			                        <div class="card shadow-lg border-0 rounded-lg my-5">
+			                            <div class="card-header">
+				                            <h3 class="text-center font-weight-light my-4">
+				                           		로그아웃되었습니다.
+				                            </h3>
+			                            </div>
+			                            
+                            		<div class="card-footer text-center py-3">
+		                                <div class="small">
+		                                	<a href="/adminpage/index.jsp" class="btn btn-warning">Admin page</a>
+		                                </div>
+                            		</div>
+                        		</div>
+                    		</div>
                 		</div>
           			  </div>
                    </div>

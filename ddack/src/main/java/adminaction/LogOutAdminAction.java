@@ -16,7 +16,7 @@ public class LogOutAdminAction implements Action {
 		session.invalidate();
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/index.jsp");
+		forward.setPath("/adminpage/logout_succ_admin.jsp");
 		return forward;
 	}
 

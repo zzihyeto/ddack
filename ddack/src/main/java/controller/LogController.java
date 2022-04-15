@@ -13,6 +13,7 @@ import action.Action;
 import action.LogOutAction;
 import action.LoginAction;
 import adminaction.LogOutAdminAction;
+import adminaction.LoginAdminAction;
 import vo.ActionForward;
 
 @WebServlet("*.check")
@@ -40,7 +41,7 @@ public class LogController extends HttpServlet{
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("=====command====="+command);
+		//System.out.println("=====command====="+command);
 		
 		if(command.equals("/login.check")) {
 			action = new LoginAction();
@@ -58,6 +59,13 @@ public class LogController extends HttpServlet{
 			}
 		}else if (command.equals("/adminpage/logout.check")) {
 			action = new LogOutAdminAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/adminpage/login.check")) {
+			action = new LoginAdminAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {
