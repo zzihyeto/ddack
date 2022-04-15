@@ -22,6 +22,7 @@ import adminaction.ProducdeleteAction;
 import adminaction.ProducdetailAction;
 import adminaction.ProducinsertAction;
 import adminaction.ProducupdateAction;
+import adminaction.StartinsertAction;
 import adminaction.coninsertAction;
 import adminaction.gocon_addjspAction;
 import adminaction.stroedetailAction;
@@ -31,6 +32,10 @@ import vo.ActionForward;
 @WebServlet("*.add")
 public class AddController extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6527192112123144753L;
 	ActionForward forward = null;
 	Action action = null;
 	
@@ -161,6 +166,13 @@ public class AddController extends HttpServlet{
 			}
 		}else if(command.equals("/adminpage/process_controll.add")) {
 			action = new Pro_cntlAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/startinsert.add")) {
+			action = new StartinsertAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

@@ -19,6 +19,10 @@ import vo.ActionForward;
 @WebServlet("*.check")
 public class LogController extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2058283607907049577L;
 	ActionForward forward = null;
 	Action action = null;
 	

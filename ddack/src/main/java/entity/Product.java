@@ -12,8 +12,10 @@ public class Product {
 	
 	int p_count_pay=0; 
 	int p_count =0;
+	int p_count_sum=0;
 	
 	String order_date; //주문일
+	String dead_lin;//마감일(우리가 정한 납기일-5일전 기준) insert될때 계산시켜놓음 
 	String due_date; //납기일(소비자가원하는 날짜)
 	
 	String invent_code; //창고 코드
@@ -37,6 +39,22 @@ public class Product {
 	}
 
 	
+	public String getDead_lin() {
+		return dead_lin;
+	}
+
+	public void setDead_lin(String dead_lin) {
+		this.dead_lin = dead_lin;
+	}
+
+	public int getP_count_sum() {
+		return p_count_sum;
+	}
+
+	public void setP_count_sum(int p_count_sum) {
+		this.p_count_sum = p_count_sum;
+	}
+
 	public String getStore_code() {
 		return store_code;
 	}
