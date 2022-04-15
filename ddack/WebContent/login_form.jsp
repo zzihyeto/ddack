@@ -78,7 +78,7 @@
                                     <div class="form-check mb-3">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="#" >비밀번호 찾기</a>
+                                        <a class="small" href="/findpw.jsp" >비밀번호 찾기</a>
                                         <button type="submit" class="btn btn-warning">Login</button>
                                     </div>
                                 </form>
