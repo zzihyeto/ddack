@@ -21,6 +21,10 @@ import vo.ActionForward;
 @WebServlet("*.member")
 public class MemController extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3046435839908667838L;
 	ActionForward forward = null;
 	Action action = null;
 	
