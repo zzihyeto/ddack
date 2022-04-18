@@ -88,7 +88,7 @@
 								<label class="input-group-text" for="inputGroupSelect">재료코드</label>
 									<input name="mat_code" class="form-control me-2" type="text" placeholder="재료코드" value="${ mat_code }" readonly>									 					
 									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것 -->
-									<input name="mat_count" class="form-control me-2" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
+									<input name="need_cnt" class="form-control me-2" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
 							</div>
 						  </div>
 							 
@@ -98,8 +98,8 @@
 									<label class="input-group-text" for="inputGroupSelect">발주회사코드</label>
 										<select class="form-select" name="b_comp_code">
 											<c:if test="${ !empty b_comp_codes }"> 
-												<c:forEach var="b_comp_code" items="${ b_comp_codes }">
-													<option value="${ b_comp_code }">${ b_comp_code }</option>
+												<c:forEach var="code" items="${ b_comp_codes }">
+													<option value="${ code }">${ code }</option>
 												</c:forEach>
 											</c:if>
 										</select>

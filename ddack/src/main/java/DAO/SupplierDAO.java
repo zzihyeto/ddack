@@ -104,7 +104,7 @@ public class SupplierDAO {
 	}
 
 	//발주서 등록하기
-	public void insertorder(String b_order_code, String b_comp_code, int mat_count) {
+	public void insertorder(String b_comp_code, int mat_count) {
 		
 		conn = JDBCUtility.getConnection();
 
@@ -113,7 +113,7 @@ public class SupplierDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "insert into buycomp_order(b_order_code, b_comp_code, mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
+		String sql = "insert into buycomp_order(b_order_code, b_comp_code, mat_order_d, mat_count)"
 					+ " values(concat('발주코드_', nextval(sq_b_order_code)), ?, sysdate() , ?) ";
 		
 		try {
