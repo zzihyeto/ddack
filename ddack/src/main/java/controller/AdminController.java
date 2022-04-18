@@ -28,6 +28,9 @@ import adminaction.Q_productAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.change_dateAction;
+import adminaction.pro_manageAction;
+import adminaction.pro_order_Action;
 import adminaction.pur_addformAction;
 import adminaction.pur_choiceAction;
 import adminaction.pur_detailAction;
@@ -238,7 +241,29 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		} else if(command.equals("/adminpage/production_order.admin")) { //생산관리-생산지시현황 DB에서 데이터 가져오기
+			action = new pro_order_Action();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/process_manage.admin")) { //생산관리- 공정관리 테이블 가져오기 
+			action = new pro_manageAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/starorder_enddate.admin")) { //생산관리- 공정관리에서 버튼누르면 생산지시 날짜바뀜
+			action = new change_dateAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		
 		
