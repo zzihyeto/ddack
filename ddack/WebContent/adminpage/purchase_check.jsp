@@ -1,15 +1,6 @@
-<%@ page import="entity.MemOrder" %>
-<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
-	request.setCharacterEncoding("utf-8");
-	List<MemOrder> need_list = (List<MemOrder>) session.getAttribute("need_list");
-
-	request.setAttribute("need_list", need_list);
-	System.out.println("=====need_list======"+ need_list);
-%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -57,9 +48,6 @@
 		<!-- 네비탭바 -->
           <ul class="nav nav-tabs mb-4">
 			 <li class="nav-item">
-		    	<a class="nav-link active" href="pur_check.admin">발주체크</a>
-			 </li>
-			 <li class="nav-item">
 		    	<a class="nav-link" href="pur_choice_form.jsp">발주서 작성하기</a>
 			 </li>
 			 <li class="nav-item">
@@ -77,7 +65,7 @@
                  <table id="datatablesSimple">
                     <thead>
                          <tr>
-                         	 <th>발주코드</th>
+                         	<!--  <th>발주코드</th> -->
                              <th>원재료코드</th>
          					 <th>필요수량</th>		
          					 <th>주문일자</th>
@@ -88,7 +76,7 @@
 					      <c:if test="${! empty need_list }">
 					  		<c:forEach var="need" items="${ need_list }">
 					  			<tr>
-					  				<td>${ need_list.b_order_code }</td>
+					  				<%-- <td>${ need_list.b_order_code }</td> --%>
 					  				<td>${ need_list.mat_code }</td>
 					  				<td>${ need_list.mat_count }</td>
 					  				<td>${ need_list.mat_order_date }</td>

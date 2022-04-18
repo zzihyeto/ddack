@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	List<Supplier> supplier_list = (List<Supplier>) session.getAttribute("supplier_list");
-	
+
 	request.setAttribute("supplier_list", supplier_list );
 %>
 <!DOCTYPE html>
@@ -87,7 +87,7 @@
 					  		</c:forEach>
 						</c:if>                                       
 				      </tbody>
-         		  </table>
+         		    </table>
 	  			 </div>
               </div>
         	</div>

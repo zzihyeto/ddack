@@ -1,5 +1,3 @@
-<%@ page import="entity.MemOrder"%>
-<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -15,9 +13,6 @@
 <link href="css2/styles.css" rel="stylesheet" />
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-
-
-
 
 <body class="sb-nav-fixed">
 	<!-- 네비게이션바 -->
@@ -54,22 +49,15 @@
 			       
 			        <div class="card mb-4">
 	                   <div class="card-header">
-	                      <i class="fas fa-table me-1"></i>Product_테이블
+	                      <i class="fas fa-table me-1"></i>신규거래처등록_테이블
 	                   </div>
-<%-- 	                    <c:if test="${!empty invent_qty_warn}">
-					       <div class="alert alert-warning" role="alert">
-					         ${invent_qty_warn} 
-					       </div>
-					  	</c:if>		
-					
-					 --%>
 													
 				<div class="card-body">
  					 <form action="sup_reg_form.admin" method="post">
- 				
+						 				
  					 <div class="form-floating mb-3">
-							<input name="b_comp_code" class="form-control" type="text" placeholder="주문가능 수량" />
-							<label for="b_comp_code">거래처 코드</label>
+							<input name="b_comp_code" class="form-control" type="text" placeholder="거래처코드 자동등록됨" readonly/>
+							<label for="b_comp_code">거래처코드_자동등록됨.작성X</label> <!-- 시퀀스 이용 자동 입력됨 -->
 					 </div>
 
  					 <div class="form-floating mb-3">
@@ -113,13 +101,13 @@
 						<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
 					</div>
 
-					 </form>
-					</div>
-				 </div>
-				</div>
-			</main>
-		</div>
-	</div>
+					  </form>
+				    </div>
+				  </div>
+			    </div>
+			  </main>
+		    </div>
+		  </div>
 		
 	<!-- footer -->
 	<jsp:include page="/adminpage/main/include/layout/footer.jsp" />

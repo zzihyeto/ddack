@@ -52,41 +52,37 @@
 	                        <div class="card-header">
 	                            <i class="fas fa-table me-1"></i>발주관리 목록 수정
 	                        </div>
-	                        <c:if test="${!empty invent_qty_warn}">
-						        <div class="alert alert-warning" role="alert">
-						          ${invent_qty_warn} 
-						        </div>
-					    	</c:if>
+	          
 	                        <div class="card-body">
                                 <form action="pur_insert.admin" method="post">
                       		      	<div class="form-floating mb-3">
-                                    	<input name="b_order_code" class="form-control"  type="text" value="${supplier.b_order_code }"/>
+                                    	<input name="b_order_code" class="form-control"  type="text" value="${ supplier.b_order_code }" readonly/>
                                         <label for="b_order_code">발주코드</label>
                                     </div>
                                     
                                     <div class="form-floating mb-3">
-                                    	<input name="b_comp_code" class="form-control"  type="text" value="${supplier.b_comp_code }"/>
+                                    	<input name="b_comp_code" class="form-control"  type="text" value="${ supplier.b_comp_code }" readonly/>
                                         <label for="b_comp_code">발주회사코드</label>
                                     </div>
                                     
                                     <div class="form-floating mb-3">
-                                        <input name="mat_order_d" class="form-control"  type="text" value="${supplier.mat_order_d }"/>
+                                        <input name="mat_order_d" class="form-control"  type="text" value="${ supplier.mat_order_d }" readonly/>
                                         <label for="mat_order_d">발주일자</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_count" class="form-control"  type="text" value="${supplier.mat_count }" />
+                                        <input name="mat_count" class="form-control"  type="text" value="${ supplier.mat_count }" />
                                         <label for="mat_count">주문수량</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="exp_in_d" class="form-control"  type="text" value="${supplier.exp_in_d }" />
+                                        <input name="exp_in_d" class="form-control"  type="text" value="${ supplier.exp_in_d }" />
                                         <label for="exp_in_d">예상입고일</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="tru_in_d" class="form-control"  type="text" value="${supplier.tru_in_d }" />
+                                        <input name="tru_in_d" class="form-control"  type="text" value="${ supplier.tru_in_d }" />
                                         <label for="tru_in_d">실제입고일</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="quality" class="form-control"  type="text" value="${supplier.quality }" />
+                                        <input name="quality" class="form-control"  type="text" value="${ supplier.quality }" />
                                         <label for="quality">품질검사</label>
                                     </div>
                              

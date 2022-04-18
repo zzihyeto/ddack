@@ -54,8 +54,7 @@
 													</div>
 
 													<div class="col-md-6">
-														 <input type="submit" class="btn btn-primary" value="Submit"/><!-- 
-														<button type="button" class="btn btn-primary">확인</button> -->
+														 <input type="submit" class="btn btn-primary" value="Submit"/>
 													</div>
 												</div>
 											</form>

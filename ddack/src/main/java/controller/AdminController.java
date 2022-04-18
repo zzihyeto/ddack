@@ -28,6 +28,7 @@ import adminaction.Q_productAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.pur_addformAction;
 import adminaction.pur_choiceAction;
 import adminaction.pur_detailAction;
 import adminaction.pur_formAction;
@@ -194,8 +195,8 @@ public class AdminController extends HttpServlet {
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
-			} 
-		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성
+			}
+		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성 등록
 			action = new pur_formAction();
 			try	{
 				forward = action.execute(req, res);
@@ -209,7 +210,7 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서-> 재료코드에 해당하는 발주필요수량 체크하기
+		} else if(command.equals("/adminpage/order_stock.admin")) { // 발주서2-> 재료코드에 해당하는 발주필요수량 나타내기
 			action = new pur_choiceAction();
 			try	{
 				forward = action.execute(req, res);
@@ -230,7 +231,15 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/adminpage/pur_addform.admin")) { // 발주서에 재료코드 pur_choice_form.jsp 가기
+			action = new pur_addformAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} 
+		
 		
 		
 		

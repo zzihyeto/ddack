@@ -103,11 +103,6 @@
 						</c:if>                                       
 				      </tbody>
          		  </table>
-				<!--신규거래처등록 supplier_form.jsp으로 이동하게 -->
-<!--          	<div style="float:right" class="mb-3">
-				<input type="submit" class="btn btn-primary btn-block" value="발주서 작성">
-			</div> -->
-<!-- </form> -->
   				 </div>
               </div>
         	</div>
