@@ -13,9 +13,9 @@ public class StartinsertAction implements Action {
 
 		req.setCharacterEncoding("utf-8");
 		String p_code = req.getParameter("p_code");
-		String make_cout = req.getParameter("p_count_sum");
+		int make_cout = Integer.parseInt(req.getParameter("p_count_sum"));
 		
-		
+		//프로시저 자리 - 만드는 중 
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("");
