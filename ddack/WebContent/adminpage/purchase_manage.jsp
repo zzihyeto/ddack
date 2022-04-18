@@ -8,7 +8,6 @@
 	List<Supplier> supdetail_list = (List<Supplier>) session.getAttribute("supdetail_list");
 	
 	request.setAttribute("supdetail_list", supdetail_list);
-	System.out.println("===supdetail_list======"+supdetail_list);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +37,7 @@
        <main>
   		  <div class="container-fluid px-4">
            <!-- table 내용 -->
-        	 <h1 class="mt-4">발주관리 </h1>
+        	 <h1 class="mt-4">구매 발주 관리</h1>
              <ol class="breadcrumb mb-4">
              	  <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
                   <li class="breadcrumb-item active">발주관리</li>
@@ -55,9 +54,6 @@
                        
   		 <!-- 네비탭바 -->
           <ul class="nav nav-tabs mb-4">
-			 <li class="nav-item">
-		    	<a class="nav-link" href="pur_check.admin">발주체크</a>
-			 </li>
 			 <li class="nav-item">
 		    	<a class="nav-link" href="pur_choice_form.jsp">발주서 작성하기</a>
 			 </li>

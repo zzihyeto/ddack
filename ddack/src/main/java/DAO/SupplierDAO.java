@@ -104,28 +104,22 @@ public class SupplierDAO {
 	}
 
 	//발주서 등록하기
-	public int checkm(String b_order_code, String b_comp_code, String mat_order_d,
-			 int mat_count, String exp_in_d, String tru_in_d, String quality) {
+	public void insertorder(String b_order_code, String b_comp_code, int mat_count) {
 		
 		conn = JDBCUtility.getConnection();
 
-		int checkm = 0;
 		int mat_c = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql = "insert into buycomp_order(b_order_code, b_comp_code, mat_order_d, mat_count, exp_in_d, tru_in_d, quality)"
-					+ " values(concat('발주코드_', nextval(sq_b_order_code)), ?, ?, ?, ?, ?, ?) ";
+					+ " values(concat('발주코드_', nextval(sq_b_order_code)), ?, sysdate() , ?) ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, b_comp_code);
-			pstmt.setString(2, mat_order_d);
-			pstmt.setInt(3, mat_count);
-			pstmt.setString(4, exp_in_d);
-			pstmt.setString(5, tru_in_d);
-			pstmt.setString(6, quality);
+			pstmt.setInt(2, mat_count);
 			mat_c = pstmt.executeUpdate();
 			
 			if (mat_c > 0)	{
@@ -139,7 +133,6 @@ public class SupplierDAO {
 			JDBCUtility.close(conn, pstmt, null);
 		}
 		
-		return checkm;
 	}
 
 	//발주된 정보 가져오기
@@ -251,13 +244,14 @@ public class SupplierDAO {
 		
 	}
 	
-	// 재료코드 -> BOm 수량확인
+	// 재료코드 -> BOM 수량확인
 	public Integer choiceMC(String mat_code) {
 
 		conn = JDBCUtility.getConnection();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		Integer resultCount = null; //현재 수량
 		Integer need_cnt = null;
 		
@@ -275,14 +269,14 @@ public class SupplierDAO {
 			if(mat_code.equals("m3-1")) {
 				if(resultCount < 250) {
 					need_cnt = 250 - resultCount;
-				}else {
-					need_cnt =0;
+				} else {
+					need_cnt = 0;
 				}
 			} else {
 				if(resultCount < 1000) {
 					need_cnt = 1000 - resultCount;
-				}else {
-					need_cnt =0; 
+				} else {
+					need_cnt = 0; 
 				}
 			}
 			
@@ -293,9 +287,9 @@ public class SupplierDAO {
 		}
 		
 		return need_cnt;
-		
 	}
-
+	
+	// pur_choice_form(발주서).jsp에 버튼 누르면 주문가능수량 알려주기
 	public List<String> getmatcode() {
 		
 		List<String> matcodes = new ArrayList<>();
@@ -328,9 +322,8 @@ public class SupplierDAO {
 		return matcodes;
 	}
 
-	
+	//회사 코드 가져오기
 	public List<String> getb_comp_code() {
-
 		
 		List<String> b_comp_codes = new ArrayList<>();
 		
@@ -341,7 +334,7 @@ public class SupplierDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select b_comp_code from bom ";
+		String sql = "select b_comp_code from buycompany ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -351,7 +344,7 @@ public class SupplierDAO {
 				b_comp_code = rs.getString("b_comp_code");
 				b_comp_codes.add(b_comp_code);
 			}
-		}  catch(Exception e) {
+		} catch(Exception e) {
 			System.out.println("등록되지 못했습니다." + e.getMessage());
 		} finally {
 			JDBCUtility.close(conn, pstmt, null);

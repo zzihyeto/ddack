@@ -9,7 +9,6 @@
 	request.setAttribute("matcodes", matcodes);
 	
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +56,6 @@
 		<!-- 네비탭바 -->
           <ul class="nav nav-tabs mb-4">
 			 <li class="nav-item">
-		    	<a class="nav-link" href="pur_check.admin">발주체크</a>
-			 </li>
-			 <li class="nav-item">
 		    	<a class="nav-link active" href="pur_choice_form.jsp">발주서 작성하기</a>
 			 </li>
 			 <li class="nav-item">
@@ -92,10 +88,10 @@
 											</c:forEach>
 										</c:if>
 									</select>											 
-						
-							<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
-									<input name="#" class="form-control me-2" type="text" placeholder="주문가능 수량"  readonly>
+									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
+									<input name="#" class="form-control me-2" type="text" placeholder="주문가능수량" readonly>
 									<button class="btn btn-outline-success" type="submit">주문가능 수량체크</button>
+								
 							</div>
 						</div>
 					    </form>

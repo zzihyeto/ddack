@@ -8,8 +8,9 @@
 	
 	String mat_code = request.getParameter("mat_code");
 
-	List<String> b_comp_codes = (List<String>) session.getAttribute("b_comp_codes");
+	List<String> b_comp_codes = (List<String>) session.getAttribute("b_comp_code");
 	request.setAttribute("b_comp_codes", b_comp_codes);
+	
 %>
 <c:set var="need_cnt" value="<%= need_cnt %>"/>
 <c:set var="mat_code" value="<%= mat_code %>"/>
@@ -61,9 +62,6 @@
 				<!-- 네비탭바 -->
 		          <ul class="nav nav-tabs mb-4">
 					 <li class="nav-item">
-				    	<a class="nav-link" href="pur_check.admin">발주체크</a>
-					 </li>
-					 <li class="nav-item">
 				    	<a class="nav-link active" href="pur_choice_form.jsp">발주서 작성하기</a>
 					 </li>
 					 <li class="nav-item">
@@ -78,20 +76,20 @@
 					</div>
 						
 					<div class="card-body">
+						<form class="flex" action="pur_form.admin">
 							<div class="input-group mb-3">
 								<span class="input-group-text" >발주코드</span>
 								<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly />
 							</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->
-						<form class="d-flex" action="pur_form.admin">
 						  <div class="form-floating row g-3">
 							<div class="input-group mb-3"> 
 								<label class="input-group-text" for="inputGroupSelect">재료코드</label>
-									<input name="mat_code" class="form-control me-2" type="text" placeholder="재료코드" value="${ mat_code  }" readonly>									 					
-							</div>
-							<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
+									<input name="mat_code" class="form-control me-2" type="text" placeholder="재료코드" value="${ mat_code }" readonly>									 					
+									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것 -->
 									<input name="mat_count" class="form-control me-2" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
+							</div>
 						  </div>
 							 
 							<div class="form-floating mb-3">
@@ -99,7 +97,7 @@
 									<!-- 재료코드에 따른 발주회사코드 option으로 선택할수 있도록  -->
 									<label class="input-group-text" for="inputGroupSelect">발주회사코드</label>
 										<select class="form-select" name="b_comp_code">
-											<c:if test="${ !empty b_comp_code }"> 
+											<c:if test="${ !empty b_comp_codes }"> 
 												<c:forEach var="b_comp_code" items="${ b_comp_codes }">
 													<option value="${ b_comp_code }">${ b_comp_code }</option>
 												</c:forEach>
@@ -111,11 +109,6 @@
 								<div class="form-floating mb-3">
 									<input name="mat_count" class="form-control" type="text" placeholder="주문수량" />
 									<label for="mat_count">주문수량</label>
-								</div>
-
-								<div class="form-floating mb-3">
-									<input name="mat_order_d" class="form-control" type="text" placeholder="주문일자" />
-									<label for="mat_order_d">주문일자</label>
 								</div>
 
 								<div class="form-floating mb-3">

@@ -23,8 +23,6 @@ public class pur_detailAction implements Action {
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
 		supdetail_list = supplierDAO.supplierdetail();
 		
-		System.out.println("===supdetail_list= pur_detailAction.java====="+supdetail_list);
-
 		HttpSession sess = req.getSession();
 		sess.setAttribute("supdetail_list", supdetail_list);
 		
