@@ -11,6 +11,9 @@
 	List<String> b_comp_codes = (List<String>) session.getAttribute("b_comp_code");
 	request.setAttribute("b_comp_codes", b_comp_codes);
 	
+	session.setAttribute("mat_code", mat_code);
+	System.out.println("===mat_code=====" + mat_code);
+	
 %>
 <c:set var="need_cnt" value="<%= need_cnt %>"/>
 <c:set var="mat_code" value="<%= mat_code %>"/>
@@ -41,8 +44,8 @@
 			</nav>
 		</div>
 
-		<div id="layoutSidenav_content">
-			<main>
+	<div id="layoutSidenav_content">	
+		<main>
 				<div class="container-fluid px-4">
 					<!-- table 내용 -->
 					<h1 class="mt-4">발주서 작성하기</h1>
@@ -83,14 +86,15 @@
 							</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->
-						  <div class="form-floating row g-3">
+					<!-- 	  <div class="form-floating row g-3"> -->
 							<div class="input-group mb-3"> 
-								<label class="input-group-text" for="inputGroupSelect">재료코드</label>
-									<input name="mat_code" class="form-control me-2" type="text" placeholder="재료코드" value="${ mat_code }" readonly>									 					
+									<span class="input-group-text" >재료코드</span> 	
+									<input name="mat_code" class="form-control" type="text" placeholder="재료코드" value="${ mat_code }" readonly/>									 					
 									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것 -->
-									<input name="need_cnt" class="form-control me-2" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
+									<span class="input-group-text" >주문가능 수량</span> 
+									<input name="need_cnt" class="form-control" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
 							</div>
-						  </div>
+				<!-- 		  </div> -->
 							 
 							<div class="form-floating mb-3">
 								<div class="input-group mb-3">

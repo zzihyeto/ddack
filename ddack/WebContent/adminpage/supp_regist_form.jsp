@@ -57,12 +57,12 @@
 						 				
  					 <div class="form-floating mb-3">
 							<input name="b_comp_code" class="form-control" type="text" placeholder="거래처코드 자동등록됨" readonly/>
-							<label for="b_comp_code">거래처코드_자동등록됨.작성X</label> <!-- 시퀀스 이용 자동 입력됨 -->
+							<label for="b_comp_code">거래처코드_자동등록</label> <!-- 시퀀스 이용 자동 입력됨 -->
 					 </div>
 
  					 <div class="form-floating mb-3">
 							<input name="b_comp_name" class="form-control" type="text" placeholder="거래처명" />
-							<label for="b_comp_name">거래처 명</label>
+							<label for="b_comp_name">거래처명</label>
 					 </div>
  					 
  					 <div class="form-floating mb-3">
@@ -73,7 +73,7 @@
 							
 					 <div class="form-floating mb-3">
 					    	<input class="form-control" name="b_comp_addr" type="text" placeholder="거래처 주소" />
-							<label for="b_comp_addr">거래처 주소</label>
+							<label for="b_comp_addr">거래처주소</label>
 					 </div>
 
 					 <div class="form-floating mb-3">

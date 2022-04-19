@@ -25,9 +25,10 @@ public class pur_choiceAction implements Action {
 		List<String> b_comp_code = supplierDAO.getb_comp_code();
 		
 		HttpSession session = req.getSession();
-		//session.setAttribute("supplier", session);
-		session.setAttribute("resultcount", result); //주문해야하는 갯수 섹션에 담기
-		session.setAttribute("b_comp_code", b_comp_code);//발주회사 코드 담은 리스트 섹션에 담기 -> 페이지에서 포문으로 풀어내면됨
+		
+//		session.setAttribute("supplier", session);
+		session.setAttribute("resultcount", result); //주문해야하는 개수 세션에 담기
+		session.setAttribute("b_comp_code", b_comp_code);//발주회사 코드 담은 리스트 세션에 담기 -> 페이지에서 포문으로 풀어내면됨
 	
 		ActionForward forward = new ActionForward();
 		

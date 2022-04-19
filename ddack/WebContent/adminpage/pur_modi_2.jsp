@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	Supplier supplier = (Supplier) session.getAttribute("supplier");
-	request.setAttribute("supplier", supplier);
+	int error_cnt = (int) session.getAttribute("error_cnt");
+System.out.println("modi.2jsp====>"+error_cnt);
+	request.setAttribute("error_cnt", error_cnt);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>발주목록1</title>
+        <title>발주목록2</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -25,17 +26,17 @@
         
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-               	<!-- 사이드바 -->
-                <%@ include file ="./main/include/layout/sidebar.jsp"%>    
+                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                	<!-- 사이드바 -->
+                    <%@ include file ="./main/include/layout/sidebar.jsp"%>    
                 </nav>
-        	</div>
+        </div>
             
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">발주목록_상세내역등록</h1>
+                        <h1 class="mt-4">발주목록_내역등록</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
@@ -50,11 +51,11 @@
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>발주목록_내역등록
+	                            <i class="fas fa-table me-1"></i>발주목록_입고일자등록
 	                        </div>
 	          
-	                        <div class="card-body">
-                               <form action="supplier_error.admin" method="post">
+	                <div class="card-body">
+                      <form action="pur_insert.admin" method="post">
                                  <div class="form-floating mb-3">
                       		      	 <div class="input-group mb-3">
 	                      		      	<span class="input-group-text">발주코드</span>
@@ -71,46 +72,45 @@
                                         <input name="mat_order_d" class="form-control" type="text" value="${ supplier.mat_order_d }"readonly/>
                                                       
                                     	<span class="input-group-text">예상 입고일</span>
-                                       	<input name="exp_in_d" class="form-control" type="text" value="${ supplier.exp_in_d }" readonly/>
+                                       	<input name="exp_in_d" class="form-control" type="text" value="${ supplier.exp_in_d }" />
                                      </div>
                                  </div>                                    
                            
-                               	 <div class="flex form-floating mb-3">
-                                    <div class="input-group mb-3">
+                                 <div class="flex form-floating mb-3">
+								   <div class="input-group mb-3">
                                         <span class="input-group-text">주문수량</span> 
                                         <input name="mat_count" class="form-control" type="text" value="${ supplier.mat_count }" readonly/>
-                           
-                                        <button class="btn btn-danger" type="submit">불량수량체크</button>
-								    </div>
-									
-									<div class="input-group mb-3">
+                          		   </div>
+                          		   
+                          		   <div class="input-group mb-3">
                                         <span class="input-group-text">불량수량</span><!-- 이걸 자바에서 random으로 생성  -->
-                                        <input name="mat_count" class="form-control" type="text" readonly/>
-                                    </div> 
+                                        <input name="" class="form-control" type="text" value="${ error_cnt }" readonly/>
+                                   </div> 
 								 </div>
-                     			</form>
-                                              
-								    <div class="form-floating mb-3">
-                                        <input name="tru_in_d" class="form-control" type="text" value="${ supplier.tru_in_d }" readonly/>
-                                        <label for="tru_in_d">실제입고일</label>
-                                    </div>
-    
+                                    
                                     <div class="form-floating mb-3">
-                                        <input name="quality" class="form-control" type="text" value="${ supplier.quality }" readonly/>
+                                        <input name="tru_in_d" class="form-control" type="text" value="${ supplier.tru_in_d }"/>
+								    	<label for="tru_in_d">실제입고일</label>
+								    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input name="quality" class="form-control" type="text" value="${ supplier.quality }" />
                                         <label for="quality">품질검사</label>
                                     </div>
-                                    
-                                  <div class="form-floating mb-3">
+									
+									<input name="real_qty" type="hidden" value="${ supplier.mat_count - error_cnt }" /> <!-- //발주수량 - 불량수량 -->                              
+                                    <div class="form-floating mb-3">
                                         <input class="btn btn-success" type="submit" value="상세내역등록"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
-                                  </div>
-                            </div>
+                                    </div>
+                         </form>
+                         </div>
                         </div>
                     </div>
                 </main>
 	      
-                <!-- footer -->   
-            	<%@ include file ="./main/include/layout/footer.jsp"%>
+            <!-- footer -->   
+            <%@ include file ="./main/include/layout/footer.jsp"%>
             </div>
         </div>
         

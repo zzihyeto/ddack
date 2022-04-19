@@ -218,20 +218,21 @@ public class SupplierDAO {
 	public void updatePurs(String b_order_code, String exp_in_d, String tru_in_d, String quality) {
 
 		conn = JDBCUtility.getConnection();
+		
 		PreparedStatement pstmt = null;
 		
-		String sql = "update buycomp_order set " 
-					+ "exp_in_d =?, tru_in_d=?, quality=? where b_order_code =? ";
+		String sql = " update buycomp_order set " 
+					+ " exp_in_d = ?, tru_in_d = ?, quality = ? where b_order_code = ? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, exp_in_d);
 			pstmt.setString(2, tru_in_d);
 			pstmt.setString(3, quality);
-			pstmt.setNString(4, b_order_code);
+			pstmt.setString(4, b_order_code);
 			
 			int pur = pstmt.executeUpdate();
 			
-			if(pur>0) {
+			if(pur > 0) {
 				JDBCUtility.commit(conn);
 			} else {			
 				JDBCUtility.rollback(conn);
@@ -352,17 +353,100 @@ public class SupplierDAO {
 		
 		return b_comp_codes;
 	}
+	
+	//mat_code 가져오기
+	public String getM_code(String b_order_code) {
 
+		String mat_code = "";
+		
+		conn = JDBCUtility.getConnection();
 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select b.mat_code "
+				+ " from bom b, buycomp_order bo "
+				+ " where b.b_order_code=bo.b_order_code and bo.b_order_code= ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_order_code);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mat_code = rs.getString("mat_code");
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		return mat_code;
+	}
+	
+	//bom mat_count 현재 수량 가져오기 
+	public int getInvent_qty(String mat_code) {
 
+		conn = JDBCUtility.getConnection();
 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		int current = 0;
+		
+		String sql = "select mat_count from bom where mat_code=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mat_code);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				current = rs.getInt("mat_count");
+			}
+		} catch(Exception e) {
+			System.out.println("등록되지 못했습니다." + e.getMessage());
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+		return current;
+	}
+
+	//bom mat_count 꺼 수량 더해준거  update
+	public void calcu_qty(int new_mat_cnt, String mat_code) {
 	
-	
-	
-	
-	
-	
-	
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "update bom set mat_count = ? where mat_code =?";
+		
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, new_mat_cnt);
+		pstmt.setString(2, mat_code);
+		
+		int pur = pstmt.executeUpdate();
+		
+		if(pur > 0) {
+			JDBCUtility.commit(conn);
+		} else {			
+			JDBCUtility.rollback(conn);
+		}
+	} catch(Exception e) {
+		System.out.println("등록되지 못했습니다." + e.getMessage());
+	} finally {
+		JDBCUtility.close(conn, pstmt, null);
+	}
+		
+	}
+
+	// mat_code  가져오기
+	public String getM_Code(String string) {
+
+		return null;
+	}
+
 	
 }
 

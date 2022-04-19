@@ -8,7 +8,6 @@
 	List<Production_manage> process_manage = (List<Production_manage>) session.getAttribute("process_manage");
 	
 	request.setAttribute("process_manage", process_manage);
-	System.out.println("==process_manage===="+ process_manage);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,9 +23,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     
-    <body class="sb-nav-fixed">
- <!-- 네비게이션바 -->
-	 <%@ include file ="main/include/layout/header.jsp"%>
+<body class="sb-nav-fixed">
+ 	<!-- 네비게이션바 -->
+	<%@ include file ="main/include/layout/header.jsp"%>
   <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -73,15 +72,15 @@
                  <table id="datatablesSimple" class="text-center">
                     <thead align="center">
                          <tr>
-                             <th>공정프로세스코드</th>
-         					 <th>시작주문코드</th>
+                             <th>공정코드</th>
+         					 <th>주문코드</th>
          					 <th>제품코드</th>
-	          				 <th>원재료코드1</th> 
-	          				 <th>원재료코드2</th>     			
-	          				 <th>원재료코드3</th>     			
-	          				 <th>원재료코드4</th>     			
-	          				 <th>요리코드</th>     			
-	          				 <th>만드는시간</th>     			
+	          				 <th>재료코드1</th> 
+	          				 <th>재료코드2</th>     			
+	          				 <th>재료코드3</th>     			
+	          				 <th>재료코드4</th>     			
+	          				 <th>조리코드</th>     			
+	          				 <th>생산시간</th>     			
 	          				 <th>관리자코드</th>     			
 	          				 <th>라인코드</th>     			
 	          				 <th>위생코드</th>     			
@@ -109,14 +108,13 @@
 	          				 		<th>${ process_manage.q_code }</th>
 	          				 		<td>
 							        	<a href="starorder_enddate.admin?start_od_code=${ process_manage.start_od_code }" 
-							         	 class="btn btn-warning">
-											생산상태등록</a>
+							         	 class="btn btn-warning">생산상태</a>
 							        </td>
 					  			</tr>
 					  		</c:forEach>
 						</c:if>                                       
 				      </tbody>
-         		  	</table>
+         		    </table>
   				 </div>
               </div>
         	</div>

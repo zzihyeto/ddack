@@ -5,9 +5,9 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	List<String> matcodes = (List<String>)session.getAttribute("matcodes");
+	List<String> matcodes = (List<String>) session.getAttribute("matcodes");
 	request.setAttribute("matcodes", matcodes);
-	
+	System.out.println("===matcodes==" + matcodes);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,15 +70,17 @@
 					</div>
 						
 					<div class="card-body">
-
-							<div class="input-group mb-3">
+						<div class="input-group mb-3">
 								<span class="input-group-text" >발주코드</span>
-								<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly />
-							</div><!--시퀀스로 자동입력되게  -->
+							<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly />
+						</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->
-						<form class="d-flex" action="order_stock.admin">
+						<form class="d-flex" action="order_stock.admin" method="post">
 						  <div class="form-floating row g-3">
+						  	<div class="bg-primary text-white">
+								재료코드를 선택하신 후 주문가능 수량체크 버튼을 눌러주세요.
+						  	</div>
 							<div class="input-group mb-3"> 
 								<label class="input-group-text" for="inputGroupSelect">재료코드</label>
 									<select class="form-select me-5" name="mat_code">
@@ -89,9 +91,8 @@
 										</c:if>
 									</select>											 
 									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
-									<input name="#" class="form-control me-2" type="text" placeholder="주문가능수량" readonly>
-									<button class="btn btn-outline-success" type="submit">주문가능 수량체크</button>
-								
+									<input class="form-control me-2" type="text" placeholder="주문가능수량" readonly/>
+									<button class="btn btn btn-primary" type="submit">주문가능 수량체크</button>
 							</div>
 						</div>
 					    </form>
@@ -99,26 +100,24 @@
 							<div class="form-floating mb-3">
 								<div class="input-group mb-3">
 									<!-- 재료코드에 따른 발주회사코드 option으로 선택할수 있도록  -->
-									<label class="input-group-text" for="inputGroupSelect" >발주회사코드</label>
-										
+									<span class="input-group-text" >발주회사코드</span>
+									<input type="text" class="form-control" name="b_comp_code"aria-describedby="basic-addon3" placeholder="발주회사코드" readonly />
 								</div>
 							</div>
-							
-
-								<div class="form-floating mb-3">
-									<input name="mat_count" class="form-control" type="text" placeholder="주문수량" readonly="readonly"/>
-									<label for="mat_count">주문수량</label>
-								</div>
-
-								<div class="form-floating mb-3">
-									<input name="mat_order_d" class="form-control" type="text" placeholder="주문일자" readonly="readonly"/>
-									<label for="mat_order_d">주문일자</label>
-								</div>
-
-								<div class="form-floating mb-3">
-									<input class="btn btn-success" type="submit" value="발주서등록" /> 
-									<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
-								</div>
+							<div class="form-floating mb-3">
+								<input name="mat_count" class="form-control" type="text" placeholder="주문수량" readonly/>
+								<label for="mat_count">주문수량</label>
+							</div>
+	
+							<div class="form-floating mb-3">
+								<input name="mat_order_d" class="form-control" type="text" placeholder="주문일자" readonly/>
+								<label for="mat_order_d">주문일자</label>
+							</div>
+	
+							<div class="form-floating mb-3">
+								<input class="btn btn-success" type="submit" value="발주서등록" /> 
+								<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
+							</div>
 
 						</div>
 					</div>

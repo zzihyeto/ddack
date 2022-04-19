@@ -15,10 +15,13 @@ public class pur_manage_Action implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		req.setCharacterEncoding("utf-8");
+		
+		// 발주코드별로 발주내역 가져오기
 		String b_order_code = req.getParameter("b_order_code");
 		
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
 		Supplier supplier = supplierDAO.getorderCode(b_order_code);
+		
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("supplier", supplier);

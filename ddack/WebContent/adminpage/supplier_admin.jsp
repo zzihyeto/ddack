@@ -57,7 +57,7 @@
            <div class="card mb-4">
               <div class="card-header">
                   <i class="fas fa-table me-1"></i>거래처정보
-                  <a href="./supp_regist_form.jsp" class="btn btn-primary">추가하러 가기</a>
+                  <a href="./supp_regist_form.jsp" class="btn btn-primary">신규거래처등록</a>
               </div>
                     
              <div class="card-body">
@@ -85,7 +85,7 @@
 					  				<td>${ supplier.b_email }</td>
 					  			</tr>
 					  		</c:forEach>
-						</c:if>                                       
+						 </c:if>                                       
 				      </tbody>
          		    </table>
 	  			 </div>

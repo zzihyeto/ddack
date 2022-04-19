@@ -8,7 +8,6 @@
 	List<Production_manage> production_order = (List<Production_manage>) session.getAttribute("production_order");
 	
 	request.setAttribute("production_order", production_order);
-	System.out.println("==production_order===="+production_order);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +33,7 @@
                <%@ include file ="main/include/layout/sidebar.jsp"%>        
          </nav>
       </div>
+      
     <div id="layoutSidenav_content">
        <main>
   		  <div class="container-fluid px-4">
@@ -69,7 +69,6 @@
               </div>
                       
              <div class="card-body">
-
                  <table id="datatablesSimple" class="text-center">
                     <thead align="center">
                          <tr>
@@ -80,7 +79,7 @@
                          </tr>
                      </thead>
                      
-				      <tbody>
+				     <tbody>
 					     <c:if test="${ !empty production_order }">
 					  		<c:forEach var="production_order" items="${ production_order }">
 					  			<tr>
@@ -91,12 +90,12 @@
 					  			</tr>
 					  		</c:forEach>
 						</c:if>                                       
-				      </tbody>
-         		  	</table>
-  				 </div>
-              </div>
-        	</div>
-         </main>
+				    </tbody>
+         		 </table>
+  		 	 </div>
+            </div>
+        </div>
+       </main>
 	   
 	      
 	<!-- footer -->   
