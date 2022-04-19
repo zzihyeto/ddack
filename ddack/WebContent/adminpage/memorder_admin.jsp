@@ -65,7 +65,7 @@
 						         			<th>주문마감일</th>
 						         			<th>주문납기일</th>
 						         			<th>주문지연일</th>
-						         			<th>출고 완료</th>
+						         			
                                         </tr>
                                     </thead>
                                     
@@ -81,8 +81,7 @@
 							         				<td>${order.dead_line}</td>
 							         				<td>${order.due_date}</td>
 							         				<td>${order.delay_date}</td>
-							         				<!-- 출고완료가되면 초록색으로 출고완료 되게하기 버튼누르면 출고관련페이지로 -->
-							         				<td></td>
+							         				
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if>                                       
