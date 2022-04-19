@@ -26,7 +26,9 @@ import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
 import adminaction.Quality_ManagementAction;
-import adminaction.Release_admintAction;
+import adminaction.Release_histoy_admintAction;
+import adminaction.Release_order_admintAction;
+import adminaction.Release_out_adminAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
@@ -216,21 +218,38 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		}else if(command.equals("/adminpage/Quality_Management.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+		}else if(command.equals("/adminpage/Quality_Management.admin")) { 
 			action = new Quality_ManagementAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/adminpage/release_admin.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
-			action = new Release_admintAction();
+		}else if(command.equals("/adminpage/release_order.admin")) { 
+			action = new Release_order_admintAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/release_history.admin")) { 
+			action = new Release_histoy_admintAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/release_out.admin")) { 
+			action = new Release_out_adminAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath()); 

@@ -23,7 +23,12 @@ public class Product {
 	
 	String store_name; //저장소 이름
 	String store_loc; //저장소 위치
-	public Product() {}
+	
+	
+	
+	
+    public Product() {}
+    
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
 		super();
@@ -35,7 +40,6 @@ public class Product {
 		this.p_pay = p_pay;
 	}
 
-	
 	public int getP_kg_int() {
 		return p_kg_int;
 	}

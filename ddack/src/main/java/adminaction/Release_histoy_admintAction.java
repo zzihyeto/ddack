@@ -8,23 +8,26 @@ import javax.servlet.http.HttpSession;
 
 import DAO.ReleaseDAO;
 import action.Action;
-import entity.Release;
 import vo.ActionForward;
+import entity.Release;
 
-public class Release_admintAction implements Action {
+public class Release_histoy_admintAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		ReleaseDAO releaseDAO = ReleaseDAO.getInstance();
-		List<Release> Release_order = releaseDAO.re_order();
 		
-		HttpSession session = req.getSession();
-		session.setAttribute("Release_order", Release_order);
+//		releaseDAO.re_history();
+		
+//		HttpSession session = req.getSession();
+//		session.setAttribute("Release_history", Release_history);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/release_order_admin.jsp");
+		forward.setPath("/adminpage/release_history_admin.jsp");
 		return forward;
+		
+		
 	}
 
 }
