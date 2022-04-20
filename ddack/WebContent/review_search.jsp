@@ -10,24 +10,20 @@
 	
 	List<ReviewBean> search_list = (List<ReviewBean>) session.getAttribute("search_list");
 	request.setAttribute("search_list", search_list);
-	System.out.println("=search.jsp==search_list===>"+search_list);
 
 	PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
  	
  	int curPage = pageinfo.getPage();
 	int totalPage = pageinfo.getTotalPage();
 	int startPage = pageinfo.getStartPage();
-	System.out.println("=search.jsp==startPage===>"+startPage);
 	int endPage = pageinfo.getEndPage();
-	System.out.println("=search.jsp==endPage===>"+endPage);
+	
 	String f  =request.getParameter("f");
-	System.out.println("==search.jsp==f===>"+f);
-	String q = request.getParameter("q");
-	System.out.println("==search.jsp==q===>"+q);
- 
+	String q = request.getParameter("q"); 
  %>
 <c:set var="f" value="<%=f %>"/>
 <c:set var="q" value="<%=q %>"/>
+
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>

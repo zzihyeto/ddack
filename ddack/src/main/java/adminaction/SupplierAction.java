@@ -17,9 +17,9 @@ public class SupplierAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
-		req.setCharacterEncoding("utf-8");
-		
+
 		List<Supplier> supplier_list = new ArrayList<Supplier>();
+		
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
 		supplier_list = supplierDAO.SupplierInfo();
 

@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -179,6 +180,99 @@ public class ProcessDAO {
 		}
 		return chpro;
 	}
+
+	public List<Product> getGroupProduct() {
+
+		
+		conn = JDBCUtility.getConnection();
+		List<Product> sort_product  = new ArrayList<Product>();
+		Product row_prodct = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from "
+				+ "(select sub.p_code,sub.`dead_line`,sub. due_date , sum(p_count) "
+				+ "from  (select * from memorder order by dead_line desc LIMIT 18446744073709551615) sub "
+				+ "group by sub.p_code "
+				+ "having dead_line > DATE_ADD(STR_TO_DATE(now(), '%Y-%m-%d '), INTERVAL -1 DAY)"
+				+ "order by dead_line desc ) a , product p "
+				+ "where a.p_code=p.p_code";
+		//그룹바이로  p_count 더해서 회사가 정한 마감일로 정렬
+		//조건은 지금현재 < 마감일 (마감일 기준으로 기간이 안지났으니깐) 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				row_prodct = new Product();
+				row_prodct.setP_name(rs.getString("p_name"));				
+				row_prodct.setP_code(rs.getString("p_code"));
+				row_prodct.setP_count_sum(rs.getInt("sum(p_count)"));
+				row_prodct.setDead_lin(rs.getString("dead_line"));
+				row_prodct.setDue_date(rs.getString("due_date"));
+				sort_product.add(row_prodct);
+			}
+			
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return sort_product;
+	}
+
+	public void startinsert(String p_code, int make_count) {
+
+		conn = JDBCUtility.getConnection();
+		CallableStatement cs = null;
+		
+		try {
+			cs= conn.prepareCall("CALL make_start(?, ? ,@new_start_od_code)");
+			cs.setString(1, p_code);
+			cs.setInt(2, make_count);
+			
+			cs.execute();
+		
+			cs.close();
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, null, null);
+		}
+		
+		
+	}
+
+	public void deleteorder(String p_code) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+	
+		String sql = "delete from memorder where p_code = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+
+	
 	
 	
 }

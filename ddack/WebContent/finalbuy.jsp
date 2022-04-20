@@ -101,6 +101,9 @@
 					</tr>
 				</c:if>
 			</table>
+			<h5 class="mt-5 mb-5">
+				<p class="bg-danger text-white" style="text-align:center">납기일을 넉넉하게 일주일이상 주세요!</p>					
+			</h5>
 			<form action="finalbuy.member?today=${today }" method="post">
 				<table  class="table mt-5" width="50%" height="100%">
 					<%-- <colgroup>

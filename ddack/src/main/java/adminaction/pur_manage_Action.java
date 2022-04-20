@@ -1,35 +1,36 @@
 package adminaction;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.SupplierDAO;
 import action.Action;
+import entity.Supplier;
 import vo.ActionForward;
 
-public class PurCheckAction implements Action {
+public class pur_manage_Action implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-	
+
 		req.setCharacterEncoding("utf-8");
-		String mat_code = req.getParameter("mat_code");
-		int mat_count = 0;
 		
-		// BOM의 재고확인
-		// 모든재료가 1000개, 꼬치250개 이하이면알림.
+		// 발주코드별로 발주내역 가져오기
+		String b_order_code = req.getParameter("b_order_code");
+		
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
-		supplierDAO.CheckStock(mat_code, mat_count);
+		Supplier supplier = supplierDAO.getorderCode(b_order_code);
+		
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("supplier", supplier);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/purchase_check.jsp");
+		forward.setPath("/adminpage/pur_modi_.jsp");
+
 		
 		return forward;
 	}
-
-	
-	
-
 
 }

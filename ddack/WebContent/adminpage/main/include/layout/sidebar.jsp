@@ -69,8 +69,8 @@
 				
 				<div class="collapse" id="pagesCollapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 					<nav class="sb-sidenav-menu-nested nav">
-						<a class="nav-link" href="#">공정관리</a>
-						<a class="nav-link"	href="#">생산 지시현황</a>
+						<a class="nav-link" href="process_manage.admin">공정관리</a>
+						<a class="nav-link"	href="production_order.admin">생산 지시현황</a>
 					</nav>
 				</div>
 				

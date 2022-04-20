@@ -16,7 +16,6 @@ import adminaction.MemberAction;
 import adminaction.MemorderAction;
 import adminaction.MemreivewAction;
 import adminaction.Pro_stateAction;
-import adminaction.PurCheckAction;
 import adminaction.Q_bomAction;
 import adminaction.Q_bomInsertAction;
 import adminaction.Q_chproAction;
@@ -32,15 +31,27 @@ import adminaction.Release_out_adminAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
+import adminaction.change_dateAction;
+import adminaction.pro_manageAction;
+import adminaction.pro_order_Action;
+import adminaction.pur_addformAction;
 import adminaction.pur_choiceAction;
 import adminaction.pur_detailAction;
 import adminaction.pur_formAction;
+import adminaction.pur_insert_Action;
+import adminaction.pur_manage_Action;
 import adminaction.storagAction;
+import adminaction.sup_errorAction;
 import vo.ActionForward;
 
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2043897084964924850L;
 	ActionForward forward = null;
 	Action action = null;
 	
@@ -62,7 +73,7 @@ public class AdminController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("====command====>"+command);
+		//System.out.println("====command====>"+command);
 		
 		if(command.equals("/adminpage/memorder.admin")) {
 			action = new MemorderAction();
@@ -190,14 +201,7 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_check.admin")) { // 발주체크: 발주해야하는 수량품목체크
-			action = new PurCheckAction();
-			try	{
-				forward = action.execute(req, res);
-			} catch(Exception e) {
-				e.printStackTrace();
-			} 
-		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성
+		} else if(command.equals("/adminpage/pur_form.admin")) { // 발주서 작성 등록
 			action = new pur_formAction();
 			try	{
 				forward = action.execute(req, res);
@@ -211,22 +215,53 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_choice.admin")) { // 발주서에서 재료코드별로 수량확인하고 등록하기
+		} else if(command.equals("/adminpage/order_stock.admin")) { // 발주서2-> 재료코드에 해당하는 발주필요수량 나타내기
 			action = new pur_choiceAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/adminpage/pur_modi.admin")) { // 발주관리_날짜 등록하고/불량개수확인하기 위해 폼에 불러온다.
+			action = new pur_manage_Action();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/adminpage/pur_insert.admin")) { // 발주관리_수정폼불러오기
+			action = new pur_insert_Action();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} 
+
 		}else if(command.equals("/adminpage/Quality_Management.admin")) { 
 			action = new Quality_ManagementAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+
+		}else if(command.equals("/adminpage/pur_addform.admin")) { // 발주서에 재료코드 pur_choice_form.jsp 가기
+			action = new pur_addformAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+
 		}else if(command.equals("/adminpage/release_order.admin")) { 
 			action = new Release_order_admintAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/production_order.admin")) { //생산관리-생산지시현황 DB에서 데이터 가져오기
+			action = new pro_order_Action();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
@@ -234,6 +269,13 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/release_history.admin")) { 
 			action = new Release_histoy_admintAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/process_manage.admin")) { //생산관리 - 공정관리 테이블 가져오기 
+			action = new pro_manageAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
@@ -241,15 +283,27 @@ public class AdminController extends HttpServlet {
 			}
 		}else if(command.equals("/adminpage/release_out.admin")) { 
 			action = new Release_out_adminAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/starorder_enddate.admin")) { //생산관리- 공정관리- 버튼-  생산지시 날짜추가
+			action = new change_dateAction();
+			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminpage/supplier_error.admin")) { //생산관리 - 생산지시 날짜추가
+			action = new sup_errorAction();
 			try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
+
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath()); 

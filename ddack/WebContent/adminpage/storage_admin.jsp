@@ -76,7 +76,7 @@
 							         		<c:forEach var="stor" items="${storage_list }">
 							         			<tr>
 							         				
-							         				<td>${stor.invent_code }</td>
+							         				<td><a href="storedetail.add?store_code=${stor.store_code }">${stor.store_code }</a></td>
 							         				<td>${stor.store_name }</td>
 							         				<td>${stor.p_name }</td>
 							         				<td>${stor.invent_total - stor.invent_qty}
