@@ -44,6 +44,7 @@
                                     	<a class="btn btn-success btn-lg px-4 me-sm-3" href="login_form.jsp">로그인</a>
                                     	<a class="btn btn-outline-light btn-lg px-4" href="join_form.jsp">회원가입</a>
                                     </c:if>
+                                   
                                 </div>
                             </div>
                         </div>

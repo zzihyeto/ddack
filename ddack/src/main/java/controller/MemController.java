@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.FinalbuyAction;
+import action.FindpwAction;
 import action.IdDup_CheckAction;
 import action.JoinAction;
 import action.MUpdateAction;
@@ -78,6 +79,13 @@ public class MemController extends HttpServlet {
 			}
 		}else if(command.equals("/duplicate.member")){
 			action = new IdDup_CheckAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/findpw.member")){
+			action = new FindpwAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

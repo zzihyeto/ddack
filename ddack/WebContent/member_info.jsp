@@ -46,11 +46,11 @@
 								<p class="bg-danger text-white">로그인하셔야 정보를 볼수 있습니다.</p>
 							</c:if>	
 					
-							<p class="bg-wraning text-white">비밀번호를 입력해야 수정가능합니다.</p>
 						
 						</div>
 						
 						<div class="card-body">
+							<p class="bg-warning text-white">비밀번호를 입력해야 수정가능합니다.</p>
 							<form action="update.member" method="post">
 								<div class="form-floating mb-3">
 									<input class="form-control" id="name" type="text" name="name" value="${member_info.m_name }"/>

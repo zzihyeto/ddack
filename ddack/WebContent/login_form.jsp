@@ -64,6 +64,7 @@
 										${register_msg} 했습니다. 로그인해주세요.
 									</div>
 					            </c:if>
+					             <p class="bg-warning text-white">Amin 계정은 1개 mid1 12345</p>
                             </div>
                             <div class="card-body">
                                 <form action="login.check" method="post">
