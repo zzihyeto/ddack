@@ -77,8 +77,8 @@
 	                                <table id="datatablesSimple">
 	                                    <thead>
 	                                        <tr>
-	                                            <th>원자재 이름</th>
-	                                            <th>체크 갯수</th>
+	                                            <th>원자재 명</th>
+	                                            <th>체크 개수</th>
 	                                            <th>체크 내용</th>
 	                                            <th>등록 버튼</th>
 	                                        </tr>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-body">
-                               원자재코드를 선택하고 체크한 개수를 입력하고 <br/>
+                               원자재 코드를 선택하고 체크한 개수를 입력하고 <br/>
                                체크 내용을 입력한다. <br />
                                등록하게 되면 기록한 날짜가 수정되고 <br/>
                                체크내용에 따라 체크한 개수가 더해지거나 감해진다.

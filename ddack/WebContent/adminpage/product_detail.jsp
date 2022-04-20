@@ -74,7 +74,7 @@
                                     </div>
                                     <input type="hidden" name="p_code" value="${product.p_code }" />
                                     <div class="form-floating mb-3">
-                                        <input class="btn btn-success"  type="submit" value="수정하기"/>
+                                        <input class="btn btn-success" type="submit" value="수정하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
                                         <a href="productdelete.add?p_code=${product.p_code }" class="btn btn-danger">삭제하기</a>
                                     </div>

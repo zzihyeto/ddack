@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String loginmsg = (String) session.getAttribute("login_ing");
-	
-	//System.out.println("==loginmsg=>"+loginmsg);
 %>
 <c:set var="loginmsg" value="<%= loginmsg %>"/>
 
@@ -23,7 +21,7 @@
         <link href="./css1/styles.css" rel="stylesheet" />
 
     </head>
-    <body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
          	<!-- layout폴더 > navbar.jsp -->
             <jsp:include page="./layout/navbar.jsp"/>
@@ -127,7 +125,7 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-10 col-xl-7">
                             <div class="text-center">
-                                <div class="fs-4 mb-4 fst-italic">"Take care of your body. It's the only place you have to live."</div>
+                                <div class="fs-4 mb-4 fst-italic">"Take care of your body. <br> It's the only place you have to live."</div>
                                 <div class="fs-4 mb-4 fst-italic"> 네 몸을 건강하게 잘 돌보라, <br> 그것은 당신이 살아갈 수 있는 유일한 장소이다. </div>
                                	<div class="d-flex align-items-center justify-content-center">
                                     <div class="fw-bold">

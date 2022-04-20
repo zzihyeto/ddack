@@ -34,10 +34,10 @@
                 <div class="container px-5 my-5">
                     <div class="text-center mb-5">
                         <h1 class="fw-bolder">상품 나열</h1>
-                        <p class="lead fw-normal text-muted mb-0">장바구니에 담으세요</p>
+                        <p class="lead fw-normal text-muted mb-0">장바구니에 담아주세요.</p>
                         <br>
                         <p class="lead fw-normal text-muted mb-0">기본이 100개 주문입니다.</p>
-                        <p class="lead fw-normal text-muted mb-0">더 구매하시려면 갯수를 넣어주세요.</p>
+                        <p class="lead fw-normal text-muted mb-0">더 구매하시려면 추가 개수를 넣어주세요.</p>
                         <a href="./cart.jsp" class="btn btn-warning mt-3">장바구니</a>
                     </div>
                     
@@ -45,7 +45,7 @@
                         <!-- Pricing card free-->
                         <c:if test="${ empty pro_list }">
 							<h5>
-								<p class="bg-danger text-white">등록된 게시물이 존재하지않습니다.</p>
+								<p class="bg-danger text-white">등록된 게시물이 존재하지 않습니다.</p>
 							</h5>
 						</c:if>	
 						
@@ -81,7 +81,7 @@
 		                                        </li>
 		                                        <li class="mb-2">
 		                                            <i class="bi bi-check text-primary">
-		                                            ${product.p_kg } kg 
+		                                            ${product.p_kg } g 
 		                                            </i>
 		                                        </li>
 		                                        <li class="mb-2">
@@ -124,8 +124,6 @@
 	                        </div>
                         </c:forEach>
                         
-                        
-                        
                     </div>
                 </div>
             </section>
@@ -133,7 +131,5 @@
         <!-- layout폴더 > footer.jsp -->
        <jsp:include page="./layout/footer.jsp"/>
        
-    </body>
-    
-    
+</body>
 </html>

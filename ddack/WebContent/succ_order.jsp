@@ -20,8 +20,7 @@
 	<meta name="author" content="" />
 	<title>Successorder.jsp</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous"> 
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
 	 <!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 	<!-- Bootstrap icons-->
@@ -63,7 +62,6 @@
 							<td >${cart.p_count }</td>
 							<td class="col_value"><fmt:formatNumber value="${cart.p_count_pay }" /></td>				
 						</tr>
-						
 					</c:forEach>
 				
 					<tr>

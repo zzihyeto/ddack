@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>주문상세</title>
+        <title>회원 주문상세</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -60,7 +60,7 @@
                                             <th>주문 코드</th>
 						         			<th>회원 이름</th>
 						         			<th>제품 이름</th>
-						         			<th>제품 갯수</th>
+						         			<th>제품 개수</th>
 						         			<th>주문 날짜</th>
 						         			<th>주문마감일</th>
 						         			<th>주문납기일</th>

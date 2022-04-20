@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>발주목록1</title>
+        <title>발주목록</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -58,8 +58,8 @@
 	                      		      	<span class="input-group-text">발주코드</span>
                                     	<input name="b_order_code" class="form-control"  type="text" value="${ supplier.b_order_code }" readonly/>
                       				
-                      				  	<span class="input-group-text">발주회사코드</span>
-                                        <input name="b_comp_code" class="form-control"  type="text" value="${ supplier.b_comp_code }" readonly/>
+                      				  	<span class="input-group-text">거래처코드</span>
+                                        <input name="b_comp_code" class="form-control" type="text" value="${ supplier.b_comp_code }" readonly/>
                                     </div>
                                  </div>
                                     

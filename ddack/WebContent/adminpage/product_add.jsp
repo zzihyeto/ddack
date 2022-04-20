@@ -57,7 +57,7 @@
 	                        <div class="card-body">
                                 <form action="productinsert.add" method="post">
                       		      	<div class="form-floating mb-3">
-                                    	<input name="store_name" class="form-control"  type="text" placeholder="완제품 이름"/>
+                                    	<input name="store_name" class="form-control"  type="text" placeholder="저장소이름"/>
                                         <label for="store_name">저장소이름</label>
                                     </div>
                                     <div class="form-floating mb-3">
@@ -66,15 +66,15 @@
                                     </div>
                                     
                                     <div class="form-floating mb-3">
-                                        <input name="invent_qty" class="form-control"  type="text" placeholder="완제품 갯수"/>
-                                        <label for="invent_qty">완제품 갯수</label>
+                                        <input name="invent_qty" class="form-control"  type="text" placeholder="완제품 개수"/>
+                                        <label for="invent_qty">완제품 개수</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="eq_code" class="form-control"  type="text" placeholder="완제품 상태" />
                                         <label for="eq_code">O or X</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="p_kg" class="form-control"  type="text" placeholder="완제품무게" />
+                                        <input name="p_kg" class="form-control"  type="text" placeholder="완제품 무게" />
                                         <label for="p_kg">완제품무게</label>
                                     </div>
                                     <div class="form-floating mb-3">
@@ -82,11 +82,11 @@
                                         <label for="p_life">완제품유통기한</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="p_pay" class="form-control"  type="text" placeholder="완제품가격" />
+                                        <input name="p_pay" class="form-control"  type="text" placeholder="완제품 가격" />
                                         <label for="p_pay">완제품가격</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="btn btn-success"  type="submit" value="등록하기"/>
+                                        <input class="btn btn-success" type="submit" value="등록하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
                                     </div>
                                 </form>

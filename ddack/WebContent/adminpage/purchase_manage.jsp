@@ -70,7 +70,7 @@
                     <thead align="center">
                          <tr>
                              <th>발주코드</th>
-         					 <th>발주회사코드</th>
+         					 <th>거래처코드</th>
          					 <th>발주일자</th>
 	          				 <th>주문수량</th>      			
          					 <th>예상입고일</th> <!--  exp_in_d -->

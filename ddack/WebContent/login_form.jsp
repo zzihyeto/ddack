@@ -13,21 +13,16 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>login_form.jsp</title>
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-		crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 	<!-- Bootstrap icons-->
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-		rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="./css1/styles.css" rel="stylesheet" />
 </head>
@@ -64,7 +59,7 @@
 										${register_msg} 했습니다. 로그인해주세요.
 									</div>
 					            </c:if>
-					             <p class="bg-warning text-white">Amin 계정은 1개 mid1 12345</p>
+					             <p class="bg-warning text-white">Admin 계정은 1개 mid1 12345</p>
                             </div>
                             <div class="card-body">
                                 <form action="login.check" method="post">
@@ -88,13 +83,12 @@
                                 <div class="small">
                                 	<a href="join_form.jsp" class="btn btn-warning">회원가입</a>
                                 </div>
-                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-	        </main>
+	     </main>
 	    </div>
 	</div>
      <!-- layout폴더 > footer.jsp -->

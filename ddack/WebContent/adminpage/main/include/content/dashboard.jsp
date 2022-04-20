@@ -9,10 +9,8 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  	<style>
- 
-  	</style>	
 </head>
+
 <body>
      <main>
 	     <div class="container-fluid px-4">
@@ -33,6 +31,7 @@
 	                     </div>
 	                 </div>
 	             </div>
+	             
 	             <div class="col-xl-3 col-md-4">
 	                 <div class="card bg-warning text-white mb-4">
 	                     <div class="card-body">품질 관리</div>
@@ -56,7 +55,6 @@
 	                     </div>
 	                 </div>
 	             </div>
-	             
 	         </div>
 	        	
 	         <div class="row">
@@ -77,7 +75,6 @@
 	                 </div>
 	             </div>	             
 	         </div>
-	         
 	     </div>
 	 </main>
 </body>
