@@ -93,15 +93,11 @@
 		</div>
 		
 		<!-- 수요/공급예측 => 통계/분석 -->
-		<div class="sb-sidenav-menu-heading">수요/공급예측</div>
+		<div class="sb-sidenav-menu-heading">수요 예측</div>
 		<!-- 수요예측 -->
 		<a class="nav-link" href="charts.jsp">
 			<div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>수요예측
 		</a> 
-		
-		<!-- 공급예측 -->
-		<a class="nav-link" href="charts.jsp"><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>공급예측
-		</a>
 	</div>
 </div>
 
