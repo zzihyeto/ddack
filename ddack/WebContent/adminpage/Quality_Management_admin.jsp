@@ -68,8 +68,6 @@
                                             <th>제품 유통기한</th>
                                         </tr>
                                     </thead>
-                                    
-                                
                                     <tbody>
                                       	<c:if test="${!empty Q_Management}">
 							         		<c:forEach var="Q_pro" items="${Q_Management}">
