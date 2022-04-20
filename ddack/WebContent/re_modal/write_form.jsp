@@ -11,7 +11,7 @@
 	Member member = (Member) session.getAttribute("member_info");
 	String m_id = member.getM_id();
 	
-	System.out.println("====m_id==>"+m_id);
+	String blank = (String) request.getAttribute("blank");
 	
 	String[] name_list = new String[order_list.size()];
 	String p_name = null;
@@ -22,6 +22,7 @@
 %>
 <c:set var="name_list" value="<%= name_list %>"/>
 <c:set var="m_id" value="<%= m_id %>"/> 
+<c:set var="blank" value="<%=blank%>"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -41,59 +42,62 @@
 <body class="d-flex flex-column">
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
-		    <main>
-		<!-- layout폴더 -> navbar.jsp -->
-		<jsp:include page="/layout/navbar.jsp" />
-
-       <div class="container">	
-		    <div class="row justify-content-center">
-    		  <div class="col-lg-8">
-            <div class="card shadow-lg border-0 rounded-lg my-5">
-              <div class="card-header">
-								<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
+			<main>
+				<!-- layout폴더 -> navbar.jsp -->
+				<jsp:include page="/layout/navbar.jsp" />
+	
+		       <div class="container">	
+				    <div class="row justify-content-center">
+		    			<div class="col-lg-8">
+			            	<div class="card shadow-lg border-0 rounded-lg my-5">
+				            	<div class="card-header">
+									<h3 class="text-center font-weight-light my-4">DDACK 구매후기 작성</h3>
+									<c:if test="${!empty blank}">
+						            	<div class="alert alert-warning" role="alert">
+											${blank}. 다시 써주세요.
+										</div>
+						            </c:if>
+								</div>
+					            <div class="card-body">
+									<form action="re_write.show" method="post">
+										<table class="table table-striped">
+											<tr>
+												<td>회원ID</td>
+												<td><input type="text" class="form-control" name="m_id" value="${ m_id }" ></td>
+											</tr>	
+											<tr>
+												<td>구매 상품</td>
+												<td>
+													<select class="form-control" name="p_name" id="">
+														<c:forEach var="re" items="${ name_list }">
+															<option class="form-control" value="${re}">${re}</option>
+														</c:forEach>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>리뷰</td>
+												<td><textarea rows="10" cols="50" name="p_review" class="form-control"></textarea></td>
+											</tr>
+											
+											<tr>
+												<td colspan="2" class="text-center">
+												<input type="submit" value="글쓰기" class="btn btn-success">
+												<input type="reset" value="reset " class="btn btn-warning">
+					
+												<button type="button" class="btn btn-primary" onclick="location.href='review.show'">전체 게시글보기</button>
+												</td>
+											</tr>
+										</table>
+									</form>
+								</div>
 							</div>
-            <div class="card-body">
-							<form action="re_write.show" method="post">
-								<table class="table table-striped">
-									<tr>
-										<td>회원ID</td>
-										<td><input type="text" class="form-control" name="m_id" value="${ m_id }" ></td>
-									</tr>
-									
-									<tr>
-										<td>구매 상품</td>
-										<td>
-											<select class="form-control" name="p_name" id="">
-												<c:forEach var="re" items="${ name_list }">
-													<option class="form-control" value="${re}">${re}</option>
-												</c:forEach>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>리뷰</td>
-										<td><textarea rows="10" cols="50" name="p_review" class="form-control"></textarea></td>
-									</tr>
-									
-									<tr>
-										<td colspan="2" class="text-center">
-										<input type="submit" value="글쓰기" class="btn btn-success">
-										<input type="reset" value="다시작성" class="btn btn-warning">
-
-										<button type="button" class="btn btn-primary" onclick="location.href='review.show'">전체 게시글보기</button>
-										</td>
-									</tr>
-
-								</table>
-							</form>
 						</div>
-				   </div>
+					</div>
 				</div>
-			</div>
+			</main>
 		</div>
-</main>
-</div>
-</div>
+	</div>
 	
 	<!-- layout폴더 > footer.jsp -->
 	<jsp:include page="/layout/footer.jsp" />

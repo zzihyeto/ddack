@@ -370,7 +370,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select  it.invent_code , st.store_name , pr.p_name , it.invent_qty, it.invent_total, st.store_loc "
+		String sql = "select  it.invent_code ,st.store_code, st.store_name , pr.p_name , it.invent_qty, it.invent_total, st.store_loc "
 				+ " from `storage` st , item_invent it , product pr "
 				+ " where st.store_code=it.store_code and pr.p_code = it.p_code ";
 		
@@ -380,6 +380,7 @@ public class ProductDAO {
 			
 			while (rs.next()) {
 				bom = new Product();
+				bom.setStore_code(rs.getString("store_code"));
 				bom.setInvent_code(rs.getString("invent_code"));
 				bom.setStore_name(rs.getString("store_name"));
 				bom.setP_name(rs.getString("p_name"));
@@ -1094,6 +1095,65 @@ public class ProductDAO {
 		}
 		
 		return mat_count;
+	}
+
+	public Product getStore_names(String store_code) {
+
+		conn = JDBCUtility.getConnection();
+
+		Product store = new Product();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="select * from `storage` where store_code =? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, store_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				store.setStore_code(rs.getString("store_code"));
+				store.setStore_name(rs.getString("store_name"));
+				store.setStore_loc(rs.getString("store_loc"));
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return store;
+	}
+
+	public void storeupdate(String store_code, String store_name, String store_loc) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		String sql="update `storage` set store_name=?, store_loc=? where store_code=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, store_name);
+			pstmt.setString(2, store_loc);
+			pstmt.setString(3, store_code);
+			
+			int cnt = pstmt.executeUpdate();
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
 	}
 
 

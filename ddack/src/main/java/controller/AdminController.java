@@ -43,6 +43,11 @@ import vo.ActionForward;
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2043897084964924850L;
 	ActionForward forward = null;
 	Action action = null;
 	
