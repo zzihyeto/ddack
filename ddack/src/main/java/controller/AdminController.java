@@ -24,6 +24,10 @@ import adminaction.Q_lineAction;
 import adminaction.Q_lineInsertAction;
 import adminaction.Q_produInsertAction;
 import adminaction.Q_productAction;
+import adminaction.Quality_ManagementAction;
+import adminaction.Release_histoy_admintAction;
+import adminaction.Release_order_admintAction;
+import adminaction.Release_out_adminAction;
 import adminaction.Sup_reg_formAction;
 import adminaction.SupplierAction;
 import adminaction.bomconAction;
@@ -69,7 +73,7 @@ public class AdminController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		System.out.println("====command====>"+command);
+		//System.out.println("====command====>"+command);
 		
 		if(command.equals("/adminpage/memorder.admin")) {
 			action = new MemorderAction();
@@ -232,9 +236,26 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/adminpage/pur_addform.admin")) { // 발주서에 재료코드 pur_choice_form.jsp 가기
+
+		}else if(command.equals("/adminpage/Quality_Management.admin")) { 
+			action = new Quality_ManagementAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+
+		}else if(command.equals("/adminpage/pur_addform.admin")) { // 발주서에 재료코드 pur_choice_form.jsp 가기
 			action = new pur_addformAction();
 			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+
+		}else if(command.equals("/adminpage/release_order.admin")) { 
+			action = new Release_order_admintAction();
+      try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -246,9 +267,23 @@ public class AdminController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/adminpage/release_history.admin")) { 
+			action = new Release_histoy_admintAction();
+      try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/adminpage/process_manage.admin")) { //생산관리 - 공정관리 테이블 가져오기 
 			action = new pro_manageAction();
 			try	{
+				forward = action.execute(req, res);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/adminpage/release_out.admin")) { 
+			action = new Release_out_adminAction();
+      try	{
 				forward = action.execute(req, res);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -268,16 +303,7 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		if(forward!=null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath()); 

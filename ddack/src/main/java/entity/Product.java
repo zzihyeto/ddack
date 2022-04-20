@@ -26,7 +26,12 @@ public class Product {
 	String store_code;
 	String store_name; //저장소 이름
 	String store_loc; //저장소 위치
-	public Product() {}
+	
+	
+	
+	
+    public Product() {}
+    
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
 		super();
@@ -37,6 +42,7 @@ public class Product {
 		this.p_life = p_life;
 		this.p_pay = p_pay;
 	}
+
 
 	
 	public String getDead_lin() {
@@ -62,7 +68,6 @@ public class Product {
 	public void setStore_code(String store_code) {
 		this.store_code = store_code;
 	}
-
 	public int getP_kg_int() {
 		return p_kg_int;
 	}

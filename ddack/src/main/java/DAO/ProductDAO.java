@@ -102,7 +102,7 @@ public class ProductDAO {
 		return bom_list;
 	}
 
-	//pro_stateAction 에서 완제품골라 담은 것 
+	// eAction 에서 완제품골라 담은 것 
 	public List<Product> selectProducState() {
 		conn = JDBCUtility.getConnection();
 		List<Product> pro_state_list =new ArrayList<>();
@@ -1097,6 +1097,42 @@ public class ProductDAO {
 		return mat_count;
 	}
 
+
+	public List<Product> Quality_Management() {
+		
+		conn = JDBCUtility.getConnection();
+		List<Product> Q_Management = new ArrayList<>();
+		Product product = null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql = "select p.p_name, ii.invent_qty , p.eq_code, p.p_life "
+				+ " from product p, item_invent ii "
+				+ " where p.p_code= ii.p_code";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				product = new Product();
+				product.setP_name(rs.getString("p_name"));
+				product.setInvent_qty(rs.getInt("invent_qty"));
+				product.setEq_code(rs.getString("eq_code"));
+				product.setP_life(rs.getString("p_life"));
+				Q_Management.add(product);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return Q_Management;
+	}
+		
+
+
 	public Product getStore_names(String store_code) {
 
 		conn = JDBCUtility.getConnection();
@@ -1155,6 +1191,7 @@ public class ProductDAO {
 			JDBCUtility.close(conn, pstmt, null);
 		}
 	}
+
 
 
 	
