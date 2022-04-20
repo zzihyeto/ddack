@@ -1,14 +1,16 @@
-<%@ page import="entity.Product" %>
+<%@ page import="entity.Release"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<Product> storage_list = (List<Product>) session.getAttribute("storage_list");
+	List<Release> Release_order = (List<Release>) session.getAttribute("Release_order");
+	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음
 	
-	request.setAttribute("storage_list", storage_list);
+	request.setAttribute("Release_order", Release_order);
 %>
+<c:set var="Release_order" value="<%= Release_order %>"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,11 +19,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Store_테이블</title>
+        <title>출고지시</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
-		<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
-		
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -42,10 +41,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">완제품 창고 관리</h1>
+                        <h1 class="mt-4">출고지시</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Store_테이블</li>
+                            <li class="breadcrumb-item active">출고지시_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,36 +55,31 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>Store_테이블
-                            </div>
+                                <i class="fas fa-table me-1"></i>출고지시_테이블
+                                <%-- <a href="./product_add.jsp" class="btn btn-success">추가하러 가기</a>--%>
+                            </div >
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>창고 코드</th>
-                                            <th>저장소 이름</th>
-                                            <th>저장한 완제품</th>
-                                            <th>남은 공간</th>
-                                            <th>창고 위치</th>
+                                            <th>제품코드</th>
+                                            <th>거래처코드</th>
+                                            <th>요청수량</th>
+                                            <th>제품상태</th>
+                                            <th>출고</th>
                                         </tr>
                                     </thead>
-                                    
-                                
                                     <tbody>
-                                      	<c:if test="${!empty storage_list}">
-							         		<c:forEach var="stor" items="${storage_list }">
-							         			<tr>
-							         				
-							         				<td><a href="storedetail.add?store_code=${stor.store_code }">${stor.store_code }</a></td>
-							         				<td>${stor.store_name }</td>
-							         				<td>${stor.p_name }</td>
-							         				<td>${stor.invent_total - stor.invent_qty}
-								         				<%-- <c:if test="${stor.invent_total <stor.invent_qty }">
-								         					<i class="fa-solid fa-triangle-exclamation"></i>
-								         				</c:if> --%>
-								         			</td>
-							         				<td>${stor.store_loc}</td>							         											         				
+                                      	<c:if test="${!empty Release_order}">
+							         		<c:forEach var="R_order" items="${Release_order}">
+							         			<tr>         			
+							         				<td>${R_order.p_code}</td>
+							         				<td>${R_order.m_code}</td>
+							         				<td>${R_order.p_count}</td>
+							         				<td>${R_order.eq_code}</td>
+							         				<td><a href="release_out.admin?p_code=${R_order.p_code}&m_code=${R_order.m_code}&p_count=${R_order.p_count}" class="form-control btn btn-success btn-sm">출고하기</a></td>						         				
 							         			</tr>
+							         			
 							         		</c:forEach>
 						         		</c:if> 
                                     </tbody>

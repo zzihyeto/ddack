@@ -14,6 +14,7 @@ public class MemOrder {
 	Date delay_date; //지연일
 	
 	public MemOrder() {}
+	
 	public MemOrder(String m_od_code, String m_name, String p_name, int p_count, Date order_date, Date due_date) {
 		super();
 		this.m_od_code = m_od_code;

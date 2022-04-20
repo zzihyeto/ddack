@@ -5,10 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	List<Product> storage_list = (List<Product>) session.getAttribute("storage_list");
+	List<Product> Q_Management = (List<Product>) session.getAttribute("Q_Management");
+	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음
 	
-	request.setAttribute("storage_list", storage_list);
+	request.setAttribute("Q_Management", Q_Management);
 %>
+<c:set var="Q_Management" value="<%= Q_Management %>"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,11 +19,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Store_테이블</title>
+        <title>품질관리</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
-		<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
-		
         <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -42,10 +41,10 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">완제품 창고 관리</h1>
+                        <h1 class="mt-4">품질관리</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Store_테이블</li>
+                            <li class="breadcrumb-item active">제품품질현황_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,35 +55,29 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>Store_테이블
+                                <i class="fas fa-table me-1"></i>제품품질현황_테이블
+                                <%-- <a href="./product_add.jsp" class="btn btn-success">추가하러 가기</a>--%>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>창고 코드</th>
-                                            <th>저장소 이름</th>
-                                            <th>저장한 완제품</th>
-                                            <th>남은 공간</th>
-                                            <th>창고 위치</th>
+                                            <th>제품 이름</th>
+                                            <th>제품 현황</th>
+                                            <th>제품 품질검사</th>
+                                            <th>제품 유통기한</th>
                                         </tr>
                                     </thead>
                                     
                                 
                                     <tbody>
-                                      	<c:if test="${!empty storage_list}">
-							         		<c:forEach var="stor" items="${storage_list }">
-							         			<tr>
-							         				
-							         				<td><a href="storedetail.add?store_code=${stor.store_code }">${stor.store_code }</a></td>
-							         				<td>${stor.store_name }</td>
-							         				<td>${stor.p_name }</td>
-							         				<td>${stor.invent_total - stor.invent_qty}
-								         				<%-- <c:if test="${stor.invent_total <stor.invent_qty }">
-								         					<i class="fa-solid fa-triangle-exclamation"></i>
-								         				</c:if> --%>
-								         			</td>
-							         				<td>${stor.store_loc}</td>							         											         				
+                                      	<c:if test="${!empty Q_Management}">
+							         		<c:forEach var="Q_pro" items="${Q_Management}">
+							         			<tr>         			
+							         				<td>${Q_pro.p_name}</td>
+							         				<td>${Q_pro.invent_qty}</td>
+							         				<td>${Q_pro.eq_code}</td>
+							         				<td>${Q_pro.p_life}</td>						         				
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 

@@ -102,7 +102,7 @@ public class ProductDAO {
 		return bom_list;
 	}
 
-	//pro_stateAction 에서 완제품골라 담은 것 
+	// eAction 에서 완제품골라 담은 것 
 	public List<Product> selectProducState() {
 		conn = JDBCUtility.getConnection();
 		List<Product> pro_state_list =new ArrayList<>();
@@ -370,7 +370,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select  it.invent_code , st.store_name , pr.p_name , it.invent_qty, it.invent_total, st.store_loc "
+		String sql = "select  it.invent_code ,st.store_code, st.store_name , pr.p_name , it.invent_qty, it.invent_total, st.store_loc "
 				+ " from `storage` st , item_invent it , product pr "
 				+ " where st.store_code=it.store_code and pr.p_code = it.p_code ";
 		
@@ -380,6 +380,7 @@ public class ProductDAO {
 			
 			while (rs.next()) {
 				bom = new Product();
+				bom.setStore_code(rs.getString("store_code"));
 				bom.setInvent_code(rs.getString("invent_code"));
 				bom.setStore_name(rs.getString("store_name"));
 				bom.setP_name(rs.getString("p_name"));
@@ -1095,6 +1096,102 @@ public class ProductDAO {
 		
 		return mat_count;
 	}
+
+
+	public List<Product> Quality_Management() {
+		
+		conn = JDBCUtility.getConnection();
+		List<Product> Q_Management = new ArrayList<>();
+		Product product = null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql = "select p.p_name, ii.invent_qty , p.eq_code, p.p_life "
+				+ " from product p, item_invent ii "
+				+ " where p.p_code= ii.p_code";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				product = new Product();
+				product.setP_name(rs.getString("p_name"));
+				product.setInvent_qty(rs.getInt("invent_qty"));
+				product.setEq_code(rs.getString("eq_code"));
+				product.setP_life(rs.getString("p_life"));
+				Q_Management.add(product);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return Q_Management;
+	}
+		
+
+
+	public Product getStore_names(String store_code) {
+
+		conn = JDBCUtility.getConnection();
+
+		Product store = new Product();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="select * from `storage` where store_code =? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, store_code);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				store.setStore_code(rs.getString("store_code"));
+				store.setStore_name(rs.getString("store_name"));
+				store.setStore_loc(rs.getString("store_loc"));
+			}
+			
+						
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		
+		return store;
+	}
+
+	public void storeupdate(String store_code, String store_name, String store_loc) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+		String sql="update `storage` set store_name=?, store_loc=? where store_code=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, store_name);
+			pstmt.setString(2, store_loc);
+			pstmt.setString(3, store_code);
+			
+			int cnt = pstmt.executeUpdate();
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("문제가 발생했습니다." + e.getMessage());
+			
+		} finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+	}
+
 
 
 	

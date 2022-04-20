@@ -38,25 +38,7 @@
 	        <main>
 	         <!-- layout폴더 > navbar.jsp -->
 	   		<jsp:include page="./layout/navbar.jsp" />	
-            <c:if test="${!empty register_msg}">
-            	<div class="alert alert-warning" role="alert">
-					${register_msg} 했습니다. 로그인해주세요.
-				</div>
-            </c:if>
             
-           <!-- 로긴안해서 삭제 권한없음 -->
-           	<c:if test="${!empty no_login}">
-            	<div class="bg-danger text-white">
-					${ no_login }
-				</div>
-            </c:if>
-			
-			<c:if test="${!empty pw_error}">
-            	<div class="bg-danger text-white">
-					${ pw_error }
-				</div>
-            </c:if> 
-			
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -65,6 +47,24 @@
 	                            <h3 class="text-center font-weight-light my-4">
 	                            	Login
 	                            </h3>
+	                            <!-- 로긴안해서 삭제 권한없음 -->
+	                            <c:if test="${!empty no_login}">
+            						<div class="bg-danger text-white">
+										${ no_login }
+									</div>
+					            </c:if>
+								
+								<c:if test="${!empty pw_error}">
+					            	<div class="bg-danger text-white">
+										${ pw_error }
+									</div>
+					            </c:if> 
+					            <c:if test="${!empty register_msg}">
+					            	<div class="alert alert-warning" role="alert">
+										${register_msg} 했습니다. 로그인해주세요.
+									</div>
+					            </c:if>
+					             <p class="bg-warning text-white">Amin 계정은 1개 mid1 12345</p>
                             </div>
                             <div class="card-body">
                                 <form action="login.check" method="post">
@@ -79,7 +79,7 @@
                                     <div class="form-check mb-3">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="#" >비밀번호 찾기</a>
+                                        <a class="small" href="/findpw.jsp" >비밀번호 찾기</a>
                                         <button type="submit" class="btn btn-warning">Login</button>
                                     </div>
                                 </form>

@@ -12,8 +12,10 @@ public class Product {
 	
 	int p_count_pay=0; 
 	int p_count =0;
+	int p_count_sum=0;
 	
 	String order_date; //주문일
+	String dead_lin;//마감일(우리가 정한 납기일-5일전 기준) insert될때 계산시켜놓음 
 	String due_date; //납기일(소비자가원하는 날짜)
 	
 	String invent_code; //창고 코드
@@ -21,9 +23,15 @@ public class Product {
 	int invent_qty; //창고에 저장된 갯수
 	int invent_total; // 창고에 최대 넣을 수 있는 공간
 	
+	String store_code;
 	String store_name; //저장소 이름
 	String store_loc; //저장소 위치
-	public Product() {}
+	
+	
+	
+	
+    public Product() {}
+    
 
 	public Product(String p_code, String p_name, String p_kg, String p_life, String p_pay) {
 		super();
@@ -35,7 +43,31 @@ public class Product {
 		this.p_pay = p_pay;
 	}
 
+
 	
+	public String getDead_lin() {
+		return dead_lin;
+	}
+
+	public void setDead_lin(String dead_lin) {
+		this.dead_lin = dead_lin;
+	}
+
+	public int getP_count_sum() {
+		return p_count_sum;
+	}
+
+	public void setP_count_sum(int p_count_sum) {
+		this.p_count_sum = p_count_sum;
+	}
+
+	public String getStore_code() {
+		return store_code;
+	}
+
+	public void setStore_code(String store_code) {
+		this.store_code = store_code;
+	}
 	public int getP_kg_int() {
 		return p_kg_int;
 	}
