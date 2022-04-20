@@ -12,7 +12,6 @@
 	request.setAttribute("b_comp_codes", b_comp_codes);
 	
 	session.setAttribute("mat_code", mat_code);
-	System.out.println("===mat_code=====" + mat_code);
 	
 %>
 <c:set var="need_cnt" value="<%= need_cnt %>"/>
@@ -86,7 +85,6 @@
 							</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->
-					<!-- 	  <div class="form-floating row g-3"> -->
 							<div class="input-group mb-3"> 
 									<span class="input-group-text" >재료코드</span> 	
 									<input name="mat_code" class="form-control" type="text" placeholder="재료코드" value="${ mat_code }" readonly/>									 					
@@ -94,7 +92,6 @@
 									<span class="input-group-text" >주문가능 수량</span> 
 									<input name="need_cnt" class="form-control" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
 							</div>
-				<!-- 		  </div> -->
 							 
 							<div class="form-floating mb-3">
 								<div class="input-group mb-3">

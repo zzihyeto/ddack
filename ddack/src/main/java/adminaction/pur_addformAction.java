@@ -15,7 +15,6 @@ public class pur_addformAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		
 		SupplierDAO supplierDAO = SupplierDAO.getInstance();
 	    List<String> matcodes = supplierDAO.getmatcode();
 	    

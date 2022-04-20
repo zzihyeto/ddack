@@ -7,7 +7,6 @@
 
 	List<String> matcodes = (List<String>) session.getAttribute("matcodes");
 	request.setAttribute("matcodes", matcodes);
-	System.out.println("===matcodes==" + matcodes);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +71,7 @@
 					<div class="card-body">
 						<div class="input-group mb-3">
 								<span class="input-group-text" >발주코드</span>
-							<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly />
+							<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly/>
 						</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->

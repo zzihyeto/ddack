@@ -32,7 +32,7 @@ public class pur_formAction implements Action {
 			//넉넉하게 주문했네 오케이 등록시켜줄께
 			
 			//DB 접근해서 등록하는 메서드 실행
-			supplierDAO.insertorder(b_comp_code, mat_count);
+			supplierDAO.insertorder(b_comp_code, mat_count, mat_code);
 			
 			//가야할곳에 재료 담아서 
 			// 주소로 간다.		
