@@ -1,6 +1,7 @@
 package adminaction;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,9 +43,12 @@ public class Release_out_adminAction implements Action {
 		
 		//memorder = p_code,m_code 가져오기
 		String m_od = releaseDAO.getm_order(p_code,m_code);
-		
+
 		//5.출고는 완료 했으니, 해당하고 있는거 한 줄 삭제
-		releaseDAO.del_rel(m_od);
+		releaseDAO.del_rel(p_code,m_code);
+		
+		// 삭제된 것이 출고 된거니깐, 출고기록 되로록  rel테이블에 insert하기
+		releaseDAO.get_del(p_code,m_code,p_count);
 		
 		//주소지정해주기
 		ActionForward forward = new ActionForward();

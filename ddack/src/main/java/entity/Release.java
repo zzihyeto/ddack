@@ -12,8 +12,12 @@ public class Release {
 	String io_cd;
 	Date io_time; 
 	
+	String pro_code;
+	String mem_code;
+	int pro_count;
+	Date re_date;
 	
-	 public Release() {}
+	public Release() {}
 	
 	public Release(String p_code, String m_code, String eq_code, int p_count) {
 		super();
@@ -76,16 +80,60 @@ public class Release {
 
 	public void setP_count(int p_count) {
 		this.p_count = p_count;
+		
 	}
 
 	public String getP_name() {
 		return p_name;
+		
 	}
 	
-
+	
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
+		
 	}
 	
+	 public String getPro_code() {
+		return pro_code;
+		
+	}
 
+	public void setPro_code(String pro_code) {
+		this.pro_code = pro_code;
+		
+	}
+
+	public String getMem_code() {
+		return mem_code;
+		
+	}
+
+	public void setMem_code(String mem_code) {
+		this.mem_code = mem_code;
+		
+	}
+
+	
+	public int getPro_count() {
+		return pro_count;
+		
+	}
+
+	
+	public void setPro_count(int pro_count) {
+		this.pro_count = pro_count;
+		
+	}
+
+	public Date getRe_date() {
+		return re_date;
+		
+	}
+
+	
+	public void setRe_date(Date re_date) {
+		this.re_date = re_date;
+		
+	}
 }

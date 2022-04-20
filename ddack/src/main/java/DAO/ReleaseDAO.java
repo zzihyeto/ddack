@@ -57,30 +57,6 @@ public class ReleaseDAO {
 		return Release_order;
 	}
 	
-	// 출고내역
-//	public void re_history() {
-//		
-//		conn = JDBCUtility.getConnection();
-//		PreparedStatement pstmt = null;
-//		ResultSet rs =null;
-//		String sql ="insert into rel(pro_code, pro_name, mem_code, pro_count,redate) VALUES (?,?,?,?,?)";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			
-//  
-//		
-//		}catch (Exception e) {
-//			System.out.println("연결이 안되었습니다."+e.getMessage());
-//			
-//		}finally {
-//			JDBCUtility.close(conn, pstmt, rs);
-//		}
-//
-//	}
-	
 	//출고 된 후 수량 변화 update 시킴
 	public void re_out(String p_code,int stay_cnt) {
 		
@@ -200,7 +176,6 @@ public class ReleaseDAO {
 	public String getm_order(String p_code, String m_code) {
 		
 		String m_od ="";
-		
 		conn = db.JDBCUtility.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -221,21 +196,22 @@ public class ReleaseDAO {
 		}catch(Exception e) {
 			System.out.println("실패인가"+e.getMessage());
 		}finally {
-			JDBCUtility.close(conn, pstmt,null);
+			JDBCUtility.close(conn, pstmt,rs);
 		}
 		
 		return m_od;
 	}
 	
 	// 출고지시 후 해당 줄 삭제
-	public void del_rel(String m_od) {
+	public void del_rel(String p_code, String m_code) {
 		
 		conn = db.JDBCUtility.getConnection();
 		PreparedStatement pstmt = null;
-		String sql="delete from memorber where p_code=?";
+		String sql="delete from memorder where p_code =? and m_code=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_od);
+			pstmt.setString(1, p_code);
+			pstmt.setString(2, m_code);
 			
 			int i= pstmt.executeUpdate();
 			
@@ -252,8 +228,98 @@ public class ReleaseDAO {
 		}
 		
 	}
+	
+	// 삭제된 거 rel테이블에 insert하기
+	public void get_del(String p_code, String m_code, int p_count) {
+		
+		conn = JDBCUtility.getConnection();
+		int i =0;
+		PreparedStatement pstmt = null;
+		
+		String sql ="insert into rel(pro_code,mem_code,pro_count,re_date) VALUES (?,?,?,sysdate())";
+		
+		try {
 
-}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			pstmt.setString(2, m_code);
+			pstmt.setInt(3, p_count);
+			
+			i = pstmt.executeUpdate();			
+			
+			if(i>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+
+		} catch (Exception e) {
+			System.out.println("실패입니다요."+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
+	}
+	
+	// 출고내역
+	public List<Release> re_history() {
+		
+		conn = JDBCUtility.getConnection();
+		List<Release> Release_history = new ArrayList<>();
+		Release release = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String sql ="SELECT * FROM rel";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				release = new Release();
+				release.setPro_code(rs.getString("pro_code"));
+				release.setMem_code(rs.getString("mem_code"));
+				release.setP_count(rs.getInt("pro_count"));
+				release.setRe_date(rs.getDate("re_date"));
+				Release_history.add(release);
+				
+			}
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+			
+		}finally {
+			JDBCUtility.close(conn, pstmt, rs);
+		}
+		return Release_history;
+	}
+	
+	}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

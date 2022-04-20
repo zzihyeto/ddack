@@ -77,7 +77,7 @@
 							         				<td>${R_order.m_code}</td>
 							         				<td>${R_order.p_count}</td>
 							         				<td>${R_order.eq_code}</td>
-							         				<td><a href="release_out.admin?p_code=${R_order.p_code}&m_code${R_order.m_code}&p_count=${R_order.p_count}" class="form-control btn btn-success btn-sm">출고하기</a></td>						         				
+							         				<td><a href="release_out.admin?p_code=${R_order.p_code}&m_code=${R_order.m_code}&p_count=${R_order.p_count}" class="form-control btn btn-success btn-sm">출고하기</a></td>						         				
 							         			</tr>
 							         			
 							         		</c:forEach>

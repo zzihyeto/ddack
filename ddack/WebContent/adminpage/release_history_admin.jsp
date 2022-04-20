@@ -63,21 +63,20 @@
                                     <thead>
                                         <tr>
                                             <th>제품코드</th>
-                                            <th>제품명</th>
                                             <th>거래처코드</th>
                                             <th>수량</th>
                                             <th>출고일</th>
+                                            <th>비고</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                       	<c:if test="${!empty Release_history}">
 							         		<c:forEach var="R_history" items="${Release_history}">
 							         			<tr>         			
-							         				<td>${R_history.p_code}</td>
-							         				<td>${R_history.p_name}</td>
-							         				<td>${R_history.m_code}</td>
+							         				<td>${R_history.pro_code}</td>
+							         				<td>${R_history.mem_code}</td>
 							         				<td>${R_history.p_count}</td>
-							         				<td>${R_history.io_time}</td>		         				
+							         				<td>${R_history.re_date}</td>		         				
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if> 
