@@ -32,6 +32,7 @@
 				<c:if test="${empty m_id}">
 				<li><a class="dropdown-item" href="/adminpage/login_admin.jsp">Login</a></li>
 				</c:if>
+				
 			</ul>
 		</li>
 	</ul>
