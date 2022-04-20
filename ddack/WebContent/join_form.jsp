@@ -133,7 +133,7 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text"name="be_addr" placeholder="연락처를 입력하세요" /> 
+													<input class="form-control" id="" type="text"name="be_addr" placeholder="상세주소를 입력하세요" /> 
 													<label for="be_addr"> <i class="bi bi-house-heart"></i>상세주소</label>
 												</div>
 											</div>

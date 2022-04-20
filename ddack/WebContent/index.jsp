@@ -21,6 +21,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./css1/styles.css" rel="stylesheet" />
+        
+        <style>
+        	{
+        	backgorun
+        	}
+        </style>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -47,7 +53,7 @@
                             </div>
                         </div>
                         <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                        	<img class="img-fluid rounded-3 my-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
+                        	<img class="img-fluid rounded-3 my-5" src="img/index1.jpg" alt="..." />
                         </div>
                     </div>
                 </div>
@@ -74,27 +80,27 @@
                     <div class="row gx-5">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                <img class="card-img-top" src="img/slice.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="badge bg-danger bg-gradient rounded-pill mb-2">인기</div>
                                     <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">슬라이스 닭가슴살</h5></a>
-                                    <p class="card-text mb-0">먹기 좋게 슬라이스 되어서 한입에 쏙</p>
+                                    <p class="card-text mb-0">언제 어디서나 슬라이스로 한입에 쏙</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
+                                <img class="card-img-top" src="img/cube.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="badge bg-danger bg-gradient rounded-pill mb-2">인기</div>
                                     <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">큐브 닭가슴살</h5></a>
-                                    <p class="card-text mb-0">큐브 모양으로 식감을 늘리고 한입에 쏙</p>
+                                    <p class="card-text mb-0">먹기 좋게 큐브모양으로 한입에 쏙</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
+                                <img class="card-img-top" src="img/sausage.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="badge bg-danger bg-gradient rounded-pill mb-2">인기</div>
                                     <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">핫바 닭가슴살</h5></a>
@@ -125,11 +131,11 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-10 col-xl-7">
                             <div class="text-center">
-                                <div class="fs-4 mb-4 fst-italic">"There may be tough times, but the difficulties which you face will make you more DETERMINED."</div>
-                                <div class="fs-4 mb-4 fst-italic"> 힘든 시기가 있을 수 있지만, 당신이 직면하고 있는 어려움들은 당신을 더욱 확고하게 만들어 줄 것입니다. </div>
+                                <div class="fs-4 mb-4 fst-italic">"Take care of your body. It's the only place you have to live."</div>
+                                <div class="fs-4 mb-4 fst-italic"> 네 몸을 건강하게 잘 돌보라, <br> 그것은 당신이 살아갈 수 있는 유일한 장소이다. </div>
                                	<div class="d-flex align-items-center justify-content-center">
                                     <div class="fw-bold">
-                                        -Marta-
+                                        -Jim Rohn-
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +143,6 @@
                     </div>
                 </div>
             </div>
-            
         </main>
         
         <!-- layout폴더 > footer.jsp -->

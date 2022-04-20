@@ -1,13 +1,22 @@
-<%@page import="java.util.List"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.lang.Integer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.lang.Integer"%>
 <%
-	request.setCharacterEncoding("utf-8");
+	int need_cnt = (int) session.getAttribute("resultcount");
+	request.setAttribute("result", need_cnt);
+	
+	String mat_code = request.getParameter("mat_code");
 
-	List<String> matcodes = (List<String>) session.getAttribute("matcodes");
-	request.setAttribute("matcodes", matcodes);
+	List<String> b_comp_codes = (List<String>) session.getAttribute("b_comp_code");
+	request.setAttribute("b_comp_codes", b_comp_codes);
+	
+	session.setAttribute("mat_code", mat_code);
+	
 %>
+<c:set var="need_cnt" value="<%= need_cnt %>"/>
+<c:set var="mat_code" value="<%= mat_code %>"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,8 +43,8 @@
 			</nav>
 		</div>
 
-		<div id="layoutSidenav_content">
-			<main>
+	<div id="layoutSidenav_content">	
+		<main>
 				<div class="container-fluid px-4">
 					<!-- table 내용 -->
 					<h1 class="mt-4">발주서 작성하기</h1>
@@ -52,15 +61,15 @@
 						</div>
 					</div>
 		
-		<!-- 네비탭바 -->
-          <ul class="nav nav-tabs mb-4">
-			 <li class="nav-item">
-		    	<a class="nav-link active" href="pur_choice_form.jsp">발주서 작성하기</a>
-			 </li>
-			 <li class="nav-item">
-		    	<a class="nav-link" href="pur_manage.admin">발주관리</a>
-			 </li>
-		   </ul>   
+				<!-- 네비탭바 -->
+		          <ul class="nav nav-tabs mb-4">
+					 <li class="nav-item">
+				    	<a class="nav-link active" href="pur_choice_form.jsp">발주서 작성하기</a>
+					 </li>
+					 <li class="nav-item">
+				    	<a class="nav-link" href="pur_manage.admin">발주관리</a>
+					 </li>
+				   </ul>   
 		   
 		   <!--발주서 폼  -->
 				<div class="card mb-4">
@@ -69,55 +78,46 @@
 					</div>
 						
 					<div class="card-body">
-						<div class="input-group mb-3">
+						<form class="flex" action="pur_form.admin">
+							<div class="input-group mb-3">
 								<span class="input-group-text" >발주코드</span>
-							<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly/>
-						</div><!--시퀀스로 자동입력되게  -->
+								<input type="text" class="form-control" name="b_order_code"	aria-describedby="basic-addon3" placeholder="자동생성됨" readonly />
+							</div><!--시퀀스로 자동입력되게  -->
 							
 						<!-- 재료코드로 주문필요 수량 검색 -->
-						<form class="d-flex" action="order_stock.admin" method="post">
-						  <div class="form-floating row g-3">
-						  	<div class="bg-primary text-white">
-								재료코드를 선택하신 후 주문가능 수량체크 버튼을 눌러주세요.
-						  	</div>
 							<div class="input-group mb-3"> 
-								<label class="input-group-text" for="inputGroupSelect">재료코드</label>
-									<select class="form-select me-5" name="mat_code">
-										<c:if test="${ !empty matcodes }">
-											<c:forEach var="mat_code" items="${ matcodes }">
-												<option value="${ mat_code }">${ mat_code }</option>
-											</c:forEach>
-										</c:if>
-									</select>											 
-									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
-									<input class="form-control me-2" type="text" placeholder="주문가능수량" readonly/>
-									<button class="btn btn btn-primary" type="submit">주문가능 수량체크</button>
+									<span class="input-group-text" >재료코드</span> 	
+									<input name="mat_code" class="form-control" type="text" placeholder="재료코드" value="${ mat_code }" readonly/>									 					
+									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것 -->
+									<span class="input-group-text" >주문가능 수량</span> 
+									<input name="need_cnt" class="form-control" type="text" placeholder="주문가능 수량" value="${ need_cnt }" readonly>
 							</div>
-						</div>
-					    </form>
-							
+							 
 							<div class="form-floating mb-3">
 								<div class="input-group mb-3">
 									<!-- 재료코드에 따른 발주회사코드 option으로 선택할수 있도록  -->
-									<span class="input-group-text" >발주회사코드</span>
-									<input type="text" class="form-control" name="b_comp_code"aria-describedby="basic-addon3" placeholder="발주회사코드" readonly />
-								</div>
-							</div>
-							<div class="form-floating mb-3">
-								<input name="mat_count" class="form-control" type="text" placeholder="주문수량" readonly/>
-								<label for="mat_count">주문수량</label>
-							</div>
-	
-							<div class="form-floating mb-3">
-								<input name="mat_order_d" class="form-control" type="text" placeholder="주문일자" readonly/>
-								<label for="mat_order_d">주문일자</label>
-							</div>
-	
-							<div class="form-floating mb-3">
-								<input class="btn btn-success" type="submit" value="발주서등록" /> 
-								<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
+									<label class="input-group-text" for="inputGroupSelect">발주회사코드</label>
+										<select class="form-select" name="b_comp_code">
+											<c:if test="${ !empty b_comp_codes }"> 
+												<c:forEach var="code" items="${ b_comp_codes }">
+													<option value="${ code }">${ code }</option>
+												</c:forEach>
+											</c:if>
+										</select>
+									</div>
 							</div>
 
+								<div class="form-floating mb-3">
+									<input name="mat_count" class="form-control" type="text" placeholder="주문수량" />
+									<label for="mat_count">주문수량</label>
+								</div>
+
+								<div class="form-floating mb-3">
+									<input class="btn btn-success" type="submit" value="발주서등록" /> 
+									<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
+								</div>
+								
+	   						 </form>
 						</div>
 					</div>
 				</div>

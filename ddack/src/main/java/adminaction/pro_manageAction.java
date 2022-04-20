@@ -7,29 +7,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.SupplierDAO;
+import DAO.ManufaDAO;
 import action.Action;
-import entity.Supplier;
+import entity.Production_manage;
 import vo.ActionForward;
 
-public class pur_detailAction implements Action {
+public class pro_manageAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		List<Production_manage> process_manage = new ArrayList<Production_manage>();
 		
-		req.setCharacterEncoding("utf-8");
-		
-		List<Supplier> supdetail_list = new ArrayList<Supplier>();
-		SupplierDAO supplierDAO = SupplierDAO.getInstance();
-		supdetail_list = supplierDAO.supplierdetail();
+		ManufaDAO manufaDAO = ManufaDAO.getInstance();
+		process_manage = manufaDAO.getCHp();
 		
 		HttpSession sess = req.getSession();
-		sess.setAttribute("supdetail_list", supdetail_list);
+		sess.setAttribute("process_manage", process_manage);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/adminpage/purchase_manage.jsp");
+		forward.setPath("/adminpage/Process_Management.jsp");
 		
-		return forward ;
+		return forward;
 	}
 
 }
