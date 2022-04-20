@@ -6,6 +6,7 @@
 	Member member_info = (Member) session.getAttribute("member_info");
 	
 	Post post_info = (Post) session.getAttribute("post_info");
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +45,9 @@
 							<c:if test="${ empty member_info }">
 								<p class="bg-danger text-white">로그인하셔야 정보를 볼수 있습니다.</p>
 							</c:if>	
+					
+							<p class="bg-wraning text-white">비밀번호를 입력해야 수정가능합니다.</p>
+						
 						</div>
 						
 						<div class="card-body">

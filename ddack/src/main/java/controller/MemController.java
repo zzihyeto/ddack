@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.Del_MemberAction;
 import action.FinalbuyAction;
 import action.IdDup_CheckAction;
 import action.JoinAction;
@@ -56,13 +55,6 @@ public class MemController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/")){
-				action = new Del_MemberAction();
-				try	{
-					forward = action.execute(req, res);
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
 		}else if(command.equals("/finalbuy.member")){
 			action = new FinalbuyAction();
 			try	{

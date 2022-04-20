@@ -72,7 +72,7 @@
 	                 <div class="card mb-4">
 	                     <div class="card-header">
 	                         <i class="fas fa-chart-bar me-1"></i> 연령별 건강/ 다이어트 / 운동 관심도 </div>
-	                     <div class="card-body"><canvas id="brChart" width="100%" height="40"></canvas></div>
+	                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
 	                 </div>
 	             </div>
 	         </div>

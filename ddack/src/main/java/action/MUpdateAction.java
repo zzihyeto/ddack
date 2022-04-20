@@ -35,7 +35,10 @@ public class MUpdateAction implements Action {
 		MemberDAO dao = MemberDAO.getInstance();
 		boolean updateSucc = dao.update_pwcheck(id,pw);
 		
-		
+		if(pw==null) {
+			updateSucc = false;
+		}
+		HttpSession session = req.getSession(); 
 		if(updateSucc) {
 			//비번이 일치하니 내용값을 수정할수있어서 update하자
 			
@@ -49,14 +52,14 @@ public class MUpdateAction implements Action {
 			Member member_info= dao.getMember_info(id);
 			Post post_info = MemberDAO.getPost_info(post_code);
 			
-			HttpSession session = req.getSession(); 
+			
 			session.setAttribute("member_info", member_info);
 			session.setAttribute("post_info", post_info);
 			
 			forward.setPath("./succ_m_modi.jsp");
 		}else {
 			//비번이 일치 하지 않으므로 회원 정보 수정하지 못합니다.를 알리러
-			
+			forward.setPath("./member_info.jsp");
 		}
 		
 		return forward;
