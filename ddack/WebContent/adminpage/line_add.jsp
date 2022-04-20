@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,28 +18,26 @@
 	 <%@ include file ="./main/include/layout/header.jsp"%>
         
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+           	<div id="layoutSidenav_nav">
                  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 	<!-- 사이드바 -->
                     <%@ include file ="./main/include/layout/sidebar.jsp"%>    
                 </nav>
-        </div>
+        	</div>
             
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Line_테이블테이블</h1>
+                        <h1 class="mt-4">Line_테이블</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Line_테이블테이블</li>
+                            <li class="breadcrumb-item active">Line_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Line_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -60,12 +57,11 @@
                                    
                                     
                                     <div class="form-floating mb-3">
-                                        <input class="btn btn-success"  type="submit" value="등록하기"/>
+                                        <input class="btn btn-success" type="submit" value="등록하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
                                     </div>
                                 </form>
                             </div>
-                            
                         </div>
                     </div>
                 </main>

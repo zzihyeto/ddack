@@ -49,9 +49,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                               Quality + BOM (Bills of Material)<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <ul class="nav nav-tabs mb-4">
@@ -85,8 +83,7 @@
 	                                            <th>등록 버튼</th>
 	                                        </tr>
 	                                    </thead>
-	                                    
-	                                
+	                                    	                                
 	                                    <tbody>
 							         		<td>
 	                                    		<select name="mat_name" id="" class="form-control">
@@ -107,10 +104,10 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-body">
-                               원자제 이름을 고르고 체크한 갯수를 입력하고  <br />
-                               체크내용을 입력한다. <br />
-                               등록하게 되면 기록한 날짜가 수정되고 <br />
-                               체크내용에 따라 체크한 갯수가 더해지거나 감해진다.
+                               원자재코드를 선택하고 체크한 개수를 입력하고 <br/>
+                               체크 내용을 입력한다. <br />
+                               등록하게 되면 기록한 날짜가 수정되고 <br/>
+                               체크내용에 따라 체크한 개수가 더해지거나 감해진다.
                             </div>
                         </div>
                     </div>
@@ -120,12 +117,9 @@
             	<%@ include file ="./main/include/layout/footer.jsp"%>
             </div>
         </div>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./js2/scripts.js"></script> 
-        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./js2/datatables-simple-demo.js"></script>
-        
     </body>
 </html>

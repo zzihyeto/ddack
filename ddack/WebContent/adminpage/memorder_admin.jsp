@@ -47,7 +47,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 주문 현황 참고하세요.<br> DDACK의 노력은 계속되어야 한다.
-                        </div>
+                        	</div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>주문상세 테이블
@@ -81,7 +81,6 @@
 							         				<td>${order.dead_line}</td>
 							         				<td>${order.due_date}</td>
 							         				<td>${order.delay_date}</td>
-							         				
 							         			</tr>
 							         		</c:forEach>
 						         		</c:if>                                       
@@ -90,6 +89,7 @@
                             </div>
                         </div>
                     </div>
+                   </div> 
                 </main>
 	      
                 <!-- footer -->   

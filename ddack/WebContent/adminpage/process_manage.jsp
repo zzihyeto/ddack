@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>생산관리</title>
+        <title>생산 관리</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -41,10 +41,7 @@
              
          <div class="card mb-4">
              <div class="card-body">
-             	생산관리
-				<br> DDACK의 노력은 계속되어야 한다.
-			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                .
+             	생산관리 <br> DDACK의 노력은 계속되어야 한다.
              </div>
           </div>
                        

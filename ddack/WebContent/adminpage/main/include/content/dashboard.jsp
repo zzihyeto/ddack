@@ -20,7 +20,7 @@
 	             <li class="breadcrumb-item active">관리자 페이지</li>
 	         </ol>
 	         <div class="row">
-	             <div class="col-xl-3 col-md-4">
+	             <div class="col-xl-3 col-md-4">  
 	                 <div class="card bg-danger text-white mb-4">
 	                     <div class="card-body">물류 관리</div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
@@ -63,21 +63,19 @@
 	             <div class="col-xl-6">
 	                 <div class="card mb-4">
 	                     <div class="card-header">
-	                         <i class="fas fa-chart-bar me-1"></i>	월별 닭가슴살 검색량 </div>
-	                     <div class="card-body"><canvas id="ddack3" width="100%" height="40"></canvas></div>
+	                         <i class="fas fa-chart-bar me-1"></i> 월별 닭가슴살 검색량
+	                     </div>
+	                     <div class="card-body"><canvas id="ddack3" width="100%" height="60"></canvas></div>
 	                 </div>
 	             </div>
 
 	             <div class="col-xl-6">
 	                 <div class="card mb-4">
 	                     <div class="card-header">
-
-	                         <i class="fas fa-chart-bar me-1"></i>닭가슴살검색량에 따른 매출량예측</div>
-	                     <div class="card-body"><canvas id="ddack1" width="100%" height="40"></canvas></div>
-
+	                         <i class="fas fa-chart-bar me-1"></i> 닭가슴살 검색량에 따른 매출량 예측</div>
+	                     <div class="card-body"><canvas id="ddack1" width="100%" height="60"></canvas></div>
 	                 </div>
-	             </div>
-	             
+	             </div>	             
 	         </div>
 	         
 	     </div>

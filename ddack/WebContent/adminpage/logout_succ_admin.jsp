@@ -30,22 +30,20 @@
                 <main>
                     <div class="container-fluid px-4">
                     	<!-- table 내용 -->
-                        <h1 class="mt-4">Sucess_logout</h1>
+                        <h1 class="mt-4">Success_logout</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Sucess_logout</li>
+                            <li class="breadcrumb-item active">Success_logout</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Sucess_logout 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>Sucess_logout
+	                            <i class="fas fa-table me-1"></i>Success_logout
 	                        </div>
 	                        
                             <div class="container">

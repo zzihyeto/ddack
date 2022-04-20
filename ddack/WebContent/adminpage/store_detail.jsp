@@ -46,8 +46,6 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -57,7 +55,7 @@
 	                        <div class="card-body">
                                 <form action="storeupdate.add" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="store_name" class="form-control"  type="text" value="${store.store_name }" />
+                                        <input name="store_name" class="form-control" type="text" value="${ store.store_name }" />
                                         <label for="store_name">저장소 이름</label>
                                     </div>
                                     <div class="form-floating mb-3">

@@ -40,7 +40,7 @@
                                 <h1 class="fw-bolder mb-3">Introduce Our Team "닭리고"</h1>
                                 <p class="lead fw-normal text-muted mb-4">
                                 	수업을 통해 다양한 곳에서 프로그램이 사용되는 것을 보고 많이 놀랐습니다.
-                                	수업시간에 배웠던 기능을 기본으로 심화된 기능을 공부하여 추가기능을 구현해 보았습니다.
+                                	수업시간에 배웠던 기능을 기본으로 심화된 기능을 공부하여 추가 기능을 구현해 보았습니다.
                                 	회원관리, 주문서비스 그 안의 MES를 적용하여 팀프로젝트를 진행해 보았습니다.
 								</p>
                                 <a class="btn btn-success btn-lg" href="#scroll-target">Read our story</a>
@@ -68,7 +68,7 @@
                         <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="img/MES..jpg" alt="..." /></div>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">생산 관리(MES)</h2>
-                            <p class="lead fw-normal text-muted mb-0">관리자가 주문 들어온 것을 보고 생산지시를 하면 자동으로 재고파악하여 출고할 수 있는 것과 필요한 갯수를 계산해서 그만큼 생산하여 창고에 넣고 출고하게 하였습니다.</p>
+                            <p class="lead fw-normal text-muted mb-0">관리자가 주문 들어온 것을 보고 생산지시를 하면 자동으로 재고를 파악하여 출고하고 필요한 개수를 계산해서 그만큼 생산하여 창고에 넣고 출고하게 하였습니다.</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <div class="col mb-5 mb-5 mb-xl-0">
                             <div class="text-center">
                                 <img id="dong" class="img-fluid rounded-circle mb-4 px-4" src="img/brp.jpg"  alt="..." />
-                                <h5 class="fw-bolder">BR. PARK</h5>
+                                <h5 class="fw-bolder">BR. Park</h5>
                                 <div class="fst-italic text-muted">Group Member</div>
                             </div>
                         </div>
@@ -111,7 +111,5 @@
         
         <!-- layout폴더 > footer.jsp -->
         <jsp:include page="./layout/footer.jsp"/>
-        
-       
     </body>
 </html>

@@ -19,12 +19,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Quality_테이블</title>
-        
-       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        
     </head>
     
     <body class="sb-nav-fixed">
@@ -50,9 +47,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                품질_라인 테이블입니다.<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <ul class="nav nav-tabs mb-4">
@@ -84,7 +79,6 @@
 	                                        </tr>
 	                                    </thead>
 	                                    
-	                                
 	                                    <tbody>
 	                                    	<td>
 	                                    		<select name="line_name" id="" class="form-control">
@@ -119,9 +113,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./js2/scripts.js"></script> 
-        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./js2/datatables-simple-demo.js"></script>
-        
     </body>
 </html>

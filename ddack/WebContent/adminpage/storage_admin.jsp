@@ -19,10 +19,8 @@
         <meta name="author" content="" />
         <title>Store_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
-		<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
-		
-        <link href="css2/styles.css" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+	    <link href="css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     
@@ -50,8 +48,6 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -73,9 +69,8 @@
                                 
                                     <tbody>
                                       	<c:if test="${!empty storage_list}">
-							         		<c:forEach var="stor" items="${storage_list }">
+							         		<c:forEach var="stor" items="${ storage_list }">
 							         			<tr>
-							         				
 							         				<td><a href="storedetail.add?store_code=${stor.store_code }">${stor.store_code }</a></td>
 							         				<td>${stor.store_name }</td>
 							         				<td>${stor.p_name }</td>

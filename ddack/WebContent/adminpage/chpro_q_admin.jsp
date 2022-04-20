@@ -18,10 +18,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Quality_테이블</title>
-        
-       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
-        <link href="./css2/styles.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="./css2/styles.css" rel="stylesheet"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
     </head>
@@ -36,7 +34,7 @@
                 	<!-- 사이드바 -->
                     <%@ include file ="./main/include/layout/sidebar.jsp"%>    
                 </nav>
-        </div>
+        	</div>
             
             <div id="layoutSidenav_content">
                 <main>
@@ -49,9 +47,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Quality_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <ul class="nav nav-tabs mb-4">
@@ -109,8 +105,8 @@
                         </div>
                         <div class="card mb-4">
 	                            <div class="card-body">
-	                               체크버튼 누르면 공정 과정마다 쓴 재료 상태 확인하고<br />
-		                           재료상태에 따 결과값을 나타낸다. 하나라도 상태가 안좋으면 결과값 X
+	                               체크버튼을 누르면 공정 과정마다 사용한 재료 상태를 확인하고<br />
+		                           재료 상태에 따라 결과값을 나타낸다. 하나라도 상태가 안 좋으면 결과값 X
 	                            </div>
 	                        </div>
                     </div>
@@ -120,12 +116,9 @@
             	<%@ include file ="./main/include/layout/footer.jsp"%>
             </div>
         </div>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./js2/scripts.js"></script> 
-        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./js2/datatables-simple-demo.js"></script>
-        
-    </body>
+  </body>
 </html>

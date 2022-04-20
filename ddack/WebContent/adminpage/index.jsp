@@ -42,6 +42,5 @@
         <script src="assets2/demo/chart-bar-ddack2.js"></script> <!--대쉬보드 안 차트 바꾸려면 ID 및 경로 수정하세요. -->
         <script src="assets2/demo/chart-bar-ddack.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<!--         <script src="js2/datatables-simple-demo.js"></script> -->
     </body>
 </html>

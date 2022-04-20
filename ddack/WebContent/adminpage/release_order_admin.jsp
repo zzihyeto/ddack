@@ -6,8 +6,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	List<Release> Release_order = (List<Release>) session.getAttribute("Release_order");
-	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음
-	
+	//p_name..store_name..invent_total..invent_qty..eq_code 담겨있음	
 	request.setAttribute("Release_order", Release_order);
 %>
 <c:set var="Release_order" value="<%= Release_order %>"/>
@@ -49,8 +48,6 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
                             </div>
                         </div>
                         <div class="card mb-4">

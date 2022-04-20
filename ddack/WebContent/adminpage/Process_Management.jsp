@@ -45,10 +45,7 @@
              
          <div class="card mb-4">
              <div class="card-body">
-				공정관리
-				<br> DDACK의 노력은 계속되어야 한다.
-			  <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                .
+				공정관리 <br> DDACK의 노력은 계속되어야 한다.
              </div>
           </div>
                        

@@ -46,9 +46,7 @@
 					</ol>
 					<div class="card mb-4">
 						<div class="card-body">
-							고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다. 
-							<a target="_blank" href="https://datatables.net/">official DataTables documentation</a> 
-							.
+							발주서 작성하기<br> DDACK의 노력은 계속되어야 한다. 
 						</div>
 					</div>
 		
@@ -93,7 +91,7 @@
 									<input class="form-control me-2" type="text" placeholder="주문가능수량" readonly/>
 									<button class="btn btn btn-primary" type="submit">주문가능 수량체크</button>
 							</div>
-						</div>
+							</div>
 					    </form>
 							
 							<div class="form-floating mb-3">
@@ -117,7 +115,6 @@
 								<input class="btn btn-success" type="submit" value="발주서등록" /> 
 								<input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
 							</div>
-
 						</div>
 					</div>
 				</div>

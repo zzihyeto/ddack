@@ -42,9 +42,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Product_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">

@@ -38,9 +38,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                               관리자 페이지 입니다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -51,26 +49,25 @@
                             <div class="card-body">
                                 <form action="login.check" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="userID" class="form-control" id="userID" type="text" placeholder="ID..." />
+                                        <input name="userID" class="form-control" id="userID" type="text" placeholder="ID" />
                                         <label for="userID">Id</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="inputPassword" class="form-control" id="inputPassword" type="password" placeholder="PW..."/>
+                                        <input name="inputPassword" class="form-control" id="inputPassword" type="password" placeholder="PW"/>
                                         <label for="inputPassword">Password</label>
                                     </div>
                                     <div class="form-check mb-3">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        
                                         <button type="submit" class="btn btn-warning">Login</button>
                                     </div>
                                 </form>
                             </div>
                 		</div>
           			  </div>
+              		</main>	  
                    </div>
                 </div>
-              </main>
 	      
                 <!-- footer -->   
             	<%@ include file ="./main/include/layout/footer.jsp"%>

@@ -33,7 +33,7 @@
                 	<!-- 사이드바 -->
                     <%@ include file ="main/include/layout/sidebar.jsp"%>    
                 </nav>
-        </div>
+        	</div>
             
             <div id="layoutSidenav_content">
                 <main>
@@ -46,9 +46,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                 BOM (Bills of Material)<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">

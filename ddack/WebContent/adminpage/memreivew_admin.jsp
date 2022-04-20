@@ -46,8 +46,8 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                상품리뷰 참고하세요.<br> DDACK의 노력은 계속되어야 한다.
-                        </div>
+                                상품리뷰 참고하세요. <br> DDACK의 노력은 계속되어야 한다.
+                        	</div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>상품리뷰 테이블
@@ -82,6 +82,7 @@
                                 
                             </div>
                         </div>
+                    </div>
                     </div>
                 </main>
 	      

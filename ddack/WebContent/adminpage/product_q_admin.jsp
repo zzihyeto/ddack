@@ -19,9 +19,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Quality_테이블</title>
-        
-       <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         
@@ -50,9 +48,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Q_product_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <ul class="nav nav-tabs mb-4">

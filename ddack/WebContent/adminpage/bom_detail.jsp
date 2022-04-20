@@ -43,9 +43,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                BOM (Bills of Material)<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -68,7 +66,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="mat_count" class="form-control"  type="text" value="${bom.mat_count }" />
-                                        <label for="mat_count">원자재 갯수</label>
+                                        <label for="mat_count">원자재 개수</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="mat_person" class="form-control"  type="text" value="${bom.mat_person }"  />

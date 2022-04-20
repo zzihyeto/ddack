@@ -45,8 +45,8 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                생산 지시 해야하는 것입니다. <br> DDACK의 노력은 계속되어야 한다.
-                        </div>
+                                생산 지시하기 <br> DDACK의 노력은 계속되어야 한다.
+                        	</div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>생산지시 table

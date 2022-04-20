@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>BOM_테이블</title>
+        <title>Line_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -35,35 +35,33 @@
                 <main>
                     <div class="container-fluid px-4">
                     <!-- table 내용 -->
-                        <h1 class="mt-4">Product_테이블</h1>
+                        <h1 class="mt-4">Line_테이블</h1>
                        	
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.jsp">관리자 페이지</a></li>
-                            <li class="breadcrumb-item active">Product_테이블</li>
+                            <li class="breadcrumb-item active">Line_테이블</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                Line_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
 	                        <div class="card-header">
-	                            <i class="fas fa-table me-1"></i>Product_테이블
+	                            <i class="fas fa-table me-1"></i>Line_테이블
 	                        </div>
 	                        <div class="card-body">
                                 <form action="lineupdate.add" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="line_name" class="form-control"  type="text" value="${chpro.line_name }" />
+                                        <input name="line_name" class="form-control" type="text" value="${ chpro.line_name }" />
                                         <label for="line_name">라인 이름</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="line_usable" class="form-control"  type="text" value="${chpro.line_usable }" />
+                                        <input name="line_usable" class="form-control" type="text" value="${ chpro.line_usable }" />
                                         <label for="line_usable">라인 사용가능</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="check_date" class="form-control"  type="text" value="${chpro.check_date }" />
+                                        <input name="check_date" class="form-control" type="text" value="${chpro.check_date }" />
                                         <label for="check_date">라인체크날짜</label>
                                     </div>
                                     <div class="form-floating mb-3">

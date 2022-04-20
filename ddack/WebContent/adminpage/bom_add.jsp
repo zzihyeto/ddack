@@ -38,9 +38,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
-                           	 <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                BOM (Bills of Material)<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -50,44 +48,43 @@
 	                        <div class="card-body">
                                 <form action="bominsert.add" method="post">
                                     <div class="form-floating mb-3">
-                                        <input name="mat_name" class="form-control"  type="text" placeholder="원자재 이름" />
+                                        <input name="mat_name" class="form-control" type="text" placeholder="원자재 이름" />
                                         <label for="mat_name">원자재 이름</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_type" class="form-control"  type="text" placeholder="원자재 종류"/>
+                                        <input name="mat_type" class="form-control" type="text" placeholder="원자재 종류"/>
                                         <label for="mat_type">원자재 종류</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_unit" class="form-control"  type="text" placeholder="원자재 단위" />
+                                        <input name="mat_unit" class="form-control" type="text" placeholder="원자재 단위" />
                                         <label for="mat_unit">원자재 단위</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_count" class="form-control"  type="text" placeholder="원자재 갯수"/>
+                                        <input name="mat_count" class="form-control" type="text" placeholder="원자재 갯수"/>
                                         <label for="mat_count">원자재 갯수</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_person" class="form-control"  type="text" placeholder="원자재 관리자" />
+                                        <input name="mat_person" class="form-control" type="text" placeholder="원자재 관리자" />
                                         <label for="mat_person">원자재 관리자</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_container_code" class="form-control"  type="text" placeholder="원자재 창고코드" readonly value="D" />
+                                        <input name="mat_container_code" class="form-control" type="text" placeholder="원자재 창고코드" readonly value="D" />
                                         <label for="mat_container_code">D</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="mat_life_t" class="form-control"  type="text" placeholder="원자재 유통기한" />
+                                        <input name="mat_life_t" class="form-control" type="text" placeholder="원자재 유통기한" />
                                         <label for="mat_life_t">원자재 유통기한</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input name="c_check" class="form-control"  type="text" placeholder="O or X" />
+                                        <input name="c_check" class="form-control" type="text" placeholder="O or X" />
                                         <label for="c_check">원자재 위생상태 O or X</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="btn btn-success"  type="submit" value="등록하기"/>
+                                        <input class="btn btn-success" type="submit" value="등록하기"/>
                                         <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
                                     </div>
                                 </form>
                             </div>
-                            
                         </div>
                     </div>
                 </main>
