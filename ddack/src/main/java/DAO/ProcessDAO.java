@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -220,6 +221,55 @@ public class ProcessDAO {
 			JDBCUtility.close(conn, pstmt, rs);
 		}
 		return sort_product;
+	}
+
+	public void startinsert(String p_code, int make_count) {
+
+		conn = JDBCUtility.getConnection();
+		CallableStatement cs = null;
+		
+		try {
+			cs= conn.prepareCall("CALL make_start(?, ? ,@new_start_od_code)");
+			cs.setString(1, p_code);
+			cs.setInt(2, make_count);
+			
+			cs.execute();
+		
+			cs.close();
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, null, null);
+		}
+		
+		
+	}
+
+	public void deleteorder(String p_code) {
+
+		conn = JDBCUtility.getConnection();
+		PreparedStatement pstmt = null;
+	
+		String sql = "delete from memorder where p_code = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt>0) {
+				JDBCUtility.commit(conn);
+			}else {			
+				JDBCUtility.rollback(conn);
+			}
+			
+			
+		}catch (Exception e) {
+			System.out.println("연결해서 뭔가 잘못된거같다"+e.getMessage());
+		}finally {
+			JDBCUtility.close(conn, pstmt, null);
+		}
+		
 	}
 
 	
