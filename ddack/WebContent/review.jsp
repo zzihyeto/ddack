@@ -17,9 +17,7 @@
 	int endPage = pageinfo.getEndPage();
 	
 	String buy_check = (String) session.getAttribute("buy_check");
-	
- %>
-
+%>
 <c:set var="curPage" value="<%=curPage%>"/>
 <c:set var="totalPage" value="<%=totalPage%>"/>
 <c:set var="startPage" value="<%=startPage%>"/>
@@ -68,6 +66,7 @@
 								<option value="p_name">제품명</option>
 								<option value="review_date">작성일</option>
 							</select> 
+							
 							<input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>

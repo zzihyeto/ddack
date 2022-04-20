@@ -52,7 +52,7 @@
 	                     </div>
 	                     <div class="card-footer d-flex align-items-center justify-content-between">
 	                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-	                         <a class="small text-white" href="#">구매 발주관리</a>
+	                         <a class="small text-white" href="pur_addform.admin">구매 발주관리</a>
 	                     </div>
 	                 </div>
 	             </div>
@@ -72,7 +72,7 @@
 	                 <div class="card mb-4">
 	                     <div class="card-header">
 	                         <i class="fas fa-chart-bar me-1"></i> 연령별 건강/ 다이어트 / 운동 관심도 </div>
-	                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+	                     <div class="card-body"><canvas id="brChart" width="100%" height="40"></canvas></div>
 	                 </div>
 	             </div>
 	         </div>

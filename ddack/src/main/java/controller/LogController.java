@@ -12,11 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.LogOutAction;
 import action.LoginAction;
+import adminaction.LogOutAdminAction;
+import adminaction.LoginAdminAction;
 import vo.ActionForward;
 
 @WebServlet("*.check")
 public class LogController extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2058283607907049577L;
 	ActionForward forward = null;
 	Action action = null;
 	
@@ -50,6 +56,20 @@ public class LogController extends HttpServlet{
 			}
 		}else if (command.equals("/logout.check")) {
 			action = new LogOutAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/adminpage/logout.check")) {
+			action = new LogOutAdminAction();
+			try	{
+				forward = action.execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/adminpage/login.check")) {
+			action = new LoginAdminAction();
 			try	{
 				forward = action.execute(req, res);
 			}catch(Exception e) {

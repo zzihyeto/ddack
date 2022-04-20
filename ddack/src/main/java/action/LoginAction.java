@@ -32,6 +32,13 @@ public class LoginAction implements Action {
 		ok_admin = logincheckser.isAmdin(userID,inputPassword); //admin 체크
 		
 		if(ok_admin) {
+			member_info =logincheckser.getMember_info(userID);
+			
+			String post_code = member_info.getPost_code();
+			post_info = logincheckser.getPost_info(post_code);
+			
+			session.setAttribute("member_info", member_info);
+			session.setAttribute("post_info", post_info);
 			session.setAttribute("login_ing", "admin");
 			forward.setPath("/index.jsp");	
 			
