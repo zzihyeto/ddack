@@ -63,18 +63,21 @@
 	             <div class="col-xl-6">
 	                 <div class="card mb-4">
 	                     <div class="card-header">
-	                         <i class="fas fa-chart-area me-1"></i>월별 닭가슴살, 건강식, 다이어트식 검색빈도</div>
-	                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+	                         <i class="fas fa-chart-bar me-1"></i>	월별 닭가슴살 검색량 </div>
+	                     <div class="card-body"><canvas id="ddack3" width="100%" height="40"></canvas></div>
 	                 </div>
 	             </div>
-	             
+
 	             <div class="col-xl-6">
 	                 <div class="card mb-4">
 	                     <div class="card-header">
-	                         <i class="fas fa-chart-bar me-1"></i> 연령별 건강/ 다이어트 / 운동 관심도 </div>
-	                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+
+	                         <i class="fas fa-chart-bar me-1"></i>닭가슴살검색량에 따른 매출량예측</div>
+	                     <div class="card-body"><canvas id="ddack1" width="100%" height="40"></canvas></div>
+
 	                 </div>
 	             </div>
+	             
 	         </div>
 	         
 	     </div>
