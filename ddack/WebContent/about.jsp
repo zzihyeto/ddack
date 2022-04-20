@@ -56,7 +56,7 @@
                         <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="img/join.png" alt="..." /></div>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">회원 관리</h2>
-                            <p class="lead fw-normal text-muted mb-0">회원가입 할 수 있고 로그인할 때 일반 회원과 관리자를 나워서 진행하였고, 상품들이 나열되고 리뷰도 볼수 있고 회원들이 주문한 상품을 조회가능 하게 하였습니다.</p>
+                            <p class="lead fw-normal text-muted mb-0">회원가입 할 수 있고 로그인할 때 일반 회원과 관리자를 나눠서 진행하였고, 상품들이 나열되고 리뷰도 볼수 있고 회원들이 주문한 상품을 조회가능 하게 하였습니다.</p>
                         </div>
                     </div>
                 </div>
