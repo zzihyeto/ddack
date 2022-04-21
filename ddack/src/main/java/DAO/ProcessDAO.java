@@ -229,7 +229,7 @@ public class ProcessDAO {
 		CallableStatement cs = null;
 		
 		try {
-			cs= conn.prepareCall("CALL make_start(?, ? ,@new_start_od_code)");
+			cs= conn.prepareCall("CALL make_start(?, ?)");
 			cs.setString(1, p_code);
 			cs.setInt(2, make_count);
 			
