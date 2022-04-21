@@ -59,6 +59,7 @@
 					<div class="float-right mt-3">
 						<!-- 검색분류선택하고 검색어로 검색 -->
 						<form class="d-flex" action="search.show?page=${ curPage }" method="post">
+						
 							<!--검색 분류선택 -->
 							<select name="f" class="form-select me-2">
 								<option value="m_id">작성자ID</option>

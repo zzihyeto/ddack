@@ -7,7 +7,6 @@
 	request.setCharacterEncoding("utf-8");
 	List<Product> order_list = (List<Product>) session.getAttribute("order_list");
 	
-	
 	request.setAttribute("order_list", order_list);
 %>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous"> 
 	 <!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 	<!-- Bootstrap icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
@@ -37,6 +36,7 @@
 	}
 	</style>
 </head>
+
 <body class="d-flex flex-column h-100">
 	<main class="flex-shrink-0">
 		<!-- layout폴더 > navbar.jsp -->
@@ -84,10 +84,7 @@
 					</tr>
 				</c:if>
 			</table>
-				
-		</div>
-        
-        
+		</div>     
 	</main>
 	<!-- layout폴더 > footer.jsp -->
     <jsp:include page="./layout/footer.jsp"/>

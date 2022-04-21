@@ -46,7 +46,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                 BOM (Bills of Material)<br> DDACK의 노력은 계속되어야 한다.
+                                 Container_테이블<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -60,7 +60,7 @@
                                         <tr>
                                             <th>원자재 이름</th>
                                             <th>입고 창고</th>
-                                            <th>갯수</th>
+                                            <th>개수</th>
                                             <th>출고 창고</th>
                                             <th>관리자</th>
                                         </tr>

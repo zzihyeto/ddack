@@ -47,7 +47,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                품질_라인 테이블입니다.<br> DDACK의 노력은 계속되어야 한다.
+                                라인 관리 테이블입니다.<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <ul class="nav nav-tabs mb-4">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-body">
-                               라인이름을 클릭해서 해당되는 이름의 라인에 <br />
+                               라인 이름을 클릭해서 해당되는 이름의 라인에 <br />
                                라인 체크한 내용을 입력해서 기록한다. <br />
                                기록하게 되면 기록한 날짜가 수정된다.
                             </div>

@@ -47,7 +47,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                회원정보 내역<br> DDACK의 노력은 계속되어야 한다.
+                                회원정보<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -63,7 +63,7 @@
                                             <th>ID</th>
                                             <th>이름</th>
                                             <th>전화번호</th>
-                                            <th>이메일</th>
+                                            <th>email</th>
                                             <th>우편번호</th>
                                         </tr>
                                     </thead>

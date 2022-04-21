@@ -89,7 +89,7 @@
 									</select>											 
 									<!--원재료 코드별 주문가능 수량은? 수량 알려주는 것-->
 									<input class="form-control me-2" type="text" placeholder="주문가능수량" readonly/>
-									<button class="btn btn btn-primary" type="submit">주문가능 수량체크</button>
+									<button class="btn btn btn-success" type="submit">주문가능 수량체크</button>
 							</div>
 							</div>
 					    </form>

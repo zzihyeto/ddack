@@ -48,7 +48,7 @@
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="headingTwo">
                                     	<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    		GIT & GITHUB
+                                    		Git & Github
                                     	</button>
                                    	</h3>
                                     <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -65,7 +65,7 @@
                                     </h3>
                                     <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            서비스 - 기능구현 - 그에 맞는 DB테이블 만들기 - 개발시작
+                                            서비스 - 기능구현 - 그에 맞는 DB 테이블 만들기 - 개발시작
                                         </div>
                                     </div>
                                 </div>

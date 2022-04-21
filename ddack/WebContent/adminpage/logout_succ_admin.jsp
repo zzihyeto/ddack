@@ -38,7 +38,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                Sucess_logout 고객만족을 위한 DDACK!<br> DDACK의 노력은 계속되어야 한다.
+                                Sucess_logout page<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -52,13 +52,13 @@
 			                        <div class="card shadow-lg border-0 rounded-lg my-5">
 			                            <div class="card-header">
 				                            <h3 class="text-center font-weight-light my-4">
-				                           		로그아웃되었습니다.
+				                           		로그아웃 되었습니다.
 				                            </h3>
 			                            </div>
 			                            
                             		<div class="card-footer text-center py-3">
 		                                <div class="small">
-		                                	<a href="/adminpage/index.jsp" class="btn btn-warning">Admin page</a>
+		                                	<a href="/adminpage/index.jsp" class="btn btn-warning">Adminpage</a>
 		                                </div>
                             		</div>
                         		</div>

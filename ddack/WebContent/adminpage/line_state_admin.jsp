@@ -46,7 +46,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                               Line 테이블내역입니다.<br> DDACK의 노력은 계속되어야 한다.
+                               Line 테이블 입니다.<br> DDACK의 노력은 계속되어야 한다.
                             </div>
                         </div>
                         <div class="card mb-4">

@@ -7,7 +7,6 @@
 	request.setCharacterEncoding("utf-8");
 	List<Product> cart_list = (List<Product>) session.getAttribute("cart_list");
 	request.setAttribute("cart_list", cart_list);
-	
 %>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
@@ -20,10 +19,9 @@
 	<meta name="author" content="" />
 	<title>Finalbuy.jsp</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous"> 
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
 	 <!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="./assets1/favicon.ico" />
 	<!-- Bootstrap icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
@@ -116,7 +114,7 @@
 					</tr>
 					<tr>
 						<td colspan="4"><c:out value="${today}"/></td>					
-						<td colspan="4"><input type="text" name="due_date" class="form-control" placeholder="'0000-00-00' 로 적어주세요"/></td>
+						<td colspan="4"><input type="text" name="due_date" class="form-control" placeholder="'0000-00-00'로 적어주세요"/></td>
 					</tr>
 					<tr>
 						<td colspan="8">

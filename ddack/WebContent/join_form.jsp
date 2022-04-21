@@ -9,12 +9,12 @@
 <c:set var="inputid_result" value="<%= inputid_result %>"/>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+<head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>join.jsp</title>
+	<title>DDack_회원가입</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<!-- Favicon-->
@@ -23,7 +23,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="./css1/styles.css" rel="stylesheet" />
-	</head>
+</head>
 
 <body class="d-flex flex-column">
 <div id="layoutAuthentication">
@@ -58,30 +58,28 @@
 									</p>
 								</div>
 							</div>
+							
 							<div class="card-body">
 								<form action="duplicate.member" method="post">
 									<div class="form-floating mb-3">
 										<div class="row">
 											<div class="col-md-8">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="inputid" type="text" name="inputid"
-														placeholder="user id....."  /> 
-														<label for="id"> <i class="bi bi-person"></i> 아이디</label>
+													<input class="form-control" id="inputid" type="text" name="inputid" placeholder="user_id"/> 
+													<label for="id"><i class="bi bi-person"></i> ID</label>
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-												<input type="submit" class="form-control btn btn-primary" value="ID중복체크" />
+												<input type="submit" class="form-control btn btn-primary pt-2" value="ID중복체크" />
 												</div>
 											</div>
 										</div>
 									</div>
 								</form>
-								
 									<div class="form-floating mb-3">
 										<input class="form-control" id="name" type="text" name="name" placeholder="user name....." /> 
-											<label for="name"><i class="bi bi-emoji-smile"></i> 이름
-										</label>
+										<label for="name"><i class="bi bi-emoji-smile"></i> 이름</label>
 									</div>
 									
 									<div class="form-floating mb-3">
@@ -90,7 +88,7 @@
 									</div>
 									<div class="form-floating mb-3">
 										<input class="form-control" id="jumin" type="text" placeholder="주민등록번호를 입력하세요." name="jumin" />
-										 <label for="jumin"> <i class="bi bi-credit-card-2-front"></i> 주민번호</label>
+										<label for="jumin"> <i class="bi bi-credit-card-2-front"></i> 주민번호</label>
 									</div>
 									
 									<div class="form-floating mb-3">
@@ -107,34 +105,34 @@
 										<div class="row">
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="do_"
-														placeholder="name@example.com" /> <label for="do">도</label>
+													<input class="form-control" id="" type="text" name="do_" placeholder="도를 입력하세요."/>
+													<label for="do">도</label>
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="ci"
-														placeholder="연락처를 입력하세요" /> <label for="ci">시</label>
+													<input class="form-control" id="" type="text" name="ci"	placeholder="시를 입력하세요." /> 
+													<label for="ci">시</label>
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="gugun"
-														placeholder="name@example.com" /> <label for="gungu">구/군</label>
+													<input class="form-control" id="" type="text" name="gugun" placeholder="구/군을 입력하세요."/>
+													<label for="gungu">구/군</label>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-floating mb-3">
-													<input class="form-control" id="" type="text" name="dong"
-														placeholder="name@example.com" /> <label for="dong">동/읍</label>
+													<input class="form-control" id="" type="text" name="dong" placeholder="도로명주소를 입력하세요" />
+													<label for="dong">도로명주소</label>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-floating mb-3">
 													<input class="form-control" id="" type="text"name="be_addr" placeholder="상세주소를 입력하세요" /> 
-													<label for="be_addr"> <i class="bi bi-house-heart"></i>상세주소</label>
+													<label for="be_addr"><i class="bi bi-house-heart"></i> 상세주소</label>
 												</div>
 											</div>
 										</div>

@@ -61,7 +61,8 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="mat_count" class="form-control" type="text" placeholder="원자재 갯수"/>
-                                        <label for="mat_count">원자재 갯수</label>
+                                        <label for="mat_count">원자재 개
+                                        수</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="mat_person" class="form-control" type="text" placeholder="원자재 관리자" />

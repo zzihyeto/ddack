@@ -21,8 +21,7 @@
         <title>Quality_테이블</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./css2/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>       
     </head>
     
     <body class="sb-nav-fixed">
@@ -77,7 +76,7 @@
 	                                    <thead>
 	                                        <tr>
 	                                            <th>완제품 이름</th>
-	                                            <th>불량품 갯수</th>
+	                                            <th>불량품 수량</th>
 	                                            <th>체크 버튼</th>
 	                                        </tr>
 	                                    </thead>
@@ -104,7 +103,7 @@
                         </div>
                         <div class="card mb-4">
 	                            <div class="card-body">
-	                               완제품 이름 , 불량품 갯수를 입력받고 상태를 입력받는다 <br />
+	                               완제품 이름, 불량품 수량을 입력받고 상태를 입력받는다 <br />
 		                           저장소에서 완제품 갯수에서 불량품 갯수를 제거한다.
 	                            </div>
 	                        </div>

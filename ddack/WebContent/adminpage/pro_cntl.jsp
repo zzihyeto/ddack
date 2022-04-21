@@ -79,10 +79,11 @@
 							         		</c:forEach>
 						         		</c:if>                                       
                                     </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                 </table>
+                              </div>
+                           </div>
+                      </div>
+                  </div>
                 </main>
 	      
                 <!-- footer -->   
