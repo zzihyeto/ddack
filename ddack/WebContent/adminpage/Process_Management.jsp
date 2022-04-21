@@ -104,7 +104,7 @@
 	          				 		<th>${ process_manage.clean_code }</th>
 	          				 		<th>${ process_manage.q_code }</th>
 	          				 		<td>
-							        	<a href="starorder_enddate.admin?start_od_code=${ process_manage.start_od_code }" 
+							        	<a href="starorder_enddate.admin?start_od_code=${ process_manage.start_od_code }&mk_time=${process_manage.mk_time}" 
 							         	 class="btn btn-warning">생산상태</a>
 							        </td>
 					  			</tr>
