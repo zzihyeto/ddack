@@ -179,11 +179,10 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from (select rownum() rn, t1.* "
-				+ "	from (select rv.re_code, p.p_name, rv.m_id, rv.p_review, rv.review_date "
-				+ "	from product p, review rv where p.p_code = rv.p_code and "+ field +" like ? "
-				+ "	order by rv.review_date DESC )t1 "
-				+ " )t2 limit ?,? ";
+		String sql = "select t.* "
+				+ "from (select rv.re_code , p.p_name , rv.m_id , rv.p_review , rv.review_date "
+				+ "from product p ,review rv "
+				+ "where p.p_code=rv.p_code and "+ field  +" like ? order by rv.review_date desc) t limit ?,?";
 		
 		int start = 1 + (page-1) * 10 ;
 		int end = 10+start;

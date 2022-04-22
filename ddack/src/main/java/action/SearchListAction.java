@@ -33,12 +33,10 @@ public class SearchListAction implements Action{
 		
 		SearchService searchser = new SearchService();
 		List<ReviewBean> search_list = searchser.getSearch(field, query, page);
-		System.out.println("=Search action==search_list===>"+search_list);
 		
 		//search 해서 온 페이지 관련 pageInfo만들기
 		PageService pageser = new PageService();
 		PageInfo pageInfo = pageser.getSearchPageInfo(field, query, page);
-		System.out.println("=Search action==pageInfo===>"+pageInfo);
 		
 		
 		HttpSession sess = req.getSession();
