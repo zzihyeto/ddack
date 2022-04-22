@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import db.JDBCUtility;
@@ -111,18 +112,20 @@ public class ManufaDAO {
 	}
 
 	// startorder 테이블에 start_od_code별 end_date 넣어주기
-	public void ChangeEndDate(String start_od_code) {
+	public void ChangeEndDate(String start_od_code,int total_date,String mk_time) {
 
 		conn = JDBCUtility.getConnection();
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "update startorder set end_date = sysdate() where start_od_code = ?";
+		String sql = "update startorder set total_date =? ,begin_date= ? , end_date = sysdate() where start_od_code = ?";
 		
 		try {
 	
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, start_od_code);
+			pstmt.setInt(1, total_date);
+			pstmt.setString(2,  mk_time);
+			pstmt.setString(3, start_od_code);
 			
 			int regCount = pstmt.executeUpdate();
 			

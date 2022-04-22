@@ -22,6 +22,8 @@ public class pro_manageAction implements Action {
 		ManufaDAO manufaDAO = ManufaDAO.getInstance();
 		process_manage = manufaDAO.getCHp();
 		
+		
+		
 		HttpSession sess = req.getSession();
 		sess.setAttribute("process_manage", process_manage);
 		
