@@ -361,9 +361,7 @@ public class SupplierDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select b.mat_code "
-				+ " from bom b, buycomp_order bo "
-				+ " where b.b_order_code=bo.b_order_code and bo.b_order_code= ? ";
+		String sql = "select mat_code from buycomp_order where b_order_code =? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, b_order_code);
