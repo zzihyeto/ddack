@@ -148,7 +148,7 @@ public class SupplierDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from buycomp_order";
+		String sql = "select * from buycomp_order order by length(b_order_code) desc, b_order_code desc ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
